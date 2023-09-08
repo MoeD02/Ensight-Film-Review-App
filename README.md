@@ -1,4 +1,4 @@
-# CSC648-fa23-SectionName-teamNN Repository
+# CSC648-fa23-01-team02 Repository
 
 **Application URL: <https://example.com>**
 
