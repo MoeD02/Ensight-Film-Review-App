@@ -22,7 +22,7 @@
 |   Christian Montalvo   | cmontalvo@mail.sfsu.edu |      cjay-m       |  Github Lead   |
 |   Alex Del Rio   | jdoe@sfsu.edu |      jdoe       |     |
 |   Sarah Abusaif   | jdoe@sfsu.edu |      jdoe       |    |
-|   Mohammed Dahbour   | jdoe@sfsu.edu |      jdoe       |  Team Leader   |
+|   Mohammad Dahbour   | mdahbour@mail.sfsu.edu |      MoeD02       |  Scrum Master   |
 
 **NO code should be stored in the root of your repository. You may rename the
 `application/` folder to your team's application name if you'd like, but all the
