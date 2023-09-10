@@ -21,7 +21,7 @@
 |   Pragati Makani   | jdoe@sfsu.edu |      jdoe       |  Team Leader   |
 |   Christian Montalvo   | cmontalvo@mail.sfsu.edu |      cjay-m       |  Github Lead   |
 |   Alex Del Rio   | adelrio3@mail.sfsu.edu |      ajdelrio       |  Backend Lead   |
-|   Sarah Abusaif   | jdoe@sfsu.edu |      jdoe       |    |
+|   Sarah Abusaif   | sabusaif@mail.sfsu.edu |      sabusaif       |  Frontend Lead  |
 |   Mohammad Dahbour   | mdahbour@mail.sfsu.edu |      MoeD02       |  Scrum Master   |
 
 **NO code should be stored in the root of your repository. You may rename the
