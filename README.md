@@ -20,7 +20,7 @@
 | :----------: | :-----------: | :-------------: | :------------: |
 |   Pragati Makani   | jdoe@sfsu.edu |      jdoe       |  Team Leader   |
 |   Christian Montalvo   | cmontalvo@mail.sfsu.edu |      cjay-m       |  Github Lead   |
-|   Alex Del Rio   | adelrio3@mail.sfsu.edu |      ajdelrio       |  Backend Lead   |
+|   Alexander del Rio   | adelrio3@mail.sfsu.edu |      ajdelrio       |  Backend Lead   |
 |   Sarah Abusaif   | sabusaif@mail.sfsu.edu |      sabusaif       |  Frontend Lead  |
 |   Mohammad Dahbour   | mdahbour@mail.sfsu.edu |      MoeD02       |  Scrum Master   |
 
