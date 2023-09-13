@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'about/style.css' %}">
     <title>About Us</title>
 </head>
 <body id="about">
@@ -26,19 +26,19 @@
                     <p class="position">GitHub Master</p>
                 </div>
             </a>
-            <a href="alex.html" class="owner">
+            <a href="{% url 'alex.html' %}" class="owner">
                 <div class="container">
                     <h3 class="name"> Alexander del Rio</h3>
                     <p class="position">Backend Lead</p>
                 </div>
             </a>
-            <a href="sarah.html" class="owner">
+            <a href="{% url 'sarah.html' %}" class="owner">
                 <div class="container">
                     <h3 class="name"> Sarah Abusaif</h3>
                     <p class="position">Frontend Lead</p>
                 </div>
             </a>
-            <a href="mohammad.html" class="owner">
+            <a href="{% url 'mohammad.html' %}" class="owner">
                 <div class="container">
                     <h3 class="name"> Mohammad Dahbour</h3>
                     <p class="position">Scrum Master</p>
