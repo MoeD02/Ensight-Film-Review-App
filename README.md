@@ -18,7 +18,7 @@
 
 | Student Name | Student Email | GitHub Username | Student's role |
 | :----------: | :-----------: | :-------------: | :------------: |
-|   Pragati Makani   | jdoe@sfsu.edu |      jdoe       |  Team Leader   |
+|   Pragati Makani   | pmakani1@mail.sfsu.edu |      pragati-e       |  Team Leader   |
 |   Christian Montalvo   | cmontalvo@mail.sfsu.edu |      cjay-m       |  Github Lead   |
 |   Alexander del Rio   | adelrio3@mail.sfsu.edu |      ajdelrio       |  Backend Lead   |
 |   Sarah Abusaif   | sabusaif@mail.sfsu.edu |      sabusaif       |  Frontend Lead  |
