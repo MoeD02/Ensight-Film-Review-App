@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'about/style.css' %}">
     <title>About Me</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
         <div class="w3-half w3-blue-grey w3-container">
             <div class="w3-padding-64 w3-center">
                 <h1>Mohammad Dahbour</h1>
-                <img src="../Pics/Moe.png" class="w3-margin w3-circle" alt="Profile Image" style="width:300px; height:300px;">
+                <img src="{% static 'about/Pics/Moe.png' %}" class="w3-margin w3-circle" alt="Profile Image" style="width:300px; height:300px;">
                 <div class="w3-left-align w3-padding-large">
                     <p>Hi everyone! My name's Mohammad but everyone calls me Moe. I'm the scrum master for team 2 <br> I'm a computer Science major who's graduating next semester so i'm really excited for that!</p>
                     <p>What I'm interested in:<br> Videogames and my favs are Persona 5, Final Fantasy, and God Of War<br>I'm also really into soccer and my favorite team is Barcelona.
