@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'Oswald';
+  src: url('./Oswald-Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+  color: #0c0c0c;
+  background-color: #ffffff;
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+h1 {
+  font-size: 3.5em;
+}
+
+.w3-half {
+  text-align: center; /* Center text within the element */
+  max-width: 500px; /* Adjust the maximum width as needed */
+  padding: 20px; /* Add some padding for spacing */
+  background-color: #ffffff; /* Add background color for better readability */
+}
+
+footer {
+  position: fixed;
+  text-align: center; /* Center text within the element */
+  bottom: 0;
+  width: 100%;
+  font-size: 2em;
+}
