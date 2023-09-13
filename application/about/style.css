@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'Oswald';
+    src: url(fonts/Oswald-Regular.ttf) format('truetype');
+}
+
+html {
+    background-color: #f2f2f2;
+}
+
+#about {
+    position: relative;
+    margin: 0 5%;
+    background-color: #f2f2f2;
+}
+
+header {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #5a94f2;
+}
+
+#gradient-text {
+    background-image: linear-gradient(0, #5a94f2, #c45af2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+.table {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.owners {
+    display: grid;
+    grid-area: content;
+    grid-template-columns: repeat(3, calc(33.3333% - 20px));
+    grid-auto-rows: 1fr;
+    grid-auto-columns: 1fr;
+    gap: 30px;
+    min-height: 413px;
+}
+
+@media screen and (max-width: 991px) {
+    .owners {
+        grid-template-columns: repeat(2, calc(50% - 15px));
+        min-height: 610px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .owners {
+        grid-template-columns: 100%;
+    }
+}
+
+a {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.owner {
+    background-color: white;
+    border-left-width: 8px;
+    border-left-color: #5a94f2;
+    border-left-style: solid;
+}
+
+a:hover {
+    background-color: #5a94f2;
+    border-left-color: white;
+    .name, .position {
+        color: white;
+    }
+}
+
+.container {
+    padding: 30px;
+}
+
+.name {
+    font-size: 1.88235rem;
+    text-transform: none;
+    font-weight: 400;
+    color: #5a94f2;
+    margin: 13px 0 0;
+}
+
+.position {
+    font-size: 1.125rem;
+    letter-spacing: 0px;
+    font-weight: 600;
+    text-transform: none;
+    margin: 10px 0 0;
+    font-family: 'Oswald', sans-serif;
+    color: #9dc1f1;
+}
+
+.end {
+    margin-bottom: 0;
+    color: #9dc1f1;
+}
+
+/* For individual pages */
+body {
+    font-family: "Oswald", sans-serif;
+    color: #0c0c0c;
+    background-color: #ffffff;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+h1 {
+    font-size: 3.5em;
+}
+
+.w3-half {
+    text-align: center; /* Center text within the element */
+    max-width: 500px; /* Adjust the maximum width as needed */
+    padding: 20px; /* Add some padding for spacing */
+    background-color: #ffffff; /* Add background color for better readability */
+}
+
+footer {
+    /*position: fixed;*/
+    text-align: center; /* Center text within the element */
+    bottom: 0;
+    width: 100%;
+    font-size: 2em;
+}
