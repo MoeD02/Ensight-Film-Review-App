@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 
 # Create your views here.
 class IndexView(TemplateView):
-    template_name = 'about/index.html'
+    template_name = 'about/about.html'
 
 class AlexView(TemplateView):
     template_name = 'about/alex.html'
