@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'about/style.css' %}">
+    <title>About Us</title>
+</head>
+<body>
+  <ul>
+    <li><a href="{% url 'pragati' %}">Pragati</a></li>
+    <li><a href="{% url 'christian' %}">Christian</a></li>
+    <li><a href="{% url 'alex' %}">Alex</a></li>
+    <li><a href="{% url 'sarah' %}">Sarah</a></li>
+    <li><a href="{% url 'mohammad' %}">Mohammad</a></li>
+  </ul>
+    <!-- Footer -->
+    <footer class="w3-container w3-black w3-padding-16">
+        <p>CSC 648 Fall 2023 Team 02</p>
+    </footer>
+</body>
+</html>

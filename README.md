@@ -1,6 +1,6 @@
 # CSC648-fa23-01-team02 Repository
 
-**Application URL: <https://example.com>**
+**Application URL: https://www.team02.website
 
 ## Before completing Milestone 0
 
