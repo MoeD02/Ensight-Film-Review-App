@@ -7,7 +7,7 @@ class Movie(models.Model):
   description = models.CharField(max_length=1024)
   rating_count = models.PositiveSmallIntegerField(default=0)
   rating_average = models.DecimalField(max_digits=3, decimal_places=2, default=0)
-  poster_path = models.FilePathField(path=settings.BASE_DIR / 'about/static/about/posters', match=None)
+  poster_path = models.FileField(upload_to='posters/')
   
   def __str__(self):
     return self.title

@@ -30,6 +30,7 @@
         </form> -->
         {% endcomment %}
         <!-- FOR ALEX: form placement shouldn't be wrong but could be-->
+	<a href="{% url 'home' %}"> Home </a><pre>	</pre>
         <form method="get" action="{% url 'search' %}">
             <input type="text" name="query" placeholder="Search">
             <select name="search_type">
@@ -38,7 +39,7 @@
             </select>
             <button type="submit">Search</button>
         </form>
-    
+
     </header>
 
     <!-- Body -->
@@ -49,9 +50,13 @@
             <ul>
                 {% for i in results %}
                     <li class="description">
-                        <!-- FOR ALEX: INSER MOVIE NAME AND DESCRIPTION HERE -->
-                        <strong>{{ i.title }}:</strong> {{ i.description }}
+			<!-- FOR ALEX: INSER MOVIE NAME AND DESCRIPTION HERE -->
+                        <h3>{{ i.title }}:</h3> 
+			<img src="{{ i.poster_path.url }}">
+			<br>
+			{{ i.description }}
                     </li>
+		<br>
                 {% endfor %}
             </ul>
         {% elif search_type == 'user' %}
@@ -60,7 +65,7 @@
                 {% for i in results %}
                     <li class="description">
                         <!-- FOR ALEX: INSER USER'S NAME HERE -->
-                        <strong>{{ i.author }} at {{ i.created_at }}</strong>
+                        <strong>{{ i.author }}</strong> at {{ i.created_at }}
                         <br>
                         {{ i.text|truncatewords:50 }}
                     </li>
@@ -75,9 +80,10 @@
         <ul>
         {% for i in movie_list %}
             <li class="description">
-                <img src="{{ i.poster_path }}">
+		<h2>{{ i.title }}</h2>
+                <img src="{{ i.poster_path.url }}">
                 <br>
-                <strong>{{ i.title }}</strong>  {{ i.release_date }}
+               <small>Released: {{ i.release_date }}</small>
                 <br>
                 {{ i.description|truncatewords:50 }}
             </li>
