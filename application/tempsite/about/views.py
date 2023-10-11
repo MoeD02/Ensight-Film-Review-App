@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from .forms import SearchForm
+from .models import *
+from django.views.generic.list import ListView
 # For ALEX: IMPORT MODELS HERE
 # Create your views here.
 class HomeView(TemplateView):
@@ -36,7 +38,9 @@ class ChristianView(TemplateView):
 #         form = MovieSearchForm()
 #     return render(request, 'home.html', {'form': form})
 
-
+def index(request):
+    movie_list = Movie.objects.order_by("-release_date")[:10]
+    return render(request, 'about/home.html', {'movie_list': movie_list})
 
 def search(request):
     if request.method == 'GET':
@@ -53,10 +57,10 @@ def search(request):
                 results = Movie.objects.filter(title__icontains=query)
             elif search_type == 'user':
                 # FOR ALEX: Here you would do the search and whatever you find will be returned into results. Everything next to the "=" is dummy code
-                results = User.objects.filter(username__icontains=query)
+                results = Review.objects.filter(author__username__icontains=query)
             # Render the search_results html page if the user did a GET request 
-            return render(request, 'search_results.html', {'results': results, 'search_type': search_type, 'form': form})
+            return render(request, 'about/home.html', {'results': results, 'search_type': search_type, 'form': form})
     else:
         form = SearchForm()
     #Return the home page if the user didn't do a get request
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'about/home.html', {'form': form})

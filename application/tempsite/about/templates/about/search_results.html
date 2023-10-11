@@ -30,7 +30,7 @@
                 {% for i in results %}
                     <li>
                         <!-- FOR ALEX: INSER MOVIE NAME AND DESCRIPTION HERE -->
-                        {{ i.name }}: {{ i.description }}
+                        {{ i.title }}: {{ i.description }}
                     </li>
                 {% endfor %}
             </ul>
@@ -40,7 +40,7 @@
                 {% for i in results %}
                     <li>
                         <!-- FOR ALEX: INSER USER'S NAME HERE -->
-                        {{ i.username }}
+                        {{ i.author }}: {{ i.created_at }} {{ i.text }}
                     </li>
                 {% endfor %}
             </ul>
@@ -51,7 +51,7 @@
     
     <p>
         <!-- FOR ALEX: THIS COULD CAUSE ISSUES-->
-        <a href="{%  static 'about/home.html %}">Return to Home</a>
+        <a href="{%  static 'about/home.html' %}">Return to Home</a>
     </p>
 </div>
 {% endblock %}
