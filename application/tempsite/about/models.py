@@ -7,12 +7,14 @@ class Movie(models.Model):
   description = models.CharField(max_length=1024)
   rating_count = models.PositiveSmallIntegerField(default=0)
   rating_average = models.DecimalField(max_digits=3, decimal_places=2, default=0)
-  poster_path = models.FileField(upload_to='posters/')
+  poster_path = models.FileField(upload_to='posters/') # uploads to MEDIA_ROOT/posters/
   
   def __str__(self):
     return self.title
 
 class Review(models.Model):
+  # related_name allows you to reverse lookup the relation, e.g. Movie.reviews.all() gets all reviews for that movie
+  # TODO: reverse lookup on user may need different syntax due to nature of django built-in user model
   author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
   movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews')
   title = models.CharField(max_length=512)
@@ -39,3 +41,18 @@ class Review(models.Model):
   
   def __str__(self):
     return self.title
+
+class Comment(models.Model):
+  author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
+  review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
+  text = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)
+  
+  
+class MovieList(models.Model):
+  author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='lists')
+  movies = models.ManyToManyField(Movie)
+  title = models.CharField(max_length=512)
+  description = models.TextField(blank=True)
+  created_at = models.DateTimeField(auto_now_add=True)
+  
