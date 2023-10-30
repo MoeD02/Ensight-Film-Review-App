@@ -32,6 +32,7 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = [
         '.team02.website',
+        '.ensight.space',
     ]
 
 
@@ -138,18 +139,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/tempsite' # collectstatic saves here
 
 # STATICFILES_DIRS = [
 #     BASE_DIR / 'static'
 # ]
 
-# Static Root for collectstatic.
-STATIC_ROOT = '/var/www/tempsite'
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/tempsite/media'
-
 
 
 # Default primary key field type
