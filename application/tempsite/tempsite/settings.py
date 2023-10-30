@@ -31,7 +31,6 @@ if DEBUG:
     ]
 else:
     ALLOWED_HOSTS = [
-        '.team02.website',
         '.ensight.space',
     ]
 
