@@ -1,7 +1,7 @@
 **/.DS_Store
 __pycache__
 .vscode/
-migrations/**
+**/migrations/**
 *.sqlite3
 node_modules/
 **/index-bundle.js
