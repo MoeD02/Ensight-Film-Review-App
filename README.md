@@ -1,6 +1,6 @@
 # CSC648-fa23-01-team02 Repository
 
-**Application URL: https://www.team02.website
+**Application URL: ensight.space
 
 ## Before completing Milestone 0
 
