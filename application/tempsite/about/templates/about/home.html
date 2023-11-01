@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'about/styles.css' %}">
+    <script src="{% static 'about/scripts.js' %}" defer></script>
+    <title>Ensight</title>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        {% comment %}
+        <!--<div class="input-container">
+            <input type="text" id="searchBox" placeholder="Enter username or movie name">
+        </div>
+
+        <select id="searchType">
+            <option value="username">By Username</option>
+            <option value="movie">By Movie Name</option>
+        </select>
+        <button onclick="search()">Submit</button>
+     -->
+        
+        <!-- <form method="get" action="{% url 'search_movies' %}">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+        </form> -->
+        {% endcomment %}
+        <!-- FOR ALEX: form placement shouldn't be wrong but could be-->
+	<a href="{% url 'home' %}"> Home </a><pre>	</pre>
+        <form method="get" action="{% url 'search' %}">
+            <input type="text" name="query" placeholder="Search">
+            <select name="search_type">
+                <option value="movie">Movies</option>
+                <option value="user">Users</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+
+    </header>
+
+    <!-- Body -->
+    <main>
+    {% if results %}
+        {% if search_type == 'movie' %}
+            <h3>Movies:</h3>
+            <ul>
+                {% for i in results %}
+                    <li class="description">
+			<!-- FOR ALEX: INSER MOVIE NAME AND DESCRIPTION HERE -->
+                        <h3>{{ i.title }}:</h3> 
+			<img src="{{ i.poster_path.url }}">
+			<br>
+			{{ i.description }}
+                    </li>
+		<br>
+                {% endfor %}
+            </ul>
+        {% elif search_type == 'user' %}
+            <h3>Users:</h3>
+            <ul>
+                {% for i in results %}
+                    <li class="description">
+                        <!-- FOR ALEX: INSER USER'S NAME HERE -->
+                        <strong>{{ i.author }}</strong> at {{ i.created_at }}
+                        <br>
+                        {{ i.text|truncatewords:50 }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    {% endif %}
+
+    {% if movie_list %}
+        <ul>
+        {% for i in movie_list %}
+            <li class="description">
+		<h2>{{ i.title }}</h2>
+                <img src="{{ i.poster_path.url }}">
+                <br>
+               <small>Released: {{ i.release_date }}</small>
+                <br>
+                {{ i.description|truncatewords:50 }}
+            </li>
+        <!-- Movie Posters -->
+            {% comment %} <div id="moviePosters">
+                <!-- Example Movie -->
+                <div class="movie">
+                        <!-- FOR ALEX: insert image for each movie-->
+                        <img src="{{i.image}}" alt="{{i.name}} thumbnail">
+                        <div class="movie-info">
+                            <!-- FOR ALEX: insert name for each movie-->
+                            <h2 class="title">{{i.name}}</h2>
+                            <!-- FOR ALEX: insert description for each movie-->
+                            <p class="description">{{i.summary}}</p>
+                        </div>
+                    
+                </div>
+            </div> {% endcomment %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+        {% comment %}
+        <!-- User Reviews -->
+        <div id="userReviews" style="display: none;">
+            <h1>Username</h1>
+            <ul>
+                <!-- Reviews would be populated here -->
+                {% for i in user_Reviews %}
+                    <li>
+                        <!-- FOR ALEX: insert image for each movie "Not necessary if its too complex. You can just delete the img src line"-->
+                        <img src="{{i.movie_reviewed.image}}" alt="{{i.movie_reviewed.name}} thumbnail" style="max-width: 100px; max-height: 150px;">
+                        <!-- FOR ALEX: insert the name of the reviewed movie and the text of the review"-->
+                        {{i.movie_reviewed.name}}: {{i.text}}
+                    </li>
+                {% endfor %}
+                <!-- Add more li elements for each review -->
+            </ul>
+        </div>
+        {% endcomment %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        Welcome to Ensight where entertainment meets insights!
+    </footer>
+
+</body>
+</html>

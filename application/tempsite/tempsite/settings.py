@@ -25,9 +25,14 @@ SECRET_KEY = 'django-insecure-7-!=aus+1vvk%ju7nf9w-ryp2m6*iud1o@*5r1=561@vw5ug(h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-	'.team02.website',
-]
+if DEBUG:
+    ALLOWED_HOSTS = [
+        'localhost',
+    ]
+else:
+    ALLOWED_HOSTS = [
+        '.ensight.space',
+    ]
 
 
 # Application definition
@@ -61,6 +66,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+		'django.template.context_processors.media',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -77,23 +83,24 @@ WSGI_APPLICATION = 'tempsite.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # for testing purposes only
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": "mydatabase",
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE':   'django.db.backends.mysql',
-        'NAME':     'app_db',
-        'USER':     'django',
-        'PASSWORD': 'djangopass',
-        'HOST':     'localhost',
-        'PORT':     '3306',
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "mydatabase",
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.mysql',
+            'NAME':     'app_db',
+            'USER':     'django',
+            'PASSWORD': 'djangopass',
+            'HOST':     'localhost',
+            'PORT':     '3306',
+        }
+    }
 
 
 # Password validation
@@ -130,14 +137,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
+STATIC_ROOT = '/var/www/tempsite' # collectstatic saves here
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static'
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
-# Static Root for collectstatic.
-STATIC_ROOT = '/var/www/tempsite'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = '/var/www/tempsite/media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

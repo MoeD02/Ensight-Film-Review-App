@@ -1,0 +1,105 @@
+body {
+    background-color: #191919;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-basis: 60%;
+    width: 70%;
+    height: 2rem;
+    background: white;
+    border-radius: 1rem 0 0 1rem;
+    background: linear-gradient(135deg, #23272F 0%, #14161a 100%);
+    box-shadow: 10px 10px 20px #0e1013, -10px -10px 40px #383e4b;
+    padding: 0.3rem;
+    gap: 0.3rem;
+}
+  
+.input-container input {
+    border-radius: 0.8rem 0 0 0.8rem;
+    background: #23272F;
+    box-shadow: inset 5px 5px 10px #0e1013, inset -5px -5px 10px #383e4b, 0px 0px 100px rgba(225, 23, 8, 0), 0px 0px 100px rgba(225, 23, 0, 0);
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border: 1px solid transparent;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+  
+.input-container input:focus {
+    border: 1px solid #E11708;
+    outline: none;
+    box-shadow: inset 0px 0px 10px rgba(225, 23, 8, 0.5), 0px 0px 20px rgba(225, 23, 8, 0.5), 0px 0px 20px rgba(225, 13, 0, 0.5);
+}
+
+#searchType {
+    display: flex;
+    flex-basis: 5%;
+    height: 2.5rem;
+    width: 10rem;
+    background-color: #212121;
+    border: 0.3rem solid;
+    border-color: #1e222aff;
+    box-shadow: 10px 10px 20px #0e1013, -10px -10px 40px #383e4b;
+    color: rgba(255, 255, 255, 0.358);
+}
+
+#searchType:hover {
+    cursor: pointer;
+}
+
+button {
+    height: 2.5rem;
+    width: 5rem;
+    border: 0.3rem solid;
+    border-color: #1e222aff;
+    border-radius: 0 0.8rem 0.8rem 0;
+    box-shadow: 10px 10px 20px #0e1013, -10px -10px 40px #383e4b;
+    background: linear-gradient(135deg, rgb(225, 23, 8) 0%, rgba(225, 13, 0) 100%);
+    box-shadow: 0px 0px 1px rgba(225, 23, 8, 0.5), 0px 0px 1px rgba(225, 23, 8, 0.5);
+    color: #23272F;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(135deg, rgb(225, 23, 8) 50%, rgb(225, 13, 0) 100%);
+    box-shadow: 0px 0px 10px rgba(225, 23, 8, 0.5), 0px 0px 10px rgba(225, 13, 0, 0.5);
+    cursor: pointer;
+  }
+
+.movie {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+img {
+    width: 8rem;
+    margin-right: 1rem;
+}
+
+.title {
+    position: relative;
+    top: -3rem;
+    color: darkgray;
+}
+
+.description {
+    width: 55rem;
+    color: darkgray;
+}
+
+
+footer {
+    position: relative;
+    height: 180px;
+    text-align: center;
+    color: #ffffff61;
+  }
