@@ -1,11 +1,21 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from django.contrib.auth import login, logout
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import permissions, status
+from .serializers import *
 from .forms import SearchForm
 from .models import *
 
+class UserRegister(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def post(self, request):
+        serializer = UserRegisterSerializer(data=)
+
 class HomeView(TemplateView):
     template_name = 'app/home.html'
-
 
 def home(request):
     movie_list = Movie.objects.order_by('-release_date')[:10]

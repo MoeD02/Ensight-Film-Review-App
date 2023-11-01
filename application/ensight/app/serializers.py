@@ -1,7 +1,8 @@
 from .models import *
 from rest_framework import serializers
-from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.password_validation import validate_password
+
 
 UserModel = get_user_model()
 
@@ -27,7 +28,7 @@ class UserLoginSerializer(serializers.Serializer):
             password=clean_data['password'],
             )
         if not user:
-            raise ValidationError('Could not authenticate user')
+            raise serializers.ValidationError('Could not authenticate user')
         return user
 
 class UserSerializer(serializers.ModelSerializer):
