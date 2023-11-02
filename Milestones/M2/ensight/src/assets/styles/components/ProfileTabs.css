@@ -1,0 +1,181 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background-color: #191919;
+}
+
+.Tabs {
+    width: 95%;
+    height: auto;
+    min-height: 400px;
+    margin: 1.5rem auto 1.5rem;
+    padding: 2rem 1rem;
+    color: rgba(255, 255, 255, 0.70);;
+    border-radius: 2rem;
+    @media (max-width: 769px) {
+      padding: 2rem 0;
+    }
+}
+   
+ul.nav {
+    width: 60%;
+    margin: 0 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0px;
+    @media (max-width: 768px) {
+      width: 90%;
+    }
+}
+   
+ul.nav li {
+    width: 50%;
+    height: 65px;
+    padding: 1rem;
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.7s;
+    position: relative;
+    font-size: 25px;
+    font-weight: 800;
+    border-top: 0px;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+ul.nav li:hover {
+  background: radial-gradient(50% 113.77% at 50% 100%, rgba(225, 23, 8, 0.20) 0%, rgba(225, 23, 8, 0.00) 100%), rgba(255, 255, 255, 0.10);
+  box-shadow: 0px 11px 14px 0px rgba(225, 23, 8, 0.10);
+  color: white;
+}
+
+ul.nav li.active {
+  background: radial-gradient(35.95% 60.14% at 50% 100%, rgba(225, 23, 8, 0.60) 0%, rgba(225, 23, 8, 0.00) 100%);
+  color: white;
+  border-bottom: 5px solid #E11708;
+
+}
+
+.Button {
+  float: right;
+  display: inline-flex;
+  padding: 0px 1.5% 0px 1.5%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 185px;
+  background: #E11708;
+  color: #E4E4E4;
+  text-align: center;
+  text-shadow: 0px 3.7109243869781494px 3.7109243869781494px rgba(0, 0, 0, 0.25), 0px 3.7109243869781494px 3.7109243869781494px rgba(0, 0, 0, 0.25);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.Button:hover {
+  cursor: pointer;
+  background: #e11708c7;
+  color: #f3f3f3;
+  border-color: #f3f3f3;
+}
+
+.FavoriteMovies {
+  padding-top: 50px;
+  color: white;
+}
+
+h2 {
+  text-decoration: underline;
+  text-underline-offset: 7px;
+}
+
+.GridContainer {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 30px;
+  justify-self: center;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.GridProfile {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.GridWatchlist {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.GridInsight {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 25rem;
+  gap: 0;
+  }
+
+.MovieProfile {
+  /* first three lines may not be needed when replaced with images */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #232323;
+  color: white;
+  width: 210px;
+  height: 305px;
+  border-radius: 10px;
+}
+
+.MovieWatchlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #232323;
+  color: white;
+  width: 120px;
+  height: 175px;
+  border-radius: 10px;
+}
+
+.InsightInfo {
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
+  color: white;
+}
+
+.InfoLeft {
+  border-left: 0;
+}
+
+.InfoRight {
+  border-right: 0;
+}
+
+.InfoTop {
+  border-top: 0;
+}
+
+.InfoBottom {
+  border-bottom: 0;
+}
+
+.AddMovie {
+  font-size: 100px;
+  border-color: #f3f3f36d;
+}
+
+.AddMovie:hover {
+  cursor: pointer;
+  background-color: gray;
+}
+
+.Number {
+  font-size: 80px;
+}
+
+h5 {
+  align-self: center;
+  font-weight: 500px;
+}
