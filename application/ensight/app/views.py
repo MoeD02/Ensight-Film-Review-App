@@ -2,11 +2,16 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from .forms import SearchForm
 from .models import *
+from django.http import JsonResponse
 
 class HomeView(TemplateView):
     template_name = 'app/home.html'
 
+def test_fetch(request):
+    # Create a sample JSON response
+    data = {'message': 'This is a test fetch response'}
 
+    return JsonResponse(data)
 def home(request):
     movie_list = Movie.objects.order_by('-release_date')[:10]
     return render(request, 'app/home.html', {'movie_list': movie_list})
