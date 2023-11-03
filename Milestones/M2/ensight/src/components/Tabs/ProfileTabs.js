@@ -18,7 +18,7 @@ function ProfileTabs() {
                 <TabNavItem title="Profile" id="profile" activeTab={activeTab} setActiveTab={setActiveTab}/>
                 <TabNavItem title="Diary" id="diary" activeTab={activeTab} setActiveTab={setActiveTab}/>
                 <TabNavItem title="Watchlist" id="watchlist" activeTab={activeTab} setActiveTab={setActiveTab}/>
-                <TabNavItem title="lists" id="lists" activeTab={activeTab} setActiveTab={setActiveTab}/>
+                <TabNavItem title="Lists" id="lists" activeTab={activeTab} setActiveTab={setActiveTab}/>
                 <TabNavItem title="Insight" id="insight" activeTab={activeTab} setActiveTab={setActiveTab}/>
             </ul>
             <div className="outlet">

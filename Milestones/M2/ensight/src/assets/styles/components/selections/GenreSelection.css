@@ -1,0 +1,2839 @@
+.genre-selection .frame {
+    align-items: flex-start;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #000000;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 49px;
+    padding: 5px 6px;
+    position: relative;
+    width: 130px;
+  }
+  
+  .genre-selection .div {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 25px;
+    position: relative;
+  }
+  
+  .genre-selection .text-wrapper {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .genre-selection .polygon {
+    height: 15.27px;
+    margin-right: -1.13px;
+    position: relative;
+    width: 23.26px;
+  }
+  
+  .genre-selection .frame-wrapper {
+    align-items: flex-start;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #000000;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 0;
+    padding: 5px 6px;
+    position: absolute;
+    top: 0;
+    width: 130px;
+  }
+  
+  .genre-selection .frame-2 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 25px;
+    position: relative;
+  }
+  
+  .genre-selection .img {
+    position: relative;
+  }
+  
+  .genre-selection .frame-3 {
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #000000;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    left: 0;
+    padding: 14px 0px;
+    position: absolute;
+    top: 58px;
+    width: 210px;
+  }
+  
+  .genre-selection .div-wrapper {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 48px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-4 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -0.5px;
+    margin-top: -0.5px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-5 {
+    align-items: center;
+    border-radius: 12px;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-6 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-7 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-8 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-left: -0.5px;
+    margin-right: -0.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-9 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-10 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-11 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-12 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-13 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-14 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-left: -17.5px;
+    margin-right: -17.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-15 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 48px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-16 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-17 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-18 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-19 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-20 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 48px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-21 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-22 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-23 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-24 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .mystery-wrapper {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    position: relative;
+  }
+  
+  .genre-selection .mystery {
+    position: relative;
+  }
+  
+  .genre-selection .frame-25 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .romance-wrapper {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .genre-selection .romance {
+    position: relative;
+  }
+  
+  .genre-selection .frame-26 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-27 {
+    position: relative;
+  }
+  
+  .genre-selection .science-fiction {
+    position: relative;
+  }
+  
+  .genre-selection .frame-28 {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    position: relative;
+  }
+  
+  .genre-selection .frame-29 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-30 {
+    margin-left: -24px;
+    margin-right: -24px;
+    position: relative;
+  }
+  
+  .genre-selection .thriller {
+    position: relative;
+  }
+  
+  .genre-selection .frame-31 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-32 {
+    position: relative;
+  }
+  
+  .genre-selection .TV-movie {
+    position: relative;
+  }
+  
+  .genre-selection .frame-33 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-34 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .war {
+    position: relative;
+  }
+  
+  .genre-selection .frame-35 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-36 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection .western {
+    position: relative;
+  }
+  
+  .genre-selection .frame-37 {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .genre-selection .frame-38 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+    position: relative;
+  }
+  
+  .genre-selection.variant-8 {
+    height: 958px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.variant-10 {
+    height: 958px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.variant-9 {
+    height: 958px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.variant-16 {
+    height: 618px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-3 {
+    height: 958px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.variant-5 {
+    height: 958px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.variant-2 {
+    height: 958px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.variant-15 {
+    height: 618px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-19 {
+    height: 599px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-6 {
+    height: 958px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.variant-17 {
+    height: 618px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-14 {
+    height: 618px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-12 {
+    height: 618px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-7 {
+    height: 926px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.default {
+    height: 49px;
+    width: 130px;
+  }
+  
+  .genre-selection.variant-11 {
+    height: 618px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-4 {
+    height: 958px;
+    position: relative;
+    width: 210px;
+  }
+  
+  .genre-selection.variant-18 {
+    height: 618px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-13 {
+    height: 618px;
+    position: relative;
+    width: 329px;
+  }
+  
+  .genre-selection.variant-8 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-10 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-9 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-16 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-3 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-5 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-2 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-15 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-19 .frame-wrapper {
+    height: 47px;
+  }
+  
+  .genre-selection.variant-6 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-17 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-14 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-12 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-7 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.default .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-11 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-4 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-18 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-13 .frame-wrapper {
+    height: 49px;
+  }
+  
+  .genre-selection.variant-19 .frame-2 {
+    margin-bottom: -1.51px;
+  }
+  
+  .genre-selection.variant-8 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-10 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-9 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-16 .img {
+    height: 12px;
+    margin-right: -15082px;
+    margin-top: -19302.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-3 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-5 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-2 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-15 .img {
+    height: 12px;
+    margin-right: -15082px;
+    margin-top: -18319.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-19 .img {
+    height: 12px;
+    margin-right: -15077px;
+    margin-top: -22300.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-6 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-17 .img {
+    height: 12px;
+    margin-right: -15082px;
+    margin-top: -20301.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-14 .img {
+    height: 12px;
+    margin-right: -15072px;
+    margin-top: -17306.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-12 .img {
+    height: 12px;
+    margin-right: -15072px;
+    margin-top: -15366.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-7 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.default .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-11 .img {
+    height: 12px;
+    margin-right: -15072px;
+    margin-top: -14382.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-4 .img {
+    height: 15.27px;
+    margin-right: -1.13px;
+    width: 23.26px;
+  }
+  
+  .genre-selection.variant-18 .img {
+    height: 12px;
+    margin-right: -15073px;
+    margin-top: -21298.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-13 .img {
+    height: 12px;
+    margin-right: -15062px;
+    margin-top: -16325.5px;
+    width: 21px;
+  }
+  
+  .genre-selection.variant-8 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-10 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-9 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-16 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-3 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-5 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-2 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-15 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-19 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-6 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-17 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-14 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-12 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-7 .frame-3 {
+    height: 868px;
+  }
+  
+  .genre-selection.default .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-11 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-4 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-18 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-13 .frame-3 {
+    height: 900px;
+  }
+  
+  .genre-selection.variant-16 .div-wrapper {
+    margin-top: -13.5px;
+  }
+  
+  .genre-selection.variant-3 .div-wrapper {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-15 .div-wrapper {
+    margin-top: -13.5px;
+  }
+  
+  .genre-selection.variant-19 .div-wrapper {
+    margin-top: -13.5px;
+  }
+  
+  .genre-selection.variant-17 .div-wrapper {
+    margin-top: -13.5px;
+  }
+  
+  .genre-selection.variant-7 .div-wrapper {
+    margin-top: -9.5px;
+  }
+  
+  .genre-selection.variant-18 .div-wrapper {
+    margin-top: -13.5px;
+  }
+  
+  .genre-selection.variant-4 .frame-5 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-5 .frame-7 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-8 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-10 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-9 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-16 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-3 .frame-9 {
+    height: 48px;
+  }
+  
+  .genre-selection.variant-5 .frame-9 {
+    height: 48px;
+  }
+  
+  .genre-selection.variant-2 .frame-9 {
+    height: 48px;
+  }
+  
+  .genre-selection.variant-15 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-19 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-6 .frame-9 {
+    background-color: #79797940;
+    height: 48px;
+  }
+  
+  .genre-selection.variant-17 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-14 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-12 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-7 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-11 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-4 .frame-9 {
+    height: 48px;
+  }
+  
+  .genre-selection.variant-18 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-13 .frame-9 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-3 .frame-10 {
+    margin-bottom: -0.5px;
+    margin-top: -0.5px;
+  }
+  
+  .genre-selection.variant-5 .frame-10 {
+    margin-bottom: -0.5px;
+    margin-top: -0.5px;
+  }
+  
+  .genre-selection.variant-2 .frame-10 {
+    margin-bottom: -0.5px;
+    margin-top: -0.5px;
+  }
+  
+  .genre-selection.variant-6 .frame-10 {
+    margin-bottom: -0.5px;
+    margin-top: -0.5px;
+  }
+  
+  .genre-selection.variant-4 .frame-10 {
+    margin-bottom: -0.5px;
+    margin-top: -0.5px;
+  }
+  
+  .genre-selection.variant-7 .frame-11 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-8 .frame-13 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-9 .frame-15 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-10 .frame-16 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-8 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-10 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-9 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-16 .frame-18 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-3 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-5 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-2 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-15 .frame-18 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-19 .frame-18 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-6 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-17 .frame-18 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-14 .frame-18 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-12 .frame-18 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-7 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-11 .frame-18 {
+    background-color: #79797940;
+    height: 44px;
+  }
+  
+  .genre-selection.variant-4 .frame-18 {
+    height: 44px;
+  }
+  
+  .genre-selection.variant-18 .frame-18 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-13 .frame-18 {
+    flex: 0 0 auto;
+  }
+  
+  .genre-selection.variant-8 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-10 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-9 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-3 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-5 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-2 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-6 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-7 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-11 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-4 .frame-19 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-12 .frame-20 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-13 .frame-21 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-14 .frame-23 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-15 .mystery-wrapper {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-8 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-10 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-9 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-16 .mystery {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    width: 189px;
+  }
+  
+  .genre-selection.variant-3 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-5 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-2 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-15 .mystery {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    width: 189px;
+  }
+  
+  .genre-selection.variant-19 .mystery {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    width: 189px;
+  }
+  
+  .genre-selection.variant-6 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-17 .mystery {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    width: 189px;
+  }
+  
+  .genre-selection.variant-14 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-12 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-7 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.default .mystery {
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-11 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-4 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-18 .mystery {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 44px;
+    justify-content: center;
+    padding: 5px 40px;
+    width: 189px;
+  }
+  
+  .genre-selection.variant-13 .mystery {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-8 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-10 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-9 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-16 .romance {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-3 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-5 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-2 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-15 .romance {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-19 .romance {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-6 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-17 .romance {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-14 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-12 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-7 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-11 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-4 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-18 .romance {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-13 .romance {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-16 .frame-26 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-8 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-10 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-9 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-16 .frame-27 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-3 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-5 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-2 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-15 .frame-27 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-19 .frame-27 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-6 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-17 .frame-27 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-14 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-12 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-7 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.default .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-11 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-4 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-18 .frame-27 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-13 .frame-27 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-8 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-10 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-9 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-16 .science-fiction {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-3 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-5 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-2 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-15 .science-fiction {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-19 .science-fiction {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-6 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-17 .science-fiction {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-14 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-12 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-7 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-11 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-4 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-18 .science-fiction {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-13 .science-fiction {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-17 .frame-29 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-8 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-10 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-9 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-16 .frame-30 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-3 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-5 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-2 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-15 .frame-30 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-19 .frame-30 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-6 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-17 .frame-30 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-14 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-12 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-7 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.default .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-11 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-4 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-18 .frame-30 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-13 .frame-30 {
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+  }
+  
+  .genre-selection.variant-8 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-10 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-9 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-16 .thriller {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-3 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-5 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-2 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-15 .thriller {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-19 .thriller {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-6 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-17 .thriller {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-14 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-12 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-7 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-11 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-4 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-18 .thriller {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .genre-selection.variant-13 .thriller {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-18 .frame-31 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-8 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-10 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-9 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-16 .frame-32 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-3 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-5 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-2 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-15 .frame-32 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-19 .frame-32 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-6 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-17 .frame-32 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-14 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-12 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-7 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.default .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-11 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-4 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-18 .frame-32 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -1.5px;
+    margin-top: -3.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-13 .frame-32 {
+    margin-bottom: -2.5px;
+    margin-top: -2.5px;
+  }
+  
+  .genre-selection.variant-8 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-10 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-9 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-16 .TV-movie {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-3 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-5 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-2 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-15 .TV-movie {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-19 .TV-movie {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-6 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-17 .TV-movie {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-14 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-12 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-7 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-11 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-4 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-18 .TV-movie {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-13 .TV-movie {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-19 .frame-34 {
+    background-color: #79797940;
+  }
+  
+  .genre-selection.variant-8 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-10 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-9 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-16 .war {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-3 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-5 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-2 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-15 .war {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-19 .war {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-6 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-17 .war {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-14 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-12 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-7 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-11 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-4 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-18 .war {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+  }
+  
+  .genre-selection.variant-13 .war {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-8 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-10 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-9 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-16 .western {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -13.5px;
+  }
+  
+  .genre-selection.variant-3 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-5 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-2 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-15 .western {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -13.5px;
+  }
+  
+  .genre-selection.variant-19 .western {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -13.5px;
+  }
+  
+  .genre-selection.variant-6 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-17 .western {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -13.5px;
+  }
+  
+  .genre-selection.variant-14 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-12 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-7 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-bottom: -8.5px;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-11 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-4 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  
+  .genre-selection.variant-18 .western {
+    align-items: center;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -13.5px;
+  }
+  
+  .genre-selection.variant-13 .western {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+  }
+  

@@ -4,8 +4,8 @@ import '../../../assets/styles/components/ProfileTabs.css';
 const DiaryFocus = () => {
     return (
       <div className="Content">
-        <p>Second Tab!! Hurray!!</p>
-        {/* Second  tab content will go here */}
+        <p>Diary</p>
+        {/* Diary will be focused on in M4 */}
       </div>
     );
 };

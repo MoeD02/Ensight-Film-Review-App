@@ -1,0 +1,238 @@
+.rating-selection .frame {
+    align-items: flex-start;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #000000;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 49px;
+    padding: 5px 6px;
+    position: relative;
+    width: 130px;
+  }
+  
+  .rating-selection .div {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 25px;
+    position: relative;
+  }
+  
+  .rating-selection .text-wrapper {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .rating-selection .polygon {
+    height: 15.27px;
+    margin-right: -1.13px;
+    position: relative;
+    width: 23.26px;
+  }
+  
+  .rating-selection .frame-2 {
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #000000;
+    border-radius: 14px;
+    height: 97px;
+    margin-bottom: -107px;
+    margin-right: -71px;
+    position: relative;
+    width: 189px;
+  }
+  
+  .rating-selection .frame-wrapper {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 48px;
+    justify-content: center;
+    left: 0;
+    padding: 5px 40px;
+    position: absolute;
+    top: 0;
+    width: 189px;
+  }
+  
+  .rating-selection .div-wrapper {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    margin-bottom: -0.5px;
+    margin-top: -0.5px;
+    position: relative;
+  }
+  
+  .rating-selection .text-wrapper-2 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .rating-selection .frame-3 {
+    align-items: center;
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 5px 40px;
+    position: absolute;
+    top: 48px;
+  }
+  
+  .rating-selection .frame-4 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    position: relative;
+  }
+  
+  .rating-selection .text-wrapper-3 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .rating-selection .overlap-group {
+    height: 96px;
+    position: relative;
+    top: 1px;
+  }
+  
+  .rating-selection .frame-5 {
+    align-items: center;
+    background-color: #79797940;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 48px;
+    justify-content: center;
+    left: 0;
+    padding: 5px 40px;
+    position: absolute;
+    top: 0;
+    width: 189px;
+  }
+  
+  .rating-selection .text-wrapper-4 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .rating-selection .frame-6 {
+    align-items: center;
+    border-radius: 12px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    left: 13px;
+    padding: 5px 40px;
+    position: absolute;
+    top: 47px;
+  }
+  
+  .rating-selection .frame-7 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 50px;
+    position: relative;
+  }
+  
+  .rating-selection .text-wrapper-5 {
+    color: #000000;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .rating-selection.variant-4 {
+    height: 155px;
+    width: 189px;
+  }
+  
+  .rating-selection.default {
+    height: 49px;
+    width: 130px;
+  }
+  
+  .rating-selection.variant-3 {
+    height: 155px;
+    width: 189px;
+  }
+  
+  .rating-selection.variant-2 {
+    height: 155px;
+    width: 189px;
+  }
+  
+  .rating-selection.variant-4 .frame-3 {
+    background-color: #79797940;
+    display: flex;
+    left: 0;
+    width: 189px;
+  }
+  
+  .rating-selection.default .frame-3 {
+    display: inline-flex;
+    left: 13px;
+  }
+  
+  .rating-selection.variant-3 .frame-3 {
+    display: inline-flex;
+    left: 13px;
+  }
+  
+  .rating-selection.variant-2 .frame-3 {
+    display: inline-flex;
+    left: 13px;
+  }
+  
+  .rating-selection.variant-2 .frame-4 {
+    justify-content: center;
+  }
+  
+  .rating-selection.variant-2 .text-wrapper-3 {
+    text-align: center;
+  }

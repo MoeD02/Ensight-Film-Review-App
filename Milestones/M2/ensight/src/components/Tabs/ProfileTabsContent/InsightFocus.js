@@ -1,7 +1,8 @@
 import React from "react";
 import '../../../assets/styles/components/ProfileTabs.css';
 
-const DiaryFocus = () => {
+// don't need to look at this for now
+const InsightInfo = () => {
     return (
       <div className="Content">
           <div className="GridContainer GridInsight">
@@ -34,4 +35,4 @@ const DiaryFocus = () => {
     );
 };
 
-export default DiaryFocus;
+export default InsightInfo;

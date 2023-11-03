@@ -1,0 +1,748 @@
+.browse {
+    background-color: #181818;
+    height: 2386px;
+    position: relative;
+    width: 1280px;
+  }
+  
+  .browse .footer {
+    background-color: transparent;
+    height: 236px;
+    left: 26px;
+    position: absolute;
+    top: 2096px;
+    width: 1212px;
+  }
+  
+  .browse .row {
+    align-items: flex-start;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1212px;
+  }
+  
+  .browse .screenshot {
+    height: 50px;
+    object-fit: cover;
+    position: relative;
+    width: 184px;
+  }
+  
+  .browse .text-wrapper-4 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .browse .social-media-links {
+    height: 32px;
+    position: relative;
+    width: 166px;
+  }
+  
+  .browse .socials-instance {
+    left: 0 !important;
+    position: absolute !important;
+    top: 0 !important;
+  }
+  
+  .browse .design-component-instance-node {
+    left: 67px !important;
+    position: absolute !important;
+    top: 0 !important;
+  }
+  
+  .browse .socials-2 {
+    left: 134px !important;
+    position: absolute !important;
+    top: 0 !important;
+  }
+  
+  .browse .column {
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 0;
+    position: absolute;
+    top: 117px;
+  }
+  
+  .browse .text-wrapper-5 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    text-decoration: underline;
+    width: fit-content;
+  }
+  
+  .browse .text-wrapper-6 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    position: relative;
+    text-decoration: underline;
+    width: fit-content;
+  }
+  
+  .browse .column-2 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 184px;
+    position: absolute;
+    top: 117px;
+  }
+  
+  .browse .column-3 {
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 381px;
+    position: absolute;
+    top: 117px;
+  }
+  
+  .browse .vector {
+    height: 1px;
+    left: 172px;
+    object-fit: cover;
+    position: absolute;
+    top: 88px;
+    width: 868px;
+  }
+  
+  .browse .people {
+    height: 626px;
+    left: 27px;
+    position: absolute;
+    top: 1363px;
+    width: 1227px;
+  }
+  
+  .browse .text-wrapper-7 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 30px;
+    font-weight: 700;
+    height: 29px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: -1px;
+    white-space: nowrap;
+    width: 147px;
+  }
+  
+  .browse .frame-4 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 0;
+    position: absolute;
+    top: 47px;
+    width: 1226px;
+  }
+  
+  .browse .group {
+    height: 67px;
+    left: 104px;
+    position: absolute;
+    top: 18px;
+    width: 194px;
+  }
+  
+  .browse .overlap-group {
+    height: 67px;
+    position: relative;
+    width: 190px;
+  }
+  
+  .browse .text-wrapper-8 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 15px;
+    font-weight: 700;
+    height: 41px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+    width: 190px;
+  }
+  
+  .browse .text-wrapper-9 {
+    color: #797979;
+    font-family: "Catamaran-Regular", Helvetica;
+    font-size: 10px;
+    font-weight: 400;
+    height: 38px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 29px;
+    width: 190px;
+  }
+  
+  .browse .ellipse {
+    height: 80px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 12px;
+    width: 80px;
+  }
+  
+  .browse .user-info {
+    height: 49px;
+    left: 500px;
+    position: absolute;
+    top: 28px;
+    width: 726px;
+  }
+  
+  .browse .overlap {
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 24px;
+    width: 636px;
+  }
+  
+  .browse .element-following {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 25px;
+    font-weight: 400;
+    height: 1px;
+    left: 20px;
+    letter-spacing: 0;
+    line-height: 0.1px;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    width: 616px;
+  }
+  
+  .browse .span {
+    font-weight: 700;
+  }
+  
+  .browse .text-wrapper-10 {
+    font-family: "Catamaran-Regular", Helvetica;
+  }
+  
+  .browse .element-followers {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 25px;
+    font-weight: 400;
+    height: 1px;
+    left: 20px;
+    letter-spacing: 0;
+    line-height: 0.1px;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    width: 446px;
+  }
+  
+  .browse .element-lists {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 25px;
+    font-weight: 400;
+    height: 1px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: 0.1px;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    width: 296px;
+  }
+  
+  .browse .image {
+    height: 49px;
+    left: 677px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 49px;
+  }
+  
+  .browse .frame-5 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 1px;
+    position: absolute;
+    top: 150px;
+    width: 1226px;
+  }
+  
+  .browse .user-info-2 {
+    height: 49px;
+    left: 500px;
+    position: absolute;
+    top: 27px;
+    width: 726px;
+  }
+  
+  .browse .frame-6 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 1px;
+    position: absolute;
+    top: 253px;
+    width: 1226px;
+  }
+  
+  .browse .frame-7 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 1px;
+    position: absolute;
+    top: 356px;
+    width: 1226px;
+  }
+  
+  .browse .text-wrapper-11 {
+    color: #ffffff;
+    font-family: "Catamaran-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    height: 39px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-decoration: underline;
+    top: 586px;
+  }
+  
+  .browse .frame-8 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 1px;
+    position: absolute;
+    top: 459px;
+    width: 1226px;
+  }
+  
+  .browse .lists {
+    height: 522px;
+    left: 26px;
+    position: absolute;
+    top: 788px;
+    width: 1228px;
+  }
+  
+  .browse .text-wrapper-12 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 30px;
+    font-weight: 700;
+    height: 29px;
+    left: 2px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: -1px;
+    white-space: nowrap;
+    width: 147px;
+  }
+  
+  .browse .group-2 {
+    height: 96px;
+    position: relative;
+    top: 4px;
+    width: 332px;
+  }
+  
+  .browse .overlap-group-2 {
+    height: 96px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 130px;
+  }
+  
+  .browse .image-2 {
+    height: 96px;
+    left: 65px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 65px;
+  }
+  
+  .browse .image-3 {
+    height: 96px;
+    left: 32px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 65px;
+  }
+  
+  .browse .image-4 {
+    height: 96px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 65px;
+  }
+  
+  .browse .overlap-group-3 {
+    height: 67px;
+    left: 138px;
+    position: absolute;
+    top: 0;
+    width: 190px;
+  }
+  
+  .browse .group-wrapper {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 0;
+    position: absolute;
+    top: 150px;
+    width: 1226px;
+  }
+  
+  .browse .frame-9 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 2px;
+    position: absolute;
+    top: 253px;
+    width: 1226px;
+  }
+  
+  .browse .frame-10 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 2px;
+    position: absolute;
+    top: 356px;
+    width: 1226px;
+  }
+  
+  .browse .text-wrapper-13 {
+    color: #ffffff;
+    font-family: "Catamaran-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    height: 39px;
+    left: 2px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-decoration: underline;
+    top: 482px;
+  }
+  
+  .browse .films {
+    height: 619px;
+    left: 27px;
+    position: absolute;
+    top: 116px;
+    width: 1226px;
+  }
+  
+  .browse .text-wrapper-14 {
+    color: #ffffff;
+    font-family: "Catamaran-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    height: 39px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-decoration: underline;
+    top: 579px;
+  }
+  
+  .browse .frame-11 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 2px;
+    height: 103px;
+    left: 0;
+    position: absolute;
+    top: 47px;
+    width: 1226px;
+  }
+  
+  .browse .group-3 {
+    height: 96px;
+    position: relative;
+    top: 4px;
+    width: 265px;
+  }
+  
+  .browse .overlap-group-4 {
+    height: 67px;
+    left: 71px;
+    position: absolute;
+    top: 0;
+    width: 190px;
+  }
+  
+  .browse .frame-12 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 0;
+    position: absolute;
+    top: 253px;
+    width: 1226px;
+  }
+  
+  .browse .frame-13 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 0;
+    position: absolute;
+    top: 356px;
+    width: 1226px;
+  }
+  
+  .browse .frame-14 {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #797979;
+    border-top-style: solid;
+    border-top-width: 1px;
+    height: 103px;
+    left: 0;
+    position: absolute;
+    top: 459px;
+    width: 1226px;
+  }
+  
+  .browse .div-2 {
+    height: 75px;
+    left: 75px;
+    position: absolute;
+    top: 17px;
+    width: 1106px;
+  }
+  
+  .browse .search-bar {
+    height: 48px;
+    left: 914px;
+    position: absolute;
+    top: 26px;
+    width: 192px;
+  }
+  
+  .browse .overlap-2 {
+    height: 48px;
+    position: relative;
+    width: 194px;
+  }
+  
+  .browse .overlap-group-wrapper {
+    height: 48px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 194px;
+  }
+  
+  .browse .overlap-group-5 {
+    background-color: #e11708;
+    border-radius: 23px;
+    height: 48px;
+    position: relative;
+    width: 192px;
+  }
+  
+  .browse .text-wrapper-15 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 20px;
+    font-weight: 700;
+    height: 41px;
+    left: 60px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0px 4px 4px #00000080;
+    top: 4px;
+    width: 71px;
+  }
+  
+  .browse .image-5 {
+    height: 42px;
+    left: 8px;
+    object-fit: cover;
+    position: absolute;
+    top: 2px;
+    width: 43px;
+  }
+  
+  .browse .rating {
+    height: 75px;
+    left: 686px;
+    position: absolute;
+    top: 0;
+    width: 130px;
+  }
+  
+  .browse .design-component-instance-node-2 {
+    left: 0 !important;
+    position: absolute !important;
+    top: 26px !important;
+  }
+  
+  .browse .text-wrapper-16 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    height: 26px;
+    left: 1px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: -1px;
+    white-space: nowrap;
+    width: 117px;
+  }
+  
+  .browse .genre {
+    height: 75px;
+    left: 523px;
+    position: absolute;
+    top: 0;
+    width: 130px;
+  }
+  
+  .browse .text-wrapper-17 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    height: 26px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: -1px;
+    white-space: nowrap;
+    width: 117px;
+  }
+  
+  .browse .year {
+    height: 75px;
+    left: 357px;
+    position: absolute;
+    top: 0;
+    width: 130px;
+  }
+  
+  .browse .text-wrapper-18 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    height: 26px;
+    left: 3px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: -1px;
+    white-space: nowrap;
+    width: 117px;
+  }
+  
+  .browse .popularity {
+    height: 75px;
+    left: 198px;
+    position: absolute;
+    top: 0;
+    width: 130px;
+  }
+  
+  .browse .text-wrapper-19 {
+    color: #ffffff;
+    font-family: "Catamaran-Bold", Helvetica;
+    font-size: 30px;
+    font-weight: 700;
+    height: 54px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 15px;
+    width: 182px;
+  }
