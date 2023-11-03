@@ -1,40 +1,37 @@
 from .models import *
 from rest_framework import serializers
-from django.contrib.auth import get_user_model, authenticate
-from django.contrib.auth.password_validation import validate_password
+from rest_framework.validators import UniqueValidator
+from django.contrib.auth import get_user_model
 
-
-UserModel = get_user_model()
-
-class UserRegisterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserModel,
-        fields = '__all__'
-    def create(self, clean_data):
-        user_obj = UserModel.objects.create_user(
-            username=clean_data['username'],
-            email=clean_data['email'],
-            password=clean_data['password']
-            )
-        return user_obj
-
-class UserLoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
-    password = serializers.CharField()
-    
-    def authenticate_user(self, clean_data):
-        user = authenticate(
-            username=clean_data['username'],
-            password=clean_data['password'],
-            )
-        if not user:
-            raise serializers.ValidationError('Could not authenticate user')
-        return user
+User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())],
+    )
+    username = serializers.CharField(
+        min_length=1,
+        max_length=32,
+        validators=[UniqueValidator(queryset=User.objects.all())],
+    )
+    password = serializers.CharField(
+        min_length=8,
+        max_length=32,
+        write_only=True
+        )
+    
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            validated_data['username'],
+            validated_data['email'],
+            validated_data['password'],
+            )
+        return user
+    
     class Meta:
-        model = UserModel
-        fields = ('username', 'email')
+        model = User
+        fields = ('id', 'username', 'email', 'password')
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:

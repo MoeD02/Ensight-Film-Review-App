@@ -35,11 +35,18 @@ else:
     ]
 
 CORS_ALLOWED_ORIGINS = [
-    'localhost',
+    'https://localhost',
+    'https://127.0.0.1',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 # Application definition
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 INSTALLED_APPS = [
     'app.apps.AppConfig',
@@ -50,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 ]
 
