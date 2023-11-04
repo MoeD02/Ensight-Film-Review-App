@@ -37,11 +37,13 @@ class Genre(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=256)
     poster_path = models.FileField(
+        blank = True,
         upload_to='posters/',
     )  # uploads to MEDIA_ROOT/posters/
     release_date = models.DateField()
     genres = models.ManyToManyField(
         Genre,
+        blank=True,
         related_name='genres',
     )
     description = models.CharField(max_length=1024)

@@ -7,11 +7,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      {/*<Header />*/}
-        
       <Test/>
+      {/*<Header/>
         <ProfileTabs />
-        <FooterComponent />
+        <FooterComponent />*/ }
     </div>
   );
 }

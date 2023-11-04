@@ -27,7 +27,7 @@ DEBUG = True
 
 if DEBUG:
     ALLOWED_HOSTS = [
-        '127.0.0.1'
+        '127.0.0.1',
         'localhost',
     ]
 else:
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,27 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+CORS_ALLOWED_ORIGINS = [
+    "http://192.168.56.1:3000",
+]
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Restrict allowed headers and methods if needed
+# CORS_ALLOW_HEADERS = [
+#     'Content-Type',
+#     'Authorization',
+# ]
+
+# CORS_ALLOW_METHODS = [
+#     'GET',
+#     'POST',
+#     'PUT',
+#     'PATCH',
+#     'DELETE',
+# ]
 
 ROOT_URLCONF = 'ensight.urls'
 
@@ -146,6 +167,7 @@ STATICFILES_DIRS =  [
 ]
 
 MEDIA_URL   =   'media/'
+#change this to image root if you want to test
 MEDIA_ROOT  =   '/var/www/ensight/media'
 
 # Default primary key field type

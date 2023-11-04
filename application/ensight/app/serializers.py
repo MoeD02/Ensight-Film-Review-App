@@ -30,7 +30,10 @@ class MovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieList
         fields = '__all__'
-
+class CreateMovieListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MovieList
+        fields = ['author', 'title', 'description','movies']
 class MovieListThroughSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieListThrough
