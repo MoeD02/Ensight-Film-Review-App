@@ -1,0 +1,61 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* This ensures that the container takes up the full height of the viewport */
+  background-color: rgb(30, 30, 30);
+  overflow: hidden;
+}
+
+/* Main container/wrapper */
+body { 
+  display: flex;
+  flex-direction: column; /* stack children vertically */
+  min-height: 100vh; /* take up full viewport height */
+}
+
+/* Main content area (posters) */
+.main-content {
+  overflow-y: auto; /* allow scrolling if content is longer than available space */
+  min-height: 100vh; /* This ensures that the container takes up the full height of the viewport */
+  flex: 1; /* This lets the main content grow */
+}
+
+/*.App {
+  background-color: #191919;
+}*/
+/*
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #191919;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*/

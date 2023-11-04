@@ -1,0 +1,16 @@
+.DMResults {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  height: fit-content;
+}
+
+.DMPoster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  color: white;
+  width: 120px;
+  height: 175px;
+  border-radius: 5px;
+}

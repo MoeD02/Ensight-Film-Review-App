@@ -1,0 +1,22 @@
+.slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;  /* Hide any overflowing content */
+}
+
+.slides {
+    display: flex;  /* Line up images horizontally */
+    transition: transform 0.5s ease-in-out;  /* Smooth translation */
+    gap: 30px;  /* Spacing between flex items */
+    will-change: transform; /* Optimize for animations */
+}
+
+.slide {
+    width: calc(50% - 300px);  /* 50% width minus half of the gap */
+    height: 100%;
+    flex: none;  /* Prevent flex items from stretching */
+    border-radius: 50px;
+    user-select: none; /* Prevent selection */
+    pointer-events: none; /* No mouse events on the slide */
+}
