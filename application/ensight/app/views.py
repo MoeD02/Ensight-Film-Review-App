@@ -64,9 +64,14 @@ def search_movies(request):
 
 @api_view(['POST'])
 def get_users(request):
-    index = request.data['amount']
-    users = Profile.objects.all()[:index]
-    serializer = ProfileSerializer(users,many=True)
+    filter = request.data.get('filter')
+    if filter == "ALL":
+        users = Profile.objects.all()
+        serializer = ProfileSerializer(users,many=True)
+    else:
+        index = request.data['amount']
+        users = Profile.objects.all()[:index]
+        serializer = ProfileSerializer(users,many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -134,19 +139,17 @@ def search_user_movie_lists(request):
 @api_view(['POST'])
 def fetch_movies(request):
     filter = request.data.get('filter')
-    index = request.data['amount']
+    
 
     movies=[]
     if filter == 'highest_rated':
+        index = request.data['amount']
         movies = Movie.objects.order_by('-rating_average')[:index]
         serializer = MovieSerializer(movies, many=True)
-    # movie_data = []
-    # for movie in movies:
-    #     movie_data.append({
-    #         'title': movie.title,
-    #         'rating_average': movie.rating_average,
-    #         # Add other movie details you want to include
-    #     })
+    elif filter == 'ALL':
+        movies = Movie.objects.all()
+        serializer = MovieSerializer(movies, many=True)
+
     
     return Response(serializer.data)
 

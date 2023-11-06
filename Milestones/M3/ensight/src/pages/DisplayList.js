@@ -3,7 +3,6 @@ import '../assets/styles/pages/DisplayList.css';
 
 function DisplayList() {
   const [listData, setListData] = useState([]);
-  const [movieListData, setMovieListData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedButton, setSelectedButton] = useState(1);
   useEffect(() => {
@@ -75,11 +74,14 @@ function DisplayList() {
           .map((list, index) => (
             <div className="ListOverlap" key={list.title}>
               <div className="PostersGrid">
-                <h6 className="ListMoviePoster ListMovie1">Movie</h6>
-                <h6 className="ListMoviePoster ListMovie2">Movie</h6>
-                <h6 className="ListMoviePoster ListMovie3">Movie</h6>
-                <h6 className="ListMoviePoster ListMovie4">Movie</h6>
-                <h6 className="ListMoviePoster ListMovie5">Movie</h6>
+                {list.movies.slice(0, 5).map((movie, movieIndex) => (
+                  <img
+                    key={movie.id}
+                    src={"http://localhost:8000"+movie.poster_path}
+                    
+                    className={`ListMoviePoster ListMovie${movieIndex + 1}`}
+                  />
+                ))}
               </div>
               <div className="movie-info">
                 <div className="movie-user">{list.author}</div>

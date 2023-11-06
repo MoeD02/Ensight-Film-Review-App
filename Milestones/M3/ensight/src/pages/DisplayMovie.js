@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../assets/styles/pages/DisplayMovie.css';
 import YearSelection from '../components/Selections/YearSelection.js';
 import GenreSelection from '../components/Selections/GenreSelection.js';
 import RatingSelection from '../components/Selections/RatingSelection.js';
 
 const Browse = () => {
-  // this will be removed and replaced will all movies
-  //get number of total movies and replace
-  const totalMovies = 207;
   const numberOfMoviesPerButton = 24;
+  const [movieData, setMovieData] = useState([]);
+  const fetchData = async () => {
+    const data = {
+      filter: 'ALL',
+    };
 
+    const response = await fetch('http://127.0.0.1:8000/fetch_movies/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      setMovieData(data);
+    } else {
+      console.error('Failed to fetch movie data');
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const totalMovies = movieData.length;
   const buttonPlacesData = [];
   let remainingMovies = totalMovies;
 
@@ -39,17 +62,21 @@ const Browse = () => {
           <GenreSelection />
           <RatingSelection />
         </div>
-        {/* once search is clicked, any of the checkboxes are applied */}
-        {/* if no checkboxes are picked for a selection, then add all */}
         <button className="DMSearch">Search</button>
       </div>
       <div className="DMResults">
         <div className="DMPosters">
-          {Array(buttonPlacesData[selectedButton - 1].numberOfMovies).fill().map((_, index) => (
-            <h3 className="DMPoster" key={index}>
-              Movie {index + 1 + (selectedButton - 1) * numberOfMoviesPerButton}
-            </h3>
-          ))}
+          {movieData
+            .slice(
+              (selectedButton - 1) * numberOfMoviesPerButton,
+              selectedButton * numberOfMoviesPerButton
+            )
+            .map((movie, index) => (
+              <img className="DMPoster" key={index}
+                src= {"http://localhost:8000"+movie.poster_path}
+                >
+              </img>
+            ))}
         </div>
         <div className="ButtonPlaceWrapper">
           {buttonPlacesData.map((buttonData) => (
