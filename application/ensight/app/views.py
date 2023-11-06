@@ -55,7 +55,7 @@ def search_movies(request):
         # Search for movies that match the query in their title or description
         search_results = Movie.objects.filter(Q(title__icontains=search_query))
 
-        print (search_results[0].poster_path)
+        #print (search_results[0].poster_path)
         # Serialize the search results
         serializer = MovieSerializer(search_results, many=True)
 
@@ -117,6 +117,18 @@ def get_user_movie_lists(request):
     string = f"THIS IS TEH AUTHOR{movie_list[1].author}"
     print(string)
     return JsonResponse(serializer.data, safe=False)
+
+
+@api_view(['POST'])
+def search_user_movie_lists(request):
+    search_query = request.data.get('content')
+    movie_list = MovieList.objects.filter(
+        Q(title__icontains=search_query) | Q(author__username__icontains=search_query)
+    )
+    serializer = MovieListSerializer(movie_list, many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+
 
 #fetches first movie
 @api_view(['POST'])

@@ -15,6 +15,9 @@ urlpatterns = [
     path('search_users/', search_users, name='search_users'),
     path('header_search/', header_search, name='header_search'),
     path('get_users/', get_users, name='get_users'),
+    path('search_user_movie_lists/', search_user_movie_lists, name='search_user_movie_lists'),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
