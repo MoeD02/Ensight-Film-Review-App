@@ -3,13 +3,13 @@ import '../../assets/styles/pages/Browse.css';
 
 const MovieResults = ({ searchTerm }) => {
   const [movieData, setMovieData] = useState([]);
-
+  const temp = searchTerm;
   useEffect(() => {
     if (searchTerm != null) {
       
       const fetchData = async () => {
         const data = {
-          content: searchTerm,
+          content: temp,
         };
 
         const response = await fetch('http://127.0.0.1:8000/search_movies/', {
@@ -56,13 +56,17 @@ const MovieResults = ({ searchTerm }) => {
       fetchData();
     }
   }, [searchTerm]);
-
+  //csc648-01-fa23-team02\application\ensight\media\posters
+  //C:\Users\dahbo\Desktop\New_648_Project\csc648-01-fa23-team02\application\ensight\media\posters
   return (
     <>
       {movieData.map((movie, index) => (
         <div className="browse" key={index}>
           <div className="Results">
-            <div className="MoviePoster">
+          <img src={"http://localhost:8000"+movie.poster_path} className="MoviePoster">
+            </img>
+          {/* <h6 className="MoviePoster">Movie</h6> */}
+            <div className="MoviePosterDetails">
               <h5 className="MoviePosterTitle">{movie.title}</h5>
               <h6 className="MoviePosterYear">Year: {movie.year}</h6>
               <h6 className="MoviePosterStars">Stars: {movie.stars}</h6>
