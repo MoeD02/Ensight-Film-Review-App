@@ -1,7 +1,4 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
 
@@ -25,7 +22,7 @@ class Profile(models.Model):
         'self',
         blank=True,
         symmetrical=False,
-        related_name = 'follow_to',
+        related_name = 'followed_by',
     )
 
     avatar = models.FileField(blank=True, upload_to='avatars/')

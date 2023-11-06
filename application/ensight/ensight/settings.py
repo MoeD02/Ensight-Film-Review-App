@@ -29,6 +29,7 @@ if DEBUG:
     ALLOWED_HOSTS = [
         '127.0.0.1',
         'localhost',
+        '127.0.0.1',
     ]
 else:
     ALLOWED_HOSTS = [
@@ -37,6 +38,12 @@ else:
 
 
 # Application definition
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+    ),
+}
 
 INSTALLED_APPS = [
     'app.apps.AppConfig',
@@ -47,7 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
+    'rest_framework.authtoken',
+    'knox',
 ]
 
 MIDDLEWARE = [
