@@ -3,9 +3,6 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
-from .models import *
-
-
 User = get_user_model()
 
 
@@ -49,38 +46,3 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError('Invalid Credentials')
-
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = '__all__'
-
-class GenreSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Genre
-        fields = '__all__'
-
-class MovieSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Movie
-        fields = '__all__'
-
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Review
-        fields = '__all__'
-
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = '__all__'
-
-class MovieListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MovieList
-        fields = '__all__'
-
-class MovieListThroughSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MovieListThrough
-        fields = '__all__'
