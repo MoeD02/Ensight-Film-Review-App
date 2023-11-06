@@ -19,13 +19,19 @@
     flex-grow: 1;
 }
 
+.UserTextInfo {
+    margin: 0;
+}
+
 .Username {
     margin-bottom: 8px;
+    margin-top: 0;
 }
 
 .BioDesc {
     opacity: 50%;
     font-weight: 10;
+    margin: 0;
 }
 
 .UserExtra {

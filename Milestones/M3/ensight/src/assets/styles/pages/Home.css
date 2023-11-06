@@ -10,7 +10,7 @@
     justify-content: flex-start; 
   }
   
-  button {
+  .view-movies-btn, .view-feed-btn, .view-list-btn {
     padding: 10px 20px;
     margin: 0 10px;
     background-color: #000; 
@@ -20,7 +20,7 @@
     transition: background-color 0.3s; 
   }
   
-  button:hover {
+  .view-movies-btn:hover, .view-feed-btn:hover, .view-list-btn:hover {
     background-color: #000000;
   }
   

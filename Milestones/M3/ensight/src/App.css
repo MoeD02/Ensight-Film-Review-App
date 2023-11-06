@@ -1,8 +1,8 @@
+
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* This ensures that the container takes up the full height of the viewport */
-  background-color: rgb(30, 30, 30);
   overflow: hidden;
 }
 
@@ -11,6 +11,7 @@ body {
   display: flex;
   flex-direction: column; /* stack children vertically */
   min-height: 100vh; /* take up full viewport height */
+  background-color: rgb(30, 30, 30);
 }
 
 /* Main content area (posters) */
@@ -18,7 +19,7 @@ body {
   overflow-y: auto; /* allow scrolling if content is longer than available space */
   min-height: 100vh; /* This ensures that the container takes up the full height of the viewport */
   flex: 1; /* This lets the main content grow */
-}
+} 
 
 /*.App {
   background-color: #191919;

@@ -1,7 +1,14 @@
 .DMResults {
+  padding-left: 0 !important;
+}
+
+.DMPosters {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  height: fit-content;
+  grid-template-rows: repeat(4, 75px);
+  height: 850px;
+  padding-left: 45px;
+  row-gap: 140px;
 }
 
 .DMPoster {
@@ -13,4 +20,28 @@
   width: 120px;
   height: 175px;
   border-radius: 5px;
+}
+
+.ButtonPlace {
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  margin: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ButtonPlace.selected {
+  color: #E11708;
+  font-size: 25px;
+}
+
+.ButtonPlaceWrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

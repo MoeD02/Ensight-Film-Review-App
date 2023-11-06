@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import '../assets/styles/components/CommentList.css'
 
 const CommentBox = () => {
     const [comment, setComment] = useState('');

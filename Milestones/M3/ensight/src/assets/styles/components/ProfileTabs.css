@@ -1,11 +1,5 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    /*background-color: #191919;*/
-}
-
 .Tabs {
+    box-sizing: border-box;
     width: 95%;
     height: auto;
     min-height: 400px;
@@ -18,7 +12,7 @@
       padding: 2rem 0;
     }
 }
-   
+
 ul.nav {
     width: 60%;
     margin: 0 0 1.5rem;
@@ -26,12 +20,10 @@ ul.nav {
     align-items: center;
     justify-content: space-between;
     padding-left: 0px;
-    @media (max-width: 768px) {
-      width: 90%;
-    }
 }
    
 ul.nav li {
+    box-sizing: border-box;
     width: 50%;
     height: 65px;
     padding: 1rem;
@@ -89,6 +81,7 @@ ul.nav li.active {
 .Title {
   text-decoration: underline;
   text-underline-offset: 7px;
+  margin: 0;
 }
 
 .Content {
@@ -134,9 +127,11 @@ ul.nav li.active {
   width: 210px;
   height: 305px;
   border-radius: 10px;
+  margin: 0;
 }
 
 .MovieWatchlist {
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -161,6 +156,7 @@ ul.nav li.active {
 }
 
 .InsightInfo {
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding-top: 20px;
@@ -208,6 +204,7 @@ ul.nav li.active {
 }
 
 .Symbol {
+  box-sizing: border-box;
   padding-right: 3px;
   align-self: center;
 }
@@ -221,12 +218,18 @@ ul.nav li.active {
 }
 
 .Number {
+  margin: 0;
   font-size: 80px;
 }
 
-h5 {
+.h3text {
+  margin: 0;
+}
+
+.h5Text {
   align-self: center;
   font-weight: 500;
+  margin: 0;
 }
 
 /* this is for ProfileFocus.js */
@@ -255,6 +258,7 @@ h5 {
 }
 
 .User {
+  box-sizing: border-box;
   width: 300px;
   height: 45px;
   border-radius: 10px;
@@ -296,7 +300,7 @@ PrivacyButton:checked + span {
 
 .RadioDetail {
   margin-right: 3px;
-  top: 4px;
+  top: 5px;
   cursor: pointer;
   width: 17px;
   height: 17px;
@@ -321,6 +325,7 @@ PrivacyButton:checked + span {
 }
 
 .BioText {
+  box-sizing: border-box;
   width: 800px;
   height: 150px;
   border-radius: 10px;
@@ -360,7 +365,17 @@ PrivacyButton:checked + span {
   margin-bottom: 20px;
 }
 
+.ListAddFilm {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.ProfileTitle {
+  margin: 0;
+}
+
 .TitleInput {
+  box-sizing: border-box;
   width: 600px;
   height: 45px;
   border-radius: 10px;
@@ -438,6 +453,7 @@ PrivacyButton:checked + span {
 .MovieText {
   text-align: center;
   margin-top: 3px;
+  margin-bottom: 0;
   color: white;
 }
 
@@ -456,6 +472,7 @@ PrivacyButton:checked + span {
 .FilmsAdded {
   list-style: none;
   padding-top: 5px;
+  padding-left: 0;
 }
 
 .FilmsAdded:hover {
@@ -484,6 +501,11 @@ PrivacyButton:checked + span {
   width: 90px;
 }
 
-.WatchButton:hover {
+.FilmsAdded {
+  width: fit-content;
+}
+
+.FilmAddedList {
+  width: fit-content;
   cursor: pointer;
 }

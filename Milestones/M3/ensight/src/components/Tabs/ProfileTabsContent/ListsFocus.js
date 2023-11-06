@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import '../../../assets/styles/components/ProfileTabs.css';
 import Like from "../../../assets/images/heart.png";
 import Comment from "../../../assets/images/comment.png";
@@ -41,35 +41,35 @@ const ListsFocus = () => {
             <div className="GridContainer GridList">
               <div className="MovieList">
                 {/* change to user's list title from backend */}
-                <h3>List Title</h3>
+                <h3 className="h3text">List Title</h3>
                 <div className="ListDetails">
                   <img className="Symbol" src={Like} alt="like" width={20} height={17}/>
                   {/* instead of Likes should be the number of likes */}
-                  <h5 className="Like">Likes</h5>
-                  <h5 className="Divider">|</h5>
-                  <img className="Symbol" src={Comment} alt="like" width={28} height={25}/>
+                  <h5 className="Like h5Text">Likes</h5>
+                  <h5 className="Divider h5Text">|</h5>
+                  <img className="Symbol h5Text" src={Comment} alt="like" width={28} height={25}/>
                   {/* instead of Comments should be the number of comments */}
-                  <h5 className="Comment">Comments</h5>
+                  <h5 className="Comment h5Text">Comments</h5>
                 </div>
               </div>
               <div className="MovieList">
-                <h3>List Title</h3>
+                <h3 className="h3text">List Title</h3>
                 <div className="ListDetails">
                 <img className="Symbol" src={Like} alt="like" width={20} height={17}/>
-                  <h5 className="Like">Likes</h5>
-                  <h5 className="Divider">|</h5>
-                  <img className="Symbol" src={Comment} alt="like" width={28} height={25}/>
-                  <h5 className="Comment">Comments</h5>
+                  <h5 className="Like h5Text">Likes</h5>
+                  <h5 className="Divider h5Text">|</h5>
+                  <img className="Symbol h5Text" src={Comment} alt="like" width={28} height={25}/>
+                  <h5 className="Comment h5Text">Comments</h5>
                 </div>
               </div>
               <div className="MovieList">
-                <h3>List Title</h3>
+                <h3 className="h3text">List Title</h3>
                 <div className="ListDetails">
                 <img className="Symbol" src={Like} alt="like" width={20} height={17}/>
-                  <h5 className="Like">Likes</h5>
-                  <h5 className="Divider">|</h5>
-                  <img className="Symbol" src={Comment} alt="like" width={28} height={25}/>
-                  <h5 className="Comment">Comments</h5>
+                  <h5 className="Like h5Text">Likes</h5>
+                  <h5 className="Divider h5Text">|</h5>
+                  <img className="Symbol h5Text" src={Comment} alt="like" width={28} height={25}/>
+                  <h5 className="Comment h5Text">Comments</h5>
                 </div>
               </div>
               {/* this should be kept so the user can add more movies unless viewing a profile */}
@@ -93,7 +93,7 @@ const ListsFocus = () => {
             {/* search is implemented here where it will display all movies with same keywords */}
             <div className="AddingFilms">
               <div className="FilmAdd">
-                <h2 className="ListInfo">Add Films</h2>
+                <h2 className="ListAddFilm">Add Films</h2>
                 <div class="MovieSearch">
                   <input className="SearchInput" type="text" placeholder="Add Item" />
                   <button class="SearchButton">Search</button>
@@ -121,10 +121,10 @@ const ListsFocus = () => {
                 </div>
               </div>
               <div className="FilmAdded">
-                <h3>Films Added</h3>
+                <h3 className="ProfileTitle">Films Added</h3>
                 <ul className="FilmsAdded">
                   {addedMovies.map((movie, index) => (
-                    <li key={index} onClick={() => handleRemoveMovie(movie)}>
+                    <li className="FilmAddedList" key={index} onClick={() => handleRemoveMovie(movie)}>
                       {movie}
                     </li>
                   ))}

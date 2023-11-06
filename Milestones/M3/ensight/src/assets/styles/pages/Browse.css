@@ -92,7 +92,7 @@
   
 .RadioDetail {
     margin-right: 3px;
-    top: 4px;
+    top: 5px;
     cursor: pointer;
     width: 17px;
     height: 17px;
@@ -144,6 +144,7 @@
   margin-top: 5px;
   margin-bottom: 5px;
   grid-row: 1 / 2;
+  box-shadow: -5px 0 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .MoviePosterDetails {
@@ -176,7 +177,7 @@
     font-size: 12px;
 }
 
-.PostersGrid {
+.BrowsePostersGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }

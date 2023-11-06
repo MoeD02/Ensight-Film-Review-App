@@ -32,7 +32,7 @@ function PosterCarousel() {
         setCurrentIndex(extendedPosters.length - 2); // Jump back to the last original poster
       }, 50);
     }
-  }, [currentIndex]);
+  }, [currentIndex, extendedPosters.length]);
 
   return (
     <div className="carousel">

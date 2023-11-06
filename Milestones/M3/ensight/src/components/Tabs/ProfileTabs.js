@@ -12,7 +12,6 @@ function ProfileTabs() {
     const [activeTab, setActiveTab] = useState("profile");
 
     return (
-        
         <div className="Tabs">
             <ul className="nav">
                 <TabNavItem title="Profile" id="profile" activeTab={activeTab} setActiveTab={setActiveTab}/>

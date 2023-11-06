@@ -15,18 +15,18 @@ const Profile = () => {
                 <div className="UserExtra">
                     <div className="UserExtraInfo">
                         {/* Replace # by the number of lists they made */}
-                        <h1>#</h1>
-                        <h2>Lists</h2>
+                        <h1 className="UserTextInfo">#</h1>
+                        <h2 className="UserTextInfo">Lists</h2>
                     </div>
                     <div className="UserExtraInfo">
                         {/* Replace # by the number of user they follow */}
-                        <h1>#</h1>
-                        <h2>Following</h2>
+                        <h1 className="UserTextInfo">#</h1>
+                        <h2 className="UserTextInfo">Following</h2>
                     </div>
                     <div className="UserExtraInfo UserExtraR">
                         {/* Replace # by the number of user follow them */}
-                        <h1>#</h1>
-                        <h2>Followers</h2>
+                        <h1 className="UserTextInfo">#</h1>
+                        <h2 className="UserTextInfo">Followers</h2>
                     </div>
                 </div>
             </div>

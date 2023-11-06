@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
 import SideMenu from './SideMenu';
-import Login from './Login'; // Import the Login component
+import Login from './Login'; 
 import '../assets/styles/components/Header.css';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Renamed this state
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
 
     const toggleMenu = () => {
         console.log("Menu toggled");
         setIsMenuOpen(!isMenuOpen);
     }
 
+    const handleLoginClick = () => {
+        setIsLoginModalOpen(prevState => !prevState);
+    };
+
+    const handleLogoClick = () => {
+        window.location.href = '/';
+    };
+
     return (
         <>
         <div className="header">
-            <button className="logo-button" onClick={() => window.location.href = '/'}>
+            <button className="logo-button" onClick={handleLogoClick}>
                 <span>ENSIGHT</span>
             </button>
-            <div className="search-bar">
-                <input type="text" placeholder="Search Anything" />
+            <div class="HeaderMovieSearch HeaderSearch">
+                <input className="HeaderSearchInput HeaderInput" type="text" placeholder="Add Item" />
+                <button class="HeaderSearchButton HeaderButton">Search</button>
             </div>
             <div className="header-actions">
                 <button className="menu-button" onClick={toggleMenu}>
@@ -33,7 +42,7 @@ const Header = () => {
             </div>
         </div>
         {isMenuOpen && <SideMenu isOpen={isMenuOpen} onClose={toggleMenu} />}
-        {isLoginModalOpen && <Login />} {/* Using Login instead of LoginModal */}
+        {isLoginModalOpen && <Login onClose={handleLoginClick} />} 
         </>
     );
 }

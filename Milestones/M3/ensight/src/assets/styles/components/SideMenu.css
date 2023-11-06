@@ -2,35 +2,50 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
+    width: 200px;
     height: 100%;
-    background-color: #333;
+    background-color: rgb(30, 30, 30);
     color: white;
     padding: 20px;
     transform: translateX(100%);
-    transition: transform 0.3s ease;
     z-index: 1000;
     font-size: 18px; /* Larger text */
+    border-left: 1px solid white;
+    box-sizing: content-box;
+}
+
+.MenuTitle {
+    margin-top: 22.410px;
+}
+
+.MenuOptions {
+    margin-left: 10px;
+    margin-top: 18px;
+    margin-bottom: 18px;
 }
     
     
 .side-menu-slide.menu-open {
     transform: translateX(0); /* Pulls the menu back into the viewport */
+    transition: transform 0.8s ease-in-out;
 }
 
     
 .side-menu-slide h2 {
     margin-bottom: 20px; /* Space between "Menu" and the list */
-    border-bottom: 2px solid white; /* Horizontal line below "Menu" */
+    border-bottom: 2px solid #E11708; /* Horizontal line below "Menu" */
     padding-bottom: 10px; /* Space between "Menu" text and the line */
     background: none;
 }
-    
     
 .side-menu-slide ul {
     list-style-type: none;
     padding: 0;
     background: none;
+}
+
+.side-menu-slide li:hover {
+    border-bottom: 1px solid #E11708; /* This changes the underline thickness on hover */
 }
     
     
@@ -40,15 +55,7 @@
     padding: 15px 0; /* More spacing */
     cursor: pointer;
     background: none;
-}
-    
-    
-.side-menu-slide li:before {
-    content: "•"; /* Circle icon before each list item */
-    margin-right: 20px; /* Spacing between the icon and text */
-    font-size: 24px; /* Larger icon */
-}
-    
+}   
     
 .close-button {
     position: absolute;
@@ -59,4 +66,13 @@
     color: white;
     font-size: 24px;
     cursor: pointer;
+}
+
+.MenuLinks a {
+    color: white; /* Default text color */
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+.MenuLinks a:hover {
+    color: red; /* Change color on hover */
 }

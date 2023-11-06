@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/Login.css';
 
-const Login = () => {
+const Login = ({ onClose }) => {
     const [isChecked, setIsChecked] = useState(false);
 
     return (
@@ -14,7 +14,7 @@ const Login = () => {
                         checked={isChecked}
                         onChange={() => setIsChecked(prevState => !prevState)}
                     />
-                    <span className="slider"></span>
+                    <span className="login-slider"></span>
                     <span className="card-side"></span>
                     <div className="flip-card__inner">
                         <div className="flip-card__front">
@@ -23,7 +23,7 @@ const Login = () => {
                                 <input type="email" placeholder="Email" name="email" className="flip-card__input" />
                                 <input type="password" placeholder="Password" name="password" className="flip-card__input" />
                                 <button className="flip-card__btn">Let's go!</button>
-                                <button type="button" className="flip-card__btn-cancel">Cancel</button>
+                                <button type="button" className="flip-card__btn-cancel" onClick={onClose}>Cancel</button>
                             </form>
                         </div>
                         <div className="flip-card__back">
@@ -33,7 +33,7 @@ const Login = () => {
                                 <input type="email" placeholder="Email" name="email" className="flip-card__input" />
                                 <input type="password" placeholder="Password" name="password" className="flip-card__input" />
                                 <button className="flip-card__btn">Confirm!</button>
-                                <button type="button" className="flip-card__btn-cancel">Cancel</button>
+                                <button type="button" className="flip-card__btn-cancel" onClick={onClose}>Cancel</button>
                             </form>
                         </div>
                     </div>
