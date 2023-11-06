@@ -1,0 +1,20 @@
+.carousel {
+  height: 100vh; /* Ensure it takes the full viewport height */
+  align-items: center;
+  justify-content: center; /* Centers the posters horizontally if necessary */
+  display: flex;
+}
+
+.posters {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+  width: 80%; /* Ensure it takes the full viewport width */
+  margin: 0 auto; /* Shorthand for 0 top and bottom margin and auto left and right margins */
+}
+
+.posters img {
+  width: fit-content;
+  height: 100%;
+  object-fit: cover; /* This will ensure that the aspect ratio is maintained */
+  position: relative; /* Relative for positioning */
+}

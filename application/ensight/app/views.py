@@ -21,26 +21,26 @@ def header_search(request):
         print("Search Query: ", search_query)
         movie_results =  Movie.objects.filter(Q(title__icontains=search_query))
         movie_serializer = MovieSerializer(movie_results, many=True)
-        print("1")
+     
         review_results =  Review.objects.filter(
             Q(title__icontains=search_query) |  # Search by title (case-insensitive)
             Q(text__icontains=search_query) |   # Search by text (case-insensitive)
             Q(author__username__icontains=search_query)  # Search by author's username (case-insensitive)
             # You can add more criteria based on your needs
         )
-        print("2")
+    
         reviews_serializer = ReviewSerializer(review_results, many=True)
-        print("3")
+      
         users_results = Profile.objects.filter(Q(user__username__icontains=search_query))
-        print("4")
+    
         user_serializer = ProfileSerializer(users_results,many=True)
-        print("5")
+   
         data = {
             'movies': movie_serializer.data,
             'reviews': reviews_serializer.data,
             'users': user_serializer.data,
         }
-        print("6")
+     
         return Response(data)
 
 #this fetch call returns all movies that contain whatever the user searched in the title
@@ -105,12 +105,24 @@ def get_all_user_list(request):
     return JsonResponse(serializer.data, safe=False)
 
 #fetches first movie
-def test_fetch_first_movie(request):
-    movie = Movie.objects.first() 
-
-    serializer = MovieSerializer(movie)
-
-    return JsonResponse(serializer.data)
+@api_view(['POST'])
+def fetch_movies(request):
+    filter = request.data.get('filter')
+    index = request.data['amount']
+    
+    movies=[]
+    if filter == 'highest_rated':
+        movies = Movie.objects.order_by('-rating_average')[:index]
+        serializer = MovieSerializer(movies, many=True)
+    # movie_data = []
+    # for movie in movies:
+    #     movie_data.append({
+    #         'title': movie.title,
+    #         'rating_average': movie.rating_average,
+    #         # Add other movie details you want to include
+    #     })
+    
+    return Response(serializer.data)
 
 
 
