@@ -31,8 +31,10 @@ const MovieResults = () => {
   }, []);
 
   return (
-    <div className="browse">
+<>
+
     {movieData.map((movie, index) => (
+    <div className="browse">
         <div className="Results">
         <div key={index} className="MoviePoster">
           <h5 className="MoviePosterTitle">{movie.title}</h5>
@@ -40,8 +42,9 @@ const MovieResults = () => {
           <h6 className="MoviePosterStars">Stars: {movie.stars}</h6>
         </div>
     </div>
-      ))}
       </div>
+      ))}
+      </>
   );
   
 }

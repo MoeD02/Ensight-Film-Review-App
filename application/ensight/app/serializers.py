@@ -30,6 +30,7 @@ class MovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieList
         fields = '__all__'
+    author = serializers.CharField(source="author.username") 
 class CreateMovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieList

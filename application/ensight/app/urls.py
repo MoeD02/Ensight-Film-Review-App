@@ -9,12 +9,12 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('hello-webpack/', TemplateView.as_view(template_name='app/hello_webpack.html')),
     path('fetch_movies/', fetch_movies, name='fetch_movies'),
-    path('get_all_user_list/', get_all_user_list, name='get_all_user_list'),
+    path('get_user_movie_lists/', get_user_movie_lists, name='get_user_movie_lists'),
     path('create_movie_list/', create_movie_list, name='create_movie_list'),
     path('search_movies/', search_movies, name='search_movies'),
     path('search_users/', search_users, name='search_users'),
     path('header_search/', header_search, name='header_search'),
-
+    path('get_users/', get_users, name='get_users'),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

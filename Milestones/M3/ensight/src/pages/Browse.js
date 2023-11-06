@@ -37,10 +37,10 @@ const Browse = () => {
           <div>
             {/* replace with 5 lists */}
             <ListResults />
+            {/* <ListResults />
             <ListResults />
             <ListResults />
-            <ListResults />
-            <ListResults />
+            <ListResults /> */}
           </div>
           <h3 className="SeeResults">See More Results</h3>
         </div>
@@ -49,10 +49,10 @@ const Browse = () => {
           <div>
             {/* replace with 5 users */}
             <UserResults />
+            {/* <UserResults />
             <UserResults />
             <UserResults />
-            <UserResults />
-            <UserResults />
+            <UserResults /> */}
           </div>
           <h3 className="SeeResults">See More Results</h3>
         </div>

@@ -10,6 +10,8 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from django.db.models import Q
 from django.contrib.auth import get_user_model
+
+User = get_user_model()
 class HomeView(TemplateView):
     template_name = 'app/home.html'
 
@@ -59,6 +61,14 @@ def search_movies(request):
 
         return Response(serializer.data)
 
+
+@api_view(['POST'])
+def get_users(request):
+    index = request.data['amount']
+    users = Profile.objects.all()[:index]
+    serializer = ProfileSerializer(users,many=True)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 def search_users(request):
     if request.method == 'POST':
@@ -99,9 +109,13 @@ def create_movie_list(request):
     
 
 #get's user's list(all of it). STILL NEEDS WORK because it doesn't know which user it is
-def get_all_user_list(request):
-    movie_list = MovieList.objects.all()
+@api_view(['POST'])
+def get_user_movie_lists(request):
+    index = request.data['amount']
+    movie_list = MovieList.objects.all()[:index]
     serializer = MovieListSerializer(movie_list, many=True)
+    string = f"THIS IS TEH AUTHOR{movie_list[1].author}"
+    print(string)
     return JsonResponse(serializer.data, safe=False)
 
 #fetches first movie
@@ -109,7 +123,7 @@ def get_all_user_list(request):
 def fetch_movies(request):
     filter = request.data.get('filter')
     index = request.data['amount']
-    
+
     movies=[]
     if filter == 'highest_rated':
         movies = Movie.objects.order_by('-rating_average')[:index]
