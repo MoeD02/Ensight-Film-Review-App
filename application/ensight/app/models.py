@@ -11,6 +11,7 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='profile',
+        null=True,
     )
     
     followers = models.ManyToManyField(
