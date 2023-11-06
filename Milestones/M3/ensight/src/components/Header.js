@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SideMenu from './SideMenu';
 import Login from './Login'; 
 import '../assets/styles/components/Header.css';
@@ -6,6 +7,8 @@ import '../assets/styles/components/Header.css';
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
+
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         console.log("Menu toggled");
@@ -20,6 +23,17 @@ const Header = () => {
         window.location.href = '/';
     };
 
+    const handleSearchClick = () => {
+        const inputElement = document.querySelector(".HeaderSearchInput");
+        const searchTerm = inputElement.value.trim();
+    
+        if (searchTerm) {
+            navigate(`/Browse?searchTerm=${searchTerm}`);
+        } else {
+            console.log("Input field is empty. Please enter a search term.");
+        }
+    };
+
     return (
         <>
         <div className="header">
@@ -27,8 +41,8 @@ const Header = () => {
                 <span>ENSIGHT</span>
             </button>
             <div class="HeaderMovieSearch HeaderSearch">
-                <input className="HeaderSearchInput HeaderInput" type="text" placeholder="Add Item" />
-                <button class="HeaderSearchButton HeaderButton">Search</button>
+                <input className="HeaderSearchInput HeaderInput" type="text" placeholder="Search" />
+                <button class="HeaderSearchButton HeaderButton" onClick={handleSearchClick}>Search</button>
             </div>
             <div className="header-actions">
                 <button className="menu-button" onClick={toggleMenu}>

@@ -6,6 +6,7 @@ import RatingSelection from '../components/Selections/RatingSelection.js';
 
 const Browse = () => {
   // this will be removed and replaced will all movies
+  //get number of total movies and replace
   const totalMovies = 207;
   const numberOfMoviesPerButton = 24;
 
