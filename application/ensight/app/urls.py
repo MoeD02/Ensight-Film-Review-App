@@ -1,6 +1,6 @@
 from django.urls import path, include
 from knox import views as knox_views
-from . import views
+from .views import *
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -17,9 +17,9 @@ urlpatterns = [
     path('get_users/', get_users, name='get_users'),
     path('search_user_movie_lists/', search_user_movie_lists, name='search_user_movie_lists'),
     path('', include('knox.urls')),
-    path('accounts/register', views.RegisterAPI.as_view()),
-    path('accounts/current_user', views.CurrentUserAPI.as_view()),
-    path('accounts/login', views.LoginAPI.as_view()),
+    path('accounts/register', RegisterAPI.as_view()),
+    path('accounts/current_user', CurrentUserAPI.as_view()),
+    path('accounts/login', LoginAPI.as_view()),
     path('accounts/logout', knox_views.LogoutView.as_view(), name='knox_logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
