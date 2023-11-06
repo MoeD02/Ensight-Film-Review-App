@@ -12,6 +12,8 @@ urlpatterns = [
     path('get_all_user_list/', get_all_user_list, name='get_all_user_list'),
     path('create_movie_list/', create_movie_list, name='create_movie_list'),
     path('search_movies/', search_movies, name='search_movies'),
+    path('search_users/', search_users, name='search_users'),
+    path('header_search/', header_search, name='header_search'),
 
 
 

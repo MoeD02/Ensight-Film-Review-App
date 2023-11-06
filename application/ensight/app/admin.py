@@ -22,4 +22,10 @@ class MovieListAdmin(admin.ModelAdmin):
 
 admin.site.register(MovieList, MovieListAdmin)
 
-    
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'bio']  # Define which fields to display in the admin list view
+    list_filter = ['user']  # Optionally, add filters to the admin list view
+    search_fields = ['user__username']  # Optionally, add search functionality by a related field
+
+# Register the Profile model with the ProfileAdmin class
+admin.site.register(Profile, ProfileAdmin)

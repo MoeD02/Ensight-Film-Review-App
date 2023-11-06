@@ -63,6 +63,7 @@ MIDDLEWARE = [
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://192.168.56.1:3000",
+    'http://localhost:3000',
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -168,8 +169,8 @@ STATICFILES_DIRS =  [
 
 MEDIA_URL   =   'media/'
 #change this to image root if you want to test
-MEDIA_ROOT  =   '/var/www/ensight/media'
-
+#MEDIA_ROOT  =   '/var/www/ensight/media'
+MEDIA_ROOT  =   'application/ensight/app/images/posters'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

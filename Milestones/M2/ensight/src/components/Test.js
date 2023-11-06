@@ -65,8 +65,8 @@ const Test = () => {
                 const data = {
                     content: searchQuery,
                 };
-
-                const response = await fetch('http://127.0.0.1:8000/search_movies/', {
+                
+                const response = await fetch('http://127.0.0.1:8000/header_search/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -75,6 +75,7 @@ const Test = () => {
                 });
 
                 if (response.ok) {
+                    console.log(response);
                     const responseData = await response.json();
                     setSearchResults(responseData); // Set the search results state
                 } else {
@@ -87,7 +88,7 @@ const Test = () => {
     }, []);
     
        
-
+//application\ensight\application\ensight\static\app\images\posters\posters\SpiderMan_Poster.png
     return (
         <div>
             
@@ -101,11 +102,11 @@ const Test = () => {
             <button id="search_movies">Search Movie</button>
             {searchResults.length > 0 && (
                 <div>
-                    <h2>Search Results:</h2>
+                    <h2>Search Results:</h2> 
                     <ul>
                         {searchResults.map((result) => (
                             <li key={result.id}>
-                                <h3>{result.title}</h3>
+                                <h3>{}</h3>
                             </li>
                         ))}
                     </ul>

@@ -9,11 +9,41 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from django.db.models import Q
+from django.contrib.auth import get_user_model
 class HomeView(TemplateView):
     template_name = 'app/home.html'
 
 
+@api_view(['POST'])
+def header_search(request):
+    if request.method == 'POST':
+        search_query = request.data.get('content')
+        print("Search Query: ", search_query)
+        movie_results =  Movie.objects.filter(Q(title__icontains=search_query))
+        movie_serializer = MovieSerializer(movie_results, many=True)
+        print("1")
+        review_results =  Review.objects.filter(
+            Q(title__icontains=search_query) |  # Search by title (case-insensitive)
+            Q(text__icontains=search_query) |   # Search by text (case-insensitive)
+            Q(author__username__icontains=search_query)  # Search by author's username (case-insensitive)
+            # You can add more criteria based on your needs
+        )
+        print("2")
+        reviews_serializer = ReviewSerializer(review_results, many=True)
+        print("3")
+        users_results = Profile.objects.filter(Q(user__username__icontains=search_query))
+        print("4")
+        user_serializer = ProfileSerializer(users_results,many=True)
+        print("5")
+        data = {
+            'movies': movie_serializer.data,
+            'reviews': reviews_serializer.data,
+            'users': user_serializer.data,
+        }
+        print("6")
+        return Response(data)
 
+#this fetch call returns all movies that contain whatever the user searched in the title
 @api_view(['POST'])
 def search_movies(request):
     if request.method == 'POST':
@@ -23,12 +53,30 @@ def search_movies(request):
         # Search for movies that match the query in their title or description
         search_results = Movie.objects.filter(Q(title__icontains=search_query))
 
-        
+        print (search_results[0].poster_path)
         # Serialize the search results
         serializer = MovieSerializer(search_results, many=True)
 
         return Response(serializer.data)
 
+@api_view(['POST'])
+def search_users(request):
+    if request.method == 'POST':
+        search_query = request.data.get('content')
+        print(f"Search Query: {search_query}")
+        users = Profile.objects.filter(
+            Q(user__username__icontains=search_query))
+        
+        serializer = ProfileSerializer(users,many=True)
+        user_profiles = [
+            {
+                'username': user.user.username,
+             }
+             for user in users
+        ]
+        return Response(serializer.data)
+    # else:
+    #     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 #This allows users to create a list with whatever movies they want
 @api_view(['POST'])
