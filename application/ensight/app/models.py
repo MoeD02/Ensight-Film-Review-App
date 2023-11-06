@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import post_save
 
 
 class Profile(models.Model):
@@ -26,9 +27,15 @@ class Profile(models.Model):
         related_name = 'follow_to',
     )
 
-    avatar = models.FileField(upload_to='avatars/')
+    avatar = models.FileField(blank=True, upload_to='avatars/')
     bio = models.TextField(blank=True)
 
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
+    
+post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)
 
 class Genre(models.Model):
     name = models.CharField(max_length=64)
