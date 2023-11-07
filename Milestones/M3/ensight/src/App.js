@@ -17,6 +17,7 @@ import Browse from './pages/Browse';
 import DisplayList from './pages/DisplayList';
 import DisplayMovie from './pages/DisplayMovie';
 import DisplayUser from './pages/DisplayUser';
+import LoginPage from './pages/LoginPage';
 import './App.css';
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/Profile" element={<Profile />} />
         {/* <Route path="../pages/Profile" element={<About />} /> */}
         {/* <Route path="../pages/Profile" element={<Settings />} /> */}
+        <Route path="/LoginPage" element={<LoginPage />} />
       </Routes>
       <FooterComponent />
     </Router>

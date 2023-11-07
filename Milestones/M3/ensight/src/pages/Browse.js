@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import '../assets/styles/pages/Browse.css';
 import YearSelection from '../components/Selections/YearSelection.js';
 import GenreSelection from '../components/Selections/GenreSelection.js';
@@ -8,6 +9,14 @@ import ListResults from "../components/Results/ListResults.js";
 import UserResults from "../components/Results/UserResults.js";
 
 const Browse = () => {
+  const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const searchTerm = queryParams.get("searchTerm");
+
+    // Now you can use the searchTerm in your Browse component
+    console.log("Search Term:", searchTerm);
+
+
   return (
     <div className="flex-container">
       <div className="BrowseFilter">

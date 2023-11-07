@@ -74,10 +74,10 @@ function DisplayList() {
                     </div>
                 ))}
             </div>
-            <div className="DisplayButtonPlaceWrapper">
+            <div className="ListButtonPlaceWrapper">
             {buttonPlacesListData.map((buttonData) => (
                 <h3
-                className={`DisplayButtonPlace ${selectedButton === buttonData.number ? "selected" : ""}`}
+                className={`ListButtonPlace ${selectedButton === buttonData.number ? "selected" : ""}`}
                 onClick={() => handleButtonClick(buttonData.number)}
                 key={buttonData.number}
                 >

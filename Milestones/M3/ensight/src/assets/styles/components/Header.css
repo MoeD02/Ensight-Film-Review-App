@@ -139,6 +139,7 @@
   }
   
   .HeaderMovieSearch .HeaderSearchButton:hover {
+    cursor: pointer;
     background: linear-gradient(135deg, rgb(255, 23, 8) 50%, rgb(255, 13, 0) 100%);
     box-shadow: 0px 0px 30px rgba(255, 23, 8, 0.5), 0px 0px 30px rgba(255, 13, 0, 0.5);
   }
@@ -166,6 +167,7 @@
 
 .menu-button, .profile-button {
     padding: 1px 6px;
+    cursor: pointer;
 }
     
     
@@ -176,7 +178,6 @@
     width: 40px;
     height: 25px;
     padding: 0; /* Increased padding for a larger input */
-    cursor: pointer;
 }
     
     
