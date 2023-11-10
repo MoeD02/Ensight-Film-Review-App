@@ -26,7 +26,7 @@ class RegisterAPI(APIView):
             user = serializer.save()
             return Response({
                 'user':     serializer.data,
-                'token':    AuthToken.objects.create(user)[1],
+                'token':    'Token ' + AuthToken.objects.create(user)[1],
             })
         return Response({'errors': serializer.errors}, status.HTTP_400_BAD_REQUEST)
 
@@ -39,7 +39,7 @@ class LoginAPI(APIView):
             user = serializer.validated_data
             return Response ({
                 'user':     UserSerializer(user).data,
-                'token':    AuthToken.objects.create(user)[1],
+                'token':    'Token ' + AuthToken.objects.create(user)[1],
             })
         return Response({'errors': 'Invalid Credentials'}, status.HTTP_400_BAD_REQUEST)
 
