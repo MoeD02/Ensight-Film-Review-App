@@ -1,0 +1,26 @@
+/* IntroList.css */
+
+.list-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;  /* Hide any overflowing content */
+    padding-bottom: 50px;
+  }
+  
+  .list-slides {
+    display: flex;  /* Line up images horizontally */
+    transition: transform 0.3s ease;
+    gap: 30px;
+  }
+  
+  .list-slide {
+    width: 400px; /* Set your desired width */
+    height: 400px; /* Set your desired height */
+    object-fit: cover; /* This will cover the area without stretching the image */
+    flex: none;  /* Prevent flex items from stretching */
+    border-radius: 50px;
+    user-select: none; /* Prevent selection */
+    pointer-events: none; /* No mouse events on the slide */
+  }
+

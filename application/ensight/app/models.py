@@ -8,6 +8,7 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='profile',
+        null=True,
     )
     
     followers = models.ManyToManyField(
@@ -26,9 +27,6 @@ class Profile(models.Model):
     
     avatar = models.FileField(default='placeholder.jpg', upload_to='avatars/')
     bio = models.TextField(blank=True)
-    
-    def __str__(self):
-        return self.user.username
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
@@ -45,11 +43,13 @@ class Genre(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=256)
     poster_path = models.FileField(
+        blank = True,
         upload_to='posters/',
     )  # uploads to MEDIA_ROOT/posters/
     release_date = models.DateField()
     genres = models.ManyToManyField(
         Genre,
+        blank=True,
         related_name='genres',
     )
     description = models.CharField(max_length=1024)
