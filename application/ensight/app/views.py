@@ -73,7 +73,7 @@ def header_search(request):
         print("Search Query: ", search_query)
         movie_results =  Movie.objects.filter(Q(title__icontains=search_query))
         movie_serializer = MovieSerializer(movie_results, many=True)
-     
+    
         review_results =  Review.objects.filter(
             Q(title__icontains=search_query) |  # Search by title (case-insensitive)
             Q(text__icontains=search_query) |   # Search by text (case-insensitive)
@@ -82,17 +82,17 @@ def header_search(request):
         )
     
         reviews_serializer = ReviewSerializer(review_results, many=True)
-      
+    
         users_results = Profile.objects.filter(Q(user__username__icontains=search_query))
     
         user_serializer = ProfileSerializer(users_results,many=True)
-   
+    
         data = {
             'movies': movie_serializer.data,
             'reviews': reviews_serializer.data,
             'users': user_serializer.data,
         }
-     
+    
         return Response(data)
 
 #this fetch call returns all movies that contain whatever the user searched in the title
@@ -164,14 +164,18 @@ def create_movie_list(request):
     
 
 #get's user's list(all of it). STILL NEEDS WORK because it doesn't know which user it is
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def get_user_movie_lists(request):
-    index = request.data['amount']
-    movie_list = MovieList.objects.all()[:index]
-    serializer = MovieListSerializer(movie_list, many=True)
-    string = f"THIS IS TEH AUTHOR{movie_list[1].author}"
-    print(string)
-    return JsonResponse(serializer.data, safe=False)
+    # amount = request.data['amount']
+    movie_lists = MovieList.objects.all()[:5]
+    # data = {}
+    # for index, movie_list in enumerate(movie_lists):
+    #     data[index] = MovieListSerializer(movie_list).data
+    serializer = MovieListSerializer(movie_lists, many=True)
+    # string = f"THIS IS TEH AUTHOR{movie_list[0].author.username}"
+    # print(string)
+    # return JsonResponse(serializer.data, safe=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])

@@ -5,34 +5,51 @@ function DisplayList() {
   const [listData, setListData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedButton, setSelectedButton] = useState(1);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const data = {
-        filter: 'highest_rated',
-        amount: 6,
-      };
-
-      const response = await fetch('http://127.0.0.1:8000/get_user_movie_lists/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setListData(data);
-        setIsLoading(false); // Data fetching is complete
-      } else {
-        console.error('Failed to fetch list data');
-        setIsLoading(false); // Data fetching failed
-      }
-    };
-
     fetchData();
-
   }, []);
+
+  const fetchData = async () => {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/get_user_movie_lists', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',},
+        });
+        if(response.ok) {
+            if(response.data) {
+                setListData(response.data);
+            }
+        }
+        setIsLoading(false)
+    } catch(error) {
+        console.error('failed to load list data')
+    }
+  }
+//   useEffect(async () => {
+//     // const fetchData = async () => {
+//         const response = await fetch('http://127.0.0.1:8000/get_user_movie_lists', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//         });
+//         // console.dir(response, {depth:null})
+//         if(response.ok) {
+//             console.log('empty ?' + response.data)
+//             if(response.data) {
+//                 console.log('empty ?' + response.data)
+//                 setListData(response.data);
+//             }
+//             setIsLoading(false); // Data fetching is complete
+//         } else {
+//             console.error('Failed to fetch list data');
+//             setIsLoading(false); // Data fetching failed
+//         }
+//     // };
+
+//     // fetchData();
+//   }, []);
 
   if (isLoading) {
     // Display a loading spinner or message here while data is being fetched
@@ -60,6 +77,10 @@ function DisplayList() {
   const handleButtonClick = (buttonNumber) => {
     setSelectedButton(buttonNumber);
   };
+
+  const handleCreateListClick = () => {
+
+  }
 
   return (
     <div className="movie-list-container">
