@@ -14,7 +14,7 @@ const SideMenu = ({ isOpen, onClose }) => {
                     <li><Link to="/DisplayList" onClick={onClose}>Lists</Link></li>
                     <li><Link to="/DisplayMovie" onClick={onClose}>Movies</Link></li>
                     <li><Link to="/DisplayUser" onClick={onClose}>Members</Link></li>
-                    {/* <li><Link to="../pages/Feed" onClick={onClose}>Feed</Link></li> */}
+                    <li><Link to="/Feed" onClick={onClose}>Feed</Link></li>
                     <li><Link to="/Profile" onClick={onClose}>Insight</Link></li>
                     {/* <li><Link to="/Profile" onClick={onClose}>Diary</Link></li> */}
                     <li><Link to="/Profile" onClick={onClose}>Watchlist</Link></li>

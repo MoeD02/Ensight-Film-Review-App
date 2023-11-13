@@ -1,0 +1,113 @@
+/* MovieCarousels.css */
+.movie-carousels-container {
+    margin-bottom: 24px;
+  }
+  
+  .carousel-section {
+    margin: 20px;
+    padding-top: 20px; /* Adjust this value as needed to create more space */
+    align-items: center;
+  }
+  
+  .carousel-title, .user-title {
+    color: white;
+    margin-bottom: 20px; /* Adjust as needed */
+    font-size: 24px; /* Adjust as needed */
+  }
+
+  .user-title {
+    margin: 20px;
+    padding-top: 20px; 
+    align-items: center;
+    font-weight: bold;
+  }
+
+  .carousel-slide {
+    padding: 0; /* Adjust padding to reduce space */
+    align-items: center;
+  }
+  
+  .movie-placeholder, .list-placeholder {
+    height: 300px; /* Height of the movie or list placeholders */
+    background-color: #333; /* Placeholder background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    width: 200px; /* Adjust the width to fit your design */
+    margin-inline: 10px;
+    margin-right: 8px; /* Adjust as needed */
+    margin-left: 8px; /* Adjust as needed */
+  }
+
+  .list-placeholder {
+    width: 300px; /* Adjust the width to fit your design */ 
+  }
+  
+  .placeholder-content {
+    color: white; /* Text color for the placeholder */
+  }
+  
+  .Results {
+    display: flex;
+    width: 95%;
+    border-top: 1px solid #E11708;
+    border-bottom: 1px solid #E11708;
+}
+
+.UserResults {
+    display: flex;
+}
+
+.UserPicResults {
+    height: 73px;
+    width: 73px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.ResultContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ResultExtra {
+    display: flex;
+    text-align: center;
+    align-self: center;
+}
+
+.ResultExtraInfo {
+    display: flex;
+    margin-right: 20px;
+    padding-right: 20px
+}
+
+.ResultStatement {
+    padding-left: 5px;
+    font-weight: 100;
+}
+  
+.MoviePosterDetails {
+    margin-left: 10px;
+}
+
+.MoviePosterTitle {
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-size: 17px;
+}
+
+.MoviePosterStars {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 200;
+    font-size: 12px;
+}
+
+.user-container {
+    color: white;
+    margin-left: 20px;
+}
