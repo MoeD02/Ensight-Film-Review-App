@@ -42,15 +42,13 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=256)
-    poster_path = models.FileField(
-        blank = True,
-        upload_to='posters/',
-    )  # uploads to MEDIA_ROOT/posters/
+    poster_path = models.CharField(max_length=128)
+    backdrop_path = models.CharField(max_length=128)
     release_date = models.DateField()
     genres = models.ManyToManyField(
         Genre,
         blank=True,
-        related_name='genres',
+        related_name='movies',
     )
     description = models.CharField(max_length=1024)
     rating_count = models.PositiveIntegerField(default=0)
@@ -82,7 +80,7 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='reviews',
     )
-
+    
     RATING_CHOICES = [
         (5.0, '5'),
         (4.5, '4.5'),

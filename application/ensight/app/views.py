@@ -52,6 +52,8 @@ class CurrentUserAPI(RetrieveAPIView):
     
     def get_object(self):
         return self.request.user
+
+
 from django.http import JsonResponse
 from .serializers import*
 from rest_framework import status
@@ -136,8 +138,8 @@ def search_users(request):
         user_profiles = [
             {
                 'username': user.user.username,
-             }
-             for user in users
+            }
+            for user in users
         ]
         return Response(serializer.data)
     # else:
@@ -194,7 +196,6 @@ def search_user_movie_lists(request):
 def fetch_movies(request):
     filter = request.data.get('filter')
     
-
     movies=[]
     if filter == 'highest_rated':
         index = request.data['amount']
