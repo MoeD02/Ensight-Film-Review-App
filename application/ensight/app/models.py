@@ -43,7 +43,7 @@ class Genre(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=256)
     poster_path = models.CharField(max_length=128)
-    backdrop_path = models.CharField(max_length=128)
+    backdrop_path = models.CharField(max_length=128, null=True)
     release_date = models.DateField()
     genres = models.ManyToManyField(
         Genre,
@@ -52,7 +52,6 @@ class Movie(models.Model):
     )
     description = models.CharField(max_length=1024)
     rating_count = models.PositiveIntegerField(default=0)
-    
     rating_average = models.DecimalField(
         max_digits=3,
         decimal_places=2,
@@ -68,7 +67,6 @@ class Review(models.Model):
     text = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     likes = models.PositiveIntegerField(default=0)
-    
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
