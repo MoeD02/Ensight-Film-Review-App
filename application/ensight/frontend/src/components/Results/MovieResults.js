@@ -63,12 +63,12 @@ const MovieResults = ({ searchTerm }) => {
       {movieData.map((movie, index) => (
         <div className="browse" key={index}>
           <div className="Results">
-          <img src={"http://localhost:8000"+movie.poster_path} className="MoviePoster">
+          <img src={"https://image.tmdb.org/t/p/w92"+movie.poster_path} className="MoviePoster">
             </img>
           {/* <h6 className="MoviePoster">Movie</h6> */}
             <div className="MoviePosterDetails">
               <h5 className="MoviePosterTitle">{movie.title}</h5>
-              <h6 className="MoviePosterYear">Year: {movie.year}</h6>
+              <h6 className="MoviePosterYear">Release Date: {new Date(movie.release_date).toLocaleDateString()}</h6>
               <h6 className="MoviePosterStars">Stars: {movie.stars}</h6>
             </div>
           </div>
