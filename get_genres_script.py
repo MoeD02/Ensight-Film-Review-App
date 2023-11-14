@@ -3,7 +3,6 @@ import requests
 
 url = "https://api.themoviedb.org/3/genre/movie/list?lang=en"
 
-token = ""
 with open("./tmdb_API_key.txt", "r") as f:
     token = f.read().strip()
 
@@ -28,4 +27,4 @@ for e in data['genres']:
     formatted_data.append(temp)
 
 with open('./application/ensight/app/fixtures/genre_fixture.json', 'w') as f:
-    json.dump(formatted_data, f)
+    json.dump(formatted_data, f, indent=2)
