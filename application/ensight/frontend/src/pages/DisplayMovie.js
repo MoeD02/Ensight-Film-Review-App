@@ -3,32 +3,22 @@ import '../assets/styles/pages/DisplayMovie.css';
 import YearSelection from '../components/Selections/YearSelection.js';
 import GenreSelection from '../components/Selections/GenreSelection.js';
 import RatingSelection from '../components/Selections/RatingSelection.js';
+import { fetchMovies } from "../APIcalls.js";
 
 const Browse = () => {
   const numberOfMoviesPerButton = 24;
   const [movieData, setMovieData] = useState([]);
-  const fetchData = async () => {
-    const data = {
-      filter: 'ALL',
-    };
-
-    const response = await fetch('http://127.0.0.1:8000/fetch_movies/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      setMovieData(data);
-    } else {
-      console.error('Failed to fetch movie data');
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchMovies("ALL",totalMovies);
+      if (data) {
+        setMovieData(data);
+      } else {
+        console.error('Failed to fetch movie data');
+      }
+    };
+
     fetchData();
   }, []);
 

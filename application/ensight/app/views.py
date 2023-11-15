@@ -164,17 +164,13 @@ def create_movie_list(request):
     
 
 #get's user's list(all of it). STILL NEEDS WORK because it doesn't know which user it is
-@api_view(['POST', 'GET'])
+@api_view(['POST'])
 def get_user_movie_lists(request):
-    # amount = request.data['amount']
-    movie_lists = MovieList.objects.all()[:5]
-    # data = {}
-    # for index, movie_list in enumerate(movie_lists):
-    #     data[index] = MovieListSerializer(movie_list).data
-    serializer = MovieListSerializer(movie_lists, many=True)
-    # string = f"THIS IS TEH AUTHOR{movie_list[0].author.username}"
-    # print(string)
-    # return JsonResponse(serializer.data, safe=False)
+    index = request.data['amount']
+    movie_list = MovieList.objects.all()[:index]
+    serializer = MovieListSerializer(movie_list, many=True)
+    string = f"THIS IS TEH AUTHOR{movie_list[1].author}"
+    print(string)
     return Response(serializer.data)
 
 

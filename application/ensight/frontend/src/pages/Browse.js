@@ -15,9 +15,9 @@ import { useLocation } from 'react-router-dom';
       const searchTerm = queryParams.get("searchTerm");
   
       // Now you can use the searchTerm in your Browse component
-      console.log("Search Term:", searchTerm);
+      //console.log("Search Term:", searchTerm);
   if (searchTerm==null){
-    console.log("I DID NOT SEARCH?????!!!!");
+    //console.log("I DID NOT SEARCH?????!!!!");
   return (
     <div className="flex-container">
       <div className="BrowseFilter">

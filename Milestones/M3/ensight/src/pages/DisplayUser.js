@@ -59,7 +59,7 @@ const Browse = () => {
     <div className="DisplayUserResults">
       <div className="DisplayOuter">
       {Array(buttonPlacesDisplayData[selectedButton - 1].numberOfUsers).fill().map((_, index) => (
-  <DisplayUserResults UserNumber={userData[index].user} UserBio = {userData[index].bio}key={index} />
+  <DisplayUserResults UserNumber={userData[index].user} UserBio = {userData[index].bio} avatar ={userData[index].avatar} key={index} />
 ))}
       </div>
       <div className="DisplayButtonPlaceWrapper">

@@ -3,6 +3,7 @@ from .models import *
 
 class MovieAdmin(admin.ModelAdmin):
     list_display = ['title', 'release_date']
+    filter_horizontal = ('genres',)
 admin.site.register(Movie, MovieAdmin)
 
 class ReviewAdmin(admin.ModelAdmin):
@@ -29,3 +30,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 # Register the Profile model with the ProfileAdmin class
 admin.site.register(Profile, ProfileAdmin)
+
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(Genre, GenreAdmin)

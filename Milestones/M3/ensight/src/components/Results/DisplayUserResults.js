@@ -3,7 +3,7 @@ import '../../assets/styles/pages/Browse.css';
 import '../../assets/styles/pages/DisplayUser.css';
 import FollowButton from '../FollowButton.js'
 
-const UserResults = ({ UserNumber,UserBio }) => {
+const UserResults = ({ UserNumber,UserBio,avatar }) => {
   const FollowUser = {
     borderRadius: "100px",
   };  
@@ -11,7 +11,12 @@ const UserResults = ({ UserNumber,UserBio }) => {
   return (
     <div className="ResultContent Results DisplayResults">
         <div className="UserResults">
-            <span className="UserPicResults DisplayUserPic"></span>
+            
+            {/* <span className="UserPicResults DisplayUserPic"></span> */}
+            <img className="UserPicResults DisplayUserPic" key={index}
+                src= {"http://localhost:8000"+avatar}
+                >
+              </img>
             <div className="MoviePosterDetails">
                 <h5 className="DisplayPosterTitle">{UserNumber}</h5>
             </div>

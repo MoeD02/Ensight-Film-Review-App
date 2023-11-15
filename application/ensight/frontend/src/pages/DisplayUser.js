@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import '../assets/styles/pages/DisplayUser.css';
 import DisplayUserResults from "../components/Results/DisplayUserResults.js";
+import { getUsers } from "../APIcalls.js";
+//csc648-01-fa23-team02\application\ensight\frontend\src\APIcalls.js
 
 const Browse = () => {
   const [userData, setUserData] = useState([]);
@@ -10,23 +12,10 @@ const Browse = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = {
-        filter: 'ALL',
-      };
+      const data = await getUsers(); // Use the getUsers function from api.js
 
-      const response = await fetch('http://127.0.0.1:8000/get_users/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
+      if (data) {
         setUserData(data);
-      } else {
-        console.error('Failed to fetch user data');
       }
     };
 
@@ -59,7 +48,7 @@ const Browse = () => {
     <div className="DisplayUserResults">
       <div className="DisplayOuter">
       {Array(buttonPlacesDisplayData[selectedButton - 1].numberOfUsers).fill().map((_, index) => (
-  <DisplayUserResults UserNumber={userData[index].user} UserBio = {userData[index].bio}key={index} />
+  <DisplayUserResults UserNumber={userData[index].user} UserBio = {userData[index].bio} avatar ={userData[index].avatar} key={index} />
 ))}
       </div>
       <div className="DisplayButtonPlaceWrapper">

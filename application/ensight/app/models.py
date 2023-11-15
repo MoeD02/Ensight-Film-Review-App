@@ -38,6 +38,8 @@ post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)
 
 class Genre(models.Model):
     name = models.CharField(max_length=64)
+    def __str__(self):
+        return self.name
 
 
 class Movie(models.Model):

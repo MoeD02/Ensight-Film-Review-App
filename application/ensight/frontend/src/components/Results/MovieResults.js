@@ -1,63 +1,26 @@
 import React, { useEffect, useState } from "react";
 import '../../assets/styles/pages/Browse.css';
-
+import { searchMovies, fetchMovies } from "../../APIcalls"; 
 const MovieResults = ({ searchTerm }) => {
   const [movieData, setMovieData] = useState([]);
-  const temp = searchTerm;
+  
   useEffect(() => {
-    if (searchTerm != null) {
-      
-      const fetchData = async () => {
-        const data = {
-          content: temp,
-        };
-
-        const response = await fetch('http://127.0.0.1:8000/search_movies/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
+    const fetchData = async () => {
+      if (searchTerm != null) {
+        const data = await searchMovies(searchTerm);
+        if (data) {
           setMovieData(data);
-        } else {
-          console.error('Failed to fetch movie data');
         }
-      };
-
-      fetchData();
-    } else {
-      
-      const fetchData = async () => {
-        const data = {
-          filter: 'highest_rated',
-          amount: 5,
-        };
-
-        const response = await fetch('http://127.0.0.1:8000/fetch_movies/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
+      } else {
+        const data = await fetchMovies("highest_rated", 5);
+        if (data) {
           setMovieData(data);
-        } else {
-          console.error('Failed to fetch movie data');
         }
-      };
+      }
+    };
 
-      fetchData();
-    }
+    fetchData();
   }, [searchTerm]);
-  //csc648-01-fa23-team02\application\ensight\media\posters
-  //C:\Users\dahbo\Desktop\New_648_Project\csc648-01-fa23-team02\application\ensight\media\posters
   return (
     <>
       {movieData.map((movie, index) => (
