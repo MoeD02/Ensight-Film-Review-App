@@ -1,7 +1,10 @@
 const apiUrl = 'http://127.0.0.1:8000';
 
-export const getUsers = async (filter = 'ALL') => {
-  const data = { filter };
+export const getUsers = async (filter, amount) => {
+  const data = { 
+    filter: filter,
+    amount: amount,
+   };
 
   const response = await fetch(`${apiUrl}/get_users/`, {
     method: 'POST',
@@ -19,11 +22,34 @@ export const getUsers = async (filter = 'ALL') => {
   }
 };
 
+export const searchUsers = async (searchTerm) => {
+  const data = {
+    content: searchTerm,
+  };
+
+  const response = await fetch(`${apiUrl}/search_users/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    return await response.json();
+  } else {
+    console.error('Failed to fetch user data');
+    return null;
+  }
+};
 
 
-export const searchMovies = async (searchTerm) => {
+export const searchMovies = async (searchTerm , filter , genres , years) => {
     const data = {
       content: searchTerm,
+      filter: filter,
+      genres:genres,
+      years: years,
     };
   
     const response = await fetch(`${apiUrl}/search_movies/`, {
@@ -44,10 +70,12 @@ export const searchMovies = async (searchTerm) => {
   
 
 
-  export const fetchMovies = async (filter, amount) => {
+  export const fetchMovies = async (filter, genres , years, amount) => {
     const data = {
       filter: filter,
       amount: amount,
+      genres:genres,
+      years: years,
     };
   
     const response = await fetch(`${apiUrl}/fetch_movies/`, {
@@ -86,6 +114,26 @@ export const searchMovies = async (searchTerm) => {
       return await response.json();
     } else {
       console.error('Failed to fetch list data');
+      return null;
+    }
+  };
+  export const searchUserMovieLists = async (searchTerm) => {
+    const data = {
+      content: searchTerm,
+    };
+  
+    const response = await fetch(`${apiUrl}/search_user_movie_lists/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Failed to fetch user movie lists');
       return null;
     }
   };

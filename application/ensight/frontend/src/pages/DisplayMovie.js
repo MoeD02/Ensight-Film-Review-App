@@ -8,10 +8,16 @@ import { fetchMovies } from "../APIcalls.js";
 const Browse = () => {
   const numberOfMoviesPerButton = 24;
   const [movieData, setMovieData] = useState([]);
+  const [selectedRating, setSelectedRating] = useState('highest');
+  const [searchRating, setSearchRating] = useState('highest');
+  const [selectedGenre, setSelectedGenre] = useState({});
+  const [searchGenre, setSearchGenre] = useState({});
+  const [selectedYear, setSelectedYear] = useState({});
+  const [searchYear, setSearchYear] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchMovies("ALL",totalMovies);
+      const data = await fetchMovies(searchRating, numberOfMoviesPerButton, searchGenre, searchYear);
       if (data) {
         setMovieData(data);
       } else {
@@ -20,8 +26,28 @@ const Browse = () => {
     };
 
     fetchData();
-  }, []);
+  }, [searchRating, searchGenre]);
 
+  const handleRatingChange = (rating) => {
+    setSelectedRating(rating);
+  };
+
+  const handleGenreChange = (genre) => {
+    setSelectedGenre(genre);
+  };
+  const handleYearChange = (year) => {
+    setSelectedYear(year);
+  }
+
+  const checkSelections = () => {
+    setSearchRating(selectedRating);
+
+    const selectedGenresArray = Object.keys(selectedGenre).filter(genre => selectedGenre[genre]);
+    setSearchGenre(selectedGenresArray);
+
+    const selectedYearArray = Object.keys(selectedYear).filter(year => selectedYear[year]);
+    setSearchYear(selectedYearArray);
+  };
   const totalMovies = movieData.length;
   const buttonPlacesData = [];
   let remainingMovies = totalMovies;
@@ -48,11 +74,11 @@ const Browse = () => {
       <div className="DMFilter">
         <h2 className="DMTitle">Browse by</h2>
         <div className="CheckSelections">
-          <YearSelection />
-          <GenreSelection />
-          <RatingSelection />
+        <YearSelection onYearChange={handleYearChange}/>
+          <GenreSelection onGenreChange={handleGenreChange}/>
+          <RatingSelection onRatingChange={handleRatingChange}/>
         </div>
-        <button className="DMSearch">Search</button>
+        <button className="DMSearch"onClick={checkSelections}>Search</button>
       </div>
       <div className="DMResults">
         <div className="DMPosters">

@@ -61,6 +61,7 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MovieSerializer(serializers.ModelSerializer):
+    genres = serializers.StringRelatedField(many=True)
     class Meta:
         model = Movie
         fields = '__all__'

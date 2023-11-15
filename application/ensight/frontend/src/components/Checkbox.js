@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
-import '../assets/styles/components/Checkbox.css'
+import React from "react";
+import "../assets/styles/components/Checkbox.css";
 
-const Checkbox = ({ label }) => {
-  const [checked, setChecked] = useState(false);
-
-  const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
+const Checkbox = ({ label, checked, onChange }) => {
   return (
     <label className="container">
-      <div>  
+      <div>
         <input
-            type="checkbox"
-            checked={checked}
-            onChange={handleCheckboxChange}
-            style={{ display: 'none' }}
+          type="checkbox"
+          checked={checked}
+          onChange={(e) => onChange(e.target.checked)}
+          style={{ display: "none" }}
         />
         <svg viewBox="0 0 64 64" height="15px" width="15px">
             <path
@@ -25,7 +19,7 @@ const Checkbox = ({ label }) => {
         </svg>
       </div>
       <div>
-        <h4 className='CheckType'>{label}</h4>
+        <h4 className="CheckType">{label}</h4>
       </div>
     </label>
   );
