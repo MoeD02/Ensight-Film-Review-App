@@ -18,7 +18,7 @@ const SideMenu = ({ isOpen, onClose }) => {
                     <li><Link to="/Profile" onClick={onClose}>Insight</Link></li>
                     {/* <li><Link to="/Profile" onClick={onClose}>Diary</Link></li> */}
                     <li><Link to="/Profile" onClick={onClose}>Watchlist</Link></li>
-                    {/* <li><Link to="../pages/Profile" onClick={onClose}>About</Link></li> */}
+                    <li><Link to="/About" onClick={onClose}>About</Link></li>
                     {/* <li><Link to="../pages/Profile" onClick={onClose}>Settings</Link></li> */}
                     {/* If Sign out is a function, it should be handled differently */}
                     <li onClick={onClose}>Sign out</li>

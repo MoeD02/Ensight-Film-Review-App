@@ -11,6 +11,7 @@ import DisplayList from './pages/DisplayList';
 import DisplayMovie from './pages/DisplayMovie';
 import DisplayUser from './pages/DisplayUser';
 import LoginPage from './pages/LoginPage';
+import About from './pages/About';
 import './App.css';
 
 
@@ -29,7 +30,7 @@ function App() {
         <Route path="/Profile/:ProfileTabs" element={<Profile />} />
         {/* <Route path="../pages/Profile" element={<Diary />} /> */}
         <Route path="/Profile" element={<Profile />} />
-        {/* <Route path="../pages/Profile" element={<About />} /> */}
+        <Route path="/About" element={<About />} />
         {/* <Route path="../pages/Profile" element={<Settings />} /> */}
         <Route path="/LoginPage" element={<LoginPage />} />
       </Routes>
