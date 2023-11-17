@@ -25,6 +25,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Home" element={<Home />} />
         <Route path="/Browse" element={<Browse />} />
         <Route path="/DisplayList" element={<DisplayList />} />
         <Route path="/DisplayMovie" element={<DisplayMovie />} />
