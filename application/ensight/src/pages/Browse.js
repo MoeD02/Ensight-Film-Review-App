@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import '../assets/styles/pages/Browse.css';
 import YearSelection from '../components/Selections/YearSelection.js';
@@ -10,11 +10,49 @@ import UserResults from "../components/Results/UserResults.js";
 
 const Browse = () => {
   const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const searchTerm = queryParams.get("searchTerm");
+  const queryParams = new URLSearchParams(location.search);
+  const searchTerm = queryParams.get("searchTerm");
 
-    // Now you can use the searchTerm in your Browse component
-    console.log("Search Term:", searchTerm);
+  console.log(searchTerm);
+
+  const [selectedRating, setSelectedRating] = useState('highest');
+  const [searchRating, setSearchRating] = useState('highest');
+
+  const [selectedGenre, setSelectedGenre] = useState({});
+  const [searchGenre, setSearchGenre] = useState({});
+
+  const [selectedYear, setSelectedYear] = useState({});
+  const [searchYear, setSearchYear] = useState({});
+
+  useEffect(() => {
+    console.log("Search Rating Updated:", searchRating);
+    console.log("Search Genre Updated:", searchGenre);
+    console.log("Search Year Updated:", searchYear);
+    // You can perform any actions here that depend on the updated state
+  }, [searchRating, searchGenre, searchYear]);
+
+
+  const handleRatingChange = (rating) => {
+      setSelectedRating(rating);
+  };
+
+  const handleGenreChange = (genre) => {
+    setSelectedGenre(genre);
+  }
+
+  const handleYearChange = (year) => {
+    setSelectedYear(year);
+  }
+
+  const checkSelections = () => {
+    setSearchRating(selectedRating);
+
+    const selectedGenresArray = Object.keys(selectedGenre).filter(genre => selectedGenre[genre]);
+    setSearchGenre(selectedGenresArray);
+
+    const selectedYearArray = Object.keys(selectedYear).filter(year => selectedYear[year]);
+    setSearchYear(selectedYearArray);
+  };
 
 
   return (
@@ -22,19 +60,19 @@ const Browse = () => {
       <div className="BrowseFilter">
         <h2 className="BrowseTitle">Browse by</h2>
         <div className="CheckSelections">
-          <YearSelection />
-          <GenreSelection />
-          <RatingSelection />
+          <YearSelection onYearChange={handleYearChange}/>
+          <GenreSelection onGenreChange={handleGenreChange}/>
+          <RatingSelection onRatingChange={handleRatingChange}/>
         </div>
         {/* once search is clicked, any of the checkboxes are applied */}
         {/* if no checkboxes are picked for a selection, then add all */}
-        <button className="BrowseSearch">Search</button>
+        <button className="BrowseSearch" onClick={checkSelections}>Search</button>
       </div>
       <div className="BrowseResults">
         <div>
           <h2>Films</h2>
           {/* replace with 4 movies */}
-          <MovieResults />
+          <MovieResults rating={searchRating}/>
           <MovieResults />
           <MovieResults />
           <MovieResults />

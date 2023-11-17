@@ -1,6 +1,7 @@
 /* MovieCarousels.css */
 .movie-carousels-container {
     margin-bottom: 24px;
+    overflow-x: hidden;
   }
   
   .carousel-section {
@@ -34,16 +35,16 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px; /* Rounded corners for aesthetics */
-    width: 200px; /* Adjust the width to fit your design */
+    /* width: 200px; /* Adjust the width to fit your design */
     margin-inline: 10px;
-    margin-right: 8px; /* Adjust as needed */
+    /* margin-right: 8px; /* Adjust as needed */
     margin-left: 8px; /* Adjust as needed */
   }
-
+/*
   .list-placeholder {
-    width: 300px; /* Adjust the width to fit your design */ 
+    width: 300px; /* Adjust the width to fit your design
   }
-  
+*/  
   .placeholder-content {
     color: white; /* Text color for the placeholder */
   }
@@ -109,5 +110,13 @@
 
 .user-container {
     color: white;
-    margin-left: 20px;
+    margin-left: 50px;
+}
+
+.slick-prev {
+    left: -16px;
+}
+
+.slick-next {
+    right: -16px;
 }

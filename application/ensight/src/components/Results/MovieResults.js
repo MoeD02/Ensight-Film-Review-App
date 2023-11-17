@@ -1,7 +1,9 @@
 import React from "react";
 import '../../assets/styles/pages/Browse.css';
 
-const MovieResults = () => {
+const MovieResults = ({ rating }) => {
+  //console.log("Rating Result: " + rating);
+
   return (
     <div className="Results">
         <h6 className="MoviePoster">Movie</h6>

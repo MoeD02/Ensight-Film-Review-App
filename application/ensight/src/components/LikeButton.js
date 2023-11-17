@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/LikeButton.css'
 
-const LikeButton = () => {
+const LikeButton = ({ customStyle }) => {
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = (event) => {
@@ -9,7 +9,7 @@ const LikeButton = () => {
     };
 
     return (
-        <div className="heart-container" title="Like">
+        <div className="heart-container" title="Like" style={customStyle}>
             <input
                 type="checkbox"
                 className="checkbox"

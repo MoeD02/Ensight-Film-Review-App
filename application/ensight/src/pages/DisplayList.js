@@ -58,7 +58,7 @@ function DisplayList() {
                         (selectedButton - 1) * numberOfListsPerButton,
                         selectedButton * numberOfListsPerButton
                     )
-                    .map((movie, index) => (
+                    .map((movie) => (
                     <div className="ListOverlap" key={movie.title}>
                         <div className="PostersGrid">
                             <h6 className="ListMoviePoster ListMovie1">Movie</h6>

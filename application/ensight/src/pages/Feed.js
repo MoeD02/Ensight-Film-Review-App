@@ -3,7 +3,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import '../assets/styles/pages/Feed.css'; // Your custom styles
+import '../assets/styles/pages/Feed.css'; // Your custom stylesA
 import UserResults from "../components/Results/UserResults";
 
 function Feed() {
