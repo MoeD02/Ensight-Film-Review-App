@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import '../../assets/styles/components/ProfileTabs.css';
 import LikeButton from "../LikeButton";
+import SlideIn from "../SlideIn";
 import StarFilled from "../../assets/images/star_filled.png";
 import StarUnfilled from "../../assets/images/star_unfilled.png";
 
 const Diary = ({ likes, starsFill }) => {
-  const [isReviewViewed, setIsReviewViewed] = useState(true);
+  const [startAnimation, setStartAnimation] = useState(false);
 
 
   const renderRatingStars = () => {
@@ -20,16 +21,13 @@ const Diary = ({ likes, starsFill }) => {
     return stars;
   };
 
-  const handleReviewClick = () => {
-    setIsReviewViewed(!isReviewViewed);
-  };
-
   const borderImageStyle = {
     borderImage: `linear-gradient(
       to bottom left,
       #E11708 20%,
-      transparent ${isReviewViewed ? "95%" : "75%"}
+      transparent ${!startAnimation ? "97%" : "55%"}
     ) 1`,
+    transition: "border-image 1.0s ease",
   };
 
   return (
@@ -51,17 +49,16 @@ const Diary = ({ likes, starsFill }) => {
           </div>
         </div>
       </div>
-      <div className={isReviewViewed ? "" : "DiaryReview"}>
-        {isReviewViewed ? (
-            <span className="DisplayViewButton" onClick={handleReviewClick}>View Note</span>
-        ) : (
-            <>
-                <p className="DisplayDiaryReview">
-                    The Way of Water dives deep into a mesmerizing aquatic world, breathing new life into the beloved saga. The visuals are breathtaking, transporting us to a dazzling underwater realm. The story keeps you hooked, though some plot elements felt familiar.
-                </p>
-                <span className="DisplayHideButton" onClick={handleReviewClick}>Hide Note</span>
-            </>
-        )}
+      <div>
+        <SlideIn startAnimation={startAnimation}>
+          <p className="DisplayDiaryReview">
+              The Way of Water dives deep into a mesmerizing aquatic world, breathing new life into the beloved saga. The visuals are breathtaking, transporting us to a dazzling underwater realm. The story keeps you hooked, though some plot elements felt familiar.
+              The Way of Water dives deep into a mesmerizing aquatic world, breathing new life into the beloved saga. The visuals are breathtaking, transporting us to a dazzling underwater realm. The story keeps you hooked, though some plot elements felt familiar.
+          </p>
+        </SlideIn>
+        <span className="DisplayButton" onClick={() => setStartAnimation(!startAnimation)}>
+          {startAnimation ? 'Hide Note' : 'Show Note'}
+        </span>
       </div>
     </div>
   );

@@ -41,10 +41,18 @@ const DiaryFocus = () => {
     setSelectedMovie(movieNumber);
   };
 
-  const handleSaveCancelClick = () => {
+  const handleCancelClick = () => {
     setShowDiaryCreation(true);
     setShowMovieDiary(false);
     setShowDiaryCreationDetail(false);
+  };
+
+  const handleSaveClick = () => {
+    if (filledStars !== 0) {
+      setShowDiaryCreation(true);
+      setShowMovieDiary(false);
+      setShowDiaryCreationDetail(false);
+    }
   };
 
   const openCalendar = () => {
@@ -97,7 +105,7 @@ const DiaryFocus = () => {
             />
           </div>
           <div className="DiaryCancelContainer">
-            <button className="Button DiaryCancel" onClick={handleSaveCancelClick}>
+            <button className="Button DiaryCancel" onClick={handleCancelClick}>
               Cancel
             </button>
           </div>
@@ -150,7 +158,7 @@ const DiaryFocus = () => {
                       <img src={WhitePencil} alt="Pencil_Icon" onClick={openCalendar} className="PencilIcon" width={20} height={20}/>
                     </div>
                   </div>
-                  <button className="Button DiarySave" onClick={handleSaveCancelClick}>
+                  <button className="Button DiarySave" onClick={handleSaveClick}>
                     Save
                   </button>
                 </div>

@@ -513,6 +513,7 @@ PrivacyButton:checked + span {
 /* this is for Diary.js */
 .DiaryContent {
   margin-bottom: 25px;
+  position: relative; 
 }
 
 .DiaryDetails, .DiaryCreation {
@@ -525,6 +526,9 @@ PrivacyButton:checked + span {
   color: white;
 
   border: 3px solid transparent;
+
+  position: relative;
+  z-index: 1;
 }
 
 .DiaryPoster {
@@ -571,12 +575,15 @@ PrivacyButton:checked + span {
   column-gap: 2px;
 }
 
-.DisplayViewButton, .DisplayHideButton {
-  background: linear-gradient(#232323, #E11708);
+.DisplayButton {
+  display: block;
+  background: #E11708;
   color: white;
   margin-left: 30px;
   padding: 5px 10px;
-  height: 20px;
+  min-width: 110px;
+  max-width: 110px;
+  text-align: center;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-weight: 600;
@@ -584,27 +591,33 @@ PrivacyButton:checked + span {
   cursor: pointer;
 }
 
-.DisplayViewButton:hover {
-  background: linear-gradient(#232323, #8d1209);
-}
-
 .DisplayDiaryReview {
   background: linear-gradient(#232323 10%, #E11708);
   color: white;
   margin: 0;
   margin-left: 30px;
-  padding: 30px;
+  padding: 20px 30px;
   width: 500px;
-  height: max-content;
   border-bottom-right-radius: 10px;
   font-weight: 400;
   font-size: 18px;
   font-family: Catamaran;
+  text-align: justify;
+
+  position: relative;
+  z-index: -1;
+  margin-top: auto;
 }
 
-.DisplayHideButton {
-  background: #E11708;
-  border: none;
+.slide-in {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition-property: height, margin-top;
+  transition-duration: 1s;
+
+  position: relative;
+  z-index: 0;
 }
 
 .DiaryCreation {
