@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/styles/pages/DisplayList.css';
 
 function DisplayList() {
@@ -51,7 +52,9 @@ function DisplayList() {
     return (
         <div className="movie-list-container">
             <h2 className='ListDetailInfo'>List it, or Miss it <br/>Create your own ultimate cine-list now below</h2>
-            <button className="create-list-button custom-button">Create List +</button>
+            <button className="create-list-button custom-button linked-button">
+              <Link to="/Profile/lists">Create List +</Link>
+            </button>
             <div className="layered-container list-layered-container">
                 {movieListData
                     .slice(

@@ -21,8 +21,7 @@
     cursor: pointer;
     background-color: transparent;
     transform: translateY(8px);
-    border: 20px solid #ffffff;
-  }
+}
     
     
 .logo-button:after {
@@ -31,13 +30,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    box-shadow: 0px 0 0 0 rgb(98, 98, 98);
+    box-shadow: 0px 0 0 0 white;
     transition: all 2s ease;
 }
     
     
 .logo-button:hover:after {
-    box-shadow: 0px -13px 56px 12px #000000;
+    box-shadow: 0px -13px 56px 12px #ffffff;
 }
     
     
@@ -45,13 +44,13 @@
     position: absolute;
     width: 100%;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 100;
     left: 50%;
     top: 39%;
     letter-spacing: 3px;
     text-align: center;
     transform: translate(-50%, -50%);
-    color: rgb(255, 255, 255);
+    color: white;
     transition: all 2s ease;
     background: none;
 }
@@ -67,7 +66,7 @@
     position: absolute;
     width: 0;
     height: 100%;
-    background-color: #ffffff;
+    background-color: white;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);

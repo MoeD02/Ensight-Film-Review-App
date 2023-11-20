@@ -6,7 +6,7 @@ const FooterComponent = () => {
     return (
         <footer className="footer">
             <div className="footer-menu">
-                <Link to="/Home">Home</Link>
+                <Link to="/">Home</Link>
                 <Link to="/Profile/profile">Profile</Link>
                 <Link to="/Feed">Feed</Link>
                 <Link to="/Profile/watchlist">Watchlist</Link>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from './components/Header';
 import FooterComponent from './components/FooterComponent';
@@ -19,13 +19,20 @@ import './App.css';
 
 
 function App() {
+  useEffect(() => {
+    const isWindows = navigator.platform.indexOf('Win') > -1; // using platforms since its supported on all browsers
+
+    if (isWindows) {
+      document.documentElement.classList.add('windows');
+    }
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Home" element={<Home />} />
         <Route path="/Browse" element={<Browse />} />
         <Route path="/DisplayList" element={<DisplayList />} />
         <Route path="/DisplayMovie" element={<DisplayMovie />} />

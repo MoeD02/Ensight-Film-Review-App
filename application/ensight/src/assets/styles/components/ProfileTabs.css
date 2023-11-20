@@ -509,3 +509,313 @@ PrivacyButton:checked + span {
   width: fit-content;
   cursor: pointer;
 }
+
+/* this is for Diary.js */
+.DiaryContent {
+  margin-bottom: 25px;
+}
+
+.DiaryDetails, .DiaryCreation {
+  display: flex;
+  justify-content: space-between;
+  background: #232323;
+  border-bottom-left-radius: 10px;
+  height: 170px;
+  padding: 0 30px;
+  color: white;
+
+  border: 3px solid transparent;
+}
+
+.DiaryPoster {
+  height: 160px;
+  min-width: 100px;
+  max-width: 100px;
+  background: gray;
+  border-radius: 10px;
+  margin: 0 20px;
+}
+
+.DiaryLeft {
+  display: flex;
+  align-items: center;
+}
+
+.DiaryLeft h2 {
+  font-size: 26px;
+}
+
+.DiaryRight {
+  display: flex;
+  align-items: center;
+}
+
+.DiaryRight h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.DiaryRight h5 {
+  margin-left: 5px;
+  margin-right: 20px;
+}
+
+.DiaryRateContent {
+  padding: 35px 0;
+  padding-left: 10px;
+  border-left: 2px solid white;
+}
+
+.DiaryRating {
+  display: flex;
+  column-gap: 2px;
+}
+
+.DisplayViewButton, .DisplayHideButton {
+  background: linear-gradient(#232323, #E11708);
+  color: white;
+  margin-left: 30px;
+  padding: 5px 10px;
+  height: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.DisplayViewButton:hover {
+  background: linear-gradient(#232323, #8d1209);
+}
+
+.DisplayDiaryReview {
+  background: linear-gradient(#232323 10%, #E11708);
+  color: white;
+  margin: 0;
+  margin-left: 30px;
+  padding: 30px;
+  width: 500px;
+  height: max-content;
+  border-bottom-right-radius: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Catamaran;
+}
+
+.DisplayHideButton {
+  background: #E11708;
+  border: none;
+}
+
+.DiaryCreation {
+  justify-content: center;
+  align-items: center;
+  color: #797979;
+  cursor: pointer;
+
+  border: 3px solid transparent;
+  border-image: linear-gradient(
+    to bottom left,
+    #79797975,
+    transparent
+  ) 1;
+}
+
+.DiaryCreation h2 {
+  font-weight: 400;
+}
+
+.SearchMovieDiary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.DiarySearch {
+  width: 50%;
+}
+
+.MovieDiary {
+  display: block;
+  background-color: gray;
+  width: 140px;
+  height: 210px;
+  border-radius: 10px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.Movie1 {
+  background-color: rgb(210, 26, 26) !important;
+}
+
+.Movie2 {
+  background-color: rgb(96, 90, 90) !important;
+}
+
+.Movie3 {
+  background-color: rgb(206, 199, 199) !important;
+}
+
+.DiaryMovieResults {
+  align-self: flex-start;
+  display: flex;
+  column-gap: 30px;
+}
+
+.DiaryCreationDetail {
+  display: flex;
+  margin-left: 50px;
+  color: white;
+  flex-grow: 1;
+}
+
+.DiaryMoviePosterLarge {
+  background: gray;
+  height: 290px;
+  min-width: 190px;
+  max-width: 190px;
+  border-radius: 10px;
+  margin-right: 60px;
+}
+
+.DiaryMovieInfo {
+  flex-grow: 1;
+  margin-right: 100px;
+}
+
+.DiaryMovieInfo * {
+  margin: 0;
+  font-family: Catamaran;
+}
+
+.DiaryMovieInfo h2 {
+  font-size: 35px;
+}
+
+.DiaryMovieInfo h4 {
+  font-size: 20px;
+}
+
+.DiaryContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.DiaryMovieInfo textarea {
+  background: #414141;
+  border: 2px solid #E11708;
+  border-radius: 10px;
+  height: 130px;
+  width: 100%;
+  padding: 10px;
+  resize: none;
+  outline: none;
+  color: white;
+}
+
+.DiaryRatingStarChoice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.DiaryStars {
+  display: flex;
+  column-gap: 5px;
+  margin-left: 5px;
+}
+
+.DiaryBack {
+  align-self: flex-start;
+  font-size: 20px;
+  padding: 5px 10px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.DiaryMovieDate {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.DiarySave {
+  height: fit-content;
+  font-size: 20px;
+  padding: 0 20px;
+}
+
+.DiaryCancel {
+  height: fit-content;
+  font-size: 30px;
+  padding: 0 15px;
+}
+
+.DiaryCancelContainer {
+  align-self: flex-end;
+  margin-right: 30px;
+}
+
+.DiaryMovieDate h5 {
+  margin-right: 5px;
+  font-size: 17px;
+}
+
+.DiaryDateCalendar {
+  background: none;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  width: 90px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.PencilIcon {
+  align-self: flex-start;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.DiaryDateCalendar:focus {
+  cursor: text;
+}
+
+.react-datepicker {
+  background-color: #5a5757 !important;
+  border: 2px solid #5a5757 !important;
+}
+
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::before, .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
+  border-top-color: #5a5757 !important;
+}
+
+.react-datepicker__week {
+  color: white !important;
+}
+
+.react-datepicker__navigation-icon--next::before, .react-datepicker__navigation-icon--previous::before {
+  margin-top: 5px !important;
+}
+
+.react-datepicker__day--selected {
+  background-color: #E11708 !important;
+}
+
+.react-datepicker__month-container {
+  float: none !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: #e8a39e !important;
+}
+
+.react-datepicker__day--keyboard-selected:hover {
+  background-color: #E11708 !important;
+  color: white;
+}

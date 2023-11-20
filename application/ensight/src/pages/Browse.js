@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import '../assets/styles/pages/Browse.css';
 import YearSelection from '../components/Selections/YearSelection.js';
 import GenreSelection from '../components/Selections/GenreSelection.js';
@@ -76,7 +77,9 @@ const Browse = () => {
           <MovieResults />
           <MovieResults />
           <MovieResults />
-          <h3 className="SeeResults">See More Results</h3>
+          <h3 className="SeeResults">
+            <Link to="/DisplayMovie">See More Results</Link>
+          </h3>
         </div>
         <div>
           <h2>Lists</h2>
@@ -88,7 +91,9 @@ const Browse = () => {
             <ListResults />
             <ListResults />
           </div>
-          <h3 className="SeeResults">See More Results</h3>
+          <h3 className="SeeResults">
+            <Link to="/DisplayList">See More Results</Link>
+          </h3>
         </div>
         <div>
           <h2>Users</h2>
@@ -100,7 +105,9 @@ const Browse = () => {
             <UserResults />
             <UserResults />
           </div>
-          <h3 className="SeeResults">See More Results</h3>
+          <h3 className="SeeResults">
+            <Link to="/DisplayUser">See More Results</Link>
+          </h3>
         </div>
       </div>
     </div>

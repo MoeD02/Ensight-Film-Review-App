@@ -62,6 +62,18 @@
 	cursor: pointer;
 }
 
+.SeeResults a, .linked-button a {
+    color: white;
+}
+
+.linked-button a {
+    text-decoration: none;
+}
+
+.SeeResults a:active {
+    color: #E11708;
+}
+
 /* Selection css */
 .SelectionTitle {
     margin: 0;

@@ -20,30 +20,30 @@ const Watchlist = () => {
         <div className="Content">
             <div className={isEditing ? "ListView" : "ListEdit"}>
                 {isEditing ? (
-            <div className="GridContainer GridWatchlist">
-              {/* change movie text to the movie poster image from backend */}
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              <h3 className="MovieWatchlist">Movie</h3>
-              {/* this should be kept so the user can add more movies unless viewing a profile */}
-              <button className="MovieWatchlist AddMovie" onClick={handleEditClick}>
-                <h3>+</h3>
-              </button>
-          </div>
+                    <div className="GridContainer GridWatchlist">
+                        {/* change movie text to the movie poster image from backend */}
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        <h3 className="MovieWatchlist">Movie</h3>
+                        {/* this should be kept so the user can add more movies unless viewing a profile */}
+                        <button className="MovieWatchlist AddMovie" onClick={handleEditClick}>
+                            <h3>+</h3>
+                        </button>
+                    </div>
                 ) : (
                     <>
                         {/* search is implemented here where it will display all movies with same keywords */}
                         <div class="MovieSearch WatchlistSearch">
-                            <input className="SearchInput WatchlistInput" type="text" placeholder="Add Item" />
+                            <input className="SearchInput WatchlistInput" type="text" placeholder="Search Movie" />
                             <button class="SearchButton WatchlistButton">Search</button>
                         </div>
                         <div className="WatchlistResults">
