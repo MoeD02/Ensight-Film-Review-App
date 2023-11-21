@@ -51,6 +51,15 @@
     font-size: 20px;
     margin-top: -30px;
   }
+
+  .header-section h1, .title-section h1, .heading-section h1 {
+    font-family: 'Barber', sans-serif;
+  }
+
+  .header-section p, .title-section p, .heading-section p {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+  }
   
   /* .view-movies-btn, .view-feed-btn, .view-list-btn {
     background-color: red;

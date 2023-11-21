@@ -51,7 +51,8 @@ function DisplayList() {
 
     return (
         <div className="movie-list-container">
-            <h2 className='ListDetailInfo'>List it, or Miss it <br/>Create your own ultimate cine-list now below</h2>
+            <h2 className='ListDetailInfo'>List it, or Miss it </h2>            
+            <h3 className='ListDetailInfo'>Create your own ultimate cine-list now below!</h3>
             <button className="create-list-button custom-button linked-button">
               <Link to="/Profile/lists">Create List +</Link>
             </button>

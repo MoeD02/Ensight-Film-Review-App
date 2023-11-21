@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Barber';
+  src: url('assets/fonts/Barber-v2.0/Fonts/Barber-Complete.woff2') format('woff2'),
+       url('assets/fonts/Barber-v2.0/Fonts/Barber-Complete.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+       /* url('assets/fonts/Manrope/Manrope-Regular.woff') format('woff'); */
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -12,6 +28,7 @@ body {
   min-height: 100vh; /* take up full viewport height */
   background-image: repeating-radial-gradient(  #0c0a0a 80%,#2f312f 90%,#3f4549 90%);
   background-size: 65px 65px;
+  font-family: 'Manrope', sans-serif;
 }
 
 html.windows {

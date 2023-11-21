@@ -6,11 +6,12 @@
     margin: 0 2rem 1.5rem;
     padding: 2rem 1rem;
     padding-top: 2px;
-    color: rgba(255, 255, 255, 0.70);;
+    color: rgba(255, 255, 255, 0.70);
     border-radius: 2rem;
     @media (max-width: 769px) {
       padding: 2rem 0;
     }
+    font-family: 'Manrope', sans-serif;
 }
 
 ul.nav {
@@ -20,6 +21,7 @@ ul.nav {
     align-items: center;
     justify-content: space-between;
     padding-left: 0px;
+    font-family: 'Manrope', sans-serif;
 }
    
 ul.nav li {
@@ -32,11 +34,12 @@ ul.nav li {
     cursor: pointer;
     transition: all 0.7s;
     position: relative;
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 700;
     border-top: 0px;
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
+    font-family: 'Manrope', sans-serif;
 }
 
 ul.nav li:hover {
@@ -82,6 +85,7 @@ ul.nav li.active {
   text-decoration: underline;
   text-underline-offset: 7px;
   margin: 0;
+  font-size: 18px;
 }
 
 .Content {
@@ -372,6 +376,7 @@ PrivacyButton:checked + span {
 
 .ProfileTitle {
   margin: 0;
+  font-size: 22px;
 }
 
 .TitleInput {
@@ -546,7 +551,7 @@ PrivacyButton:checked + span {
 }
 
 .DiaryLeft h2 {
-  font-size: 26px;
+  font-size: 20px;
 }
 
 .DiaryRight {
@@ -587,7 +592,7 @@ PrivacyButton:checked + span {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 17px;
   cursor: pointer;
 }
 
@@ -597,13 +602,11 @@ PrivacyButton:checked + span {
   margin: 0;
   margin-left: 30px;
   padding: 20px 30px;
-  width: 500px;
+  width: 650px;
   border-bottom-right-radius: 10px;
   font-weight: 400;
-  font-size: 18px;
-  font-family: Catamaran;
+  font-size: 15px;
   text-align: justify;
-
   position: relative;
   z-index: -1;
   margin-top: auto;
@@ -700,7 +703,6 @@ PrivacyButton:checked + span {
 
 .DiaryMovieInfo * {
   margin: 0;
-  font-family: Catamaran;
 }
 
 .DiaryMovieInfo h2 {

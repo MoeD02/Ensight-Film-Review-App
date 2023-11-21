@@ -14,6 +14,7 @@
     color: white;
     margin-bottom: 20px; /* Adjust as needed */
     font-size: 24px; /* Adjust as needed */
+    font-family: 'Barber', sans-serif;
   }
 
   .user-title {
@@ -26,6 +27,7 @@
   .carousel-slide {
     padding: 0; /* Adjust padding to reduce space */
     align-items: center;
+    font-family: 'Manrope', sans-serif;
   }
   
   .movie-placeholder, .list-placeholder {
@@ -54,6 +56,7 @@
     width: 95%;
     border-top: 1px solid #E11708;
     border-bottom: 1px solid #E11708;
+    font-family: 'Manrope', sans-serif;
 }
 
 .UserResults {
@@ -78,6 +81,7 @@
     display: flex;
     text-align: center;
     align-self: center;
+    font-size: 15px;
 }
 
 .ResultExtraInfo {
