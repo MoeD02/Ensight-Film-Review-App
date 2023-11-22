@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import '../assets/styles/pages/MovieLanding.css';
 import LikeButton from "../components/LikeButton";
 import StarFilled from "../assets/images/star_filled.png";
@@ -12,6 +12,31 @@ const MovieLanding = () => {
     const [onWatchlist, setOnWatchlist] = useState(false);
     const [hoverDisabled, setHoverDisabled] = useState(false);
     const [isVideoVisible, setVideoVisible] = useState(false);
+    const titleRef = useRef(null);
+
+    // this is used to resize and make the title fit on screen
+    useEffect(() => {
+        const adjustFontSize = () => {
+          const titleElement = titleRef.current;
+          if (titleElement) {
+            const containerWidth = titleElement.parentElement.offsetWidth;
+    
+            titleElement.style.fontSize = "50px";
+    
+            const titleWidth = titleElement.scrollWidth;
+            if (titleWidth > containerWidth) {
+              const newFontSize = (containerWidth / titleWidth) * parseFloat(window.getComputedStyle(titleElement).fontSize);
+              titleElement.style.fontSize = `${newFontSize}px`;
+            }
+          }
+        };
+    
+        adjustFontSize();
+        window.addEventListener("resize", adjustFontSize);
+        return () => {
+          window.removeEventListener("resize", adjustFontSize);
+        };
+      }, [isVideoVisible]);
 
     const embedUrl = `https://www.youtube.com/embed/d9MyW72ELq0`;
 
@@ -51,7 +76,7 @@ const MovieLanding = () => {
                     </button> */}
                         <LikeButton />
                     </div>
-                    <h3 className="MovieLandingTitle">Movie Title</h3>
+                    <h3 ref={titleRef} className="MovieLandingTitle">Movie Title</h3>
                     <div className="MovieLandingYearGenre">
                         <h6>Year</h6>
                         <div className="MovieLandingGenre">

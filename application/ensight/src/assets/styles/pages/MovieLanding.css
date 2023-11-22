@@ -70,24 +70,23 @@
 .MovieLandingFavorite {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
 .MovieLandingTitle {
   text-align: center;
-  font-family: 'Viga', sans-serif;
-  font-size: 50px;
+  font-family: 'Anton', sans-serif;
   font-weight: 200;
-  margin: 0;
+  margin: 5px 0;
+  white-space: nowrap;
+  max-width: 350px;
 }
 
 
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;400;700&display=swap');
 .MovieLandingYearGenre {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: 'Catamaran', sans-serif;
   font-size: 27px;
   padding: 5px 10px;
   border-top: 3px solid #E11708;
@@ -116,14 +115,10 @@
   border-bottom: 3px solid #E11708;
 }
 
-.MovieLandingSypnosis {
-  font-family: 'Catamaran', sans-serif;
-}
-
 .MovieLandingSypnosis h3 {
   text-align: justify;
-  font-size: 18px;
-  font-weight: 100;
+  font-size: 17px;
+  font-weight: 400;
   margin: 0;
   padding: 10px 15px;
 }
@@ -185,12 +180,13 @@
 
 .MovieCastTitle {
   color: #E11708;
-  width: 70px;
+  width: 75px;
   font-size: 18px;
 }
 
 .MovieCastDetails {
   display: flex;
+  align-items: center;
   padding: 5px 10px;
   position: relative;
 }
@@ -208,6 +204,7 @@
 .MovieCastName {
   display: flex;
   align-items: center;
+  margin-left: 5px;
 }
 
 .MovieCastName h4 {
@@ -224,10 +221,6 @@
 
 .MovieCastName h4:first-child::before {
   content: "";
-}
-
-.MovieLandingDetails {
-  font-family: 'Catamaran', sans-serif;
 }
 
 .MovieLandingDetails h1 {

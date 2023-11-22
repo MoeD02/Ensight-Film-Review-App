@@ -111,7 +111,8 @@ ul.nav li.active {
 }
 
 .GridList {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
 }
 
 .GridInsight {
@@ -145,6 +146,10 @@ ul.nav li.active {
   height: 175px;
   border-radius: 10px;
   border: none;
+}
+
+.WatchButton {
+  cursor: pointer;
 }
 
 .MovieList {
@@ -193,6 +198,12 @@ ul.nav li.active {
   font-size: 100px;
   border-color: #f3f3f36d;
   background: #232323;
+  width: 300px;
+  height: 262px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
 }
 
 .AddMovie:hover, .AddList:hover {
@@ -341,8 +352,13 @@ PrivacyButton:checked + span {
   margin-top: 5px;
   color: white;
   font-size: 110%;
-  border-left: none;
+  border: none;
   resize: none;
+  outline: none;
+}
+
+.BioText:focus {
+  background-color: #414141;
 }
 
 .LeftB {
@@ -391,6 +407,11 @@ PrivacyButton:checked + span {
   color: white;
   font-size: 110%;
   border-left: none;
+  outline: none;
+}
+
+.TitleInput:focus {
+  background-color: #414141;
 }
 
 .BottomListInfo {
@@ -761,7 +782,7 @@ PrivacyButton:checked + span {
 .DiarySave {
   height: fit-content;
   font-size: 20px;
-  padding: 0 20px;
+  padding: 3px 20px;
 }
 
 .DiaryCancel {

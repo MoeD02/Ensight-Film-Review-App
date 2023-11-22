@@ -23,7 +23,7 @@ const MovieLanding = () => {
         <div className="ListLandingPage">
             <div className="ListCreationUsername">
                 <h3 className="ListBy">List by</h3>
-                <h3>Username</h3>
+                <h3 className="ListUsername">Username</h3>
             </div>
             <div className="ListInformation">
                 <h1>List Title</h1>

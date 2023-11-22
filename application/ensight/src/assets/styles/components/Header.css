@@ -21,7 +21,7 @@
     cursor: pointer;
     background-color: transparent;
     transform: translateY(8px);
-    font-family: 'Barber', sans-serif;
+    font-family: 'Manrope', sans-serif;
 }
     
     
@@ -45,7 +45,7 @@
     position: absolute;
     width: 100%;
     font-size: 18px;
-    font-weight: 100;
+    font-weight: 400;
     left: 50%;
     top: 39%;
     letter-spacing: 3px;
@@ -173,7 +173,7 @@
 }
 
 .profile-button {
-  font-family: 'Barber', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
     
     

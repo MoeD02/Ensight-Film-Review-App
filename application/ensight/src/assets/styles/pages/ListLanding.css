@@ -1,11 +1,14 @@
 .ListLandingPage {
     margin: 0 60px;
-    font-family: Catamaran;
     color: white;
 }
 
 .ListLandingPage h1, .ListLandingPage h3, .ListLandingPage h4 {
     margin: 0;
+}
+
+.ListLandingPage h1 {
+    font-weight: 800;
 }
 
 .ListCreationUsername {

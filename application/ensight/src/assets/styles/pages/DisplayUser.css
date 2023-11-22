@@ -35,6 +35,11 @@
     margin: 17px 0;
 }
 
+.DisplayUserPlacing {
+    display: flex;
+    align-items: center;
+}
+
 .DisplayBio {
     margin-top: 0;
     margin-bottom: 0;

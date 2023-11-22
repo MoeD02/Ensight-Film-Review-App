@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import '../../../assets/styles/components/ProfileTabs.css';
-import Like from "../../../assets/images/heart.png";
-import Comment from "../../../assets/images/comment.png";
 
 const ListsFocus = () => {
   const [isEditing, setIsEditing] = useState(true);
   const [addedMovies, setAddedMovies] = useState([]);
+  const numberOfLists = 2;
 
   const handleEditClick = () => {
     setIsEditing(false);
@@ -33,45 +32,29 @@ const ListsFocus = () => {
     setAddedMovies(updatedMovies);
   };
 
+  const renderMovieSection = (index) => (
+    <div className="ListOverlap" key={index}>
+      <div className="PostersGrid">
+        {[1, 2, 3, 4, 5].map((movieIndex) => (
+          <h6 key={movieIndex} className={`ListMoviePoster ListMovie${movieIndex}`}>
+            Movie
+          </h6>
+        ))}
+      </div>
+      <div className="movie-info">
+        <div className="movie-user">User</div>
+        <div className="movie-title">Movie Title</div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="Content">
       <div className={isEditing ? "ListView" : "ListEdit"}>
         {isEditing ? (
           <>
             <div className="GridContainer GridList">
-              <div className="MovieList">
-                {/* change to user's list title from backend */}
-                <h3 className="h3text">List Title</h3>
-                <div className="ListDetails">
-                  <img className="Symbol" src={Like} alt="like" width={20} height={17}/>
-                  {/* instead of Likes should be the number of likes */}
-                  <h5 className="Like h5Text">Likes</h5>
-                  <h5 className="Divider h5Text">|</h5>
-                  <img className="Symbol h5Text" src={Comment} alt="like" width={28} height={25}/>
-                  {/* instead of Comments should be the number of comments */}
-                  <h5 className="Comment h5Text">Comments</h5>
-                </div>
-              </div>
-              <div className="MovieList">
-                <h3 className="h3text">List Title</h3>
-                <div className="ListDetails">
-                <img className="Symbol" src={Like} alt="like" width={20} height={17}/>
-                  <h5 className="Like h5Text">Likes</h5>
-                  <h5 className="Divider h5Text">|</h5>
-                  <img className="Symbol h5Text" src={Comment} alt="like" width={28} height={25}/>
-                  <h5 className="Comment h5Text">Comments</h5>
-                </div>
-              </div>
-              <div className="MovieList">
-                <h3 className="h3text">List Title</h3>
-                <div className="ListDetails">
-                <img className="Symbol" src={Like} alt="like" width={20} height={17}/>
-                  <h5 className="Like h5Text">Likes</h5>
-                  <h5 className="Divider h5Text">|</h5>
-                  <img className="Symbol h5Text" src={Comment} alt="like" width={28} height={25}/>
-                  <h5 className="Comment h5Text">Comments</h5>
-                </div>
-              </div>
+              {[...Array(numberOfLists).keys()].map((index) => renderMovieSection(index))}
               {/* this should be kept so the user can add more movies unless viewing a profile */}
               <button className="MovieList AddList" onClick={handleEditClick}>
                 <h3>+</h3>

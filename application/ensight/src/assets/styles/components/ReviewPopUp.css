@@ -24,7 +24,6 @@
 }
 
 .ReviewModal h2 {
-    font-family: Catamaran;
     margin-bottom: 0;
 }
 
@@ -35,6 +34,7 @@
 .ReviewContent {
     display: flex;
     padding-left: 20px;
+    margin-bottom: 5px;
 }
 
 .ReviewStatement {
@@ -73,7 +73,6 @@
     background-color: #545454;
     margin-bottom: 20px;
     padding: 10px;
-    font-family: Catamaran;
     color: white;
     outline: none;
 }

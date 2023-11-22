@@ -82,8 +82,10 @@
 
 .movie-list-container h2 {
     color: #fff;
-    font-family: 'Barber', sans-serif;
-    font-size: 30px;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
 }
 
 .movie-list-container h3 {
@@ -154,6 +156,10 @@
     font-weight: 700;
     color: white;
     font-family: 'Manrope', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px
 }
 
 .movie-user {
@@ -161,6 +167,7 @@
     font-weight: 500;
     color: white;
     font-family: 'Manrope', sans-serif;
+    text-align: left;
 }
 
 .active-link {

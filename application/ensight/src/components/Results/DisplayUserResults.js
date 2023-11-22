@@ -12,7 +12,7 @@ const UserResults = ({ UserNumber }) => {
     <div className="ResultContent Results DisplayResults">
         <div className="UserResults">
             <span className="UserPicResults DisplayUserPic"></span>
-            <div className="MoviePosterDetails">
+            <div className="MoviePosterDetails DisplayUserPlacing">
                 <h5 className="DisplayPosterTitle">Username{UserNumber}</h5>
             </div>
             
