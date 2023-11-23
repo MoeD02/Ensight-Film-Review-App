@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import '../assets/styles/pages/Browse.css';
 import YearSelection from '../components/Selections/YearSelection.js';

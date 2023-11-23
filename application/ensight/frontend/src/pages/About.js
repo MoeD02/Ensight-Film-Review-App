@@ -4,7 +4,7 @@ import '../assets/styles/pages/About.css';
 import image1 from '../assets/images/pragati.png';
 import image2 from '../assets/images/sarah.jpeg';
 import image3 from '../assets/images/alex.jpg';
-import image4 from '../assets/images/moe.png';
+import image4 from '../assets/images/Moe.png';
 import image5 from '../assets/images/cjay.jpeg';
 
 
