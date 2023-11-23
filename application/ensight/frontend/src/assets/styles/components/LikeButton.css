@@ -1,8 +1,8 @@
 .heart-container {
-    --heart-color: rgb(255, 91, 137);
+    --heart-color: #E11708;
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     transition: .3s;
 }
 
@@ -79,7 +79,7 @@ display: block
     }
 
     100% {
-        transform: scale(1.4);
+        transform: scale(1);
         opacity: 0;
         display: none;
     }

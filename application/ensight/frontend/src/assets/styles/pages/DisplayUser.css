@@ -6,6 +6,7 @@
     row-gap: 5px;
     color: white;
     margin-bottom: 40px;
+    font-family: 'Manrope', sans-serif;
 }
 
 .UserResults {
@@ -17,7 +18,10 @@
     padding: 5px 15px;
     border: 1px solid #E11708;
     border-radius: 40px;
+    
     background: linear-gradient(to right, #E11708 1%, transparent 25%);
+    /*background: url('../../images/user_image.png') no-repeat;
+    background-size: contain;*/
 }
 
 .DisplayUserPic {
@@ -26,9 +30,14 @@
 }
 
 .DisplayPosterTitle {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
     margin: 17px 0;
+}
+
+.DisplayUserPlacing {
+    display: flex;
+    align-items: center;
 }
 
 .DisplayBio {
@@ -37,14 +46,19 @@
     font-weight: 400;
     font-size: 12px;
     opacity: 80%;
-    justify-self: flex-start;
+    
+    /*justify-self: flex-start;*/
 }
 
 .DisplayBioContainer {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    width: 100px;
+
+    width: 200px;
+
+    justify-content: center;
+    /*padding-left: 90px;
+    justify-content: flex-start;*/
 }
 
 .DisplayOuter {

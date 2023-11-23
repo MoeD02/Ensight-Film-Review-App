@@ -1,0 +1,81 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* This will space your cards nicely */
+    gap: 50px; /* This adds space between the cards */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Manrope', sans-serif;
+  }
+  
+  .card {
+    width: calc(50% - 205px); /* Adjusts the width to force wrapping after two cards */
+    height: 22.5em;
+    background: #ff00005d;
+    transition: 1s ease-in-out;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card span {
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    display: block;
+    font-size: 1em;
+  }
+  
+  .card .info {
+    font-weight: 400;
+    color: white;
+    display: block;
+    text-align: center;
+    font-size: 0.72em;
+    margin: 1em;
+  }
+  
+  .card .img {
+    width: 8.8em;
+    height: 8.8em;
+    background: white;
+    border-radius: 15px;
+    background-position: center; /* This will center the image in the container */
+    background-size: cover;
+    margin: auto;
+  }
+  
+  .card .share {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+  }
+  
+  .card a {
+    color: white;
+    transition: .4s ease-in-out;
+  }
+  
+  .card a:hover {
+    color: red;
+  }
+  
+  .card button {
+    padding: 0.8em 1.7em;
+    display: block;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    transition: .4s ease-in-out;
+    margin-bottom: 15px;
+    font-family: 'Manrope', sans-serif;
+  }
+  
+  .card button:hover {
+    background: red;
+    color: white;
+    cursor: pointer;
+  }

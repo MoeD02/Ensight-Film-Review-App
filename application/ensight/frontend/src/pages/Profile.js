@@ -1,9 +1,13 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import ProfileTabs from '../components/Tabs/ProfileTabs';
 import '../assets/styles/pages/Profile.css';
 
 // only look at profile, watchlist, and lists
 const Profile = () => {
+    const { currentTab } = useParams();
+    // console.log("Profile: " + currentTab);
+
     return (
         <div>
             <div className="UserInformation">
@@ -30,7 +34,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <ProfileTabs />
+            <ProfileTabs currentTab={currentTab}/>
         </div>
     );
 }

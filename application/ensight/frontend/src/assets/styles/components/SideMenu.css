@@ -12,6 +12,7 @@
     font-size: 18px; /* Larger text */
     border-left: 1px solid white;
     box-sizing: content-box;
+    font-family: 'Manrope', sans-serif;
 }
 
 .MenuTitle {
@@ -36,12 +37,14 @@
     border-bottom: 2px solid #E11708; /* Horizontal line below "Menu" */
     padding-bottom: 10px; /* Space between "Menu" text and the line */
     background: none;
+    font-family: 'Manrope', sans-serif;
 }
     
 .side-menu-slide ul {
     list-style-type: none;
     padding: 0;
     background: none;
+    font-family: 'Manrope', sans-serif;
 }
 
 .side-menu-slide li:hover {
@@ -55,6 +58,7 @@
     padding: 15px 0; /* More spacing */
     cursor: pointer;
     background: none;
+    font-family: 'Manrope', sans-serif;
 }   
     
 .close-button {
@@ -71,8 +75,9 @@
 .MenuLinks a {
     color: white; /* Default text color */
     text-decoration: none; /* Remove underline from links */
+    font-family: 'Manrope', sans-serif;
   }
   
 .MenuLinks a:hover {
-    color: red; /* Change color on hover */
+    color: #E11708; /* Change color on hover */
 }

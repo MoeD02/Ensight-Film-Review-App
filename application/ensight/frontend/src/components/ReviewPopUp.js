@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import '../assets/styles/components/ReviewPopUp.css'
+import RedX from '../assets/images/red_x.png'
 
-const ReviewPopup = () => {
-    const [rating, setRating] = useState(0);
+const ReviewPopup = ({ title }) => {
     const [comment, setComment] = useState('');
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -16,46 +17,40 @@ const ReviewPopup = () => {
 
     const handleReviewSubmit = () => {
         // Implement logic to handle the submitted review (e.g., send it to a server)
-        console.log('Submitted Review:', { rating, comment });
+        console.log('Submitted Review:', { comment });
         // Close the modal after submitting
         closeModal();
     };
 
+    Modal.setAppElement('#root');
+
     return (
         <div>
-            <button onClick={openModal}>Leave a Review</button>
+            <button className="create-list-button custom-button" onClick={openModal}>Write a Review</button>
             <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            contentLabel="Review Popup"
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel={`Review Popup for ${title}`}
+                className="ReviewModal"
+                overlayClassName="overlay"
             >
-                <h2>Leave a Review</h2>
-                <label>
-                    Rating:
-                    <input
-                    type="number"
-                    min="1"
-                    max="5"
-                    value={rating}
-                    onChange={(e) => setRating(parseInt(e.target.value, 10))}
-                    required
-                    />
-                </label>
-                <br />
-                <label>
-                    Comment:
-                    <textarea
-                    rows="4"
-                    cols="50"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    placeholder="Type your review here..."
-                    required
-                    ></textarea>
-                </label>
-                <br />
-                <button onClick={handleReviewSubmit}>Submit Review</button>
-                <button onClick={closeModal}>Cancel</button>
+                <div className='ReviewPopUp'>
+                    <img className="MovieSymbol CloseSymbol" src={RedX} alt="close" width={30} height={30} onClick={closeModal}/>
+                    <div className='ReviewMain'>
+                        <div className='ReviewContent'>
+                            <h2 className='ReviewStatement'>Your Review for</h2>
+                            <h2 className='ReviewTitle'>{title}</h2>
+                        </div>
+                        <textarea
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                            placeholder="Type your review here..."
+                            required
+                            className='ReviewTextInput'
+                        />
+                        <button className="Button ReviewButton" onClick={handleReviewSubmit}>Submit Review</button>
+                    </div>
+                </div>
             </Modal>
         </div>
     );

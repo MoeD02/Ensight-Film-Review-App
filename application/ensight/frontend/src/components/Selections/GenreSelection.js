@@ -26,7 +26,6 @@ const GenreSelection = ({ onGenreChange }) => {
   });
 
 
-
   const handleGenreChange = (genre, isChecked) => {
     setGenreSelection((prevSelection) => ({
       ...prevSelection,

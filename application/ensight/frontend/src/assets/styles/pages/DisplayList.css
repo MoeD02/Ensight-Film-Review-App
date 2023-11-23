@@ -81,8 +81,18 @@
 }
 
 .movie-list-container h2 {
-    margin-bottom: 20px;
     color: #fff;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+}
+
+.movie-list-container h3 {
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    margin-top: -5px;
+    font-size: 20px;
 }
 
 .custom-button {
@@ -96,6 +106,7 @@
     box-shadow: rgb(201, 46, 70) 0px 10px 0px 0px;
     color: hsl(0, 0%, 100%);
     cursor: pointer;
+    font-family: 'Manrope', sans-serif;
 }
 
 .custom-button:hover {
@@ -144,37 +155,47 @@
     font-size: 1.5em;
     font-weight: 700;
     color: white;
+    font-family: 'Manrope', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px
 }
 
 .movie-user {
     font-size: 0.9em;
     font-weight: 500;
     color: white;
-}
-
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.page-item {
-    margin: 0 5px;
-    list-style-type: none;
-}
-
-.page-link {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.page-link:hover {
-    text-decoration: underline;
+    font-family: 'Manrope', sans-serif;
+    text-align: left;
 }
 
 .active-link {
     color: #E11708;
     font-size: 21px; /* Adjust the font size as needed */
+}
+
+.ListButtonPlaceWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.ListButtonPlace {
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    margin: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ListButtonPlace.selected {
+    color: #E11708;
+    font-size: 25px;
 }
