@@ -12,7 +12,7 @@ const Browse = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getUsers(); // Use the getUsers function from api.js
+      const data = await getUsers("ALL"); // Use the getUsers function from api.js
 
       if (data) {
         setUserData(data);
