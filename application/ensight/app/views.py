@@ -15,6 +15,8 @@ from knox.models import AuthToken
 
 from .serializers import *
 
+import logging
+
 User = get_user_model()
 
 
@@ -98,6 +100,8 @@ def header_search(request):
 
 @api_view(['POST'])
 def fetch_movies(request):
+    logging.info("Hammody")
+    logging.info(request)
     filter = request.data.get('filter')
     genres = request.data.get('genres')
     years = request.data.get('years')

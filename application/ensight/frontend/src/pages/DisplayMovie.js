@@ -17,7 +17,7 @@ const Browse = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchMovies(searchRating, numberOfMoviesPerButton, searchGenre, searchYear);
+      const data = await fetchMovies(searchRating, searchGenre, searchYear, numberOfMoviesPerButton);
       if (data) {
         setMovieData(data);
       } else {
