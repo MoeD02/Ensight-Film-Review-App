@@ -93,6 +93,25 @@ export const searchMovies = async (searchTerm , filter , genres , years) => {
       return null;
     }
   };
+export const getMovieDetails = async(id)=>{
+  const data = {
+    id: id,
+  };
+  const response = await fetch(`${apiUrl}/get_movie_details/`, {
+    method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Failed to fetch list data');
+      return null;
+    }
+  };
+  
 
 
 

@@ -43,7 +43,7 @@ function App() {
         <Route path="/Profile/:currentTab" element={<Profile />} />
         <Route path="/About" element={<About />} />
         {/* <Route path="../pages/Profile" element={<Settings />} /> */}
-        <Route path="/MovieLanding" element={<MovieLanding />} /> {/* Remove this later */}
+        <Route path="/MovieLanding/:id" element={<MovieLanding/>} />
         <Route path="/ListLanding" element={<ListLanding />} /> {/* Remove this later */}
         <Route path="/LoginPage" element={<LoginPage />} />
       </Routes>

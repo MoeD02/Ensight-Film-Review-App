@@ -9,6 +9,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('search/', search, name='search'),
     path('fetch_movies/', fetch_movies, name='fetch_movies'),
+    path('get_movie_details/', get_movie_details, name='get_movie_details'),
     path('get_user_movie_lists/', get_user_movie_lists, name='get_user_movie_lists'),
     path('create_movie_list/', create_movie_list, name='create_movie_list'),
     path('search_movies/', search_movies, name='search_movies'),

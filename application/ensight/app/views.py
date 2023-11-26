@@ -16,6 +16,7 @@ from knox.models import AuthToken
 from .serializers import *
 
 import logging
+from django.shortcuts import get_object_or_404
 
 User = get_user_model()
 
@@ -152,6 +153,13 @@ def search_movies(request):
         serializer = MovieSerializer(search_results, many=True)
         return Response(serializer.data)
 
+@api_view(['POST'])
+def get_movie_details(request):
+    id = request.data.get('id')
+    if id:
+        movie = get_object_or_404(Movie, id=id)
+        serializer = MovieSerializer(movie, many=False)
+        return Response (serializer.data)
 
 @api_view(['POST'])
 def get_users(request):
