@@ -76,7 +76,7 @@ const MovieLanding = () => {
                         <div className="video-container">
                             {isVideoVisible && (
                                 <iframe
-                                    src={embedUrl}
+                                    src={`https://www.youtube.com/embed/${movieDetails.trailer_path}`}
                                     title="Movie Trailer"
                                     allowFullScreen
                                 ></iframe>

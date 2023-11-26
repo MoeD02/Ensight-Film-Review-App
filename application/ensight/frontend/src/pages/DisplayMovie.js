@@ -207,7 +207,7 @@ const Browse = () => {
               <Link to={`/MovieLanding/${movie.id}`} key={index}>
                 <img
                   className="DMPoster"
-                  src={`http://localhost:8000${movie.poster_path}`}
+                  src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
                   alt={`Movie Poster ${index}`}
                 />
               </Link>
