@@ -3,11 +3,14 @@
     margin: 1rem 2rem 0.5rem;
     padding: 0 3rem 0 1rem;
     color: white;
+    font-family: 'Manrope', sans-serif;
 }
 
 .UserPic {
-  height: 150px;
-  width: 150px;
+  min-height: 150px;
+  max-height: 150px;
+  min-width: 150px;
+  max-width: 150px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
@@ -26,6 +29,8 @@
 .Username {
     margin-bottom: 8px;
     margin-top: 0;
+    font-size: 25px;
+    font-family: 'Manrope', sans-serif;
 }
 
 .BioDesc {
@@ -38,6 +43,8 @@
     display: flex;
     text-align: center;
     align-self: center;
+    font-size: 12px;
+    font-family: 'Manrope', sans-serif;
 }
 
 .UserExtraInfo {

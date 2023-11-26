@@ -1,66 +1,31 @@
 import "../../assets/styles/pages/Browse.css";
 import React, { useEffect, useState } from "react";
+import {searchUserMovieLists,getUserMovieLists } from "../../APIcalls"; 
 
 const ListResults = ({ searchTerm }) => {
     const [listData, setListData] = useState([]);
     const temp = searchTerm;
     useEffect(() => {
-        if (searchTerm != null) {
-            const fetchData = async () => {
-                const data = {
-                    content: temp,
-                };
-
-                const response = await fetch(
-                    "http://127.0.0.1:8000/search_user_movie_lists/",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    }
-                );
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setListData(data);
-                } else {
-                    console.error("Failed to fetch list data");
-                }
-            };
-
-            fetchData();
-        } else {
-            const fetchData = async () => {
-                const data = {
-                    filter: "highest_rated",
-                    amount: 5,
-                };
-
-                const response = await fetch(
-                    "http://127.0.0.1:8000/get_user_movie_lists",
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        //   body: JSON.stringify(data),
-                    }
-                );
-
-                if (response.ok) {
-                    if (response.data) {
-                        setListData(response.data);
-                    }
-                } else {
-                    console.error("Failed to fetch list data");
-                }
-            };
-
-            fetchData();
-        }
-    }, [searchTerm]);
+        const fetchData = async () => {
+          if (searchTerm != null) {
+            const data = await searchUserMovieLists(searchTerm);
+            if (data) {
+              setListData(data);
+            } else {
+              console.error("Failed to fetch list data");
+            }
+          } else {
+            const data = await getUserMovieLists("highest_rated", 5);
+            if (data) {
+              setListData(data);
+            } else {
+              console.error("Failed to fetch list data");
+            }
+          }
+        };
+    
+        fetchData();
+      }, [searchTerm]);
     return (
         <>
             {listData.map((list, index) => (

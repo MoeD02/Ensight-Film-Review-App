@@ -17,6 +17,7 @@
     letter-spacing: 1px;
     box-shadow: rgb(146, 36, 23) 0px 7px 2px, #000 0px 8px 5px;
     cursor: pointer; /* Added for better user experience */
+    font-family: 'Manrope', sans-serif;
   }
   
 .button.follow:hover, .button.following {

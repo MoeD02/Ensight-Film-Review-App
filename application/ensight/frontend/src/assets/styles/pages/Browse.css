@@ -2,6 +2,7 @@
     display: flex;
     color: white;
     margin-left: 20px;
+    font-family: 'Manrope', sans-serif;
 }
 
 .BrowseSearch, .DMSearch {
@@ -60,6 +61,18 @@
     margin-top: 10px;
     margin-bottom: 50px;
 	cursor: pointer;
+}
+
+.SeeResults a, .linked-button a {
+    color: white;
+}
+
+.linked-button a {
+    text-decoration: none;
+}
+
+.SeeResults a:active {
+    color: #E11708;
 }
 
 /* Selection css */

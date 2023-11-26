@@ -15,6 +15,9 @@ from knox.models import AuthToken
 
 from .serializers import *
 
+import logging
+from django.shortcuts import get_object_or_404
+
 User = get_user_model()
 
 
@@ -97,22 +100,68 @@ def header_search(request):
     
         return Response(data)
 
-#this fetch call returns all movies that contain whatever the user searched in the title
+
+@api_view(['POST'])
+def fetch_movies(request):
+    logging.info("Hammody")
+    logging.info(request)
+    filter = request.data.get('filter')
+    genres = request.data.get('genres')
+    years = request.data.get('years')
+    years = increment_years(years)
+    index = request.data['amount']
+
+    movies = Movie.objects.all()
+    if genres:
+        movies = Movie.objects.filter(genres__name__in=genres).distinct()
+
+    if years:
+        movies = movies.filter(release_date__year__in=years)
+
+    if filter == 'highest': 
+        movies = movies.order_by('-rating_average')[:index]
+    elif filter == 'ALL':
+        movies = movies.all()
+    elif filter == 'lowest':
+        movies = movies.order_by('rating_average')[:index]
+    serializer = MovieSerializer(movies, many=True)
+    
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 def search_movies(request):
     if request.method == 'POST':
-        search_query = request.data.get('content')  # Get the search query from the request data
-        print(f"Search Query: {search_query}")
+        filter = request.data.get('filter')
+        genres = request.data.get('genres')
+        years = request.data.get('years')
+        years = increment_years(years)
+        search_query = request.data.get('content')  
 
         # Search for movies that match the query in their title or description
         search_results = Movie.objects.filter(Q(title__icontains=search_query))
 
-        #print (search_results[0].poster_path)
-        # Serialize the search results
+        if years:
+            search_results = search_results.filter(release_date__year__in=years)
+        if genres:
+            search_results = search_results.filter(genres__name__in=genres).distinct()
+        else:
+            search_results = search_results.all()
+       
+        if filter == 'highest':
+            search_results = search_results.order_by('-rating_average')
+        elif filter == 'lowest':
+            search_results = search_results.order_by('rating_average')
         serializer = MovieSerializer(search_results, many=True)
-
         return Response(serializer.data)
 
+@api_view(['POST'])
+def get_movie_details(request):
+    id = request.data.get('id')
+    if id:
+        movie = get_object_or_404(Movie, id=id)
+        serializer = MovieSerializer(movie, many=False)
+        return Response (serializer.data)
 
 @api_view(['POST'])
 def get_users(request):
@@ -166,17 +215,13 @@ def create_movie_list(request):
     
 
 #get's user's list(all of it). STILL NEEDS WORK because it doesn't know which user it is
-@api_view(['POST', 'GET'])
+@api_view(['POST'])
 def get_user_movie_lists(request):
-    # amount = request.data['amount']
-    movie_lists = MovieList.objects.all()[:5]
-    # data = {}
-    # for index, movie_list in enumerate(movie_lists):
-    #     data[index] = MovieListSerializer(movie_list).data
-    serializer = MovieListSerializer(movie_lists, many=True)
-    # string = f"THIS IS TEH AUTHOR{movie_list[0].author.username}"
-    # print(string)
-    # return JsonResponse(serializer.data, safe=False)
+    index = request.data['amount']
+    movie_list = MovieList.objects.all()[:index]
+    serializer = MovieListSerializer(movie_list, many=True)
+    string = f"THIS IS TEH AUTHOR{movie_list[1].author}"
+    print(string)
     return Response(serializer.data)
 
 
@@ -191,22 +236,7 @@ def search_user_movie_lists(request):
 
 
 
-#fetches first movie
-@api_view(['POST'])
-def fetch_movies(request):
-    filter = request.data.get('filter')
-    
-    movies=[]
-    if filter == 'highest_rated':
-        index = request.data['amount']
-        movies = Movie.objects.order_by('-rating_average')[:index]
-        serializer = MovieSerializer(movies, many=True)
-    elif filter == 'ALL':
-        movies = Movie.objects.all()
-        serializer = MovieSerializer(movies, many=True)
 
-    
-    return Response(serializer.data)
 
 
 
@@ -238,3 +268,14 @@ def search(request):
         form = SearchForm()
 
     return render(request, "app/home.html", {"form": form})
+def increment_years(years):
+    result = []
+    for year_range in years:
+        start_year = int(year_range)
+    
+        # Generate a list of years in string form
+        year_strings = [str(year) for year in range(start_year, start_year + 10)]
+
+        # Extend the result array with the generated year strings
+        result.extend(year_strings)
+    return result

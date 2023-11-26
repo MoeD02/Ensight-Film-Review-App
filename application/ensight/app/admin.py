@@ -29,3 +29,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 # Register the Profile model with the ProfileAdmin class
 admin.site.register(Profile, ProfileAdmin)
+
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(Genre, GenreAdmin)

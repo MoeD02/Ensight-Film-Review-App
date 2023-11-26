@@ -1,3 +1,65 @@
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+       /* url('assets/fonts/Manrope/Manrope-Regular.woff') format('woff'); */
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+       /* url('assets/fonts/Manrope/Manrope-Regular.woff') format('woff'); */
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+       /* url('assets/fonts/Manrope/Manrope-Regular.woff') format('woff'); */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+       /* url('assets/fonts/Manrope/Manrope-Regular.woff') format('woff'); */
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+       /* url('assets/fonts/Manrope/Manrope-Regular.woff') format('woff'); */
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+       /* url('assets/fonts/Manrope/Manrope-Regular.woff') format('woff'); */
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+       /* url('assets/fonts/Manrope/Manrope-Regular.woff') format('woff'); */
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Anton';
+  src: url('assets/fonts/Anton/Anton-Regular.ttf') format('truetype'); /* Use the TTF file */
+  font-weight: normal;
+  font-style: normal;
+}
 
 .App {
   display: flex;
@@ -11,7 +73,29 @@ body {
   display: flex;
   flex-direction: column; /* stack children vertically */
   min-height: 100vh; /* take up full viewport height */
-  background-color: rgb(30, 30, 30);
+  background-image: repeating-radial-gradient(  #0c0a0a 80%,#2f312f 90%,#3f4549 90%);
+  background-size: 65px 65px;
+  font-family: 'Manrope', sans-serif;
+}
+
+html.windows {
+
+  /* For Webkit-based browsers like Chrome and Safari */
+  ::-webkit-scrollbar {
+    width: 15px; /* Set the width of the scrollbar */
+  }
+
+  /* For Webkit-based browsers like Chrome and Safari - Scroll thumb */
+  ::-webkit-scrollbar-thumb {
+    background-image: repeating-radial-gradient(#0c0a0a 80%, #2f312f 90%, #3f4549 90%);
+    background-size: 65px 65px;
+    border: 2px solid #E11708;
+  }
+
+  /* For Webkit-based browsers like Chrome and Safari - Scroll track */
+  ::-webkit-scrollbar-track {
+    background-color: #E11708; /* Background color of the scrollbar */
+  }
 }
 
 /* Main content area (posters) */
@@ -21,42 +105,17 @@ body {
   flex: 1; /* This lets the main content grow */
 } 
 
-/*.App {
-  background-color: #191919;
-}*/
-/*
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* // this may be needed for firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(30, 30, 30) #E11708;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  scrollbar-base-color: rgb(30, 30, 30);
 }
 
-.App-header {
-  background-color: #191919;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+* {
+  scrollbar-arrow-color: #E11708;
 }
 */

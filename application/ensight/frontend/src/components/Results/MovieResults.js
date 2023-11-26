@@ -1,63 +1,26 @@
 import React, { useEffect, useState } from "react";
 import '../../assets/styles/pages/Browse.css';
-
-const MovieResults = ({ searchTerm }) => {
+import { searchMovies, fetchMovies } from "../../APIcalls"; 
+const MovieResults = ({ searchTerm, filter , genres, years }) => {
   const [movieData, setMovieData] = useState([]);
-  const temp = searchTerm;
+  console.log(filter);
   useEffect(() => {
-    if (searchTerm != null) {
-      
-      const fetchData = async () => {
-        const data = {
-          content: temp,
-        };
-
-        const response = await fetch('http://127.0.0.1:8000/search_movies/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
+    const fetchData = async () => {
+      if (searchTerm != null) {
+        const data = await searchMovies(searchTerm , filter , genres , years);
+        if (data) {
           setMovieData(data);
-        } else {
-          console.error('Failed to fetch movie data');
         }
-      };
-
-      fetchData();
-    } else {
-      
-      const fetchData = async () => {
-        const data = {
-          filter: 'highest_rated',
-          amount: 5,
-        };
-
-        const response = await fetch('http://127.0.0.1:8000/fetch_movies/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
+      } else {
+        const data = await fetchMovies(filter, genres , years, 5);
+        if (data) {
           setMovieData(data);
-        } else {
-          console.error('Failed to fetch movie data');
         }
-      };
+      }
+    };
 
-      fetchData();
-    }
-  }, [searchTerm]);
-  //csc648-01-fa23-team02\application\ensight\media\posters
-  //C:\Users\dahbo\Desktop\New_648_Project\csc648-01-fa23-team02\application\ensight\media\posters
+    fetchData();
+  }, [searchTerm,filter,genres,years]);
   return (
     <>
       {movieData.map((movie, index) => (
@@ -69,7 +32,7 @@ const MovieResults = ({ searchTerm }) => {
             <div className="MoviePosterDetails">
               <h5 className="MoviePosterTitle">{movie.title}</h5>
               <h6 className="MoviePosterYear">Release Date: {new Date(movie.release_date).toLocaleDateString()}</h6>
-              <h6 className="MoviePosterStars">Stars: {movie.stars}</h6>
+              <h6 className="MoviePosterStars">Stars: {movie.rating_average}</h6>
             </div>
           </div>
         </div>

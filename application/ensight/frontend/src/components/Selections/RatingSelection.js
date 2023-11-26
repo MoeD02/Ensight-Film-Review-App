@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import '../../assets/styles/pages/Browse.css';
 
-const Browse = () => {
+const RatingSelection = ({ onRatingChange }) => {
   const [ratingOption, setRatingOption] = useState('highest');
 
   const handleRatingChange = (event) => {
-    setRatingOption(event.target.value);
+    const selectedRating = event.target.value;
+    setRatingOption(selectedRating);
+    onRatingChange(selectedRating); // Call the callback function with the selected rating
   };
 
   return (
@@ -39,4 +41,4 @@ const Browse = () => {
   );
 }
 
-export default Browse;
+export default RatingSelection;
