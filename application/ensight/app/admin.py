@@ -2,8 +2,7 @@ from django.contrib import admin
 from .models import *
 
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ['title', 'release_date']
-    filter_horizontal = ('genres',)
+    list_display = ['title', ]
 admin.site.register(Movie, MovieAdmin)
 
 class ReviewAdmin(admin.ModelAdmin):

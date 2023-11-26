@@ -44,25 +44,25 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=256)
-    poster_path = models.FileField(
-        blank = True,
-        upload_to='posters/',
-    )  # uploads to MEDIA_ROOT/posters/
-    release_date = models.DateField()
+    poster_path = models.CharField(max_length=128, null=True)
+    backdrop_path = models.CharField(max_length=128, null=True)
+    trailer_path = models.CharField(max_length=128, null=True)
+    release_date = models.DateField(null=True, blank=True, default=None)
     genres = models.ManyToManyField(
         Genre,
         blank=True,
-        related_name='genres',
+        related_name='movies',
     )
     description = models.CharField(max_length=1024)
+    runtime = models.PositiveSmallIntegerField(null=True)
     rating_count = models.PositiveIntegerField(default=0)
-    
     rating_average = models.DecimalField(
-        max_digits=3,
-        decimal_places=2,
+        max_digits=5,
+        decimal_places=3,
         default=0,
     )
-    
+    director = models.CharField(max_length=64, null=True)
+    popularity = models.DecimalField(null=True, decimal_places=4, max_digits=10)
     def __str__(self):
         return self.title
 
@@ -72,7 +72,6 @@ class Review(models.Model):
     text = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     likes = models.PositiveIntegerField(default=0)
-    
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -84,7 +83,7 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='reviews',
     )
-
+    
     RATING_CHOICES = [
         (5.0, '5'),
         (4.5, '4.5'),
