@@ -36,6 +36,14 @@ def create_profile(sender, instance, created, **kwargs):
 post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)
 
 
+class Person(models.Model):
+    name = models.CharField(max_length=128)
+    profile_path = models.CharField(max_length=128, null=True)
+    biography = models.TextField(null=True)
+    known_for = models.CharField(max_length=64)
+    popularity = models.DecimalField(null=True, decimal_places=4, max_digits=10)
+
+
 class Genre(models.Model):
     name = models.CharField(max_length=64)
 

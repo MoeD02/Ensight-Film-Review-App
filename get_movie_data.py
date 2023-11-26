@@ -7,7 +7,7 @@ import json
 from typing import List
 
 
-FILEPATH = './ensight/app/fixtures/movie_fixture.json'
+FILEPATH = './movie_fixture.json'
 
 with open('./tmdb_API_key.txt', 'r') as f:
     token = f.read().strip()
@@ -45,11 +45,13 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
 
 async def init_script():
     async with aiofiles.open(FILEPATH, mode='w+', encoding='utf-8') as outfile:
-        await outfile.write('[')
+        await outfile.write('[\n')
         await execute_fetcher_tasks(outfile)
-        await outfile.seek(-2,2)
-        await outfile.truncate()
-        await outfile.write('\n]')
+        async with aiofiles.open(FILEPATH, mode='+ab') as f:
+            await f.seek(-3,2)
+            await f.truncate()
+            await f.write(str.encode('\n]'))
+            await f.flush()
         await outfile.close()
 
 
@@ -65,50 +67,55 @@ async def create_tasks(session: aiohttp.ClientSession, urls:List[str], outfile: 
     for i, url in enumerate(urls):
         task = asyncio.create_task(fetch_and_save_data(session, url, outfile, i))
         task_list.append(task)
-        printProgressBar(i, URLS_LEN, prefix='Tasks ')
+        printProgressBar(i, URLS_LEN, prefix='Tasks\t')
     return task_list
 
-async def fetch_and_save_data(session: aiohttp.ClientSession, url: str, outfile:AIOFile, i: int):
-    printProgressBar(i, URLS_LEN, prefix='Data  ')
+async def fetch_and_save_data(session: aiohttp.ClientSession, url: str, outfile: AIOFile, i: int):
     data = None
     while data is None:
         try:
-            async with session.get(url) as response:
-                response.raise_for_status()
+            async with session.get(url, raise_for_status=True) as response:
+                # await response.raise_for_status()
                 data = await response.json()
-        except aiohttp.ClientError:
-            e = response.status
-            print(f'Error {e}: {url}')
-            if e == 404:
+        except aiohttp.ClientError as e:
+            # e = response.status
+            data = None
+            print(f'Error {e.status}: {url}')
+            if e.status == 404:
                 return
             await asyncio.sleep(1)
-    
-    temp = {}
-    temp['model'] = "app.movie"
-    temp['pk'] = data['id']
-    temp['fields'] = {
-        'title': data['title'],
-        'poster_path': data['poster_path'],
-        'backdrop_path': data['backdrop_path'],
-        'genres': [e['id'] for e in data['genres']],
-        'release_date': data['release_date'] if not data['release_date'] == "" else None,
-        'description': data['overview'],
-        'runtime': data['runtime'],
-        'rating_count': data['vote_count'],
-        'rating_average': data['vote_average'],
-        'popularity': data['popularity'],
-        'trailer_path': None,
-        'director': None,
-    }
-    for e in data['videos']['results']:
-        if e['type'] == 'Trailer' and e['official'] and e['site'] == 'YouTube':
-            temp['fields']['trailer_path'] = e['key']
-            break
-    for e in data['credits']['crew']:
-        if e['job'] == 'Director':
-            temp['fields']['director'] = e['id']
-            break
-    await outfile.write(json.dumps(temp) + ',\n')
+    try:
+        temp = {}
+        temp['model'] = "app.movie"
+        temp['pk'] = data['id']
+        temp['fields'] = {
+            'title': data['title'],
+            'poster_path': data['poster_path'],
+            'backdrop_path': data['backdrop_path'],
+            'genres': [e['id'] for e in data['genres']],
+            'release_date': data['release_date'] if not data['release_date'] == "" else None,
+            'description': data['overview'],
+            'runtime': data['runtime'],
+            'rating_count': data['vote_count'],
+            'rating_average': data['vote_average'],
+            'popularity': data['popularity'],
+            'trailer_path': None,
+            'director': None,
+        }
+        if 'videos' in data:
+            for e in data['videos']['results']:
+                if e['type'] == 'Trailer' and e['official'] and e['site'] == 'YouTube':
+                    temp['fields']['trailer_path'] = e['key']
+                    break
+        if 'credits' in data:
+            for e in data['credits']['crew']:
+                if e['job'] == 'Director':
+                    temp['fields']['director'] = e['id']
+                break
+    except KeyError as e:
+        print(f'{url}: {data}')
+    printProgressBar(i, URLS_LEN, prefix='Data\t')
+    await outfile.write(json.dumps(temp, ensure_ascii=False) + ',\n')
     await outfile.flush()
 
 
