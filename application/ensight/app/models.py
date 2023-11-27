@@ -36,12 +36,12 @@ def create_profile(sender, instance, created, **kwargs):
 post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)
 
 
-# class Person(models.Model):
-#     name = models.CharField(max_length=128)
-#     profile_path = models.CharField(max_length=128, null=True)
-#     biography = models.TextField(null=True)
-#     known_for = models.CharField(max_length=64)
-#     popularity = models.DecimalField(null=True, decimal_places=4, max_digits=10)
+class Person(models.Model):
+    name = models.CharField(max_length=128)
+    profile_path = models.CharField(max_length=128, null=True)
+    biography = models.TextField(null=True)
+    known_for = models.CharField(max_length=64, null=True)
+    popularity = models.DecimalField(null=True, decimal_places=4, max_digits=10)
 
 
 class Genre(models.Model):
@@ -74,6 +74,33 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
+
+class CreditList(models.Model):
+    movie = models.ForeignKey(
+        Movie,
+        on_delete=models.CASCADE,
+        related_name='credits',
+    )
+    person = models.ManyToManyField(
+        Person,
+        through='CreditListThrough',
+        related_name='credited_in',
+    )
+
+
+class CreditListThrough(models.Model):
+    credit_list = models.ForeignKey(
+        CreditList,
+        on_delete=models.CASCADE,
+    )
+    
+    person = models.ForeignKey(
+        Person,
+        on_delete=models.CASCADE,
+    )
+    
+    role =  models.CharField(max_length=64)
+    order = models.SmallIntegerField()
 
 class Review(models.Model):
     title = models.CharField(max_length=512)
