@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/LikeButton.css'
+import { addToFavorites } from '../APIcalls';
 
-const LikeButton = ({ customStyle }) => {
+const LikeButton = ({ customStyle , onClick }) => {
     const [isChecked, setIsChecked] = useState(false);
-
+    
     const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
+    onClick();
     };
+   
 
     return (
         <div className="heart-container" title="Like" style={customStyle}>

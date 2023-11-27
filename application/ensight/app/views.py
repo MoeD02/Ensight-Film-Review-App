@@ -67,7 +67,7 @@ class CurrentUserAPI(RetrieveAPIView):
         return self.request.user
 
 
-@login_required
+
 @api_view(['POST'])
 def add_to_favorites(request):
     if request.method == 'POST':
@@ -85,11 +85,12 @@ def add_to_favorites(request):
 
         # Add the movie to the user's favorites
         user_profile.favorites.add(movie)
+        user_profile.save()
 
         return JsonResponse({'message': 'Movie added to favorites successfully'}, status=200)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
-@login_required
+
 @api_view(['POST'])
 def remove_from_favorites(request):
     if request.method == 'POST':

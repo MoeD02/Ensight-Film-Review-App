@@ -86,7 +86,6 @@ const MovieLanding = () => {
             console.error('Failed to add movie to favorites', error);
         }
     };
-
     return (
         <div className="MovieLandingPageStyle">
             {movieDetails ? (
@@ -125,7 +124,7 @@ const MovieLanding = () => {
                                     onClick={toggleVideoVisibility}>
                                     {isVideoVisible ? "Hide Trailer" : "Watch Trailer"}
                                 </button>
-                                <LikeButton type = "Movie"/>
+                                <LikeButton onClick={Add_to_favorites} />
                             </div>
                             <h3 ref={titleRef} className="MovieLandingTitle">{movieDetails.title}</h3>
                             <div className="MovieLandingYearGenre">
