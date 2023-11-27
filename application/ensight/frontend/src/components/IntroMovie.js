@@ -16,8 +16,8 @@ const IntroMovie = () => {
         const slide = () => {
             setOffset(prevOffset => {
                 // If offset reaches the total width of all original images or goes beyond, reset to just before the first image
-                if (prevOffset < -100 * (movieImages.length - 1)) {
-                    return -100; // Reset to just before the first image (assuming the first image is duplicated at the end)
+                if (prevOffset < -50 * (movieImages.length + 1)) {
+                    return 0; // Reset to just before the first image (assuming the first image is duplicated at the end)
                 }
                 return prevOffset - 1; // Move to the next image
             });
@@ -36,7 +36,7 @@ const IntroMovie = () => {
                 {/* Double the array for seamless loop effect */}
                 {movieImages.concat(movieImages).map((src, index) => (
                     <img
-                        key={src}
+                        key={index}
                         className="slide"
                         src={src}
                         alt=""
