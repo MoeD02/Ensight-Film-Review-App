@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/logout', knox_views.LogoutView.as_view(), name='knox_logout'),
     path('remove_from_favorites/', remove_from_favorites, name='remove_from_favorites'),
     path('add_to_favorites/', add_to_favorites, name='add_to_favorites'),
+    path('user_likes_movie', user_likes_movie)
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
