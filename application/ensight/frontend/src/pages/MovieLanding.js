@@ -9,19 +9,30 @@ import TopCast from "../components/MoviePage/TopCast";
 import Review from "../components/MoviePage/Review";
 import ReviewPopup from "../components/ReviewPopUp";
 import RatingPopup from "../components/RatingPopUp";
-import { addToFavorites, getMovieDetails } from "../APIcalls";
+import { addToFavorites, removeFromFavorites, getMovieDetails, getCurrentUser, isLikedByUser } from "../APIcalls";
+const initAuth = () => {
+    let token = localStorage.getItem('Authorization');
+    if(token) {
+        return token;
+    }
+    else {
+        return null
+    }
+}
+
 
 const MovieLanding = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const { id } = useParams();
-    const [authToken, setAuthToken] = useState('');
+    const [authToken, setAuthToken] = useState(initAuth);
+    const [userID, setUserID] = useState(getCurrentUser(authToken).id);
+    const [liked, setLiked] = useState(false); 
+
     
     useEffect(() => {
         const token = localStorage.getItem('Authorization');
         if(token) {
-            setAuthToken(token); console.log('has auth');
-        } else {
-            console.log('no auth');
+            setAuthToken(token);
         }
     }, []);
 
@@ -35,6 +46,8 @@ const MovieLanding = () => {
 
         fetchMovieDetails();
     }, [id]);
+
+
 
     const [onWatchlist, setOnWatchlist] = useState(false);
     const [hoverDisabled, setHoverDisabled] = useState(false);
@@ -76,9 +89,9 @@ const MovieLanding = () => {
     const toggleVideoVisibility = () => {
         setVideoVisible(!isVideoVisible);
     }
-    const Add_to_favorites = async () => {
+    const Add_to_favorites = async (movie, auth) => {
         try {
-            const data = await addToFavorites(id, authToken);
+            const data = await addToFavorites(movie, auth);
             if (data) {
                 console.log(data);
             }
@@ -86,6 +99,26 @@ const MovieLanding = () => {
             console.error('Failed to add movie to favorites', error);
         }
     };
+    const remove_from_favorites = async (movie, auth) => {
+        try {
+            const resp = await removeFromFavorites(movie, auth);
+            if(resp) {
+                console.log(resp.status)
+            }
+        }
+        catch (error) {
+            console.error('remove_from_favorites failed')
+        }
+    }
+
+    let props = {
+        checked: liked,
+        userID: userID,
+        movieID: id,
+        auth: authToken,
+        Check: Add_to_favorites,
+        Uncheck: remove_from_favorites
+    }
     return (
         <div className="MovieLandingPageStyle">
             {movieDetails ? (
@@ -124,7 +157,7 @@ const MovieLanding = () => {
                                     onClick={toggleVideoVisibility}>
                                     {isVideoVisible ? "Hide Trailer" : "Watch Trailer"}
                                 </button>
-                                <LikeButton onClick={Add_to_favorites} />
+                                <LikeButton {...props} />
                             </div>
                             <h3 ref={titleRef} className="MovieLandingTitle">{movieDetails.title}</h3>
                             <div className="MovieLandingYearGenre">
