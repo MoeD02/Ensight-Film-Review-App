@@ -240,3 +240,25 @@ export const getMovieDetails = async(id)=>{
   }
   
   }
+
+export const isLikedByUser = async (userID, movieID) => {
+    let data = {
+        'user_id': userID,
+        'movie_id': movieID,
+    }
+    console.log(data)
+    const response = await fetch(`${apiUrl}/user_likes_movie`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    });
+    if(response.ok) {
+        return response.json();
+    }
+    else {
+        console.error(response);
+        return null;
+    }
+}
