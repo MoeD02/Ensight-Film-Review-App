@@ -75,9 +75,9 @@ const Header = () => {
                 <button className="logo-button" onClick={handleLogoClick}>
                     <span>ENSIGHT</span>
                 </button>
-                <div class="HeaderMovieSearch HeaderSearch">
+                <div className="HeaderMovieSearch HeaderSearch">
                     <input className="HeaderSearchInput HeaderInput" type="text" placeholder="Search" />
-                    <button class="HeaderSearchButton HeaderButton" onClick={handleSearchClick}>Search</button>
+                    <button className="HeaderSearchButton HeaderButton" onClick={handleSearchClick}>Search</button>
                 </div>
                 <div className="header-actions">
                     <button className="menu-button" onClick={toggleMenu}>
