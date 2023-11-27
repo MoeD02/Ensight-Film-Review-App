@@ -200,14 +200,16 @@ export const getMovieDetails = async(id)=>{
     }
   };
   
-  export const removeFromFavorites = async (movieId) => {
+  export const removeFromFavorites = async (movieId, authToken) => {
     const data = {
+      
       movie_id: movieId,
     };
   
     const response = await fetch(`${apiUrl}/remove_from_favorites/`, {
       method: 'POST',
       headers: {
+        'Authorization': authToken,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
@@ -220,3 +222,21 @@ export const getMovieDetails = async(id)=>{
       return null;
     }
   };
+  export const getCurrentUser = async(authToken)=>{
+    const response = await fetch(`${apiUrl}/accounts/current_user`,{
+    method: 'GET',
+    headers: {
+      'Authorization': authToken,
+      'Content-Type': 'application/json',
+    },
+    
+  }
+  );
+  if (response.ok) {
+    return await response.json();
+  } else {
+    console.error('Failed to fetch current logged in user');
+    return null;
+  }
+  
+  }

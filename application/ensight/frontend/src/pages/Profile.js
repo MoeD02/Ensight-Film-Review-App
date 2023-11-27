@@ -2,11 +2,19 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import ProfileTabs from '../components/Tabs/ProfileTabs';
 import '../assets/styles/pages/Profile.css';
+import '../APIcalls'
 
 // only look at profile, watchlist, and lists
-const Profile = () => {
+const Profile = (id) => {
     const { currentTab } = useParams();
     // console.log("Profile: " + currentTab);
+    //get authtoken
+    //check if ur logged in
+    //if yes
+    //check if this page is your own
+    //display your page
+    //if no
+    //display whichever user's page ur on
 
     return (
         <div>
