@@ -3,12 +3,20 @@ from django.conf import settings
 from django.db.models.signals import post_save
 
 
+
+
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='profile',
         null=True,
+    )
+    favorites = models.ManyToManyField(
+        "Movie", 
+        blank=True,
+        related_name='favorited_profiles',  # Updated related_name
+        default=None,
     )
     
     followers = models.ManyToManyField(
@@ -24,6 +32,7 @@ class Profile(models.Model):
         symmetrical=False,
         related_name = 'followed_by',
     )
+    
     
     avatar = models.FileField(default='placeholder.jpg', upload_to='avatars/')
     bio = models.TextField(blank=True)
@@ -60,6 +69,11 @@ class Movie(models.Model):
         max_digits=5,
         decimal_places=3,
         default=0,
+    )
+    favorited_by = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='favorite_movies',
     )
     director = models.CharField(max_length=64, null=True)
     popularity = models.DecimalField(null=True, decimal_places=4, max_digits=10)

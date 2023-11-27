@@ -9,11 +9,21 @@ import TopCast from "../components/MoviePage/TopCast";
 import Review from "../components/MoviePage/Review";
 import ReviewPopup from "../components/ReviewPopUp";
 import RatingPopup from "../components/RatingPopUp";
-import { getMovieDetails } from "../APIcalls";
+import { addToFavorites, getMovieDetails } from "../APIcalls";
 
 const MovieLanding = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const { id } = useParams();
+    const [authToken, setAuthToken] = useState('');
+    
+    useEffect(() => {
+        const token = localStorage.getItem('Authorization');
+        if(token) {
+            setAuthToken(token); console.log('has auth');
+        } else {
+            console.log('no auth');
+        }
+    }, []);
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
@@ -54,7 +64,7 @@ const MovieLanding = () => {
         };
     }, [isVideoVisible]);
 
-    const embedUrl = `https://www.youtube.com/embed/d9MyW72ELq0`;
+    
 
     const toggleWatchlist = () => {
         if (!onWatchlist) {
@@ -66,12 +76,38 @@ const MovieLanding = () => {
     const toggleVideoVisibility = () => {
         setVideoVisible(!isVideoVisible);
     }
+    const Add_to_favorites = async () => {
+        try {
+            const data = await addToFavorites(id, authToken);
+            if (data) {
+                console.log(data);
+            }
+        } catch (error) {
+            console.error('Failed to add movie to favorites', error);
+        }
+    };
 
     return (
         <div className="MovieLandingPageStyle">
             {movieDetails ? (
                 <>
-                    <div className="MovieHorizontalPoster" />
+                     <div className="MovieHorizontalPoster">
+            {/* Inline styles using the style attribute */}
+            <div
+                style={{
+                    position: 'absolute',
+                    zIndex: -1,
+                    width: '100%',
+                    height: '100vh',
+                    left: 0,
+                    top: 0,
+                    background:`url(http://image.tmdb.org/t/p/original${movieDetails.backdrop_path})`,
+                    maskImage: 'linear-gradient(black 85%, transparent)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            />
+        </div>
                     <div className="MovieLandingContent">
                         <div className="video-container">
                             {isVideoVisible && (
@@ -89,7 +125,7 @@ const MovieLanding = () => {
                                     onClick={toggleVideoVisibility}>
                                     {isVideoVisible ? "Hide Trailer" : "Watch Trailer"}
                                 </button>
-                                <LikeButton />
+                                <LikeButton type = "Movie"/>
                             </div>
                             <h3 ref={titleRef} className="MovieLandingTitle">{movieDetails.title}</h3>
                             <div className="MovieLandingYearGenre">
@@ -101,7 +137,7 @@ const MovieLanding = () => {
                                 </div>
                             </div>
                             <div className="MovieLandingSypnosis">
-                                <h3>{movieDetails?.synopsis}</h3>
+                                <h3>{movieDetails.description}</h3>
                                 <div className="LandingRatingWatchlist">
                                     <div className="EnsightRating">
                                         <h6 className="RatingText">Ensight RATING</h6>
@@ -109,7 +145,7 @@ const MovieLanding = () => {
                                             <img className="MovieSymbol" src={StarFilled} alt="star" width={30} height={28} />
                                             <div className="MovieSpecificRating">
                                                 <h5>{movieDetails.rating_average}</h5>
-                                                <h5 id="MovieTotalRating">/5</h5>
+                                                <h5 id="MovieTotalRating">/10</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +169,7 @@ const MovieLanding = () => {
                                     <div className="MovieCastDetails">
                                         <h4 className="MovieCastTitle">Director</h4>
                                         <div className="MovieCastName">
-                                            <h4>{movieDetails?.director}</h4>
+                                            <h4>{movieDetails.director}</h4>
                                         </div>
                                     </div>
                                     <div className="MovieCastDetails">

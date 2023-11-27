@@ -4,6 +4,14 @@
     margin-left: 20px;
     font-family: 'Manrope', sans-serif;
 }
+.browse-link {
+    color: inherit; /* Set the link color to inherit from its parent */
+    text-decoration: none; /* Remove the underline */
+  }
+  
+  .browse-link:hover {
+    color: #ff5733; /* Change the color on hover if desired */
+  }
 
 .BrowseSearch, .DMSearch {
     padding: 0px 1.5% 0px 1.5%;

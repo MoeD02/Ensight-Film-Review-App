@@ -12,11 +12,21 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 
 from knox.models import AuthToken
+from django.contrib.auth.decorators import login_required
+
 
 from .serializers import *
 
 import logging
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from .serializers import*
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
+from rest_framework.decorators import api_view
+from django.db.models import Q
+from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
@@ -57,16 +67,53 @@ class CurrentUserAPI(RetrieveAPIView):
         return self.request.user
 
 
-from django.http import JsonResponse
-from .serializers import*
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
-from rest_framework.decorators import api_view
-from django.db.models import Q
-from django.contrib.auth import get_user_model
+@login_required
+@api_view(['POST'])
+def add_to_favorites(request):
+    if request.method == 'POST':
+        movie_id = request.data.get('movie_id')
+        user_profile = request.user.profile
 
-User = get_user_model()
+        try:
+            movie = Movie.objects.get(pk=movie_id)
+        except Movie.DoesNotExist:
+            return JsonResponse({'error': 'Movie not found'}, status=404)
+
+        # Check if the movie is already in the user's favorites
+        if user_profile.favorites.filter(pk=movie_id).exists():
+            return JsonResponse({'message': 'Movie already in favorites'}, status=200)
+
+        # Add the movie to the user's favorites
+        user_profile.favorites.add(movie)
+
+        return JsonResponse({'message': 'Movie added to favorites successfully'}, status=200)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+@login_required
+@api_view(['POST'])
+def remove_from_favorites(request):
+    if request.method == 'POST':
+        movie_id = request.data.get('movie_id')
+        user_profile = request.user.profile
+
+        try:
+            movie = Movie.objects.get(pk=movie_id)
+        except Movie.DoesNotExist:
+            return JsonResponse({'error': 'Movie not found'}, status=404)
+
+        # Check if the movie is in the user's favorites
+        if user_profile.favorites.filter(pk=movie_id).exists():
+            # Remove the movie from the user's favorites
+            user_profile.favorites.remove(movie)
+            return JsonResponse({'message': 'Movie removed from favorites successfully'}, status=200)
+        else:
+            return JsonResponse({'message': 'Movie not found in favorites'}, status=200)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+
+
 class HomeView(TemplateView):
     template_name = 'app/home.html'
 

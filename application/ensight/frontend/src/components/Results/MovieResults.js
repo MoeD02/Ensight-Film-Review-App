@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../../assets/styles/pages/Browse.css';
 import { searchMovies, fetchMovies } from "../../APIcalls"; 
+import { Link } from "react-router-dom";
 const MovieResults = ({ searchTerm, filter , genres, years }) => {
   const [movieData, setMovieData] = useState([]);
   console.log(filter);
@@ -24,18 +25,20 @@ const MovieResults = ({ searchTerm, filter , genres, years }) => {
   return (
     <>
       {movieData.map((movie, index) => (
-        <div className="browse" key={index}>
+        <Link to={`/MovieLanding/${movie.id}`} key={index} className="browse-link">
           <div className="Results">
-          <img src={"https://image.tmdb.org/t/p/w92"+movie.poster_path} className="MoviePoster">
-            </img>
-          {/* <h6 className="MoviePoster">Movie</h6> */}
+            <img
+              src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
+              className="MoviePoster"
+              alt={movie.title}
+            />
             <div className="MoviePosterDetails">
               <h5 className="MoviePosterTitle">{movie.title}</h5>
               <h6 className="MoviePosterYear">Release Date: {new Date(movie.release_date).toLocaleDateString()}</h6>
               <h6 className="MoviePosterStars">Stars: {movie.rating_average}</h6>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </>
   );

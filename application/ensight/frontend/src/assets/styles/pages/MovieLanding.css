@@ -6,20 +6,20 @@
   display: flex;
 }
 
-.MovieHorizontalPoster {
+/* .MovieHorizontalPoster {
   position: absolute;
   z-index: -1;
   width: 100%;
   height: 100vh;
   left: 0;
   top: 0;
-  /* replace url example link with the correct image */
+ 
   background: url('https://variety.com/wp-content/uploads/2022/12/MCDAVTH_WD058.jpg');
   mask-image: linear-gradient(black 85%, transparent);
   background-size: cover;
   background-position: center;
-}
-
+} 
+*/
 .MovieLandingContent {
   display: flex;
   gap: 10px;

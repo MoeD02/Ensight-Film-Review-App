@@ -156,3 +156,67 @@ export const getMovieDetails = async(id)=>{
       return null;
     }
   };
+
+  export const createMovieList = async (info)=>{
+    const data = {
+      list_details : info.list_details,
+      movies_in_list: info.movie_ids,
+    };
+  
+    const response = await fetch(`${apiUrl}/create_movie_list/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Failed to fetch user movie lists');
+      return null;
+    }
+  };
+  export const addToFavorites = async (movieId, authToken) => {
+    const data = {
+      movie_id: movieId,
+    };
+  
+    const response = await fetch(`${apiUrl}/add_to_favorites/`, {
+      method: 'POST',
+      headers: {
+        'Authorization': authToken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Failed to add movie to favorites');
+      return null;
+    }
+  };
+  
+  export const removeFromFavorites = async (movieId) => {
+    const data = {
+      movie_id: movieId,
+    };
+  
+    const response = await fetch(`${apiUrl}/remove_from_favorites/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Failed to remove movie from favorites');
+      return null;
+    }
+  };
