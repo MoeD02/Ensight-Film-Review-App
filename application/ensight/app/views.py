@@ -210,6 +210,26 @@ def get_movie_details(request):
         movie = get_object_or_404(Movie, id=id)
         serializer = MovieSerializer(movie, many=False)
         return Response (serializer.data)
+    
+@api_view(['POST'])
+def fetch_movies_by_ids(request):
+    if request.method == 'POST':
+        movie_ids = request.data.get('movie_ids', [])
+
+        # Retrieve movie objects based on the provided IDs
+        movies = Movie.objects.filter(id__in=movie_ids)
+
+        # Check if all movies were found
+        if movies.count() == len(movie_ids):
+            # Serialize the movie objects using MovieSerializer
+            serializer = MovieSerializer(movies, many=True)
+            serialized_movies = serializer.data
+
+            return Response({'movies': serialized_movies})
+        else:
+            return Response({'error': 'One or more movies not found'}, status=400)
+    else:
+        return Response({'error': 'Invalid request method'}, status=400)
 
 @api_view(['POST'])
 def get_users(request):
@@ -241,6 +261,23 @@ def search_users(request):
         return Response(serializer.data)
     # else:
     #     return JsonResponse({'error': 'Invalid request method'}, status=400)
+@api_view(['POST'])
+def get_user_profile_by_id(request):
+    user_id = request.data.get('id')  # Assuming the frontend sends the user ID in the request data
+    if user_id:
+        try:
+            # Fetch the user profile using the provided ID
+            user_profile = Profile.objects.get(user_id=user_id)
+            
+            # Serialize the user profile data
+            serializer = ProfileSerializer(user_profile)
+            
+            # Return the serialized user profile data as JSON response
+            return Response(serializer.data)
+        except Profile.DoesNotExist:
+            return JsonResponse({'error': 'User profile not found'}, status=404)
+    else:
+        return JsonResponse({'error': 'Invalid request, user ID not provided'}, status=400)
 
 #This allows users to create a list with whatever movies they want
 @api_view(['POST'])

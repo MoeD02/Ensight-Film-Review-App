@@ -43,6 +43,27 @@ export const searchUsers = async (searchTerm) => {
   }
 };
 
+export const getUserProfileById = async (userId) => {
+  const data = {
+    id: userId,
+  };
+
+  const response = await fetch(`${apiUrl}/get_user_profile_by_id/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    return await response.json();
+  } else {
+    console.error('Failed to fetch user data by ID');
+    return null;
+  }
+};
+
 
 export const searchMovies = async (searchTerm , filter , genres , years) => {
     const data = {
@@ -90,6 +111,28 @@ export const searchMovies = async (searchTerm , filter , genres , years) => {
       return await response.json();
     } else {
       console.error('Failed to fetch movie data');
+      return null;
+    }
+  };
+
+
+  export const fetchMoviesByIds = async (movieIds) => {
+    const data = {
+      movie_ids: movieIds,
+    };
+  
+    const response = await fetch(`${apiUrl}/fetch_movies_by_ids/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Failed to fetch movie data by IDs');
       return null;
     }
   };

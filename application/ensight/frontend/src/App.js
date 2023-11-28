@@ -40,7 +40,7 @@ function App() {
         <Route path="/Feed" element={<Feed />} />
         {/* <Route path="../pages/Profile" element={<Diary />} /> */}
         {/* <Route path="/Profile" element={<Profile />} /> */}
-        <Route path="/Profile/:currentTab/:id" element={<Profile />} />
+        <Route path="/Profile/:id/:currentTab/" element={<Profile />} />
         <Route path="/About" element={<About />} />
         {/* <Route path="../pages/Profile" element={<Settings />} /> */}
         <Route path="/MovieLanding/:id" element={<MovieLanding/>} />

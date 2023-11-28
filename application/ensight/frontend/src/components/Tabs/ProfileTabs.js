@@ -9,7 +9,7 @@ import TabNavItem from "./TabNav/TabNavItem";
 import TabContent from "./TabNav/TabContent";
 import '../../assets/styles/components/ProfileTabs.css';
 
-function ProfileTabs({ currentTab }) {
+function ProfileTabs({ currentTab ,currentUserProfile}) {
     const [activeTab, setActiveTab] = useState(currentTab);
     const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ function ProfileTabs({ currentTab }) {
             </ul>
             <div className="outlet">
                 <TabContent id="profile" activeTab={activeTab}>
-                    <ProfileFocus />
+                    <ProfileFocus currentUserProfile = {currentUserProfile}/>
                 </TabContent>
                 <TabContent id="diary" activeTab={activeTab}>
                     <DiaryFocus />

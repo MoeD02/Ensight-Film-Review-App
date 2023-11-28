@@ -35,7 +35,7 @@ const SideMenu = ({ isOpen, onClose }) => {
                     <button className="close-button" onClick={onClose}>X</button>
                     <h2>Menu</h2>
                     <ul className='MenuLinks'>
-                        <li><Link to={`/Profile/profile/${currentUser["id"]}`} onClick={onClose}>Profile</Link></li>
+                        <li><Link to={`/Profile/${currentUser["id"]}/profile`} onClick={onClose}>Profile</Link></li>
                         <li><Link to="/Browse" onClick={onClose}>Explore</Link></li>
                         <li><Link to="/DisplayList" onClick={onClose}>Lists</Link></li>
                         <li><Link to="/DisplayMovie" onClick={onClose}>Movies</Link></li>

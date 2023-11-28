@@ -1,11 +1,34 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import '../../../assets/styles/components/ProfileTabs.css';
+import { fetchMoviesByIds } from "../../../APIcalls";
 
-const ProfileFocus = () => {
+const ProfileFocus = ({currentUserProfile}) => {
     const [privacyOption, setPrivacyOption] = useState('public');
     const [isEditing, setIsEditing] = useState(true);
     const setProfilePic = useState(null);
     const fileInputRef = useRef(null);
+    const [favoriteMovies, setFavoriteMovies] = useState([]);
+    
+    useEffect(() => {
+        // Fetch movie details for the favorite movie IDs
+        const fetchMovies = async () => {
+            let response;
+    
+            if (currentUserProfile && currentUserProfile.favorites) {
+                console.log("Here is 1 fav movie ID: " + currentUserProfile.favorites[0]);
+                response = await fetchMoviesByIds(currentUserProfile.favorites);
+            }
+    
+            if (response && Array.isArray(response.movies)) {
+                console.log("Favorite Movies Array:", response.movies); // Updated log statement
+                setFavoriteMovies(response.movies);
+            } else {
+                console.error("Fetch error or invalid response:", response);
+            }
+        };
+    
+        fetchMovies();
+    }, [currentUserProfile.favorites]);
 
 
     const handlePrivacyChange = (event) => {
@@ -43,13 +66,11 @@ const ProfileFocus = () => {
                             <div className="GridContainer GridProfile">
                                 {/* Change movie poster text to the movie poster image from the backend */}
                                 {/* replace with all of user's favorite movies */}
-                                <h3 className="MovieProfile">Movie Poster</h3>
-                                <h3 className="MovieProfile">Movie Poster</h3>
-                                <h3 className="MovieProfile">Movie Poster</h3>
-                                <h3 className="MovieProfile">Movie Poster</h3>
-                                <h3 className="MovieProfile">Movie Poster</h3>
-                                <h3 className="MovieProfile">Movie Poster</h3>
-                                <h3 className="MovieProfile">Movie Poster</h3>
+                                {favoriteMovies.map((movie) => (
+                                    <h3 key={movie.id} className="MovieProfile">
+                                        <img src={`http://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
+                                    </h3>
+                                ))}
                             </div>
                         </div>
                     </>
