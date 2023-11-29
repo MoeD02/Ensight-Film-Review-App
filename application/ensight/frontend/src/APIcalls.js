@@ -158,10 +158,11 @@ export const getMovieDetails = async(id)=>{
 
 
 
-  export const getUserMovieLists = async (filter, amount) => {
+  export const getUserMovieLists = async (filter, amount, id) => {
     const data = {
       filter: filter,
       amount: amount,
+      id: id
     };
   
     const response = await fetch(`${apiUrl}/get_user_movie_lists/`, {
@@ -179,6 +180,7 @@ export const getMovieDetails = async(id)=>{
       return null;
     }
   };
+  
   export const searchUserMovieLists = async (searchTerm) => {
     const data = {
       content: searchTerm,
@@ -201,23 +203,20 @@ export const getMovieDetails = async(id)=>{
   };
 
   export const createMovieList = async (info)=>{
-    const data = {
-      list_details : info.list_details,
-      movies_in_list: info.movie_ids,
-    };
+    
   
     const response = await fetch(`${apiUrl}/create_movie_list/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(info),
     });
   
     if (response.ok) {
       return await response.json();
     } else {
-      console.error('Failed to fetch user movie lists');
+      console.error('Failed to create user movie lists');
       return null;
     }
   };

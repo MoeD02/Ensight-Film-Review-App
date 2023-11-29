@@ -85,7 +85,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <ProfileTabs currentTab={currentTab} currentUserProfile = {currentUserProfile}/>
+            <ProfileTabs currentTab={currentTab} currentUserProfile = {currentUserProfile} id={currentUserProfile.id}/>
         </div>
     );
 }

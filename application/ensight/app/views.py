@@ -303,10 +303,17 @@ def create_movie_list(request):
 @api_view(['POST'])
 def get_user_movie_lists(request):
     index = request.data['amount']
-    movie_list = MovieList.objects.all()[:index]
+    filter = request.GET.get('filter', '')
+    author_id = request.data.get('id')
+
+    if filter=='id':
+        movie_list = MovieList.objects.filter(author__id=author_id)
+    else:
+        movie_list = MovieList.objects.all()[:index]
+        # string = f"THIS IS TEH AUTHOR{movie_list[0].author}"
+        # print(string)
+
     serializer = MovieListSerializer(movie_list, many=True)
-    string = f"THIS IS TEH AUTHOR{movie_list[1].author}"
-    print(string)
     return Response(serializer.data)
 
 

@@ -9,7 +9,7 @@ import TabNavItem from "./TabNav/TabNavItem";
 import TabContent from "./TabNav/TabContent";
 import '../../assets/styles/components/ProfileTabs.css';
 
-function ProfileTabs({ currentTab ,currentUserProfile}) {
+function ProfileTabs({ currentTab ,currentUserProfile, id}) {
     const [activeTab, setActiveTab] = useState(currentTab);
     const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ function ProfileTabs({ currentTab ,currentUserProfile}) {
     const handleTabClick = (newTab) => {
         setActiveTab(newTab);
         // Update the URL when a new tab is clicked
-        navigate(`/Profile/${newTab}`);
+        navigate(`/Profile/${id}/${newTab}`);
     };
 
     return (
@@ -42,8 +42,8 @@ function ProfileTabs({ currentTab ,currentUserProfile}) {
                 <TabContent id="watchlist" activeTab={activeTab}>
                     <WatchlistFocus />
                 </TabContent>
-                <TabContent id="lists" activeTab={activeTab}>
-                    <ListsFocus />
+                <TabContent id="lists" activeTab={activeTab} >
+                    <ListsFocus currentUserProfile = {currentUserProfile}/>
                 </TabContent>
                 <TabContent id="insight" activeTab={activeTab}>
                     <InsightFocus />

@@ -66,7 +66,7 @@ function DisplayList() {
                 {list.movies.slice(0, 5).map((movie, movieIndex) => (
                   <img
                     key={movie.id}
-                    src={"http://localhost:8000"+movie.poster_path}
+                    src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
                     
                     className={`ListMoviePoster ListMovie${movieIndex + 1}`}
                   />

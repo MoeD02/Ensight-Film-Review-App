@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../../../assets/styles/components/ProfileTabs.css';
-import {searchMovies} from '../../../APIcalls'
-const ListsFocus = () => {
+import { searchMovies, createMovieList, getUserMovieLists } from '../../../APIcalls';
+
+const ListsFocus = ({ currentUserProfile }) => {
   const [isEditing, setIsEditing] = useState(true);
   const [addedMovies, setAddedMovies] = useState([]);
-  const numberOfLists = 2;
+  const [numberOfLists, setNumberOfLists] = useState(1);
   const [movieData, setMovieData] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [listData, setListData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const filter = 'ID';
+      const amount = 3;
+
+      const data = await getUserMovieLists(filter, amount, currentUserProfile.id);
+      setListData(data);
+      setNumberOfLists(data.length);
+    };
+
+    fetchData();
+  }, [currentUserProfile.id]);
+
   const handleEditClick = () => {
     setIsEditing(false);
   };
@@ -15,57 +33,86 @@ const ListsFocus = () => {
     setAddedMovies([]);
   };
 
-  const handleSubmitClick = () => {
-    setIsEditing(true);
-    setAddedMovies([]);
-  };
+  const handleSubmitClick = async () => {
+    if (addedMovies.length >= 5) {
+      setIsEditing(true);
+      const movieIds = addedMovies.map(movie => movie.id);
+      const info = {
+        author: currentUserProfile.id,
+        title: title,
+        description: description,
+        movie_ids: movieIds
+      };
+      const response = await createMovieList(info);
 
-  const handleAddMovie = (movieTitle) => {
-    if (!addedMovies.includes(movieTitle)) {
-      setAddedMovies([...addedMovies, movieTitle]);
+      if (response) {
+        console.log('Movie list created successfully:', response);
+      } else {
+        console.error('Failed to create movie list');
+      }
+      console.log(info);
+      setAddedMovies([]);
     }
   };
 
-  const handleRemoveMovie = (movieTitle) => {
-    // Create a new array without the clicked movie title
-    const updatedMovies = addedMovies.filter(title => title !== movieTitle);
+  const handleAddMovie = (movie) => {
+    if (!addedMovies.some((addedMovie) => addedMovie.title === movie.title)) {
+      setAddedMovies([...addedMovies, movie]);
+    }
+  };
+
+  const handleRemoveMovie = (movie) => {
+    const updatedMovies = addedMovies.filter((addedMovie) => addedMovie.title !== movie.title);
     setAddedMovies(updatedMovies);
   };
 
-  const renderMovieSection = (index) => (
-    <div className="ListOverlap" key={index}>
-      <div className="PostersGrid">
-        {[1, 2, 3, 4, 5].map((movieIndex) => (
-          <h6 key={movieIndex} className={`ListMoviePoster ListMovie${movieIndex}`}>
-            Movie
-          </h6>
-        ))}
+  const renderMovieSection = (index) => {
+    if (!listData || listData.length === 0 || !listData[index] || !listData[index].movies) {
+      // Data is not yet available or in the expected structure, you can render a loading state or return null
+      return null;
+    }
+  
+    return (
+      <div className="ListOverlap" key={index}>
+        <div className="PostersGrid">
+          {[1, 2, 3, 4, 5].map((movieIndex) => (
+            <h6 key={movieIndex} className={`ListMoviePoster ListMovie${movieIndex}`}>
+              {listData[index].movies[movieIndex-1] && (
+                <img
+                  key={listData[index].movies[movieIndex-1].id}
+                  src={`http://image.tmdb.org/t/p/original${listData[index].movies[movieIndex-1].poster_path}`}
+                  className={`ListMoviePoster ListMovie${movieIndex}`}
+                />
+              )}
+            </h6>
+          ))}
+        </div>
+        <div className="movie-info">
+          <div className="movie-user">{listData[index].author}</div>
+          <div className="movie-title">{listData[index].title}</div>
+        </div>
       </div>
-      <div className="movie-info">
-        <div className="movie-user">User</div>
-        <div className="movie-title">Movie Title</div>
-      </div>
-    </div>
-  );
+    );
+  };
+  
+
   const handleSearchClick = () => {
     const inputElement = document.querySelector(".SearchInput");
     const searchTerm = inputElement.value.trim();
-   
-      const fetchData = async () => {
-        if (searchTerm) {
-          const data = await searchMovies(searchTerm,'highest',"","");
-          if (data) {
-            setMovieData(data);
-            
-          }
-        } else {
-          console.log("Input field is empty. Please enter a search term.");
+
+    const fetchData = async () => {
+      if (searchTerm) {
+        const data = await searchMovies(searchTerm, 'highest', "", "");
+        if (data) {
+          setMovieData(data);
         }
-      };
-  
-      fetchData();
-   
-};
+      } else {
+        console.log("Input field is empty. Please enter a search term.");
+      }
+    };
+
+    fetchData();
+  };
 
   return (
     <div className="Content">
@@ -74,7 +121,6 @@ const ListsFocus = () => {
           <>
             <div className="GridContainer GridList">
               {[...Array(numberOfLists).keys()].map((index) => renderMovieSection(index))}
-              {/* this should be kept so the user can add more movies unless viewing a profile */}
               <button className="MovieList AddList" onClick={handleEditClick}>
                 <h3>+</h3>
               </button>
@@ -84,42 +130,40 @@ const ListsFocus = () => {
           <>
             <div className="ListInfo">
               <h2 className="ProfileTitle">Title</h2>
-              {/* users can change their name here */}
-              <input className="TitleInput" placeholder="Title"></input>
+              <input
+                className="TitleInput"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
             <div className="ListInfo">
               <h2 className="ProfileTitle">Description</h2>
-              {/* users can change their bio here */}
-              <textarea className="BioText" placeholder="Description" />
+              <textarea
+                className="BioText"
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </div>
-            {/* search is implemented here where it will display all movies with same keywords */}
             <div className="AddingFilms">
               <div className="FilmAdd">
                 <h2 className="ListAddFilm">Add Films</h2>
-                <div class="MovieSearch">
+                <div className="MovieSearch">
                   <input className="SearchInput" type="text" placeholder="Add Item" />
-                  <button class="SearchButton"onClick={handleSearchClick}>Search</button>
+                  <button className="SearchButton" onClick={handleSearchClick}>Search</button>
                 </div>
                 <div className="MovieResults">
-                  <div>
-                    {/* replace Movie Title 1 by the movie name */}
-                    <button className="MovieWatchlist WatchButton" onClick={() => handleAddMovie("Movie Title 1")}>
-                      Movie
-                    </button>
-                    <h4 className="MovieText">Movie Title 1</h4>
-                  </div>
-                  <div>
-                    <button className="MovieWatchlist WatchButton" onClick={() => handleAddMovie("Movie Title 2")}>
-                      Movie
-                    </button>
-                    <h4 className="MovieText">Movie Title 2</h4>
-                  </div>
-                  <div>
-                    <button className="MovieWatchlist WatchButton" onClick={() => handleAddMovie("Movie Title 3")}>
-                      Movie
-                    </button>
-                    <h4 className="MovieText">Movie Title 3</h4>
-                  </div>
+                  {movieData.map((movie, index) => (
+                    <div key={index}>
+                      <button className="MovieWatchlist WatchButton" onClick={() => handleAddMovie(movie)}>
+                        <img
+                          src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
+                          alt={movie.title}
+                        />
+                      </button>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="FilmAdded">
@@ -127,19 +171,16 @@ const ListsFocus = () => {
                 <ul className="FilmsAdded">
                   {addedMovies.map((movie, index) => (
                     <li className="FilmAddedList" key={index} onClick={() => handleRemoveMovie(movie)}>
-                      {movie}
+                      {movie.title}
                     </li>
                   ))}
                 </ul>
               </div>
-              </div>
-              <div className="ListButtons">
-                {/* will create the list */}
-                <button className="Button RightB" onClick={handleSubmitClick}>Create</button>
-                {/* will go back to lists without saving anything */}
-                <button className="Button LeftB" onClick={handleCancelClick}>Cancel</button>
-              </div>
-            
+            </div>
+            <div className="ListButtons">
+              <button className="Button RightB" onClick={handleSubmitClick}>Create</button>
+              <button className="Button LeftB" onClick={handleCancelClick}>Cancel</button>
+            </div>
           </>
         )}
       </div>
