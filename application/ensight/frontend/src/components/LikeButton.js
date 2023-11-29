@@ -1,34 +1,32 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/components/LikeButton.css";
-import { addToFavorites, removeFromFavorites, getMovieDetails, getCurrentUser, isLikedByUser } from "../APIcalls";
-// { customStyle, check, uncheck, props }
-const LikeButton = (props) => {
-    const [isChecked, setIsChecked] = useState(props.checked);
+
+const LikeButton = ({checked, id, user, Check, Uncheck}) => {
+    const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
-        if(props.checked) {
-            setIsChecked(true);
-        }
-    },[]);
+        setIsChecked(checked);
+    }, [checked]);
 
-    const handleCheckboxChange = (event) => {
-        if(isChecked) {
-            props.Uncheck(props.id, props.auth);
+    const handleCheckboxChange = (e) => {
+        console.log(e.target.checked)
+        if(e.target.checked === false) {
+            Uncheck(id, user.token);
+            setIsChecked(false);
         }
         else {
-            props.Check(props.id, props.auth);
+            Check(id, user.token);
+            setIsChecked(true);
         }
-        setIsChecked(event.target.checked);
     };
 
-
     return (
-        <div className="heart-container" title="Like" style={props.customStyle}>
+        <div className="heart-container" title="Like" /*style={props.customStyle}*/>
             <input
                 type="checkbox"
                 className="checkbox"
                 id="Give-It-An-Id"
-                checked={isChecked}
+                checked={!!isChecked}
                 onChange={handleCheckboxChange}
             />
             <div className="svg-container">

@@ -83,7 +83,7 @@ def add_to_favorites(request):
 
         # Check if the movie is already in the user's favorites
         if user_profile.favorites.filter(pk=movie_id).exists():
-            return JsonResponse({'message': 'Movie already in favorites'}, status=200)
+            return JsonResponse({'message': 'Movie already in favorites'}, status=400)
 
         # Add the movie to the user's favorites
         user_profile.favorites.add(movie)
@@ -107,11 +107,12 @@ def remove_from_favorites(request):
 
         # Check if the movie is in the user's favorites
         if user_profile.favorites.filter(pk=movie_id).exists():
+            print(user_profile.favorites.filter(pk=movie_id).exists())
             # Remove the movie from the user's favorites
             user_profile.favorites.remove(movie)
             return JsonResponse({'message': 'Movie removed from favorites successfully'}, status=200)
         else:
-            return JsonResponse({'message': 'Movie not found in favorites'}, status=200)
+            return JsonResponse({'message': 'Movie not found in favorites'}, status=400)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
@@ -170,11 +171,12 @@ def fetch_movies(request):
         movies = movies.filter(release_date__year__in=years)
 
     if filter == 'highest': 
-        movies = movies.order_by('-rating_average')[:index]
+        movies = movies.order_by('-popularity')
     elif filter == 'ALL':
         movies = movies.all()
     elif filter == 'lowest':
-        movies = movies.order_by('rating_average')[:index]
+        movies = movies.order_by('rating_average')
+    movies = movies[:index]
     serializer = MovieSerializer(movies, many=True)
     
     return Response(serializer.data)
@@ -271,8 +273,8 @@ def get_user_movie_lists(request):
     index = request.data['amount']
     movie_list = MovieList.objects.all()[:index]
     serializer = MovieListSerializer(movie_list, many=True)
-    string = f"THIS IS TEH AUTHOR{movie_list[1].author}"
-    print(string)
+    # string = f"THIS IS TEH AUTHOR{movie_list[1].author}"
+    # print(string)
     return Response(serializer.data)
 
 
@@ -289,9 +291,10 @@ def search_user_movie_lists(request):
 
 @api_view(['POST'])
 def user_likes_movie(request):
-    uid = request.data.get('user_id')
-    mid = request.data.get('movie_id')
-    return JsonResponse({'data': str(Profile.objects.get(pk=uid).favorites.filter(pk=mid).exists()),})
+    user_id = request.data.get('user_id')
+    movie_id = request.data.get('movie_id')
+    data = Profile.objects.get(pk=user_id).favorites.filter(pk=movie_id).exists()
+    return JsonResponse({'data': data,})
 
 
 

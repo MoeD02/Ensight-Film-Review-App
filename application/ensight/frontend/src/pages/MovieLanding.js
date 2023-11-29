@@ -10,30 +10,45 @@ import Review from "../components/MoviePage/Review";
 import ReviewPopup from "../components/ReviewPopUp";
 import RatingPopup from "../components/RatingPopUp";
 import { addToFavorites, removeFromFavorites, getMovieDetails, getCurrentUser, isLikedByUser } from "../APIcalls";
-const initAuth = () => {
+
+const initUser = async () => {
     let token = localStorage.getItem('Authorization');
     if(token) {
-        return token;
+        const user = await getCurrentUser(token);
+
+        if(user != null) {
+            return {
+                name: user.username,
+                id: user.id,
+                token: token,
+            }
+        }
+        else {
+            // remove expired token
+            localStorage.removeItem('Authorization');
+        }
     }
-    else {
-        return null
-    }
+    return null;
 }
 
 
 const MovieLanding = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const { id } = useParams();
-    const [authToken, setAuthToken] = useState(initAuth);
-    const [userID, setUserID] = useState(getCurrentUser(authToken).id);
-    const [liked, setLiked] = useState(false); 
+//    const [authToken, setAuthToken] = useState(initAuth);
+    const [liked, setLiked] = useState(null);
+    const [user, setUser] = useState(null);
 
-    
     useEffect(() => {
-        const token = localStorage.getItem('Authorization');
-        if(token) {
-            setAuthToken(token);
+        const initPage = async () => {
+            let userInfo = await initUser();
+            if(!!userInfo) {
+                setUser(userInfo);
+                let likeInfo = await isLikedByUser(userInfo.id, id);
+                setLiked(likeInfo.data);
+            }
         }
+        initPage();
     }, []);
 
     useEffect(() => {
@@ -89,7 +104,7 @@ const MovieLanding = () => {
     const toggleVideoVisibility = () => {
         setVideoVisible(!isVideoVisible);
     }
-    const Add_to_favorites = async (movie, auth) => {
+    const add_to_favorites = async (movie, auth) => {
         try {
             const data = await addToFavorites(movie, auth);
             if (data) {
@@ -102,23 +117,12 @@ const MovieLanding = () => {
     const remove_from_favorites = async (movie, auth) => {
         try {
             const resp = await removeFromFavorites(movie, auth);
-            if(resp) {
-                console.log(resp.status)
-            }
         }
         catch (error) {
             console.error('remove_from_favorites failed')
         }
     }
 
-    let props = {
-        checked: liked,
-        userID: userID,
-        movieID: id,
-        auth: authToken,
-        Check: Add_to_favorites,
-        Uncheck: remove_from_favorites
-    }
     return (
         <div className="MovieLandingPageStyle">
             {movieDetails ? (
@@ -157,7 +161,15 @@ const MovieLanding = () => {
                                     onClick={toggleVideoVisibility}>
                                     {isVideoVisible ? "Hide Trailer" : "Watch Trailer"}
                                 </button>
-                                <LikeButton {...props} />
+                                {!!user
+                                    ? <LikeButton
+                                        checked={liked} 
+                                        id={id} user={user} 
+                                        Check={add_to_favorites}
+                                        Uncheck={remove_from_favorites} 
+                                        />
+                                    : <></>
+                                }
                             </div>
                             <h3 ref={titleRef} className="MovieLandingTitle">{movieDetails.title}</h3>
                             <div className="MovieLandingYearGenre">

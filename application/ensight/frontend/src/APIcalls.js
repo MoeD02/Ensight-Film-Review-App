@@ -229,7 +229,6 @@ export const getMovieDetails = async(id)=>{
       'Authorization': authToken,
       'Content-Type': 'application/json',
     },
-    
   }
   );
   if (response.ok) {
@@ -246,7 +245,6 @@ export const isLikedByUser = async (userID, movieID) => {
         'user_id': userID,
         'movie_id': movieID,
     }
-    console.log(data)
     const response = await fetch(`${apiUrl}/user_likes_movie`,{
         method: 'POST',
         headers: {
@@ -255,7 +253,7 @@ export const isLikedByUser = async (userID, movieID) => {
         body: JSON.stringify(data)
     });
     if(response.ok) {
-        return response.json();
+        return await response.json();
     }
     else {
         console.error(response);
