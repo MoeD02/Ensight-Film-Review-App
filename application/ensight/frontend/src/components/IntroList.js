@@ -30,12 +30,12 @@ const IntroList = () => {
         <div className="list-slider">
             <div 
                 className="list-slides" 
-                style={{ transform: `translateX(${offset}%)` }}
+                // style={{ transform: `translateX(${offset}%)` }}
             >
                 {/* Double the array for seamless loop effect */}
                 {listItems.concat(listItems).map((src, index) => (
                     <img
-                        key={src}
+                        key={index}
                         className="list-slide"
                         src={src}
                         alt=""

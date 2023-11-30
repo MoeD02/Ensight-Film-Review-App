@@ -42,7 +42,7 @@ function PosterCarousel() {
       >
         {extendedPosters.map((poster, index) => (
           <img
-            key={poster}
+            key={index}
             src={poster}
             alt={`Poster ${index}`}
             style={{ width: "100%", height: "100%", objectFit: 'cover' }}

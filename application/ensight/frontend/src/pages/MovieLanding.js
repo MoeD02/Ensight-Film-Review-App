@@ -9,11 +9,47 @@ import TopCast from "../components/MoviePage/TopCast";
 import Review from "../components/MoviePage/Review";
 import ReviewPopup from "../components/ReviewPopUp";
 import RatingPopup from "../components/RatingPopUp";
-import { getMovieDetails } from "../APIcalls";
+import { addToFavorites, removeFromFavorites, getMovieDetails, getCurrentUser, isLikedByUser } from "../APIcalls";
+
+const initUser = async () => {
+    let token = localStorage.getItem('Authorization');
+    if(token) {
+        const user = await getCurrentUser(token);
+
+        if(user != null) {
+            return {
+                name: user.username,
+                id: user.id,
+                token: token,
+            }
+        }
+        else {
+            // remove expired token
+            localStorage.removeItem('Authorization');
+        }
+    }
+    return null;
+}
+
 
 const MovieLanding = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const { id } = useParams();
+//    const [authToken, setAuthToken] = useState(initAuth);
+    const [liked, setLiked] = useState(null);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const initPage = async () => {
+            let userInfo = await initUser();
+            if(!!userInfo) {
+                setUser(userInfo);
+                let likeInfo = await isLikedByUser(userInfo.id, id);
+                setLiked(likeInfo.data);
+            }
+        }
+        initPage();
+    }, []);
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
@@ -25,6 +61,8 @@ const MovieLanding = () => {
 
         fetchMovieDetails();
     }, [id]);
+
+
 
     const [onWatchlist, setOnWatchlist] = useState(false);
     const [hoverDisabled, setHoverDisabled] = useState(false);
@@ -54,7 +92,7 @@ const MovieLanding = () => {
         };
     }, [isVideoVisible]);
 
-    const embedUrl = `https://www.youtube.com/embed/d9MyW72ELq0`;
+    
 
     const toggleWatchlist = () => {
         if (!onWatchlist) {
@@ -66,12 +104,46 @@ const MovieLanding = () => {
     const toggleVideoVisibility = () => {
         setVideoVisible(!isVideoVisible);
     }
+    const add_to_favorites = async (movie, auth) => {
+        try {
+            const data = await addToFavorites(movie, auth);
+            if (data) {
+                console.log(data);
+            }
+        } catch (error) {
+            console.error('Failed to add movie to favorites', error);
+        }
+    };
+    const remove_from_favorites = async (movie, auth) => {
+        try {
+            const resp = await removeFromFavorites(movie, auth);
+        }
+        catch (error) {
+            console.error('remove_from_favorites failed')
+        }
+    }
 
     return (
         <div className="MovieLandingPageStyle">
             {movieDetails ? (
                 <>
-                    <div className="MovieHorizontalPoster" />
+                     <div className="MovieHorizontalPoster">
+            {/* Inline styles using the style attribute */}
+            <div
+                style={{
+                    position: 'absolute',
+                    zIndex: -1,
+                    width: '100%',
+                    height: '100vh',
+                    left: 0,
+                    top: 0,
+                    background:`url(http://image.tmdb.org/t/p/original${movieDetails.backdrop_path})`,
+                    maskImage: 'linear-gradient(black 85%, transparent)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            />
+        </div>
                     <div className="MovieLandingContent">
                         <div className="video-container">
                             {isVideoVisible && (
@@ -89,7 +161,15 @@ const MovieLanding = () => {
                                     onClick={toggleVideoVisibility}>
                                     {isVideoVisible ? "Hide Trailer" : "Watch Trailer"}
                                 </button>
-                                <LikeButton />
+                                {!!user
+                                    ? <LikeButton
+                                        checked={liked} 
+                                        id={id} user={user} 
+                                        Check={add_to_favorites}
+                                        Uncheck={remove_from_favorites} 
+                                        />
+                                    : <></>
+                                }
                             </div>
                             <h3 ref={titleRef} className="MovieLandingTitle">{movieDetails.title}</h3>
                             <div className="MovieLandingYearGenre">
@@ -101,7 +181,7 @@ const MovieLanding = () => {
                                 </div>
                             </div>
                             <div className="MovieLandingSypnosis">
-                                <h3>{movieDetails?.synopsis}</h3>
+                                <h3>{movieDetails.description}</h3>
                                 <div className="LandingRatingWatchlist">
                                     <div className="EnsightRating">
                                         <h6 className="RatingText">Ensight RATING</h6>
@@ -109,7 +189,7 @@ const MovieLanding = () => {
                                             <img className="MovieSymbol" src={StarFilled} alt="star" width={30} height={28} />
                                             <div className="MovieSpecificRating">
                                                 <h5>{movieDetails.rating_average}</h5>
-                                                <h5 id="MovieTotalRating">/5</h5>
+                                                <h5 id="MovieTotalRating">/10</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +213,7 @@ const MovieLanding = () => {
                                     <div className="MovieCastDetails">
                                         <h4 className="MovieCastTitle">Director</h4>
                                         <div className="MovieCastName">
-                                            <h4>{movieDetails?.director}</h4>
+                                            <h4>{movieDetails.director}</h4>
                                         </div>
                                     </div>
                                     <div className="MovieCastDetails">

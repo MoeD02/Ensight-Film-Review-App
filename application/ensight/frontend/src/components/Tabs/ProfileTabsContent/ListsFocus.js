@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import '../../../assets/styles/components/ProfileTabs.css';
-
+import {searchMovies} from '../../../APIcalls'
 const ListsFocus = () => {
   const [isEditing, setIsEditing] = useState(true);
   const [addedMovies, setAddedMovies] = useState([]);
   const numberOfLists = 2;
-
+  const [movieData, setMovieData] = useState([]);
   const handleEditClick = () => {
     setIsEditing(false);
   };
@@ -47,6 +47,25 @@ const ListsFocus = () => {
       </div>
     </div>
   );
+  const handleSearchClick = () => {
+    const inputElement = document.querySelector(".SearchInput");
+    const searchTerm = inputElement.value.trim();
+   
+      const fetchData = async () => {
+        if (searchTerm) {
+          const data = await searchMovies(searchTerm,'highest',"","");
+          if (data) {
+            setMovieData(data);
+            
+          }
+        } else {
+          console.log("Input field is empty. Please enter a search term.");
+        }
+      };
+  
+      fetchData();
+   
+};
 
   return (
     <div className="Content">
@@ -79,7 +98,7 @@ const ListsFocus = () => {
                 <h2 className="ListAddFilm">Add Films</h2>
                 <div class="MovieSearch">
                   <input className="SearchInput" type="text" placeholder="Add Item" />
-                  <button class="SearchButton">Search</button>
+                  <button class="SearchButton"onClick={handleSearchClick}>Search</button>
                 </div>
                 <div className="MovieResults">
                   <div>
