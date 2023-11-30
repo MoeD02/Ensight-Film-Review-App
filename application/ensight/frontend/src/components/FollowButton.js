@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import '../assets/styles/components/FollowButton.css';
+import React, { useState } from "react";
+import "../assets/styles/components/FollowButton.css";
 
-const FollowButton = ({style}) => {
-  const [isFollowing, setIsFollowing] = useState(false);
+const FollowButton = ({ style }) => {
+	const [isFollowing, setIsFollowing] = useState(false);
 
-  const toggleFollow = () => {
-    setIsFollowing((prevIsFollowing) => !prevIsFollowing);
-  };
+	const toggleFollow = () => {
+		setIsFollowing((prevIsFollowing) => !prevIsFollowing);
+	};
 
-  return (
-    <button style={style} className={`button ${isFollowing ? 'following' : 'follow'}`} onClick={toggleFollow}>
-      {isFollowing ? 'Following' : 'Follow +'}
-    </button>
-  );
+	return (
+		<button
+			style={style}
+			className={`button ${isFollowing ? "following" : "follow"}`}
+			onClick={toggleFollow}>
+			{isFollowing ? "Following" : "Follow +"}
+		</button>
+	);
 };
 
 export default FollowButton;

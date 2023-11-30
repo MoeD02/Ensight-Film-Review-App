@@ -1,69 +1,83 @@
 import React, { useState, useEffect } from "react";
-import '../assets/styles/pages/DisplayUser.css';
+import "../assets/styles/pages/DisplayUser.css";
 import DisplayUserResults from "../components/Results/DisplayUserResults.js";
 import { getUsers } from "../APIcalls.js";
 //csc648-01-fa23-team02\application\ensight\frontend\src\APIcalls.js
 
 const Browse = () => {
-  const [userData, setUserData] = useState([]);
-  const [selectedButton, setSelectedButton] = useState(1); // Moved useState here
-  
-  const numberOfUsersPerButton = 5;
+	const [userData, setUserData] = useState([]);
+	const [selectedButton, setSelectedButton] = useState(1); // Moved useState here
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getUsers("ALL"); // Use the getUsers function from api.js
+	const numberOfUsersPerButton = 5;
 
-      if (data) {
-        setUserData(data);
-      }
-    };
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await getUsers("ALL"); // Use the getUsers function from api.js
 
-    fetchData();
-  }, []);
+			if (data) {
+				setUserData(data);
+			}
+		};
 
-  // Conditional rendering to handle the case when userData is still empty
-  if (userData.length === 0) {
-    return <div>Loading...</div>;
-  }
+		fetchData();
+	}, []);
 
-  const totalUser = userData.length;
-  const buttonPlacesDisplayData = [];
-  let remainingUsers = totalUser;
+	// Conditional rendering to handle the case when userData is still empty
+	if (userData.length === 0) {
+		return <div>Loading...</div>;
+	}
 
-  for (let i = 1; i <= Math.floor(totalUser / numberOfUsersPerButton); i++) {
-    buttonPlacesDisplayData.push({ number: i, numberOfUsers: numberOfUsersPerButton });
-    remainingUsers -= numberOfUsersPerButton;
-  }
+	const totalUser = userData.length;
+	const buttonPlacesDisplayData = [];
+	let remainingUsers = totalUser;
 
-  if (remainingUsers > 0) {
-    buttonPlacesDisplayData.push({ number: buttonPlacesDisplayData.length + 1, numberOfUsers: remainingUsers });
-  }
+	for (let i = 1; i <= Math.floor(totalUser / numberOfUsersPerButton); i++) {
+		buttonPlacesDisplayData.push({
+			number: i,
+			numberOfUsers: numberOfUsersPerButton,
+		});
+		remainingUsers -= numberOfUsersPerButton;
+	}
 
-  const handleButtonClick = (buttonNumber) => {
-    setSelectedButton(buttonNumber);
-  };
+	if (remainingUsers > 0) {
+		buttonPlacesDisplayData.push({
+			number: buttonPlacesDisplayData.length + 1,
+			numberOfUsers: remainingUsers,
+		});
+	}
 
-  return (
-    <div className="DisplayUserResults">
-      <div className="DisplayOuter">
-      {Array(buttonPlacesDisplayData[selectedButton - 1].numberOfUsers).fill().map((_, index) => (
-  <DisplayUserResults UserNumber={userData[index].user} UserBio = {userData[index].bio} avatar ={userData[index].avatar} key={index} />
-))}
-      </div>
-      <div className="DisplayButtonPlaceWrapper">
-        {buttonPlacesDisplayData.map((buttonData) => (
-          <h3
-            className={`DisplayButtonPlace ${selectedButton === buttonData.number ? "selected" : ""}`}
-            onClick={() => handleButtonClick(buttonData.number)}
-            key={buttonData.number}
-          >
-            {buttonData.number}
-          </h3>
-        ))}
-      </div>
-    </div>
-  );
-}
+	const handleButtonClick = (buttonNumber) => {
+		setSelectedButton(buttonNumber);
+	};
+
+	return (
+		<div className="DisplayUserResults">
+			<div className="DisplayOuter">
+				{Array(buttonPlacesDisplayData[selectedButton - 1].numberOfUsers)
+					.fill()
+					.map((_, index) => (
+						<DisplayUserResults
+							UserNumber={userData[index].user}
+							UserBio={userData[index].bio}
+							avatar={userData[index].avatar}
+							key={index}
+						/>
+					))}
+			</div>
+			<div className="DisplayButtonPlaceWrapper">
+				{buttonPlacesDisplayData.map((buttonData) => (
+					<h3
+						className={`DisplayButtonPlace ${
+							selectedButton === buttonData.number ? "selected" : ""
+						}`}
+						onClick={() => handleButtonClick(buttonData.number)}
+						key={buttonData.number}>
+						{buttonData.number}
+					</h3>
+				))}
+			</div>
+		</div>
+	);
+};
 
 export default Browse;
