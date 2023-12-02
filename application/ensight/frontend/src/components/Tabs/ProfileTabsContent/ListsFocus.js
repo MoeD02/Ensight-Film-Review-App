@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "../../../assets/styles/components/ProfileTabs.css";
 import {
 	searchMovies,
@@ -7,6 +7,7 @@ import {
 } from "../../../APIcalls";
 
 const ListsFocus = ({ currentUserProfile }) => {
+	const prevUserIdRef = useRef();
 	const [isEditing, setIsEditing] = useState(true);
 	const [addedMovies, setAddedMovies] = useState([]);
 	const [numberOfLists, setNumberOfLists] = useState(1);
@@ -17,21 +18,21 @@ const ListsFocus = ({ currentUserProfile }) => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const filter = "ID";
-			const amount = 3;
-
-			const data = await getUserMovieLists(
-				filter,
-				amount,
-				currentUserProfile.id
-			);
-			setListData(data);
-			setNumberOfLists(data.length);
+			const filter = "id";
+			if (prevUserIdRef.current !== currentUserProfile.id) {
+				const data = await getUserMovieLists(
+					filter,
+					null,
+					currentUserProfile.id
+				);
+				setListData(data);
+				setNumberOfLists(data.length);
+				prevUserIdRef.current = currentUserProfile.id;
+			}
 		};
 
 		fetchData();
 	}, [currentUserProfile.id]);
-
 	const handleEditClick = () => {
 		setIsEditing(false);
 	};

@@ -32,6 +32,7 @@ urlpatterns = [
         "get_user_profile_by_id/", get_user_profile_by_id, name="get_user_profile_by_id"
     ),
     path("fetch_movies_by_ids/", fetch_movies_by_ids, name="fetch_movies_by_ids"),
+    path("update_user_profile/", update_user_profile, name="update_user_profile"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

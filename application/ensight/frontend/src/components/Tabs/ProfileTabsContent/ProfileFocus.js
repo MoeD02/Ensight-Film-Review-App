@@ -1,13 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../../../assets/styles/components/ProfileTabs.css";
-import { fetchMoviesByIds } from "../../../APIcalls";
+import { updateUserProfile,fetchMoviesByIds } from "../../../APIcalls";
 
 const ProfileFocus = ({ currentUserProfile }) => {
 	const [privacyOption, setPrivacyOption] = useState("public");
 	const [isEditing, setIsEditing] = useState(true);
-	const setProfilePic = useState(null);
+	const [profilePic,setProfilePic] = useState({});
 	const fileInputRef = useRef(null);
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
+	const [newUsername, setNewUsername] = useState("");
+	const [newBio, setNewBio] = useState("");
+	const [authToken, setAuthToken] = useState("");
 
 	useEffect(() => {
 		// Fetch movie details for the favorite movie IDs
@@ -28,6 +31,17 @@ const ProfileFocus = ({ currentUserProfile }) => {
 				console.error("Fetch error or invalid response:", response);
 			}
 		};
+		const fetchAuth = async () => {
+			const token = localStorage.getItem("Authorization");
+			if (token) {
+				setAuthToken(token);
+				
+			} else {
+				console.log("no auth");
+			}
+		};
+
+		fetchAuth();
 
 		fetchMovies();
 	}, [currentUserProfile.favorites]);
@@ -44,8 +58,26 @@ const ProfileFocus = ({ currentUserProfile }) => {
 		setIsEditing(true);
 	};
 
-	const handleSubmitClick = () => {
-		setIsEditing(true);
+	const handleSubmitClick = async () => {
+		
+		try {
+			const profileUpdateInfo = {
+				id: currentUserProfile.id,
+				new_username: newUsername,
+				new_bio: newBio,
+				new_avatar: profilePic,
+			};
+
+			// Call the updateProfile function
+			await updateUserProfile(profileUpdateInfo, authToken);
+
+			// Additional actions or UI updates can be added here if needed
+
+			setIsEditing(true); // Set back to editing mode after the update is complete
+		} catch (error) {
+			console.error("Error updating profile:", error.message);
+			// Handle error, update UI, show error messages, etc.
+		}
 	};
 
 	const handleProfilePicChange = (event) => {
@@ -53,6 +85,18 @@ const ProfileFocus = ({ currentUserProfile }) => {
 		if (selectedFile) {
 			setProfilePic(selectedFile);
 		}
+	};
+
+	useEffect(() => {
+		// This effect will run whenever profilePic changes
+		console.log("Selected File:", profilePic);
+	}, [profilePic]);
+	const handleUsernameChange = (event) => {
+		setNewUsername(event.target.value);
+	};
+
+	const handleBioChange = (event) => {
+		setNewBio(event.target.value);
 	};
 
 	return (
@@ -86,7 +130,12 @@ const ProfileFocus = ({ currentUserProfile }) => {
 							<div className="Username">
 								<h2 className="ProfileTitle">Username</h2>
 								{/* users can change their name here */}
-								<input className="User" placeholder="Username"></input>
+								<input
+									className="User"
+									placeholder="Username"
+									value={newUsername}
+									onChange={handleUsernameChange}
+								/>
 							</div>
 							<div className="ProfilePic">
 								<h2 className="ProfileTitle">Change PFP</h2>
@@ -132,7 +181,12 @@ const ProfileFocus = ({ currentUserProfile }) => {
 							<div className="Bio">
 								<h2 className="ProfileTitle">Bio</h2>
 								{/* users can change their bio here */}
-								<textarea className="BioText" placeholder="Enter a bio" />
+								<textarea
+									className="BioText"
+									placeholder="Enter a bio"
+									value={newBio}
+									onChange={handleBioChange}
+								/>
 							</div>
 							<button className="Button LeftB" onClick={handleCancelClick}>
 								Cancel

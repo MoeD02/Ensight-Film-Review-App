@@ -72,6 +72,32 @@ class CurrentUserAPI(RetrieveAPIView):
 
 
 @api_view(["POST"])
+def update_user_profile(request):
+    user_profile = request.user.profile
+
+    # Get the data from the request
+    new_username = request.data.get("new_username")
+    new_bio = request.data.get("new_bio")
+    new_avatar = request.data.get("new_avatar")
+
+    # Update fields if new values are provided
+    if new_username:
+        request.user.username = new_username
+        request.user.save()
+
+    if new_bio:
+        user_profile.bio = new_bio
+        user_profile.save()
+
+    if new_avatar:
+        user_profile.avatar = request.FILES["new_avatar"]
+        user_profile.save()
+
+    # Return a response indicating success
+    return Response({"message": "User profile updated successfully"})
+
+
+@api_view(["POST"])
 def add_to_favorites(request):
     if request.method == "POST":
         movie_id = request.data.get("movie_id")
@@ -330,13 +356,14 @@ def create_movie_list(request):
 # get's user's list(all of it). STILL NEEDS WORK because it doesn't know which user it is
 @api_view(["POST"])
 def get_user_movie_lists(request):
-    index = request.data["amount"]
-    filter = request.GET.get("filter", "")
-    author_id = request.data.get("id")
+    filter = request.data.get("filter")
+    author_id = request.data["id"]
+    print("THIS IS THE FILTER AND THIS IS THE ID: ", filter, author_id)
 
     if filter == "id":
         movie_list = MovieList.objects.filter(author__id=author_id)
     else:
+        index = request.data["amount"]
         movie_list = MovieList.objects.all()[:index]
         # string = f"THIS IS TEH AUTHOR{movie_list[0].author}"
         # print(string)
