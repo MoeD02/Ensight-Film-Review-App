@@ -16,7 +16,7 @@ const ListResults = ({ searchTerm }) => {
 					console.error("Failed to fetch list data");
 				}
 			} else {
-				const data = await getUserMovieLists("highest_rated", 5);
+				const data = await getUserMovieLists("", 5,"");
 				if (data) {
 					setListData(data);
 				} else {
