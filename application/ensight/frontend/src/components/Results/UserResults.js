@@ -1,7 +1,8 @@
-import FollowButton from "../FollowButton.js";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../assets/styles/pages/Browse.css";
 import { searchUsers, getUsers } from "../../APIcalls.js";
+import FollowButton from "../FollowButton.js";
 
 const UserResults = ({ searchTerm }) => {
 	const [userData, setUserData] = useState([]);
@@ -31,34 +32,40 @@ const UserResults = ({ searchTerm }) => {
 	return (
 		<>
 			{userData.map((user, index) => (
-				<div className="ResultContent Results">
-					<div key={index} className="UserResults">
-						<img
-							className="UserPicResults"
-							src={"http://localhost:8000" + user.avatar}
-						/>
+				<Link
+					to={`/Profile/${user.id}/profile`}
+					key={index}
+					className="browse-link">
+					<div className="ResultContent Results">
+						<div key={index} className="UserResults">
+							<img
+								className="UserPicResults"
+								src={"http://localhost:8000" + user.avatar}
+							/>
 
-						<div className="MoviePosterDetails">
-							<h5 className="MoviePosterTitle">{user.user}</h5>
-							<h6 className="MoviePosterStars">{user.bio}</h6>
+							<div className="MoviePosterDetails">
+								<h5 className="MoviePosterTitle">{user.user}</h5>
+								<h6 className="MoviePosterStars">{user.bio}</h6>
+							</div>
+							<div className="ResultExtra">
+								<div className="ResultExtraInfo">
+									<h3>{user.num_lists}</h3>
+									<h3 className="ResultStatement">lists</h3>
+								</div>
+								<div className="ResultExtraInfo">
+									<h3>{user.following}</h3>
+									<h3 className="ResultStatement">following</h3>
+								</div>
+								<div className="ResultExtraInfo">
+									<h3>{user.followers}</h3>
+									<h3 className="ResultStatement">followers</h3>
+								</div>
+							</div>
 						</div>
-						<div className="ResultExtra">
-							<div className="ResultExtraInfo">
-								<h3>{user.num_lists}</h3>
-								<h3 className="ResultStatement">lists</h3>
-							</div>
-							<div className="ResultExtraInfo">
-								<h3>{user.following}</h3>
-								<h3 className="ResultStatement">following</h3>
-							</div>
-							<div className="ResultExtraInfo">
-								<h3>{user.followers}</h3>
-								<h3 className="ResultStatement">followers</h3>
-							</div>
-						</div>
+						{/* You may want to wrap the FollowButton in a Link as well if needed */}
+						<FollowButton />
 					</div>
-					<FollowButton />
-				</div>
+				</Link>
 			))}
 		</>
 	);

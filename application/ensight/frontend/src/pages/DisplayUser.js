@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../assets/styles/pages/DisplayUser.css";
 import DisplayUserResults from "../components/Results/DisplayUserResults.js";
 import { getUsers } from "../APIcalls.js";
-//csc648-01-fa23-team02\application\ensight\frontend\src\APIcalls.js
+import { Link } from "react-router-dom";
 
 const Browse = () => {
 	const [userData, setUserData] = useState([]);
@@ -56,12 +56,17 @@ const Browse = () => {
 				{Array(buttonPlacesDisplayData[selectedButton - 1].numberOfUsers)
 					.fill()
 					.map((_, index) => (
-						<DisplayUserResults
-							UserNumber={userData[index].user}
-							UserBio={userData[index].bio}
-							avatar={userData[index].avatar}
+						<Link
+							to={`/Profile/${userData[index].id}/profile`}
 							key={index}
-						/>
+							className="browse-link">
+							<DisplayUserResults
+								UserNumber={userData[index].user}
+								UserBio={userData[index].bio}
+								avatar={userData[index].avatar}
+								key={index}
+							/>
+						</Link>
 					))}
 			</div>
 			<div className="DisplayButtonPlaceWrapper">

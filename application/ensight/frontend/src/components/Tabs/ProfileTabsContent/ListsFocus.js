@@ -6,7 +6,7 @@ import {
 	getUserMovieLists,
 } from "../../../APIcalls";
 
-const ListsFocus = ({ currentUserProfile }) => {
+const ListsFocus = ({ currentUserProfile, isMyPage }) => {
 	const prevUserIdRef = useRef();
 	const [isEditing, setIsEditing] = useState(true);
 	const [addedMovies, setAddedMovies] = useState([]);
@@ -15,6 +15,7 @@ const ListsFocus = ({ currentUserProfile }) => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [listData, setListData] = useState([]);
+	console.log("IS THS MY PAGE: ", isMyPage);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -142,7 +143,9 @@ const ListsFocus = ({ currentUserProfile }) => {
 							{[...Array(numberOfLists).keys()].map((index) =>
 								renderMovieSection(index)
 							)}
-							<button className="MovieList AddList" onClick={handleEditClick}>
+							<button
+								className={`MovieList AddList ${isMyPage ? "" : "hidden"}`}
+								onClick={handleEditClick}>
 								<h3>+</h3>
 							</button>
 						</div>

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "../../../assets/styles/components/ProfileTabs.css";
 import { updateUserProfile,fetchMoviesByIds } from "../../../APIcalls";
 
-const ProfileFocus = ({ currentUserProfile }) => {
+const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 	const [privacyOption, setPrivacyOption] = useState("public");
 	const [isEditing, setIsEditing] = useState(true);
 	const [profilePic,setProfilePic] = useState({});
@@ -105,7 +105,11 @@ const ProfileFocus = ({ currentUserProfile }) => {
 				{isEditing ? (
 					<>
 						{/* only appears when the user is on their profile */}
-						<button className="Button" onClick={handleEditClick}>
+						<button
+							className={`Button ${
+								isMyPage ? "" : "hidden"
+							}`}
+							onClick={handleEditClick}>
 							Edit Profile
 						</button>
 						<div className="FavoriteMovies">

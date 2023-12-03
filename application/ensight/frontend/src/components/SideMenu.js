@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/components/SideMenu.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../APIcalls";
-import { useEffect, useState } from "react";
 
 const SideMenu = ({ isOpen, onClose }) => {
 	const [authToken, setAuthToken] = useState("");
 	const [currentUser, setCurrentUser] = useState("");
+	const location = useLocation(); // React Router's useLocation hook
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const token = localStorage.getItem("Authorization");
@@ -24,7 +25,7 @@ const SideMenu = ({ isOpen, onClose }) => {
 		};
 
 		fetchData();
-	}, []);
+	}, [location.pathname]); // Fetch data when the route changes
 
 	if (authToken) {
 		return (
@@ -72,7 +73,6 @@ const SideMenu = ({ isOpen, onClose }) => {
 								Insight
 							</Link>
 						</li>
-						{/* <li><Link to="/Profile" onClick={onClose}>Diary</Link></li> */}
 						<li>
 							<Link to="/Profile/watchlist" onClick={onClose}>
 								Watchlist
@@ -83,8 +83,6 @@ const SideMenu = ({ isOpen, onClose }) => {
 								About
 							</Link>
 						</li>
-						{/* <li><Link to="../pages/Profile" onClick={onClose}>Settings</Link></li> */}
-						{/* If Sign out is a function, it should be handled differently */}
 					</ul>
 				</div>
 			</div>
@@ -123,16 +121,11 @@ const SideMenu = ({ isOpen, onClose }) => {
 								Feed
 							</Link>
 						</li>
-
-						{/* <li><Link to="/Profile" onClick={onClose}>Diary</Link></li> */}
-
 						<li>
 							<Link to="/About" onClick={onClose}>
 								About
 							</Link>
 						</li>
-						{/* <li><Link to="../pages/Profile" onClick={onClose}>Settings</Link></li> */}
-						{/* If Sign out is a function, it should be handled differently */}
 					</ul>
 				</div>
 			</div>

@@ -8,16 +8,6 @@ import { getCurrentUser, getUserProfileById } from "../APIcalls";
 const Profile = () => {
 	const { currentTab } = useParams();
 	const { id } = useParams();
-	// console.log("Profile: " + currentTab);
-	//get authtoken
-	//check if ur logged in
-	//if yes
-	//check if this page is your own
-	//display your page
-	//if not your page
-	//display whichever user's page ur on
-	// if not logged in
-	// display which users page it is
 	const [authToken, setAuthToken] = useState("");
 	const [currentUser, setCurrentUser] = useState("");
 	const [isMyPage, setIsMyPage] = useState(false);
@@ -57,7 +47,7 @@ const Profile = () => {
 		};
 
 		fetchData();
-	}, []);
+	}, [id]); // Include id as a dependency
 
 	return (
 		<div>
@@ -92,7 +82,6 @@ const Profile = () => {
 			<ProfileTabs
 				currentTab={currentTab}
 				currentUserProfile={currentUserProfile}
-				id={currentUserProfile.id}
 			/>
 		</div>
 	);

@@ -1,3 +1,5 @@
+
+
 .Tabs {
     box-sizing: border-box;
     width: 95%;
@@ -862,4 +864,7 @@ PrivacyButton:checked + span {
 .react-datepicker__day--keyboard-selected:hover {
   background-color: #E11708 !important;
   color: white;
+}
+.hidden {
+  display: none;
 }
