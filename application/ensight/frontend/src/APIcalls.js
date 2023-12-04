@@ -265,6 +265,49 @@ export const removeFromFavorites = async (movieId, authToken) => {
 		return null;
 	}
 };
+export const addToWatchlist = async (movieId, authToken) => {
+	const data = {
+		movie_id: movieId,
+	};
+
+	const response = await fetch(`${apiUrl}/add_to_watchlist/`, {
+		method: "POST",
+		headers: {
+			Authorization: authToken,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (response.ok) {
+		return await response.json();
+	} else {
+		console.error("Failed to add movie to watchlist");
+		return null;
+	}
+};
+
+export const removeFromWatchlist = async (movieId, authToken) => {
+	const data = {
+		movie_id: movieId,
+	};
+
+	const response = await fetch(`${apiUrl}/remove_from_watchlist/`, {
+		method: "POST",
+		headers: {
+			Authorization: authToken,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (response.ok) {
+		return await response.json();
+	} else {
+		console.error("Failed to remove movie from watchlist");
+		return null;
+	}
+};
 
 export const updateUserProfile = async (profileUpdateInfo,authToken) => {
 	try {

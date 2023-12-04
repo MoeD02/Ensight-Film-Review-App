@@ -16,6 +16,11 @@ class Profile(models.Model):
         related_name="favorited_profiles",  # Updated related_name
         default=None,
     )
+    watchlist = models.ManyToManyField(
+        "Movie",
+        blank=True,
+        related_name="watchlisted_profiles",
+    )
 
     followers = models.ManyToManyField(
         "self",

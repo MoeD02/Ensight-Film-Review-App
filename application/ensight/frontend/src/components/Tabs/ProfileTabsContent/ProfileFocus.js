@@ -41,9 +41,9 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 			}
 		};
 
-		fetchAuth();
-
+		
 		fetchMovies();
+		fetchAuth();
 	}, [currentUserProfile.favorites]);
 
 	const handlePrivacyChange = (event) => {

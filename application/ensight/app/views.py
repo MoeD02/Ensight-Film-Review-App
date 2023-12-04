@@ -154,6 +154,56 @@ def remove_from_favorites(request):
         return JsonResponse({"error": "Invalid request method"}, status=400)
 
 
+@api_view(["POST"])
+def add_to_watchlist(request):
+    if request.method == "POST":
+        movie_id = request.data.get("movie_id")
+        user_profile = request.user.profile
+
+        try:
+            movie = Movie.objects.get(pk=movie_id)
+        except Movie.DoesNotExist:
+            return JsonResponse({"error": "Movie not found"}, status=404)
+
+        # Check if the movie is already in the user's watchlist
+        if movie in user_profile.watchlist.all():
+            return JsonResponse({"message": "Movie already in watchlist"}, status=200)
+
+        # Add the movie to the user's watchlist
+        user_profile.watchlist.add(movie)
+        user_profile.save()
+
+        return JsonResponse(
+            {"message": "Movie added to watchlist successfully"}, status=200
+        )
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=400)
+
+
+@api_view(["POST"])
+def remove_from_watchlist(request):
+    if request.method == "POST":
+        movie_id = request.data.get("movie_id")
+        user_profile = request.user.profile
+
+        try:
+            movie = Movie.objects.get(pk=movie_id)
+        except Movie.DoesNotExist:
+            return JsonResponse({"error": "Movie not found"}, status=404)
+
+        # Check if the movie is in the user's watchlist
+        if user_profile.watchlist.filter(pk=movie_id).exists():
+            # Remove the movie from the user's watchlist
+            user_profile.watchlist.remove(movie)
+            return JsonResponse(
+                {"message": "Movie removed from watchlist successfully"}, status=200
+            )
+        else:
+            return JsonResponse({"message": "Movie not found in watchlist"}, status=200)
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=400)
+
+
 class HomeView(TemplateView):
     template_name = "app/home.html"
 
@@ -194,7 +244,6 @@ def header_search(request):
 
 @api_view(["POST"])
 def fetch_movies(request):
-    
     filter = request.data.get("filter")
     genres = request.data.get("genres")
     years = request.data.get("years")

@@ -98,7 +98,7 @@ function ProfileTabs({ currentTab, currentUserProfile, id }) {
 					<DiaryFocus />
 				</TabContent>
 				<TabContent id="watchlist" activeTab={activeTab}>
-					<WatchlistFocus />
+					<WatchlistFocus currentUserProfile={currentUserProfile} />
 				</TabContent>
 				<TabContent id="lists" activeTab={activeTab}>
 					<ListsFocus
