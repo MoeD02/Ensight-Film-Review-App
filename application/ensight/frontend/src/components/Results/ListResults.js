@@ -1,6 +1,7 @@
 import "../../assets/styles/pages/Browse.css";
 import React, { useEffect, useState } from "react";
 import { searchUserMovieLists, getUserMovieLists } from "../../APIcalls";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const ListResults = ({ searchTerm }) => {
 	const [listData, setListData] = useState([]);
@@ -31,28 +32,30 @@ const ListResults = ({ searchTerm }) => {
 	return (
 		<>
 			{listData.map((list, index) => (
-				<div className="Results" key={index}>
-					{/* <div className="List" key={list.id}> */}
-					<div className="BrowsePostersGrid">
-						{list.movies.slice(0, 3).map((movie, movieIndex) => (
-							<img
-								key={movie.id}
-								src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
-								className={`MoviePoster ListMovie${movieIndex + 1}`}
-								alt={`Movie Poster ${movieIndex}`}
-							/>
-						))}
+				<Link to={`/ListLanding/${list.id}`} key={index}>
+					<div className="Results" key={index}>
+						{/* <div className="List" key={list.id}> */}
+						<div className="BrowsePostersGrid">
+							{list.movies.slice(0, 3).map((movie, movieIndex) => (
+								<img
+									key={movie.id}
+									src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
+									className={`MoviePoster ListMovie${movieIndex + 1}`}
+									alt={`Movie Poster ${movieIndex}`}
+								/>
+							))}
+						</div>
+						<div className="MoviePosterDetails">
+							<h5 className="ListPosterTitle" key={list.title}>
+								{list.title}
+							</h5>
+							<h6 className="MoviePosterStars" key={list.author}>
+								{list.author}
+							</h6>
+						</div>
+						{/* </div> */}
 					</div>
-					<div className="MoviePosterDetails">
-						<h5 className="ListPosterTitle" key={list.title}>
-							{list.title}
-						</h5>
-						<h6 className="MoviePosterStars" key={list.author}>
-							{list.author}
-						</h6>
-					</div>
-					{/* </div> */}
-				</div>
+				</Link>
 			))}
 		</>
 	);
