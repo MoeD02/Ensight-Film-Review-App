@@ -5,6 +5,8 @@ import {
 	createMovieList,
 	getUserMovieLists,
 } from "../../../APIcalls";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 const ListsFocus = ({ currentUserProfile, isMyPage }) => {
 	const prevUserIdRef = useRef();
@@ -16,6 +18,7 @@ const ListsFocus = ({ currentUserProfile, isMyPage }) => {
 	const [description, setDescription] = useState("");
 	const [listData, setListData] = useState([]);
 	console.log("IS THS MY PAGE: ", isMyPage);
+	
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -108,10 +111,12 @@ const ListsFocus = ({ currentUserProfile, isMyPage }) => {
 						</h6>
 					))}
 				</div>
-				<div className="movie-info">
-					<div className="movie-user">{listData[index].author}</div>
-					<div className="movie-title">{listData[index].title}</div>
-				</div>
+				<Link to={`/ListLanding/${listData[index].id}`}>
+					<div className="movie-info">
+						<div className="movie-user">{listData[index].author}</div>
+						<div className="movie-title">{listData[index].title}</div>
+					</div>
+				</Link>
 			</div>
 		);
 	};

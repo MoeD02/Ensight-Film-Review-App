@@ -405,10 +405,11 @@ def create_movie_list(request):
 @api_view(["POST"])
 def get_user_movie_lists(request):
     filter = request.data.get("filter")
-    author_id = request.data["id"]
-    print("THIS IS THE FILTER AND THIS IS THE ID: ", filter, author_id)
+
+    # print("THIS IS THE FILTER AND THIS IS THE ID: ", filter, author_id)
 
     if filter == "id":
+        author_id = request.data["id"]
         movie_list = MovieList.objects.filter(author__id=author_id)
     else:
         index = request.data["amount"]
@@ -428,6 +429,30 @@ def search_user_movie_lists(request):
     )
     serializer = MovieListSerializer(movie_list, many=True)
     return JsonResponse(serializer.data, safe=False)
+
+
+from django.http import JsonResponse
+
+
+@api_view(["POST"])
+def get_list_details(request):
+    id = request.data.get("id")
+    if id:
+        movie_list = get_object_or_404(MovieList, id=id)
+        serializer = MovieListSerializer(movie_list, many=False)
+        return Response(serializer.data)
+
+
+"""
+@api_view(["POST"])
+def get_movie_details(request):
+    id = request.data.get("id")
+    if id:
+        movie = get_object_or_404(Movie, id=id)
+        serializer = MovieSerializer(movie, many=False)
+        return Response(serializer.data)
+
+"""
 
 
 def home(request):

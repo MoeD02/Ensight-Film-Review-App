@@ -35,6 +35,11 @@ urlpatterns = [
     path("update_user_profile/", update_user_profile, name="update_user_profile"),
     path("add_to_watchlist/", add_to_watchlist, name="add_to_watchlist"),
     path("remove_from_watchlist/", remove_from_watchlist, name="remove_from_watchlist"),
+    path(
+        "get_list_details/",
+        get_list_details,
+        name="get_list_details",
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

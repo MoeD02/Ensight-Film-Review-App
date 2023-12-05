@@ -6,6 +6,8 @@ import {
 	addToWatchlist,
 	removeFromWatchlist
 } from "../../../APIcalls";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 const Watchlist = ({ currentUserProfile }) => {
 	const [isEditing, setIsEditing] = useState(true);
@@ -85,13 +87,15 @@ const Watchlist = ({ currentUserProfile }) => {
 			<div className={isEditing ? "ListView" : "ListEdit"}>
 				{isEditing ? (
 					<div className="GridContainer GridWatchlist">
-						{watchList.map((movie) => (
-							<h3 key={movie.id} className="MovieWatchList">
-								<img
-									src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
-									alt={movie.title}
-								/>
-							</h3>
+						{watchList.map((movie,index) => (
+							<Link to={`/MovieLanding/${movie.id}`} key={index}>
+								<h3 key={movie.id} className="MovieWatchList">
+									<img
+										src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
+										alt={movie.title}
+									/>
+								</h3>
+							</Link>
 						))}
 						<button
 							className="MovieWatchlist AddMovie"

@@ -43,7 +43,7 @@ function App() {
 				<Route path="/About" element={<About />} />
 				{/* <Route path="../pages/Profile" element={<Settings />} /> */}
 				<Route path="/MovieLanding/:id" element={<MovieLanding />} />
-				<Route path="/ListLanding" element={<ListLanding />} />{" "}
+				<Route path="/ListLanding/:id" element={<ListLanding />} />{" "}
 				{/* Remove this later */}
 				<Route path="/LoginPage" element={<LoginPage />} />
 			</Routes>

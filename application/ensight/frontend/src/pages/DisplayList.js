@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/pages/DisplayList.css";
 import { getUserMovieLists } from "../APIcalls";
+import { Link } from "react-router-dom";
+
 function DisplayList() {
 	const [listData, setListData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -74,21 +76,25 @@ function DisplayList() {
 						selectedButton * numberOfListsPerButton
 					)
 					.map((list, index) => (
-						<div className="ListOverlap" key={list.title}>
-							<div className="PostersGrid">
-								{list.movies.slice(0, 5).map((movie, movieIndex) => (
-									<img
-										key={movie.id}
-										src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
-										className={`ListMoviePoster ListMovie${movieIndex + 1}`}
-									/>
-								))}
+						<Link to={`/ListLanding/${list.id}`} key={list.title}>
+							{/* Wrap the contents in a Link component */}
+							<div className="ListOverlap">
+								<div className="PostersGrid">
+									{list.movies.slice(0, 5).map((movie, movieIndex) => (
+										<img
+											key={movie.id}
+											src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
+											className={`ListMoviePoster ListMovie${movieIndex + 1}`}
+											alt={`Movie Poster ${movieIndex + 1}`}
+										/>
+									))}
+								</div>
+								<div className="movie-info">
+									<div className="movie-user">{list.author}</div>
+									<div className="movie-title">{list.title}</div>
+								</div>
 							</div>
-							<div className="movie-info">
-								<div className="movie-user">{list.author}</div>
-								<div className="movie-title">{list.title}</div>
-							</div>
-						</div>
+						</Link>
 					))}
 			</div>
 			<div className="DisplayButtonPlaceWrapper">

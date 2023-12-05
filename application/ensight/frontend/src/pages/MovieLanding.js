@@ -1,4 +1,3 @@
-// MovieLanding.js
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "../assets/styles/pages/MovieLanding.css";
@@ -9,7 +8,12 @@ import TopCast from "../components/MoviePage/TopCast";
 import Review from "../components/MoviePage/Review";
 import ReviewPopup from "../components/ReviewPopUp";
 import RatingPopup from "../components/RatingPopUp";
-import { addToFavorites, getMovieDetails } from "../APIcalls";
+import {
+	addToWatchlist,
+	removeFromWatchlist,
+	getMovieDetails,
+	addToFavorites,
+} from "../APIcalls";
 
 const MovieLanding = () => {
 	const [movieDetails, setMovieDetails] = useState(null);
@@ -20,9 +24,6 @@ const MovieLanding = () => {
 		const token = localStorage.getItem("Authorization");
 		if (token) {
 			setAuthToken(token);
-			console.log("has auth");
-		} else {
-			console.log("no auth");
 		}
 	}, []);
 
@@ -67,16 +68,27 @@ const MovieLanding = () => {
 		};
 	}, [isVideoVisible]);
 
-	const toggleWatchlist = () => {
-		if (!onWatchlist) {
-			setOnWatchlist(true);
-			setHoverDisabled(true);
+	const toggleWatchlist = async () => {
+		try {
+			if (!onWatchlist) {
+				await addToWatchlist(id, authToken);
+			} else {
+				await removeFromWatchlist(id, authToken);
+			}
+
+			// Toggle the watchlist state
+			setOnWatchlist(!onWatchlist);
+			setHoverDisabled(!onWatchlist);
+		} catch (error) {
+			console.error("Failed to update watchlist", error);
 		}
 	};
+
 
 	const toggleVideoVisibility = () => {
 		setVideoVisible(!isVideoVisible);
 	};
+
 	const Add_to_favorites = async () => {
 		try {
 			const data = await addToFavorites(id, authToken);
@@ -87,12 +99,12 @@ const MovieLanding = () => {
 			console.error("Failed to add movie to favorites", error);
 		}
 	};
+
 	return (
 		<div className="MovieLandingPageStyle">
 			{movieDetails ? (
 				<>
 					<div className="MovieHorizontalPoster">
-						{/* Inline styles using the style attribute */}
 						<div
 							style={{
 								position: "absolute",

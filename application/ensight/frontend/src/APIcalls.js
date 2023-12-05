@@ -205,6 +205,36 @@ export const searchUserMovieLists = async (searchTerm) => {
 		return null;
 	}
 };
+export const getListDetails = async (id) => {
+	try {
+		const data = {
+			id:id
+		};
+
+		const response = await fetch(`${apiUrl}/get_list_details/`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		});
+
+		if (!response.ok) {
+			// Handle error response, you can throw an error or handle it as needed
+			throw new Error(`Error: ${response.status} - ${response.statusText}`);
+		}
+
+		const listData = await response.json();
+		// Process the fetched list data as needed
+
+		return listData; // Return data if needed in the calling component
+	} catch (error) {
+		console.error("Error:", error.message);
+		// Handle error, update UI, show error messages, etc.
+		throw error; // Throw the error for handling in the calling component
+	}
+};
+
 
 export const createMovieList = async (info) => {
 	const response = await fetch(`${apiUrl}/create_movie_list/`, {

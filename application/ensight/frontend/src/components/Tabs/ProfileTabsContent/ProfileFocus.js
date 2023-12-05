@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../../../assets/styles/components/ProfileTabs.css";
 import { updateUserProfile,fetchMoviesByIds } from "../../../APIcalls";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 	const [privacyOption, setPrivacyOption] = useState("public");
@@ -117,13 +118,16 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 							<div className="GridContainer GridProfile">
 								{/* Change movie poster text to the movie poster image from the backend */}
 								{/* replace with all of user's favorite movies */}
-								{favoriteMovies.map((movie) => (
+								{favoriteMovies.map((movie,index) => (
+									<Link to={`/MovieLanding/${movie.id}`}key ={index}>
+				
 									<h3 key={movie.id} className="MovieProfile">
 										<img
 											src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
 											alt={movie.title}
 										/>
 									</h3>
+									</Link>
 								))}
 							</div>
 						</div>
