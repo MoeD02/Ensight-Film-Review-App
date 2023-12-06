@@ -26,8 +26,6 @@ urlpatterns = [
     path("accounts/current_user", CurrentUserAPI.as_view()),
     path("accounts/login", LoginAPI.as_view()),
     path("accounts/logout", knox_views.LogoutView.as_view(), name="knox_logout"),
-    path("remove_from_favorites/", remove_from_favorites, name="remove_from_favorites"),
-    path("add_to_favorites/", add_to_favorites, name="add_to_favorites"),
     path(
         "get_user_profile_by_id/", get_user_profile_by_id, name="get_user_profile_by_id"
     ),
@@ -40,6 +38,10 @@ urlpatterns = [
         get_list_details,
         name="get_list_details",
     ),
+    path('remove_from_favorites/', remove_from_favorites, name='remove_from_favorites'),
+    path('add_to_favorites/', add_to_favorites, name='add_to_favorites'),
+    path('user_likes_movie', user_likes_movie)
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

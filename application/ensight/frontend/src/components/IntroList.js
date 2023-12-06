@@ -25,19 +25,23 @@ const IntroList = () => {
 		const interval = setInterval(slide, 50);
 		return () => clearInterval(interval);
 	}, []);
-
-	return (
-		<div className="list-slider">
-			<div
-				className="list-slides"
-				style={{ transform: `translateX(${offset}%)` }}>
-				{/* Double the array for seamless loop effect */}
-				{listItems.concat(listItems).map((src, index) => (
-					<img key={src} className="list-slide" src={src} alt="" />
-				))}
-			</div>
-		</div>
-	);
-};
-
+    return (
+        <div className="list-slider">
+            <div 
+                className="list-slides" 
+                // style={{ transform: `translateX(${offset}%)` }}
+            >
+                {/* Double the array for seamless loop effect */}
+                {listItems.concat(listItems).map((src, index) => (
+                    <img
+                        key={index}
+                        className="list-slide"
+                        src={src}
+                        alt=""
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
 export default IntroList;

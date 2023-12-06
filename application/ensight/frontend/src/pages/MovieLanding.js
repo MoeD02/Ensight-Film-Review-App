@@ -8,17 +8,33 @@ import TopCast from "../components/MoviePage/TopCast";
 import Review from "../components/MoviePage/Review";
 import ReviewPopup from "../components/ReviewPopUp";
 import RatingPopup from "../components/RatingPopUp";
-import {
-	addToWatchlist,
-	removeFromWatchlist,
-	getMovieDetails,
-	addToFavorites,
-} from "../APIcalls";
+import { addToFavorites, removeFromFavorites, getMovieDetails, getCurrentUser, isLikedByUser, addToWatchlist,
+	removeFromWatchlist, } from "../APIcalls";
+const initAuth = () => {
+    let token = localStorage.getItem('Authorization');
+    if(token) {
+        return token;
+    }
+    else {
+        return null
+    }
+}
+
 
 const MovieLanding = () => {
-	const [movieDetails, setMovieDetails] = useState(null);
-	const { id } = useParams();
-	const [authToken, setAuthToken] = useState("");
+    const [movieDetails, setMovieDetails] = useState(null);
+    const { id } = useParams();
+    const [authToken, setAuthToken] = useState(initAuth);
+    const [userID, setUserID] = useState(getCurrentUser(authToken).id);
+    const [liked, setLiked] = useState(false); 
+
+    
+    useEffect(() => {
+        const token = localStorage.getItem('Authorization');
+        if(token) {
+            setAuthToken(token);
+        }
+    }, []);
 
 	useEffect(() => {
 		const token = localStorage.getItem("Authorization");

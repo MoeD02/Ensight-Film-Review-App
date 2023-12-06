@@ -34,28 +34,23 @@ function PosterCarousel() {
 		}
 	}, [currentIndex, extendedPosters.length]);
 
-	return (
-		<div className="carousel">
-			<div
-				className="posters"
-				style={{
-					transform: `translateX(-${currentIndex * 100}%)`,
-					transition:
-						currentIndex === 0 || currentIndex === extendedPosters.length - 1
-							? "none"
-							: "",
-				}}>
-				{extendedPosters.map((poster, index) => (
-					<img
-						key={poster}
-						src={poster}
-						alt={`Poster ${index}`}
-						style={{ width: "100%", height: "100%", objectFit: "cover" }}
-					/>
-				))}
-			</div>
-		</div>
-	);
+  return (
+    <div className="carousel">
+      <div
+        className="posters"
+        style={{ transform: `translateX(-${currentIndex * 100}%)`, transition: currentIndex === 0 || currentIndex === extendedPosters.length - 1 ? 'none' : '' }}
+      >
+        {extendedPosters.map((poster, index) => (
+          <img
+            key={index}
+            src={poster}
+            alt={`Poster ${index}`}
+            style={{ width: "100%", height: "100%", objectFit: 'cover' }}
+            />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default PosterCarousel;

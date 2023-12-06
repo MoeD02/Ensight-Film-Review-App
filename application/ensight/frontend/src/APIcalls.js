@@ -252,49 +252,7 @@ export const createMovieList = async (info) => {
 		return null;
 	}
 };
-export const addToFavorites = async (movieId, authToken) => {
-	const data = {
-		movie_id: movieId,
-	};
 
-	const response = await fetch(`${apiUrl}/add_to_favorites/`, {
-		method: "POST",
-		headers: {
-			Authorization: authToken,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(data),
-	});
-
-	if (response.ok) {
-		return await response.json();
-	} else {
-		console.error("Failed to add movie to favorites");
-		return null;
-	}
-};
-
-export const removeFromFavorites = async (movieId, authToken) => {
-	const data = {
-		movie_id: movieId,
-	};
-
-	const response = await fetch(`${apiUrl}/remove_from_favorites/`, {
-		method: "POST",
-		headers: {
-			Authorization: authToken,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(data),
-	});
-
-	if (response.ok) {
-		return await response.json();
-	} else {
-		console.error("Failed to remove movie from favorites");
-		return null;
-	}
-};
 export const addToWatchlist = async (movieId, authToken) => {
 	const data = {
 		movie_id: movieId,
@@ -370,18 +328,88 @@ export const updateUserProfile = async (profileUpdateInfo,authToken) => {
 	}
 };
 
-export const getCurrentUser = async (authToken) => {
-	const response = await fetch(`${apiUrl}/accounts/current_user`, {
-		method: "GET",
-		headers: {
-			Authorization: authToken,
-			"Content-Type": "application/json",
-		},
-	});
-	if (response.ok) {
-		return await response.json();
-	} else {
-		console.error("Failed to fetch current logged in user");
-		return null;
-	}
-};
+
+  export const addToFavorites = async (movieId, authToken) => {
+    const data = {
+      movie_id: movieId,
+    };
+  
+    const response = await fetch(`${apiUrl}/add_to_favorites/`, {
+      method: 'POST',
+      headers: {
+        'Authorization': authToken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Failed to add movie to favorites');
+      return null;
+    }
+  };
+  
+  export const removeFromFavorites = async (movieId, authToken) => {
+    const data = {
+      
+      movie_id: movieId,
+    };
+  
+    const response = await fetch(`${apiUrl}/remove_from_favorites/`, {
+      method: 'POST',
+      headers: {
+        'Authorization': authToken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Failed to remove movie from favorites');
+      return null;
+    }
+  };
+  export const getCurrentUser = async(authToken)=>{
+    const response = await fetch(`${apiUrl}/accounts/current_user`,{
+    method: 'GET',
+    headers: {
+      'Authorization': authToken,
+      'Content-Type': 'application/json',
+    },
+    
+  }
+  );
+  if (response.ok) {
+    return await response.json();
+  } else {
+    console.error('Failed to fetch current logged in user');
+    return null;
+  }
+  
+  }
+
+export const isLikedByUser = async (userID, movieID) => {
+    let data = {
+        'user_id': userID,
+        'movie_id': movieID,
+    }
+    console.log(data)
+    const response = await fetch(`${apiUrl}/user_likes_movie`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    });
+    if(response.ok) {
+        return response.json();
+    }
+    else {
+        console.error(response);
+        return null;
+    }
+}

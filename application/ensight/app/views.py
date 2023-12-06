@@ -1,5 +1,7 @@
+import json
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from urllib3 import Retry
 
 from .serializers import *
 from .forms import SearchForm
@@ -24,10 +26,9 @@ from .serializers import *
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from django.db.models import Q
 from django.contrib.auth import get_user_model
-
 User = get_user_model()
 
 
@@ -98,6 +99,7 @@ def update_user_profile(request):
 
 
 @api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
 def add_to_favorites(request):
     if request.method == "POST":
         movie_id = request.data.get("movie_id")
@@ -129,8 +131,8 @@ def add_to_favorites(request):
             {"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST
         )
 
-
-@api_view(["POST"])
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
 def remove_from_favorites(request):
     if request.method == "POST":
         movie_id = request.data.get("movie_id")
@@ -442,6 +444,11 @@ def get_list_details(request):
         serializer = MovieListSerializer(movie_list, many=False)
         return Response(serializer.data)
 
+@api_view(['POST'])
+def user_likes_movie(request):
+    uid = request.data.get('user_id')
+    mid = request.data.get('movie_id')
+    return JsonResponse({'data': str(Profile.objects.get(pk=uid).favorites.filter(pk=mid).exists()),})
 
 """
 @api_view(["POST"])
