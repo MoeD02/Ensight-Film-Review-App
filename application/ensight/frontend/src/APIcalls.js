@@ -474,3 +474,68 @@ export const fetchReviewsForMovie = async (movieId) => {
 		return null;
 	}
 };
+export const followUser = async (userToFollowId, authToken) => {
+	const data = {
+		user_to_follow_id: userToFollowId,
+	};
+
+	const response = await fetch(`${apiUrl}/follow_user/`, {
+		method: "POST",
+		headers: {
+			Authorization: authToken,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (response.ok) {
+		return await response.json();
+	} else {
+		console.error("Failed to follow user");
+		return null;
+	}
+};
+
+export const getUserStats = async (user_id, authToken) => {
+	const data = {
+		user_id: user_id,
+	};
+
+	const response = await fetch(`${apiUrl}/get_user_stats/`, {
+		method: "POST",
+		headers: {
+			// Authorization: authToken,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (response.ok) {
+		return await response.json();
+	} else {
+		console.error("Failed to fetch user stats");
+		return null;
+	}
+};
+export const isFollowedByUser = async (followerId, followingId, authToken) => {
+	const data = {
+		follower_id: followerId,
+		following_id: followingId,
+	};
+
+	const response = await fetch(`${apiUrl}/user_follows_user/`, {
+		method: "POST",
+		headers: {
+			Authorization: authToken,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (response.ok) {
+		return await response.json();
+	} else {
+		console.error("Failed to check user follows user");
+		return null;
+	}
+};

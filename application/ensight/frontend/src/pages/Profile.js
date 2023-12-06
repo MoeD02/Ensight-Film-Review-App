@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProfileTabs from "../components/Tabs/ProfileTabs";
 import "../assets/styles/pages/Profile.css";
-import { getCurrentUser, getUserProfileById } from "../APIcalls";
+import { getCurrentUser, getUserProfileById, getUserStats } from "../APIcalls";
 
 // only look at profile, watchlist, and lists
 const Profile = () => {
@@ -12,6 +12,8 @@ const Profile = () => {
 	const [currentUser, setCurrentUser] = useState("");
 	const [isMyPage, setIsMyPage] = useState(false);
 	const [currentUserProfile, setCurrentUserProfile] = useState("");
+	const [userStats, setUserStats] = useState(null);
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const token = localStorage.getItem("Authorization");
@@ -45,6 +47,12 @@ const Profile = () => {
 				console.log("no auth");
 			}
 		};
+		const fetchUserStats = async () => {
+			const stats = await getUserStats(id);
+			setUserStats(stats);
+		};
+
+		fetchUserStats();
 
 		fetchData();
 	}, [id]); // Include id as a dependency
@@ -64,17 +72,23 @@ const Profile = () => {
 				<div className="UserExtra">
 					<div className="UserExtraInfo">
 						{/* Replace # by the number of lists they made */}
-						<h1 className="UserTextInfo">#</h1>
+						<h1 className="UserTextInfo">
+							{userStats ? userStats.num_movie_lists : 0}
+						</h1>
 						<h2 className="UserTextInfo">Lists</h2>
 					</div>
 					<div className="UserExtraInfo">
 						{/* Replace # by the number of user they follow */}
-						<h1 className="UserTextInfo">#</h1>
+						<h1 className="UserTextInfo">
+							{userStats ? userStats.num_following : 0}
+						</h1>
 						<h2 className="UserTextInfo">Following</h2>
 					</div>
 					<div className="UserExtraInfo UserExtraR">
 						{/* Replace # by the number of user follow them */}
-						<h1 className="UserTextInfo">#</h1>
+						<h1 className="UserTextInfo">
+							{userStats ? userStats.num_followers : 0}
+						</h1>
 						<h2 className="UserTextInfo">Followers</h2>
 					</div>
 				</div>

@@ -1,43 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/pages/Browse.css";
-import { searchUsers, getUsers } from "../../APIcalls.js";
+import {
+	searchUsers,
+	getUsers,
+	getUserStats,
+	initUser,
+	isFollowedByUser,
+	followUser,
+} from "../../APIcalls.js";
 import FollowButton from "../FollowButton.js";
 
 const UserResults = ({ searchTerm }) => {
 	const [userData, setUserData] = useState([]);
+	const [currentUser, setCurrentUser] = useState(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
+			let currentUserInfo = await initUser();
+			if (!!currentUserInfo) {
+				setCurrentUser(currentUserInfo);
+			}
+
+			let data;
 			if (searchTerm != null) {
-				const data = await searchUsers(searchTerm);
-				if (data) {
-					setUserData(data);
-				} else {
-					console.error("Failed to fetch user data");
-				}
+				data = await searchUsers(searchTerm);
 			} else {
-				const data = await getUsers("highest_followers", 5);
-				if (data) {
-					setUserData(data);
-				} else {
-					console.error("Failed to fetch user data");
-				}
+				data = await getUsers("highest_followers", 5);
+			}
+
+			if (data) {
+				const updatedData = await Promise.all(
+					data.map(async (user) => {
+						const stats = await getUserStats(user.id);
+						const followInfo = await isFollowedByUser(
+							currentUserInfo.id,
+							user.id,
+							currentUserInfo.token
+						);
+						const followed = followInfo ? followInfo.data : null; // Check if followInfo is not null
+
+						return { ...user, stats, followed };
+					})
+				);
+				setUserData(updatedData);
+			} else {
+				console.error("Failed to fetch user data");
 			}
 		};
 
 		fetchData();
 	}, [searchTerm]);
+	 const follow_user = async (userToFollowId) => {
+			// You can add error handling here
+			const result = await followUser(userToFollowId, currentUser.token);
+			if (result) {
+				// Update the state or perform any other necessary actions
+				console.log(`Successfully followed user ${userToFollowId}`);
+			} else {
+				console.error(`Failed to follow user ${userToFollowId}`);
+			}
+		};
 
 	return (
 		<>
 			{userData.map((user, index) => (
-				<Link
-					to={`/Profile/${user.id}/profile`}
-					key={index}
-					className="browse-link">
-					<div className="ResultContent Results">
-						<div key={index} className="UserResults">
+				<div className="ResultContent Results" key={index}>
+					<div className="UserResults">
+						<Link
+							to={`/Profile/${user.id}/profile`}
+							className="browse-link"
+							key={index}>
 							<img
 								className="UserPicResults"
 								src={"http://localhost:8000" + user.avatar}
@@ -49,23 +82,29 @@ const UserResults = ({ searchTerm }) => {
 							</div>
 							<div className="ResultExtra">
 								<div className="ResultExtraInfo">
-									<h3>{user.num_lists}</h3>
+									<h3>{user.stats.num_movie_lists}</h3>
 									<h3 className="ResultStatement">lists</h3>
 								</div>
 								<div className="ResultExtraInfo">
-									<h3>{user.following}</h3>
+									<h3>{user.stats.num_following}</h3>
 									<h3 className="ResultStatement">following</h3>
 								</div>
 								<div className="ResultExtraInfo">
-									<h3>{user.followers}</h3>
+									<h3>{user.stats.num_followers}</h3>
 									<h3 className="ResultStatement">followers</h3>
 								</div>
 							</div>
-						</div>
-						{/* You may want to wrap the FollowButton in a Link as well if needed */}
-						<FollowButton />
+						</Link>
 					</div>
-				</Link>
+					{currentUser && (
+						<FollowButton
+							userToFollowId={user.id}
+							
+							followUser={follow_user} // Use the individual user's followed state
+							currentUser={currentUser}
+						/>
+					)}
+				</div>
 			))}
 		</>
 	);

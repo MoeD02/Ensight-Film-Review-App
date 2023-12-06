@@ -755,6 +755,39 @@ def get_user_movie_lists(request):
 
 
 @api_view(["POST"])
+# @permission_classes([permissions.IsAuthenticated])
+def get_user_stats(request):
+    if request.method == "POST":
+        user_id = request.data.get("user_id")
+
+        # Check if the user_id is provided
+        if not user_id:
+            return JsonResponse(
+                {"error": "Incomplete data. Please provide user_id."},
+                status=400,
+            )
+
+        user_profile = get_object_or_404(Profile, user_id=user_id)
+
+        # Get the number of movie lists owned by the user
+        num_movie_lists = MovieList.objects.filter(author=user_profile.user).count()
+        num_movies_liked = user_profile.favorites.count()
+        num_following = user_profile.following.count()
+        num_followers = user_profile.followers.count()
+
+        return JsonResponse(
+            {
+                "num_movie_lists": num_movie_lists,
+                "num_movies_liked": num_movies_liked,
+                "num_following": num_following,
+                "num_followers": num_followers,
+            }
+        )
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+
+
+@api_view(["POST"])
 def search_user_movie_lists(request):
     search_query = request.data.get("content")
     movie_list = MovieList.objects.filter(
@@ -785,6 +818,73 @@ def user_likes_movie(request):
             "data": str(Profile.objects.get(pk=uid).favorites.filter(pk=mid).exists()),
         }
     )
+
+
+@api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
+def user_follows_user(request):
+    follower_id = request.data.get("follower_id")
+    following_id = request.data.get("following_id")
+
+    # Check if the follower_id and following_id are provided
+    if not follower_id or not following_id:
+        return JsonResponse(
+            {
+                "error": "Incomplete data. Please provide both follower_id and following_id."
+            },
+            status=400,
+        )
+
+    # Check if the specified follower exists
+    follower_profile = get_object_or_404(Profile, pk=follower_id)
+
+    # Check if the specified following user exists
+    following_profile = get_object_or_404(Profile, pk=following_id)
+
+    # Check if the specified follower is following the specified following user
+    is_following = follower_profile.following.filter(pk=following_id).exists()
+
+    # Return the result as a JSON response
+    return JsonResponse({"is_following": is_following})
+
+
+@api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
+def follow_user(request):
+    if request.method == "POST":
+        user_to_follow_id = request.data.get("user_to_follow_id")
+
+        user_profile = request.user.profile
+
+        # Check if the user_to_follow_id is provided
+        if not user_to_follow_id:
+            return Response(
+                {"error": "Incomplete data. Please provide user_to_follow_id."},
+                status=400,
+            )
+
+        # Check if the specified user exists
+        try:
+            user_to_follow = Profile.objects.get(pk=user_to_follow_id)
+        except Profile.DoesNotExist:
+            return Response({"error": "User to follow not found."}, status=404)
+
+        # Check if the user is already following the specified user
+        if user_profile.following.filter(pk=user_to_follow_id).exists():
+            return Response(
+                {"message": "User is already following this user"}, status=200
+            )
+
+        # Add the specified user to the user's following list
+        user_profile.following.add(user_to_follow)
+        user_to_follow.followers.add(user_profile)
+        user_profile.save()
+
+        return Response(
+            {"message": "User is now following the specified user"}, status=200
+        )
+    else:
+        return Response({"error": "Invalid request method"}, status=400)
 
 
 """

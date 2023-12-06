@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/pages/DisplayList.css";
-import { getUserMovieLists } from "../APIcalls";
-import { Link } from "react-router-dom";
+import { getUserMovieLists, initUser } from "../APIcalls";
+import { Link,useNavigate } from "react-router-dom";
 
 function DisplayList() {
 	const [listData, setListData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [selectedButton, setSelectedButton] = useState(1);
+	const [user, setUser] = useState(null);
+	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchData = async () => {
 			const filter = "ALL"; // Set your desired filter
@@ -24,6 +26,16 @@ function DisplayList() {
 
 		fetchData();
 	}, []);
+	useEffect(() => {
+		const initPage = async () => {
+			let userInfo = await initUser();
+			if (!!userInfo) {
+				setUser(userInfo);
+			}
+		};
+		initPage();
+	}, []);
+
 
 	if (isLoading) {
 		// Display a loading spinner or message here while data is being fetched
@@ -66,7 +78,10 @@ function DisplayList() {
 				List it, or Miss it <br />
 				Create your own ultimate cine-list now below
 			</h2>
-			<button className="create-list-button custom-button">
+			<button
+				className="create-list-button custom-button"
+				onClick={() => navigate(`/Profile/${user.id}/lists`)}>
+				{" "}
 				Create List +
 			</button>
 			<div className="layered-container list-layered-container">
@@ -76,7 +91,10 @@ function DisplayList() {
 						selectedButton * numberOfListsPerButton
 					)
 					.map((list, index) => (
-						<Link to={`/ListLanding/${list.id}`} key={list.title}>
+						<Link
+							to={`/ListLanding/${list.id}`}
+							key={list.title}
+							className="browse-link">
 							{/* Wrap the contents in a Link component */}
 							<div className="ListOverlap">
 								<div className="PostersGrid">

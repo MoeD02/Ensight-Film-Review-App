@@ -56,17 +56,15 @@ const Browse = () => {
 				{Array(buttonPlacesDisplayData[selectedButton - 1].numberOfUsers)
 					.fill()
 					.map((_, index) => (
-						<Link
-							to={`/Profile/${userData[index].id}/profile`}
-							key={index}
-							className="browse-link">
+						
 							<DisplayUserResults
-								UserNumber={userData[index].user}
+								Username={userData[index].user}
 								UserBio={userData[index].bio}
 								avatar={userData[index].avatar}
+								userId = {userData[index].id}
 								key={index}
 							/>
-						</Link>
+						
 					))}
 			</div>
 			<div className="DisplayButtonPlaceWrapper">

@@ -111,7 +111,7 @@ const ListsFocus = ({ currentUserProfile, isMyPage }) => {
 						</h6>
 					))}
 				</div>
-				<Link to={`/ListLanding/${listData[index].id}`}>
+				<Link to={`/ListLanding/${listData[index].id}`} className="browse-link">
 					<div className="movie-info">
 						<div className="movie-user">{listData[index].author}</div>
 						<div className="movie-title">{listData[index].title}</div>

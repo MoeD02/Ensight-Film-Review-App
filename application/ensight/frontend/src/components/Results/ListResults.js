@@ -32,7 +32,10 @@ const ListResults = ({ searchTerm }) => {
 	return (
 		<>
 			{listData.map((list, index) => (
-				<Link to={`/ListLanding/${list.id}`} key={index}>
+				<Link
+					to={`/ListLanding/${list.id}`}
+					key={index}
+					className="browse-link">
 					<div className="Results" key={index}>
 						{/* <div className="List" key={list.id}> */}
 						<div className="BrowsePostersGrid">

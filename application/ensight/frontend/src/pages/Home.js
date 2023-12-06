@@ -1,14 +1,24 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/pages/Home.css";
 import IntroMovie from "../components/IntroMovie";
 import IntroFeed from "../components/IntroFeed";
 import PosterCarousel from "../components/PosterCarousel";
 import IntroList from "../components/IntroList";
+import { initUser } from "../APIcalls";
+import React, { useEffect, useState } from "react";
 
 function Home() {
 	const navigate = useNavigate();
-
+	const [user, setUser] = useState(null);
+	useEffect(() => {
+		const initPage = async () => {
+			let userInfo = await initUser();
+			if (!!userInfo) {
+				setUser(userInfo);
+			}
+		};
+		initPage();
+	}, []);
 	return (
 		<div className="home-container">
 			<PosterCarousel />
@@ -63,7 +73,7 @@ function Home() {
 					</p>
 					<button
 						className="view-list-btn"
-						onClick={() => navigate("/DisplayList")}>
+						onClick={() => navigate(`/Profile/${user.id}/lists`)}>
 						{" "}
 						Create Lists
 					</button>
