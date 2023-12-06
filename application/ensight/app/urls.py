@@ -6,27 +6,31 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('search/', search, name='search'),
-    path('fetch_movies/', fetch_movies, name='fetch_movies'),
-    path('get_movie_details/', get_movie_details, name='get_movie_details'),
-    path('get_user_movie_lists/', get_user_movie_lists, name='get_user_movie_lists'),
-    path('create_movie_list/', create_movie_list, name='create_movie_list'),
-    path('search_movies/', search_movies, name='search_movies'),
-    path('search_users/', search_users, name='search_users'),
-    path('header_search/', header_search, name='header_search'),
-    path('get_users/', get_users, name='get_users'),
-    path('search_user_movie_lists/', search_user_movie_lists, name='search_user_movie_lists'),
-    path('', include('knox.urls')),
-    path('accounts/register', RegisterAPI.as_view()),
-    path('accounts/current_user', CurrentUserAPI.as_view()),
-    path('accounts/login', LoginAPI.as_view()),
-    path('accounts/logout', knox_views.LogoutView.as_view(), name='knox_logout'),
-    path('remove_from_favorites/', remove_from_favorites, name='remove_from_favorites'),
-    path('add_to_favorites/', add_to_favorites, name='add_to_favorites'),
-    path('user_likes_movie', user_likes_movie)
-
+    path("", home, name="home"),
+    path("search/", search, name="search"),
+    path("fetch_movies/", fetch_movies, name="fetch_movies"),
+    path("get_movie_details/", get_movie_details, name="get_movie_details"),
+    path("get_user_movie_lists/", get_user_movie_lists, name="get_user_movie_lists"),
+    path("create_movie_list/", create_movie_list, name="create_movie_list"),
+    path("search_movies/", search_movies, name="search_movies"),
+    path("search_users/", search_users, name="search_users"),
+    path("header_search/", header_search, name="header_search"),
+    path("get_users/", get_users, name="get_users"),
+    path(
+        "search_user_movie_lists/",
+        search_user_movie_lists,
+        name="search_user_movie_lists",
+    ),
+    path("", include("knox.urls")),
+    path("accounts/register", RegisterAPI.as_view()),
+    path("accounts/current_user", CurrentUserAPI.as_view()),
+    path("accounts/login", LoginAPI.as_view()),
+    path("accounts/logout", knox_views.LogoutView.as_view(), name="knox_logout"),
+    path("remove_from_favorites/", remove_from_favorites, name="remove_from_favorites"),
+    path("add_to_favorites/", add_to_favorites, name="add_to_favorites"),
+    path("user_likes_movie", user_likes_movie),
+    path("follow_user", follow_user, name="follow_user"),
+    path("unfollow_user", unfollow_user, name="unfollow_user"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

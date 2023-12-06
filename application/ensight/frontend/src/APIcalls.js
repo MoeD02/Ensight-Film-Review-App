@@ -1,5 +1,26 @@
 const apiUrl = 'http://127.0.0.1:8000';
 
+export const initUser = async () => {
+    let token = localStorage.getItem('Authorization');
+    if(token) {
+        const user = await getCurrentUser(token);
+
+        if(user != null) {
+            return {
+                name: user.username,
+                id: user.id,
+                token: token,
+            }
+        }
+        else {
+            // remove expired token
+            localStorage.removeItem('Authorization');
+        }
+    }
+    return null;
+};
+
+
 export const getUsers = async (filter, amount) => {
   const data = { 
     filter: filter,

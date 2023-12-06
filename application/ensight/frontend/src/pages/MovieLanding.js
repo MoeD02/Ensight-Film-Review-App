@@ -9,27 +9,27 @@ import TopCast from "../components/MoviePage/TopCast";
 import Review from "../components/MoviePage/Review";
 import ReviewPopup from "../components/ReviewPopUp";
 import RatingPopup from "../components/RatingPopUp";
-import { addToFavorites, removeFromFavorites, getMovieDetails, getCurrentUser, isLikedByUser } from "../APIcalls";
+import { addToFavorites, removeFromFavorites, getMovieDetails, isLikedByUser, initUser } from "../APIcalls";
 
-const initUser = async () => {
-    let token = localStorage.getItem('Authorization');
-    if(token) {
-        const user = await getCurrentUser(token);
+// const initUser = async () => {
+//     let token = localStorage.getItem('Authorization');
+//     if(token) {
+//         const user = await getCurrentUser(token);
 
-        if(user != null) {
-            return {
-                name: user.username,
-                id: user.id,
-                token: token,
-            }
-        }
-        else {
-            // remove expired token
-            localStorage.removeItem('Authorization');
-        }
-    }
-    return null;
-}
+//         if(user != null) {
+//             return {
+//                 name: user.username,
+//                 id: user.id,
+//                 token: token,
+//             }
+//         }
+//         else {
+//             // remove expired token
+//             localStorage.removeItem('Authorization');
+//         }
+//     }
+//     return null;
+// };
 
 
 const MovieLanding = () => {
