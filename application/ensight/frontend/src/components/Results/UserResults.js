@@ -14,7 +14,9 @@ import FollowButton from "../FollowButton.js";
 const UserResults = ({ searchTerm }) => {
 	const [userData, setUserData] = useState([]);
 	const [currentUser, setCurrentUser] = useState(null);
-
+	const FollowUser = {
+		borderRadius: "100px",
+	};
 	useEffect(() => {
 		const fetchData = async () => {
 			let currentUserInfo = await initUser();
@@ -51,59 +53,60 @@ const UserResults = ({ searchTerm }) => {
 
 		fetchData();
 	}, [searchTerm]);
-	 const follow_user = async (userToFollowId) => {
-			// You can add error handling here
-			const result = await followUser(userToFollowId, currentUser.token);
-			if (result) {
-				// Update the state or perform any other necessary actions
-				console.log(`Successfully followed user ${userToFollowId}`);
-			} else {
-				console.error(`Failed to follow user ${userToFollowId}`);
-			}
-		};
+	const follow_user = async (userToFollowId) => {
+		// You can add error handling here
+		const result = await followUser(userToFollowId, currentUser.token);
+		if (result) {
+			// Update the state or perform any other necessary actions
+			console.log(`Successfully followed user ${userToFollowId}`);
+		} else {
+			console.error(`Failed to follow user ${userToFollowId}`);
+		}
+	};
 
 	return (
 		<>
 			{userData.map((user, index) => (
 				<div className="ResultContent Results" key={index}>
 					<div className="UserResults">
-						<Link
-							to={`/Profile/${user.id}/profile`}
-							className="browse-link"
-							key={index}>
-							<img
-								className="UserPicResults"
-								src={"http://localhost:8000" + user.avatar}
-							/>
-
-							<div className="MoviePosterDetails">
-								<h5 className="MoviePosterTitle">{user.user}</h5>
-								<h6 className="MoviePosterStars">{user.bio}</h6>
-							</div>
-							<div className="ResultExtra">
-								<div className="ResultExtraInfo">
-									<h3>{user.stats.num_movie_lists}</h3>
-									<h3 className="ResultStatement">lists</h3>
-								</div>
-								<div className="ResultExtraInfo">
-									<h3>{user.stats.num_following}</h3>
-									<h3 className="ResultStatement">following</h3>
-								</div>
-								<div className="ResultExtraInfo">
-									<h3>{user.stats.num_followers}</h3>
-									<h3 className="ResultStatement">followers</h3>
-								</div>
-							</div>
-						</Link>
-					</div>
-					{currentUser && (
-						<FollowButton
-							userToFollowId={user.id}
-							
-							followUser={follow_user} // Use the individual user's followed state
-							currentUser={currentUser}
+						<img
+							className="UserPicResults"
+							src={`http://localhost:8000/${user.avatar}`}
+							alt={`User ${user.user}'s avatar`}
 						/>
-					)}
+
+						<div className="MoviePosterDetails">
+							<Link
+								to={`/Profile/${user.id}/profile`}
+								className="browse-link"
+								key={index}>
+								<h5 className="MoviePosterTitle">{user.user}</h5>
+							</Link>
+							<h6 className="MoviePosterStars">{user.bio}</h6>
+						</div>
+					</div>
+
+					<div className="ResultExtra">
+						<div className="ResultExtraInfo">
+							<h3>{user.stats.num_movie_lists}</h3>
+							<h3 className="ResultStatement">lists</h3>
+						</div>
+						<div className="ResultExtraInfo">
+							<h3>{user.stats.num_following}</h3>
+							<h3 className="ResultStatement">following</h3>
+						</div>
+						<div className="ResultExtraInfo">
+							<h3>{user.stats.num_followers}</h3>
+							<h3 className="ResultStatement">followers</h3>
+						</div>
+						{currentUser && (
+							<FollowButton
+								userToFollowId={user.id}
+								followUser={follow_user} // Use the individual user's followed state
+								currentUser={currentUser}
+							/>
+						)}
+					</div>
 				</div>
 			))}
 		</>

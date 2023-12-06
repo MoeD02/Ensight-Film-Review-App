@@ -8,7 +8,9 @@ import { getUserStats, followUser, initUser } from "../../APIcalls.js";
 const UserResults = ({ Username, UserBio, avatar, userId }) => {
 	const [userStats, setUserStats] = useState(null);
 	const [user, setUser] = useState(null);
-
+	const FollowUser = {
+		borderRadius: "100px",
+	};
 	useEffect(() => {
 		const fetchUserStats = async () => {
 			const stats = await getUserStats(userId);
@@ -48,12 +50,12 @@ const UserResults = ({ Username, UserBio, avatar, userId }) => {
 	return (
 		<div className="ResultContent Results DisplayResults">
 			<div className="UserResults">
+				<img
+					src={"http://localhost:8000" + avatar}
+					className="UserPicResults DisplayUserPic"
+					alt={`${Username}'s Avatar`}
+				/>
 				<Link to={`/Profile/${userId}/profile`} className="browse-link">
-					<img
-						src={"http://localhost:8000" + avatar}
-						className="UserPicResults DisplayUserPic"
-						alt={`${Username}'s Avatar`}
-					/>
 					<div className="MoviePosterDetails">
 						<h5 className="DisplayPosterTitle">{Username}</h5>
 					</div>
@@ -77,6 +79,7 @@ const UserResults = ({ Username, UserBio, avatar, userId }) => {
 				</div>
 				{user && (
 					<FollowButton
+						style={FollowUser}
 						userToFollowId={userId}
 						followUser={follow_user}
 						currentUser={user}
