@@ -261,11 +261,11 @@ def fetch_movies(request):
         movies = movies.filter(release_date__year__in=years)
 
     if filter == "highest":
-        movies = movies.order_by("-rating_average")[:index]
+        movies = movies.order_by("-popularity")[:index]
     elif filter == "ALL":
         movies = movies.all()
     elif filter == "lowest":
-        movies = movies.order_by("rating_average")[:index]
+        movies = movies.order_by("popularity")[:index]
     serializer = MovieSerializer(movies, many=True)
 
     return Response(serializer.data)
@@ -291,9 +291,9 @@ def search_movies(request):
             search_results = search_results.all()
 
         if filter == "highest":
-            search_results = search_results.order_by("-rating_average")
+            search_results = search_results.order_by("-popularity")
         elif filter == "lowest":
-            search_results = search_results.order_by("rating_average")
+            search_results = search_results.order_by("popularity")
         serializer = MovieSerializer(search_results, many=True)
         return Response(serializer.data)
 
@@ -591,11 +591,11 @@ def fetch_movies(request):
         movies = movies.filter(release_date__year__in=years)
 
     if filter == "highest":
-        movies = movies.order_by("-rating_average")[:index]
+        movies = movies.order_by("-popularity")[:index]
     elif filter == "ALL":
         movies = movies.all()
     elif filter == "lowest":
-        movies = movies.order_by("rating_average")[:index]
+        movies = movies.order_by("popularity")[:index]
     serializer = MovieSerializer(movies, many=True)
 
     return Response(serializer.data)
@@ -621,9 +621,9 @@ def search_movies(request):
             search_results = search_results.all()
 
         if filter == "highest":
-            search_results = search_results.order_by("-rating_average")
+            search_results = search_results.order_by("-popularity")
         elif filter == "lowest":
-            search_results = search_results.order_by("rating_average")
+            search_results = search_results.order_by("popularity")
         serializer = MovieSerializer(search_results, many=True)
         return Response(serializer.data)
 
