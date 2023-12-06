@@ -34,7 +34,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/Browse" element={<Browse />} />
 				<Route path="/DisplayList" element={<DisplayList />} />
-				<Route path="/DisplayMovie" element={<DisplayMovie />} />
+				{/* <Route path="/DisplayMovie" element={<DisplayMovie />} /> */}
 				<Route path="/DisplayUser" element={<DisplayUser />} />
 				<Route path="/Feed" element={<Feed />} />
 				{/* <Route path="../pages/Profile" element={<Diary />} /> */}
