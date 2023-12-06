@@ -77,7 +77,7 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-    title = models.CharField(max_length=191)
+    title = models.CharField(max_length=256)
     poster_path = models.CharField(
         max_length=128,
         null=True,
