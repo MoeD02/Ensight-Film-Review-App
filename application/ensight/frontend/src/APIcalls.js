@@ -413,3 +413,64 @@ export const isLikedByUser = async (userID, movieID) => {
         return null;
     }
 }
+export const initUser = async () => {
+	let token = localStorage.getItem("Authorization");
+	if (token) {
+		const user = await getCurrentUser(token);
+
+		if (user != null) {
+			return {
+				name: user.username,
+				id: user.id,
+				token: token,
+			};
+		} else {
+			// remove expired token
+			localStorage.removeItem("Authorization");
+		}
+	}
+	return null;
+};
+export const writeReview = async (movieId, text, rating, authToken) => {
+	const data = {
+		movie_id: movieId,
+		text: text,
+		rating: rating,
+	};
+
+	const response = await fetch(`${apiUrl}/write_review/`, {
+		method: "POST",
+		headers: {
+			Authorization: authToken,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (response.ok) {
+		return await response.json();
+	} else {
+		console.error("Failed to write review");
+		return null;
+	}
+};
+export const fetchReviewsForMovie = async (movieId) => {
+	const data = {
+		movie_id: movieId,
+	};
+
+	const response = await fetch(`${apiUrl}/fetch_reviews_for_movie/`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (response.ok) {
+		return await response.json();
+	} else {
+		console.error("Failed to fetch reviews for the movie");
+		return null;
+	}
+};

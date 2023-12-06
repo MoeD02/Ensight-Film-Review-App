@@ -8,40 +8,51 @@ import TopCast from "../components/MoviePage/TopCast";
 import Review from "../components/MoviePage/Review";
 import ReviewPopup from "../components/ReviewPopUp";
 import RatingPopup from "../components/RatingPopUp";
-import { addToFavorites, removeFromFavorites, getMovieDetails, getCurrentUser, isLikedByUser, addToWatchlist,
-	removeFromWatchlist, } from "../APIcalls";
-const initAuth = () => {
-    let token = localStorage.getItem('Authorization');
-    if(token) {
-        return token;
-    }
-    else {
-        return null
-    }
-}
+import {
+	addToFavorites,
+	removeFromFavorites,
+	getMovieDetails,
+	getCurrentUser,
+	isLikedByUser,
+	addToWatchlist,
+	removeFromWatchlist,
+	initUser,
+	writeReview,
+	fetchReviewsForMovie,
+} from "../APIcalls";
 
 
 const MovieLanding = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const { id } = useParams();
-    const [authToken, setAuthToken] = useState(initAuth);
-    const [userID, setUserID] = useState(getCurrentUser(authToken).id);
-    const [liked, setLiked] = useState(false); 
-
     
-    useEffect(() => {
-        const token = localStorage.getItem('Authorization');
-        if(token) {
-            setAuthToken(token);
-        }
-    }, []);
+    const [liked, setLiked] = useState(false); 
+	const [user, setUser] = useState(null);
+	const [userReview, setUserReview] = useState(null);
+	const [movieReviews, setMovieReviews] = useState(null);
 
-	useEffect(() => {
-		const token = localStorage.getItem("Authorization");
-		if (token) {
-			setAuthToken(token);
-		}
-	}, []);
+		useEffect(() => {
+			const fetchReviews = async () => {
+				const reviewsData = await fetchReviewsForMovie(id);
+				if (reviewsData) {
+					setMovieReviews(reviewsData.reviews);
+				}
+			};
+
+			fetchReviews();
+		}, [id]);
+
+		useEffect(() => {
+			const initPage = async () => {
+				let userInfo = await initUser();
+				if (!!userInfo) {
+					setUser(userInfo);
+					let likeInfo = await isLikedByUser(userInfo.id, id);
+					setLiked(likeInfo.data);
+				}
+			};
+			initPage();
+		}, []);
 
 	useEffect(() => {
 		const fetchMovieDetails = async () => {
@@ -87,9 +98,9 @@ const MovieLanding = () => {
 	const toggleWatchlist = async () => {
 		try {
 			if (!onWatchlist) {
-				await addToWatchlist(id, authToken);
+				await addToWatchlist(id, user.token);
 			} else {
-				await removeFromWatchlist(id, authToken);
+				await removeFromWatchlist(id, user.token);
 			}
 
 			// Toggle the watchlist state
@@ -105,9 +116,9 @@ const MovieLanding = () => {
 		setVideoVisible(!isVideoVisible);
 	};
 
-	const Add_to_favorites = async () => {
+	const add_to_favorites = async () => {
 		try {
-			const data = await addToFavorites(id, authToken);
+			const data = await addToFavorites(id, user.token);
 			if (data) {
 				console.log(data);
 			}
@@ -115,6 +126,24 @@ const MovieLanding = () => {
 			console.error("Failed to add movie to favorites", error);
 		}
 	};
+	const remove_from_favorites = async (movie, auth) => {
+		try {
+			const resp = await removeFromFavorites(movie, auth);
+		} catch (error) {
+			console.error("remove_from_favorites failed");
+		}
+	};
+	 const handleReviewSubmit = async (text) => {
+			try {
+				// Make the API call to write a review
+				const response = await writeReview(id, text, 5,user.token);
+
+				// Update the userReview state with the new review
+				setUserReview(response.data.review);
+			} catch (error) {
+				console.error("Failed to submit review", error);
+			}
+		};
 
 	return (
 		<div className="MovieLandingPageStyle">
@@ -152,7 +181,17 @@ const MovieLanding = () => {
 									onClick={toggleVideoVisibility}>
 									{isVideoVisible ? "Hide Trailer" : "Watch Trailer"}
 								</button>
-								<LikeButton onClick={Add_to_favorites} />
+								{!!user ? (
+									<LikeButton
+										checked={liked}
+										id={id}
+										user={user}
+										Check={add_to_favorites}
+										Uncheck={remove_from_favorites}
+									/>
+								) : (
+									<></>
+								)}
 							</div>
 							<h3 ref={titleRef} className="MovieLandingTitle">
 								{movieDetails.title}
@@ -250,13 +289,20 @@ const MovieLanding = () => {
 						<div className="MovieLandingReview">
 							<div className="LandingReviewTop">
 								<h1>Reviews</h1>
-								<ReviewPopup title={movieDetails.title} />
+								{/* Pass the handleReviewSubmit function to the ReviewPopup */}
+								<ReviewPopup
+									title={movieDetails.title}
+									onSubmit={handleReviewSubmit}
+								/>
 							</div>
 							<div className="MovieTotalReviews">
-								{movieDetails?.reviews &&
-									movieDetails.reviews.map((review, index) => (
-										<Review key={index} type="Review" {...review} />
+								{/* Display the fetched reviews for the movie */}
+								{movieReviews &&
+									movieReviews.map((review, index) => (
+										<Review key={index} type="Review" {...review} review={review} />
 									))}
+								{/* Display the user's review if available */}
+								{userReview && <Review type="Review" {...userReview} />}
 							</div>
 						</div>
 					</div>

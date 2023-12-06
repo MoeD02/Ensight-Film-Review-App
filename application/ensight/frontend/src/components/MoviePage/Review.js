@@ -1,28 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/styles/pages/MovieLanding.css";
 import LikeButton from "../LikeButton";
 import LikedButton from "../MoviePage/LikedButton";
+import { getUserProfileById } from "../../APIcalls"; // Replace with your actual file path
 
-const Review = ({ type, customStyle }) => {
+const Review = ({ type, customStyle, review }) => {
+	const [authorProfile, setAuthorProfile] = useState(null);
+
+	useEffect(() => {
+		const fetchUserProfile = async () => {
+			const userProfile = await getUserProfileById(review.author);
+			if (userProfile) {
+				setAuthorProfile(userProfile);
+			}
+		};
+
+		fetchUserProfile();
+	}, [review.author]);
+
 	return (
 		<div className="ReviewInfo">
-			<span className="ReviewProfilePic" />
+			{/* Check if authorProfile is available before rendering */}
+			{authorProfile && (
+				<img
+					src={"http://localhost:8000" + authorProfile.avatar} // Assuming the API returns the avatar URL
+					alt={`${authorProfile.user}'s Profile`}
+					className="ReviewProfilePic"
+				/>
+			)}
 			<div className="ReviewText">
 				<div className="ReviewUsername">
-					<h3>Username</h3>
+					{/* Display the author's username */}
+					<h3>{authorProfile ? authorProfile.user : "Username"}</h3>
 				</div>
-				<h5 style={customStyle}>
-					The Way of Water dives deep into a mesmerizing aquatic world,
-					breathing new life into the beloved saga. The visuals are
-					breathtaking, transporting us to a dazzling underwater realm. The
-					story keeps you hooked, though some plot elements felt familiar.
-				</h5>
-				<div className="ReviewLikes">
+				<h5 style={customStyle}>{review.text}</h5>
+				{/* <div className="ReviewLikes">
 					<LikeButton />
 					<h6>Like {type}</h6>
 					<LikedButton />
 					<h6># of Likes</h6>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

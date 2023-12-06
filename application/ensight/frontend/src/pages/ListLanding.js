@@ -67,15 +67,16 @@ const ListLanding = () => {
 			<div className="ListMovieGrid">
 				{listData.movies &&
 					listData.movies.map((movie, index) => (
-							<Link to={`/MovieLanding/${movie.id}`} key={index}>
-						<span key={index} className="ListPoster">
+						<Link to={`/MovieLanding/${movie.id}`} key={index}>
+							<span key={index} className="ListPoster">
 								<img
 									className="listPoster"
 									src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
 									alt={`Movie Poster ${index}`}
+									key={index}
 								/>
-						</span>
-							</Link>
+							</span>
+						</Link>
 					))}
 			</div>
 			<div className="MovieLandingReview ListLandingReview">
@@ -84,10 +85,10 @@ const ListLanding = () => {
 					<CommentPopUp title="List Title" />
 				</div>
 				<div className="ListComments">
+					{/* <Review type="Comment" customStyle={customCommentLength} />
 					<Review type="Comment" customStyle={customCommentLength} />
 					<Review type="Comment" customStyle={customCommentLength} />
-					<Review type="Comment" customStyle={customCommentLength} />
-					<Review type="Comment" customStyle={customCommentLength} />
+					<Review type="Comment" customStyle={customCommentLength} /> */}
 				</div>
 			</div>
 		</div>

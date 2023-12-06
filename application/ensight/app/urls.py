@@ -38,10 +38,16 @@ urlpatterns = [
         get_list_details,
         name="get_list_details",
     ),
-    path('remove_from_favorites/', remove_from_favorites, name='remove_from_favorites'),
-    path('add_to_favorites/', add_to_favorites, name='add_to_favorites'),
-    path('user_likes_movie', user_likes_movie)
-
+    path("remove_from_favorites/", remove_from_favorites, name="remove_from_favorites"),
+    path("add_to_favorites/", add_to_favorites, name="add_to_favorites"),
+    path("user_likes_movie", user_likes_movie),
+    path("write_review/", write_review, name="write_review"),
+    path(
+        "fetch_reviews_for_movie/",
+        fetch_reviews_for_movie,
+        name="fetch_reviews_for_movie",
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# fetch_reviews_for_movie

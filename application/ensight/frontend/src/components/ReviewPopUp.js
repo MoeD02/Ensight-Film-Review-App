@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import "../assets/styles/components/ReviewPopUp.css";
 import RedX from "../assets/images/red_x.png";
 
-const ReviewPopup = ({ title }) => {
+const ReviewPopup = ({ title, onSubmit }) => {
 	const [comment, setComment] = useState("");
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -16,8 +16,8 @@ const ReviewPopup = ({ title }) => {
 	};
 
 	const handleReviewSubmit = () => {
-		// Implement logic to handle the submitted review (e.g., send it to a server)
-		console.log("Submitted Review:", { comment });
+		// Call the onSubmit function with the user's review
+		onSubmit(comment);
 		// Close the modal after submitting
 		closeModal();
 	};
