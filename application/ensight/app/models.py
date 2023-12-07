@@ -3,41 +3,6 @@ from django.conf import settings
 from django.db.models.signals import post_save
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="profile",
-        null=True,
-    )
-    favorites = models.ManyToManyField(
-        "Movie",
-        blank=True,
-        related_name="favorited_by",  # Updated related_name
-        default=None,
-    )
-    watchlist = models.ManyToManyField(
-        "Movie",
-        blank=True,
-        related_name="watchlisted_profiles",
-    )
-
-    avatar = models.FileField(default="placeholder.jpg", upload_to="avatars/")
-    bio = models.TextField(blank=True)
-
-
-
-def create_profile(sender, instance, created, **kwargs):
-    if created:
-        user_profile = Profile(user=instance)
-        user_profile.save()
-
-
-
-
-post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)
-
-
 class UserFollowing(models.Model):
     user_id = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -77,7 +42,6 @@ class UserFollowing(models.Model):
 
 class Genre(models.Model):
     name = models.CharField(max_length=64)
-
 
     def __str__(self):
         return self.name
@@ -135,6 +99,37 @@ class Movie(models.Model):
                 name="popularity_idx",
             ),
         ]
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="profile",
+        null=True,
+    )
+    favorites = models.ManyToManyField(
+        Movie,
+        blank=True,
+        related_name="favorited_by",  # Updated related_name
+    )
+    watchlist = models.ManyToManyField(
+        Movie,
+        blank=True,
+        related_name="watchlisted_profiles",
+    )
+
+    avatar = models.FileField(default="placeholder.png", upload_to="")
+    bio = models.TextField(blank=True)
+
+
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
+
+
+post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)
 
 
 class Person(models.Model):
@@ -212,10 +207,8 @@ class Review(models.Model):
         null=True,
     )
 
-
     def __str__(self):
         return self.title
-
 
     class Meta:
         constraints = [

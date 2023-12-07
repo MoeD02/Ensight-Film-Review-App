@@ -8,38 +8,16 @@ import InsightFocus from "./ProfileTabsContent/InsightFocus";
 import TabNavItem from "./TabNav/TabNavItem";
 import TabContent from "./TabNav/TabContent";
 import "../../assets/styles/components/ProfileTabs.css";
-import { getCurrentUser } from "../../APIcalls";
 
-function ProfileTabs({ currentTab, currentUserProfile, id }) {
+
+function ProfileTabs({ currentTab, currentUserProfile, id, isMine }) {
   const [activeTab, setActiveTab] = useState(currentTab);
   const navigate = useNavigate();
-  const [authToken, setAuthToken] = useState("");
-  const [myUser, setMyUser] = useState("");
-  const [isMyPage, setIsMyPage] = useState(false);
+  const [isMyPage, setIsMyPage] = useState(null);
 
-  useEffect(() => {
-		setActiveTab(currentTab);
-		const fetchData = async () => {
-			const token = localStorage.getItem("Authorization");
-			if (token) {
-				setAuthToken(token);
-				try {
-					const userData = await getCurrentUser(token);
-					setMyUser(userData);
-					if (userData && userData.id === currentUserProfile.id) {
-						setIsMyPage(true);
-					}
-				} catch (error) {
-					console.error("Failed to fetch user data", error);
-				}
-			} else {
-				console.log("no auth");
-			}
-		};
-
-		fetchData();
-	}, [currentTab, currentUserProfile.id]);
-
+useEffect(() => {
+    setIsMyPage(isMine);
+}, [isMine]);
 
   const handleTabClick = (newTab) => {
     setActiveTab(newTab);
@@ -63,7 +41,7 @@ function ProfileTabs({ currentTab, currentUserProfile, id }) {
 					setActiveTab={setActiveTab}
 					onClick={() => handleTabClick("diary")}
 				/>
-				{myUser.id === currentUserProfile.id && (
+				{!!isMyPage && (
 					<TabNavItem
 						title="Watchlist"
 						id="watchlist"

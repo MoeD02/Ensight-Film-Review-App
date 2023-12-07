@@ -9,10 +9,13 @@ const Review = ({ type, customStyle, review }) => {
 
 	useEffect(() => {
 		const fetchUserProfile = async () => {
-			const userProfile = await getUserProfileById(review.author);
-			if (userProfile) {
-				setAuthorProfile(userProfile);
-			}
+            if(!!review.author){
+                const userProfile = await getUserProfileById(review.author);
+                if (!!userProfile) {
+                    setAuthorProfile(userProfile);
+                }
+
+            }
 		};
 
 		fetchUserProfile();
@@ -23,15 +26,15 @@ const Review = ({ type, customStyle, review }) => {
 			{/* Check if authorProfile is available before rendering */}
 			{authorProfile && (
 				<img
-					src={"http://localhost:8000" + authorProfile.avatar} // Assuming the API returns the avatar URL
-					alt={`${authorProfile.user}'s Profile`}
+					src={"http://localhost:8000/" + authorProfile.avatar} // Assuming the API returns the avatar URL
+					alt={`${authorProfile.name}'s Profile`}
 					className="ReviewProfilePic"
 				/>
 			)}
 			<div className="ReviewText">
 				<div className="ReviewUsername">
 					{/* Display the author's username */}
-					<h3>{authorProfile ? authorProfile.user : "Username"}</h3>
+					<h3>{authorProfile ? authorProfile.name : "Username"}</h3>
 				</div>
 				<h5 style={customStyle}>{review.text}</h5>
 				{/* <div className="ReviewLikes">

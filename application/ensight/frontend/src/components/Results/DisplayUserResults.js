@@ -3,7 +3,7 @@ import "../../assets/styles/pages/Browse.css";
 import "../../assets/styles/pages/DisplayUser.css";
 import FollowButton from "../FollowButton.js";
 import { Link } from "react-router-dom";
-import { getUserStats, followUser, initUser } from "../../APIcalls.js";
+import { getUserStats, followUser, getUser } from "../../APIcalls.js";
 
 const UserResults = ({ Username, UserBio, avatar, userId }) => {
 	const [userStats, setUserStats] = useState(null);
@@ -22,7 +22,7 @@ const UserResults = ({ Username, UserBio, avatar, userId }) => {
 
 	useEffect(() => {
 		const initPage = async () => {
-			let userInfo = await initUser();
+			let userInfo = await getUser();
 			if (!!userInfo) {
 				setUser(userInfo);
 			}

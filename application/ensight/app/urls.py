@@ -49,7 +49,8 @@ urlpatterns = [
     path("unfollow_user", unfollow_user, name="unfollow_user"),
     path("get_user_stats/", get_user_stats, name="get_user_stats"),
     path("user_follows_user/", user_follows_user, name="user_follows_user"),
-
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path("get_user_favorites", get_users_favorites),
+] 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

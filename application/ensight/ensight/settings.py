@@ -160,9 +160,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
-STATIC_ROOT = "/var/www/ensight"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_URL = "/static/"
+if DEBUG:
+    STATIC_ROOT = BASE_DIR / "static"
+else:
+    STATIC_ROOT = "/var/www/ensight"
+    STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = "media/"
 # change this to image root if you want to test

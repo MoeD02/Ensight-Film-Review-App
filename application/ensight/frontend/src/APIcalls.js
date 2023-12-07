@@ -57,7 +57,8 @@ export const getUserProfileById = async (userId) => {
 	});
 
 	if (response.ok) {
-		return await response.json();
+        const resp = await response.json();
+		return resp;
 	} else {
 		console.error("Failed to fetch user data by ID");
 		return null;
@@ -112,6 +113,23 @@ export const fetchMovies = async (filter, genres, years, amount) => {
 	}
 };
 
+export const getUserFavorites = async (param) => {
+    const response = await fetch(`${apiUrl}/get_user_favorites?id=${param}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    if (response.ok) {
+        return response.json();
+    }
+    else {
+        console.error("getUserFavorites failed")
+        return null;
+    }
+}
+
+
 export const fetchMoviesByIds = async (movieIds) => {
 	const data = {
 		movie_ids: movieIds,
@@ -132,6 +150,7 @@ export const fetchMoviesByIds = async (movieIds) => {
 		return null;
 	}
 };
+
 export const getMovieDetails = async (id) => {
 	const data = {
 		id: id,

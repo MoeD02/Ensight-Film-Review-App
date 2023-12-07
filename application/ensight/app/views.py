@@ -1,10 +1,8 @@
 import json
 from django.db import IntegrityError
-from django.shortcuts import render
-from django.views.generic.base import TemplateView
+
 
 from .serializers import *
-from .forms import SearchForm
 from .models import *
 from django.contrib.auth import get_user_model
 
@@ -14,19 +12,10 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 
 from knox.models import AuthToken
-from django.contrib.auth.decorators import login_required
 
-
-from .serializers import *
-
-import logging
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
-from .serializers import *
-from .serializers import *
 from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view, permission_classes
 from django.db.models import Q
 from django.contrib.auth import get_user_model
@@ -116,18 +105,19 @@ def add_to_favorites(request):
         movie_id = request.data.get("movie_id")
         user_profile = request.user.profile
 
-        try:
-            movie = Movie.objects.get(pk=movie_id)
-        except Movie.DoesNotExist:
-            return JsonResponse({"error": "Movie not found"}, status=404)
 
         # Check if the movie is already in the user's favorites
         if user_profile.favorites.filter(pk=movie_id).exists():
             return JsonResponse({"message": "Movie already in favorites"}, status=400)
 
+        try:
+            movie = Movie.objects.get(pk=movie_id)
+            user_profile.favorites.add(movie)
+            user_profile.save()
+        except Movie.DoesNotExist:
+            return JsonResponse({"error": "Movie not found"}, status=404)
         # Add the movie to the user's favorites
-        user_profile.favorites.add(movie)
-        user_profile.save()
+        
 
         return JsonResponse(
             {"message": "Movie added to favorites successfully"}, status=200
@@ -333,6 +323,11 @@ def get_movie_details(request):
         serializer = MovieSerializer(movie, many=False)
         return Response(serializer.data)
 
+@api_view(["GET"])
+def get_users_favorites(request):
+    key = request.query_params.get("id")
+    favorite_movies = Profile.objects.get(pk=key).favorites.all()[:10]
+    return Response(MovieSerializer(favorite_movies, many=True).data)
 
 @api_view(["POST"])
 def fetch_movies_by_ids(request):
@@ -340,7 +335,7 @@ def fetch_movies_by_ids(request):
         movie_ids = request.data.get("movie_ids", [])
 
         # Retrieve movie objects based on the provided IDs
-        movies = Movie.objects.filter(id__in=movie_ids)
+        movies = Movie.objects.filter(pk__in=movie_ids)
 
         # Check if all movies were found
         if movies.count() == len(movie_ids):
@@ -389,14 +384,12 @@ def search_users(request):
 
 @api_view(["POST"])
 def get_user_profile_by_id(request):
-    user_id = request.data.get(
-        "id"
-    )  # Assuming the frontend sends the user ID in the request data
+    user_id = int(request.data.get("id"))  # Assuming the frontend sends the user ID in the request data
     if user_id:
         try:
             # Fetch the user profile using the provided ID
-            user_profile = Profile.objects.get(user_id=user_id)
-
+            user_profile = Profile.objects.get(user__pk=user_id)
+            print("PROFILE",user_profile)
             # Serialize the user profile data
             serializer = ProfileSerializer(user_profile)
 
@@ -508,11 +501,12 @@ def get_list_details(request):
 
 @api_view(["POST"])
 def user_likes_movie(request):
-    uid = request.data.get("user_id")
-    mid = request.data.get("movie_id")
+    user_id = request.data.get("user_id")
+    movie_id = request.data.get("movie_id")
+    data = Profile.objects.get(pk=user_id).favorites.filter(pk=movie_id).exists()
     return JsonResponse(
         {
-            "data": str(Profile.objects.get(pk=uid).favorites.filter(pk=mid).exists()),
+            "data": data,
         }
     )
 
@@ -656,26 +650,35 @@ def search_users(request):
     #     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
-@api_view(["POST"])
-def get_user_profile_by_id(request):
-    user_id = request.data.get(
-        "id"
-    )  # Assuming the frontend sends the user ID in the request data
-    if user_id:
-        try:
-            # Fetch the user profile using the provided ID
-            user_profile = Profile.objects.get(user_id=user_id)
-            # Serialize the user profile data
-            serializer = ProfileSerializer(user_profile)
+# @api_view(["POST"])
+# def get_user_profile_by_id(request):
+#     user_id = request.data.get(
+#         "id"
+#     )  # Assuming the frontend sends the user ID in the request data
+#     if user_id:
+#         try:
+#             # Fetch the user profile using the provided ID
+#             user_profile = Profile.objects.get(pk=user_id)
+#             # Serialize the user profile data
+#             # serializer = ProfileSerializer(user_profile)
 
-            # Return the serialized user profile data as JSON response
-            return Response(serializer.data)
-        except Profile.DoesNotExist:
-            return JsonResponse({"error": "User profile not found"}, status=404)
-    else:
-        return JsonResponse(
-            {"error": "Invalid request, user ID not provided"}, status=400
-        )
+#             # Return the serialized user profile data as JSON response
+#             # return Response(serializer.data)
+#             return JsonResponse(
+#                 {
+#                     "name": user_profile.user.username,
+#                     "favorites": serializers.serialize("json", user_profile.favorites.all()),
+#                     "watchlist": serializers.serialize("json", user_profile.watchlist.all()),
+#                     "bio": user_profile.bio,
+#                     "avatar": user_profile.avatar,
+#                 }
+#             )
+#         except Profile.DoesNotExist:
+#             return JsonResponse({"error": "User profile not found"}, status=404)
+#     else:
+#         return JsonResponse(
+#             {"error": "Invalid request, user ID not provided"}, status=400
+        # )
 
 
 # This allows users to create a list with whatever movies they want
@@ -740,14 +743,4 @@ def get_list_details(request):
         serializer = MovieListSerializer(movie_list, many=False)
         return Response(serializer.data)
 
-
-@api_view(["POST"])
-def user_likes_movie(request):
-    uid = request.data.get("user_id")
-    mid = request.data.get("movie_id")
-    return JsonResponse(
-        {
-            "data": str(Profile.objects.get(pk=uid).favorites.filter(pk=mid).exists()),
-        }
-    )
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/pages/DisplayList.css";
-import { getUserMovieLists, initUser } from "../APIcalls";
+import { getUserMovieLists, getUser } from "../APIcalls";
 import { Link,useNavigate } from "react-router-dom";
 
 function DisplayList() {
@@ -28,7 +28,7 @@ function DisplayList() {
 	}, []);
 	useEffect(() => {
 		const initPage = async () => {
-			let userInfo = await initUser();
+			let userInfo = await getUser();
 			if (!!userInfo) {
 				setUser(userInfo);
 			}

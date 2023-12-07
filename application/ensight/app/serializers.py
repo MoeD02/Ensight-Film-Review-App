@@ -22,6 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
             "following",
             "followers",
         )
+        # read_only_fields = ("user",)
 
     def get_following(self, obj):
         return FollowingSerializer(obj.following.all(), many=True).data
@@ -75,7 +76,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = "__all__"
-
+    favorites = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    watchlist = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     user = serializers.CharField(source="user.username")
 
 

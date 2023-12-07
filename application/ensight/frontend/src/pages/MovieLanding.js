@@ -23,7 +23,7 @@ import {
 const MovieLanding = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const { id } = useParams();
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(null);
     const [user, setUser] = useState(null);
     const [userReview, setUserReview] = useState(null);
     const [movieReviews, setMovieReviews] = useState(null);
@@ -34,6 +34,7 @@ const MovieLanding = () => {
             if (!!userInfo) {
                 setUser(userInfo);
                 let likeInfo = await isLikedByUser(userInfo.id, id);
+                console.log(likeInfo)
                 setLiked(likeInfo.data);
             }
         };
@@ -55,8 +56,12 @@ const MovieLanding = () => {
     useEffect(() => {
         const fetchMovieDetails = async () => {
             const data = await getMovieDetails(id);
-            if (data) {
+            if (!!data) {
                 setMovieDetails(data);
+            }
+            const reviewsData = await fetchReviewsForMovie(id);
+            if (!!reviewsData) {
+                setMovieReviews(reviewsData.reviews);
             }
         };
 
@@ -233,7 +238,7 @@ const MovieLanding = () => {
                                                     }
                                                 </h5>
                                                 <h5 id="MovieTotalRating">
-                                                    /10
+                                                    /5
                                                 </h5>
                                             </div>
                                         </div>

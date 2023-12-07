@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../../../assets/styles/components/ProfileTabs.css";
-import { updateUserProfile,fetchMoviesByIds } from "../../../APIcalls";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { updateUserProfile,fetchMoviesByIds, getUserFavorites, getUser } from "../../../APIcalls";
+import { BrowserRouter as Router, Route, Link, useParams } from "react-router-dom";
 
-const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
+const ProfileFocus = ({ userInfo, currentUserID, currentUserProfile, isMyPage }) => {
+    const [user, setUser] = useState(null);
 	const [privacyOption, setPrivacyOption] = useState("public");
 	const [isEditing, setIsEditing] = useState(true);
 	const [profilePic,setProfilePic] = useState({});
@@ -11,29 +12,28 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
 	const [newUsername, setNewUsername] = useState("");
 	const [newBio, setNewBio] = useState("");
+    const [pageOwner, setPageOwner] = useState(null);
+    const [isMine, setIsMine] = useState(null);
+    const {id} = useParams()
+
+    useEffect(() => {
+        if(!!userInfo) {
+            setUser(userInfo);
+        }
+        if(!!currentUserID) {
+            setPageOwner(currentUserID);
+        }
+        if(!!user && !!pageOwner) {
+            setIsMine(user.id === pageOwner);
+        }
+    }, [userInfo, currentUserID]);
 
 	useEffect(() => {
-		// Fetch movie details for the favorite movie IDs
-		const fetchMovies = async () => {
-			let response;
-
-			if (currentUserProfile && currentUserProfile.favorites) {
-				console.log(
-					"Here is 1 fav movie ID: " + currentUserProfile.favorites[0]
-				);
-				response = await fetchMoviesByIds(currentUserProfile.favorites);
-			}
-
-			if (response && Array.isArray(response.movies)) {
-				console.log("Favorite Movies Array:", response.movies); // Updated log statement
-				setFavoriteMovies(response.movies);
-			} else {
-				console.error("Fetch error or invalid response:", response);
-			}
-		};
-		
-		fetchMovies();
-	}, [currentUserProfile.favorites]);
+        const fetchMovies = async () => {
+            setFavoriteMovies(await getUserFavorites(id));
+        }
+        fetchMovies();
+        }, []);
 
 	const handlePrivacyChange = (event) => {
 		setPrivacyOption(event.target.value);
@@ -58,7 +58,7 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 			};
 
 			// Call the updateProfile function
-			await updateUserProfile(profileUpdateInfo, authToken);
+			await updateUserProfile(profileUpdateInfo, user.token);
 
 			// Additional actions or UI updates can be added here if needed
 
@@ -79,7 +79,7 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 	useEffect(() => {
 		// This effect will run whenever profilePic changes
 		console.log("Selected File:", profilePic);
-	}, [profilePic]);
+	}, [profilePic])
 	const handleUsernameChange = (event) => {
 		setNewUsername(event.target.value);
 	};
@@ -87,7 +87,6 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 	const handleBioChange = (event) => {
 		setNewBio(event.target.value);
 	};
-
 	return (
 		<div className="Content">
 			<div className={isEditing ? "ProfileView" : "ProfileEdit"}>
@@ -101,17 +100,17 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 							onClick={handleEditClick}>
 							Edit Profile
 						</button>
-						<div className="FavoriteMovies">
+                        <div className="FavoriteMovies">
 							<h2 className="Title">Favorite Movies</h2>
 							<div className="GridContainer GridProfile">
 								{/* Change movie poster text to the movie poster image from the backend */}
 								{/* replace with all of user's favorite movies */}
-								{favoriteMovies.map((movie,index) => (
-									<Link to={`/MovieLanding/${movie.id}`}key ={index}>
+                                {favoriteMovies?.map((movie,index) => (
+                                    <Link to={`/MovieLanding/${movie.id}`}key ={index}>
 				
 									<h3 key={movie.id} className="MovieProfile">
 										<img
-											src={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
+											src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
 											alt={movie.title}
 										/>
 									</h3>

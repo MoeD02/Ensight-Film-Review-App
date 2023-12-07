@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../assets/styles/components/LikeButton.css";
 
 const LikeButton = ({checked, id, user, Check, Uncheck}) => {
-    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked, setIsChecked] = useState(null);
 
     useEffect(() => {
         setIsChecked(checked);

@@ -5,7 +5,7 @@ import {
 	searchUsers,
 	getUsers,
 	getUserStats,
-	initUser,
+	getUser,
 	isFollowedByUser,
 	followUser,
 } from "../../APIcalls.js";
@@ -19,7 +19,7 @@ const UserResults = ({ searchTerm }) => {
 	};
 	useEffect(() => {
 		const fetchData = async () => {
-			let currentUserInfo = await initUser();
+			let currentUserInfo = await getUser();
 			if (!!currentUserInfo) {
 				setCurrentUser(currentUserInfo);
 			}

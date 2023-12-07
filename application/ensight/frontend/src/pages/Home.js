@@ -4,7 +4,7 @@ import IntroMovie from "../components/IntroMovie";
 import IntroFeed from "../components/IntroFeed";
 import PosterCarousel from "../components/PosterCarousel";
 import IntroList from "../components/IntroList";
-import { initUser } from "../APIcalls";
+import { getUser } from "../APIcalls";
 import React, { useEffect, useState } from "react";
 
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
 	const [user, setUser] = useState(null);
 	useEffect(() => {
 		const initPage = async () => {
-			let userInfo = await initUser();
+			let userInfo = await getUser();
 			if (!!userInfo) {
 				setUser(userInfo);
 			}
