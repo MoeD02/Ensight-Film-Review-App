@@ -11,7 +11,9 @@ with open("./tmdb_API_key.txt", "r") as f:
 
 headers = {
     "Authorization": "Bearer " + token,
+    "Authorization": "Bearer " + token,
 }
+
 
 with open("./movie_ids.txt", "r") as f:
     ids = f.read().splitlines()
@@ -194,6 +196,8 @@ def printProgressBar(
     """
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / total))
     filledLength = int(length * iteration // total)
+    bar = fill * filledLength + "-" * (length - filledLength)
+    print(f"\r{prefix} |{bar}| {percent}% {suffix}", end=printEnd)
     bar = fill * filledLength + "-" * (length - filledLength)
     print(f"\r{prefix} |{bar}| {percent}% {suffix}", end=printEnd)
     # Print New Line on Complete

@@ -8,25 +8,47 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="profile",
+        related_name="profile",
         null=True,
     )
     favorites = models.ManyToManyField(
+        "Movie",
         "Movie",
         blank=True,
         related_name="favorited_by",  # Updated related_name
         default=None,
     )
-    avatar = models.FileField(
-        default="placeholder.jpg",
-        upload_to="avatars/",
+    watchlist = models.ManyToManyField(
+        "Movie",
+        blank=True,
+        related_name="watchlisted_profiles",
     )
+
+    followers = models.ManyToManyField(
+        "self",
+        blank=True,
+        symmetrical=False,
+        related_name="follow_from",
+    )
+
+    following = models.ManyToManyField(
+        "self",
+        blank=True,
+        symmetrical=False,
+        related_name="followed_by",
+    )
+
+    avatar = models.FileField(default="placeholder.jpg", upload_to="avatars/")
     bio = models.TextField(blank=True)
+
 
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
         user_profile = Profile(user=instance)
         user_profile.save()
+
+
 
 
 post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)
@@ -72,6 +94,7 @@ class UserFollowing(models.Model):
 class Genre(models.Model):
     name = models.CharField(max_length=64)
 
+
     def __str__(self):
         return self.name
 
@@ -98,6 +121,7 @@ class Movie(models.Model):
     genres = models.ManyToManyField(
         Genre,
         blank=True,
+        related_name="movies",
         related_name="movies",
     )
     description = models.TextField(blank=True)
@@ -168,13 +192,26 @@ class Review(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="reviews",
+        related_name="reviews",
     )
     movie = models.ForeignKey(
         Movie,
         on_delete=models.CASCADE,
         related_name="reviews",
+        related_name="reviews",
     )
     RATING_CHOICES = [
+        (5.0, "5"),
+        (4.5, "4.5"),
+        (4.0, "4"),
+        (3.5, "3.5"),
+        (3.0, "3"),
+        (2.5, "2.5"),
+        (2.0, "2"),
+        (1.5, "1.5"),
+        (1.0, "1"),
+        (0.5, "0.5"),
+        (0.0, "0"),
         (5.0, "5"),
         (4.5, "4.5"),
         (4.0, "4"),
@@ -194,12 +231,16 @@ class Review(models.Model):
         null=True,
     )
 
+
     def __str__(self):
         return self.title
+
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
+                fields=["author", "movie"],
+                name="unique_review",
                 fields=["author", "movie"],
                 name="unique_review",
             ),
@@ -211,16 +252,20 @@ class Comment(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="comments_by",
+        related_name="comments_by",
     )
     review = models.ForeignKey(
         Review,
         on_delete=models.CASCADE,
         related_name="comments",
+        related_name="comments",
     )
     reply_to = models.ForeignKey(
         "self",
+        "self",
         on_delete=models.CASCADE,
         null=True,
+        related_name="replies",
         related_name="replies",
     )
     text = models.TextField()
@@ -233,9 +278,12 @@ class MovieList(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="lists",
+        related_name="lists",
     )
     movies = models.ManyToManyField(
         Movie,
+        through="MovieListThrough",
+        related_name="lists",
         through="MovieListThrough",
         related_name="lists",
     )

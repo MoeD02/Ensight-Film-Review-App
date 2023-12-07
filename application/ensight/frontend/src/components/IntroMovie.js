@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import '../assets/styles/components/IntroMovie.css';
+import React, { useState, useEffect } from "react";
+import "../assets/styles/components/IntroMovie.css";
 
-import movieImage1 from '../assets/images/avatar.png'; 
-import movieImage2 from '../assets/images/mario.png';
-import movieImage3 from '../assets/images/mermaid.png';
-import movieImage4 from '../assets/images/spiderman.png';
-import movieImage5 from '../assets/images/suzume.png';
+import movieImage1 from "../assets/images/avatar.png";
+import movieImage2 from "../assets/images/mario.png";
+import movieImage3 from "../assets/images/mermaid.png";
+import movieImage4 from "../assets/images/spiderman.png";
+import movieImage5 from "../assets/images/suzume.png";
 
-const movieImages = [movieImage1, movieImage2, movieImage3, movieImage4, movieImage5];
+const movieImages = [
+	movieImage1,
+	movieImage2,
+	movieImage3,
+	movieImage4,
+	movieImage5,
+];
 
 const IntroMovie = () => {
-    const [offset, setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 
     useEffect(() => {
         const slide = () => {
