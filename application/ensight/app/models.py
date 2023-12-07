@@ -8,11 +8,9 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="profile",
-        related_name="profile",
         null=True,
     )
     favorites = models.ManyToManyField(
-        "Movie",
         "Movie",
         blank=True,
         related_name="favorited_by",  # Updated related_name
@@ -22,20 +20,6 @@ class Profile(models.Model):
         "Movie",
         blank=True,
         related_name="watchlisted_profiles",
-    )
-
-    followers = models.ManyToManyField(
-        "self",
-        blank=True,
-        symmetrical=False,
-        related_name="follow_from",
-    )
-
-    following = models.ManyToManyField(
-        "self",
-        blank=True,
-        symmetrical=False,
-        related_name="followed_by",
     )
 
     avatar = models.FileField(default="placeholder.jpg", upload_to="avatars/")
@@ -122,7 +106,6 @@ class Movie(models.Model):
         Genre,
         blank=True,
         related_name="movies",
-        related_name="movies",
     )
     description = models.TextField(blank=True)
     runtime = models.PositiveSmallIntegerField(null=True)
@@ -135,7 +118,7 @@ class Movie(models.Model):
     popularity = models.DecimalField(
         null=True,
         decimal_places=4,
-        max_digits=7,
+        max_digits=10,
     )
 
     def __str__(self):
@@ -159,7 +142,7 @@ class Person(models.Model):
     profile_path = models.CharField(max_length=128, null=True)
     biography = models.TextField(null=True)
     known_for = models.CharField(max_length=64, null=True)
-    popularity = models.DecimalField(null=True, decimal_places=3, max_digits=7)
+    popularity = models.DecimalField(null=True, decimal_places=3, max_digits=10)
 
 
 class CreditList(models.Model):
@@ -192,12 +175,10 @@ class Review(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="reviews",
-        related_name="reviews",
     )
     movie = models.ForeignKey(
         Movie,
         on_delete=models.CASCADE,
-        related_name="reviews",
         related_name="reviews",
     )
     RATING_CHOICES = [
@@ -241,8 +222,6 @@ class Review(models.Model):
             models.UniqueConstraint(
                 fields=["author", "movie"],
                 name="unique_review",
-                fields=["author", "movie"],
-                name="unique_review",
             ),
         ]
 
@@ -252,20 +231,16 @@ class Comment(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="comments_by",
-        related_name="comments_by",
     )
     review = models.ForeignKey(
         Review,
         on_delete=models.CASCADE,
         related_name="comments",
-        related_name="comments",
     )
     reply_to = models.ForeignKey(
         "self",
-        "self",
         on_delete=models.CASCADE,
         null=True,
-        related_name="replies",
         related_name="replies",
     )
     text = models.TextField()
@@ -278,12 +253,9 @@ class MovieList(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="lists",
-        related_name="lists",
     )
     movies = models.ManyToManyField(
         Movie,
-        through="MovieListThrough",
-        related_name="lists",
         through="MovieListThrough",
         related_name="lists",
     )

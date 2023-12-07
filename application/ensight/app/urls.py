@@ -6,8 +6,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path("", home, name="home"),
-    path("search/", search, name="search"),
     path("fetch_movies/", fetch_movies, name="fetch_movies"),
     path("get_movie_details/", get_movie_details, name="get_movie_details"),
     path("get_user_movie_lists/", get_user_movie_lists, name="get_user_movie_lists"),

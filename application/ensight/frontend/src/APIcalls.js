@@ -407,7 +407,7 @@ export const isLikedByUser = async (userID, movieID) => {
         return null;
     }
 }
-export const initUser = async () => {
+export const getUser = async () => {
 	let token = localStorage.getItem("Authorization");
 	if (token) {
 		const user = await getCurrentUser(token);
@@ -532,5 +532,4 @@ export const isFollowedByUser = async (followerId, followingId, authToken) => {
 		console.error("Failed to check user follows user");
 		return null;
 	}
-};
 };

@@ -49,13 +49,6 @@ class RegisterAPI(APIView):
                 }
             )
         return Response({"errors": serializer.errors}, status.HTTP_400_BAD_REQUEST)
-            return Response(
-                {
-                    "user": serializer.data,
-                    "token": "Token " + AuthToken.objects.create(user)[1],
-                }
-            )
-        return Response({"errors": serializer.errors}, status.HTTP_400_BAD_REQUEST)
 
 
 class LoginAPI(APIView):
@@ -65,13 +58,6 @@ class LoginAPI(APIView):
 
         if serializer.is_valid():
             user = serializer.validated_data
-            return Response(
-                {
-                    "user": UserSerializer(user).data,
-                    "token": "Token " + AuthToken.objects.create(user)[1],
-                }
-            )
-        return Response({"errors": "Invalid Credentials"}, status.HTTP_400_BAD_REQUEST)
             return Response(
                 {
                     "user": UserSerializer(user).data,
@@ -123,399 +109,31 @@ def unfollow_user(request):
     except IntegrityError:
         return Response({"error": "error"}, status.HTTP_404_NOT_FOUND)
 
-
-@api_view(["POST"])
-@api_view(["POST"])
-def update_user_profile(request):
-    user_profile = request.user.profile
-
-    # Get the data from the request
-    new_username = request.data.get("new_username")
-    new_bio = request.data.get("new_bio")
-    new_avatar = request.data.get("new_avatar")
-
-    # Update fields if new values are provided
-    if new_username:
-        request.user.username = new_username
-        request.user.save()
-
-    if new_bio:
-        user_profile.bio = new_bio
-        user_profile.save()
-
-    if new_avatar:
-        user_profile.avatar = request.FILES["new_avatar"]
-        user_profile.save()
-
-    # Return a response indicating success
-    return Response({"message": "User profile updated successfully"})
-
-
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
 def add_to_favorites(request):
     if request.method == "POST":
         movie_id = request.data.get("movie_id")
-    if request.method == "POST":
-        movie_id = request.data.get("movie_id")
         user_profile = request.user.profile
 
         try:
             movie = Movie.objects.get(pk=movie_id)
         except Movie.DoesNotExist:
-            return Response(
-                {"error": "Movie not found"}, status=status.HTTP_404_NOT_FOUND
-            )
+            return JsonResponse({"error": "Movie not found"}, status=404)
 
         # Check if the movie is already in the user's favorites
-        if movie in user_profile.favorites.all():
-            return Response(
-                {"message": "Movie already in favorites"}, status=status.HTTP_200_OK
-            )
+        if user_profile.favorites.filter(pk=movie_id).exists():
+            return JsonResponse({"message": "Movie already in favorites"}, status=400)
 
         # Add the movie to the user's favorites
         user_profile.favorites.add(movie)
-        user_profile.save()
-
-        return Response(
-            {"message": "Movie added to favorites successfully"},
-            status=status.HTTP_200_OK,
-        )
-    else:
-        return Response(
-            {"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST
-        )
-
-
-@api_view(["POST"])
-@permission_classes([permissions.IsAuthenticated])
-def remove_from_favorites(request):
-    if request.method == "POST":
-        movie_id = request.data.get("movie_id")
-        user_profile = request.user.profile
-
-        try:
-            movie = Movie.objects.get(pk=movie_id)
-        except Movie.DoesNotExist:
-            return JsonResponse({"error": "Movie not found"}, status=404)
-
-        # Check if the movie is in the user's favorites
-        if user_profile.favorites.filter(pk=movie_id).exists():
-            return JsonResponse({"message": "Movie already in favorites"}, status=400)
-            # Remove the movie from the user's favorites
-            user_profile.favorites.remove(movie)
-            return JsonResponse(
-                {"message": "Movie removed from favorites successfully"}, status=200
-            )
-        else:
-            return JsonResponse({"message": "Movie not found in favorites"}, status=200)
-    else:
-        return JsonResponse({"error": "Invalid request method"}, status=400)
-
-
-@api_view(["POST"])
-def add_to_watchlist(request):
-    if request.method == "POST":
-        movie_id = request.data.get("movie_id")
-        user_profile = request.user.profile
-
-        try:
-            movie = Movie.objects.get(pk=movie_id)
-        except Movie.DoesNotExist:
-            return JsonResponse({"error": "Movie not found"}, status=404)
-
-        # Check if the movie is already in the user's watchlist
-        if movie in user_profile.watchlist.all():
-            return JsonResponse({"message": "Movie already in watchlist"}, status=200)
-
-        # Add the movie to the user's watchlist
-        user_profile.watchlist.add(movie)
         user_profile.save()
 
         return JsonResponse(
-            {"message": "Movie added to watchlist successfully"}, status=200
+            {"message": "Movie added to favorites successfully"}, status=200
         )
     else:
         return JsonResponse({"error": "Invalid request method"}, status=400)
-
-
-@api_view(["POST"])
-def remove_from_watchlist(request):
-    if request.method == "POST":
-        movie_id = request.data.get("movie_id")
-        user_profile = request.user.profile
-
-        try:
-            movie = Movie.objects.get(pk=movie_id)
-        except Movie.DoesNotExist:
-            return JsonResponse({"error": "Movie not found"}, status=404)
-
-        # Check if the movie is in the user's watchlist
-        if user_profile.watchlist.filter(pk=movie_id).exists():
-            # Remove the movie from the user's watchlist
-            user_profile.watchlist.remove(movie)
-            return JsonResponse(
-                {"message": "Movie removed from watchlist successfully"}, status=200
-            )
-        else:
-            return JsonResponse({"message": "Movie not found in watchlist"}, status=200)
-    else:
-        return JsonResponse({"error": "Invalid request method"}, status=400)
-
-
-class HomeView(TemplateView):
-    template_name = "app/home.html"
-
-
-@api_view(["POST"])
-def header_search(request):
-    if request.method == "POST":
-        search_query = request.data.get("content")
-        print("Search Query: ", search_query)
-        movie_results = Movie.objects.filter(Q(title__icontains=search_query))
-        movie_serializer = MovieSerializer(movie_results, many=True)
-
-        review_results = Review.objects.filter(
-            Q(title__icontains=search_query)
-            | Q(text__icontains=search_query)  # Search by title (case-insensitive)
-            | Q(  # Search by text (case-insensitive)
-                author__username__icontains=search_query
-            )  # Search by author's username (case-insensitive)
-            # You can add more criteria based on your needs
-        )
-
-        reviews_serializer = ReviewSerializer(review_results, many=True)
-
-        users_results = Profile.objects.filter(
-            Q(user__username__icontains=search_query)
-        )
-
-        user_serializer = ProfileSerializer(users_results, many=True)
-
-        data = {
-            "movies": movie_serializer.data,
-            "reviews": reviews_serializer.data,
-            "users": user_serializer.data,
-        }
-
-        return Response(data)
-
-
-@api_view(["POST"])
-def fetch_movies(request):
-    filter = request.data.get("filter")
-    genres = request.data.get("genres")
-    years = request.data.get("years")
-    years = increment_years(years)
-    index = request.data["amount"]
-
-    movies = Movie.objects.all()
-    if genres:
-        movies = Movie.objects.filter(genres__name__in=genres).distinct()
-
-    if years:
-        movies = movies.filter(release_date__year__in=years)
-
-    if filter == "highest":
-        movies = movies.order_by("-popularity")[:index]
-    elif filter == "ALL":
-        movies = movies.all()
-    elif filter == "lowest":
-        movies = movies.order_by("popularity")[:index]
-    serializer = MovieSerializer(movies, many=True)
-
-    return Response(serializer.data)
-
-
-@api_view(["POST"])
-def search_movies(request):
-    if request.method == "POST":
-        filter = request.data.get("filter")
-        genres = request.data.get("genres")
-        years = request.data.get("years")
-        years = increment_years(years)
-        search_query = request.data.get("content")
-
-        # Search for movies that match the query in their title or description
-        search_results = Movie.objects.filter(Q(title__icontains=search_query))
-
-        if years:
-            search_results = search_results.filter(release_date__year__in=years)
-        if genres:
-            search_results = search_results.filter(genres__name__in=genres).distinct()
-        else:
-            search_results = search_results.all()
-
-        if filter == "highest":
-            search_results = search_results.order_by("-popularity")
-        elif filter == "lowest":
-            search_results = search_results.order_by("popularity")
-        serializer = MovieSerializer(search_results, many=True)
-        return Response(serializer.data)
-
-
-@api_view(["POST"])
-def get_movie_details(request):
-    id = request.data.get("id")
-    if id:
-        movie = get_object_or_404(Movie, id=id)
-        serializer = MovieSerializer(movie, many=False)
-        return Response(serializer.data)
-
-
-@api_view(["POST"])
-def fetch_movies_by_ids(request):
-    if request.method == "POST":
-        movie_ids = request.data.get("movie_ids", [])
-
-        # Retrieve movie objects based on the provided IDs
-        movies = Movie.objects.filter(id__in=movie_ids)
-
-        # Check if all movies were found
-        if movies.count() == len(movie_ids):
-            # Serialize the movie objects using MovieSerializer
-            serializer = MovieSerializer(movies, many=True)
-            serialized_movies = serializer.data
-
-            return Response({"movies": serialized_movies})
-        else:
-            return Response({"error": "One or more movies not found"}, status=400)
-    else:
-        return Response({"error": "Invalid request method"}, status=400)
-
-
-import json
-from django.shortcuts import render
-from django.views.generic.base import TemplateView
-
-from .serializers import *
-from .forms import SearchForm
-from .models import *
-from django.contrib.auth import get_user_model
-
-from rest_framework import permissions, status
-from rest_framework.views import APIView
-from rest_framework.generics import RetrieveAPIView
-from rest_framework.response import Response
-
-from knox.models import AuthToken
-from django.contrib.auth.decorators import login_required
-
-
-from .serializers import *
-
-import logging
-from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
-from .serializers import *
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
-from rest_framework.decorators import api_view, permission_classes
-from django.db.models import Q
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
-
-
-class RegisterAPI(APIView):
-    def post(self, request):
-        serializer = RegisterSerializer(data=request.data)
-
-        if serializer.is_valid():
-            user = serializer.save()
-            return Response(
-                {
-                    "user": serializer.data,
-                    "token": "Token " + AuthToken.objects.create(user)[1],
-                }
-            )
-        return Response({"errors": serializer.errors}, status.HTTP_400_BAD_REQUEST)
-
-
-class LoginAPI(APIView):
-    def post(self, request):
-        serializer = LoginSerializer(data=request.data)
-
-        if serializer.is_valid():
-            user = serializer.validated_data
-            return Response(
-                {
-                    "user": UserSerializer(user).data,
-                    "token": "Token " + AuthToken.objects.create(user)[1],
-                }
-            )
-        return Response({"errors": "Invalid Credentials"}, status.HTTP_400_BAD_REQUEST)
-
-
-class CurrentUserAPI(RetrieveAPIView):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
-    serializer_class = UserSerializer
-
-    def get_object(self):
-        return self.request.user
-
-
-@api_view(["POST"])
-def update_user_profile(request):
-    user_profile = request.user.profile
-
-    # Get the data from the request
-    new_username = request.data.get("new_username")
-    new_bio = request.data.get("new_bio")
-    new_avatar = request.data.get("new_avatar")
-
-    # Update fields if new values are provided
-    if new_username:
-        request.user.username = new_username
-        request.user.save()
-
-    if new_bio:
-        user_profile.bio = new_bio
-        user_profile.save()
-
-    if new_avatar:
-        user_profile.avatar = request.FILES["new_avatar"]
-        user_profile.save()
-
-    # Return a response indicating success
-    return Response({"message": "User profile updated successfully"})
-
-
-@api_view(["POST"])
-@permission_classes([permissions.IsAuthenticated])
-def add_to_favorites(request):
-    if request.method == "POST":
-        movie_id = request.data.get("movie_id")
-        user_profile = request.user.profile
-
-        try:
-            movie = Movie.objects.get(pk=movie_id)
-        except Movie.DoesNotExist:
-            return Response(
-                {"error": "Movie not found"}, status=status.HTTP_404_NOT_FOUND
-            )
-
-        # Check if the movie is already in the user's favorites
-        if movie in user_profile.favorites.all():
-            return Response(
-                {"message": "Movie already in favorites"}, status=status.HTTP_200_OK
-            )
-
-        # Add the movie to the user's favorites
-        user_profile.favorites.add(movie)
-        user_profile.save()
-
-        return Response(
-            {"message": "Movie added to favorites successfully"},
-            status=status.HTTP_200_OK,
-        )
-    else:
-        return Response(
-            {"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST
-        )
 
 
 @api_view(["POST"])
@@ -539,10 +157,35 @@ def remove_from_favorites(request):
                 {"message": "Movie removed from favorites successfully"}, status=200
             )
         else:
-            return JsonResponse({"message": "Movie not found in favorites"}, status=200)
+            return JsonResponse({"message": "Movie not found in favorites"}, status=400)
     else:
         return JsonResponse({"error": "Invalid request method"}, status=400)
 
+
+@api_view(["POST"])
+def update_user_profile(request):
+    user_profile = request.user.profile
+
+    # Get the data from the request
+    new_username = request.data.get("new_username")
+    new_bio = request.data.get("new_bio")
+    new_avatar = request.data.get("new_avatar")
+
+    # Update fields if new values are provided
+    if new_username:
+        request.user.username = new_username
+        request.user.save()
+
+    if new_bio:
+        user_profile.bio = new_bio
+        user_profile.save()
+
+    if new_avatar:
+        user_profile.avatar = request.FILES["new_avatar"]
+        user_profile.save()
+
+    # Return a response indicating success
+    return Response({"message": "User profile updated successfully"})
 
 @api_view(["POST"])
 def add_to_watchlist(request):
@@ -593,9 +236,6 @@ def remove_from_watchlist(request):
     else:
         return JsonResponse({"error": "Invalid request method"}, status=400)
 
-
-class HomeView(TemplateView):
-    template_name = "app/home.html"
 
 
 @api_view(["POST"])
@@ -824,13 +464,13 @@ def get_user_stats(request):
                 status=400,
             )
 
-        user_profile = get_object_or_404(Profile, user_id=user_id)
+        user = get_object_or_404(User, id=user_id)
 
         # Get the number of movie lists owned by the user
-        num_movie_lists = MovieList.objects.filter(author=user_profile.user).count()
-        num_movies_liked = user_profile.favorites.count()
-        num_following = user_profile.following.count()
-        num_followers = user_profile.followers.count()
+        num_movie_lists = MovieList.objects.filter(author=user).count()
+        num_movies_liked = user.profile.favorites.count()
+        num_following = user.following.count()
+        num_followers = user.followers.count()
 
         return JsonResponse(
             {
@@ -904,84 +544,6 @@ def user_follows_user(request):
     # Return the result as a JSON response
     return JsonResponse({"is_following": is_following})
 
-
-@api_view(["POST"])
-@permission_classes([permissions.IsAuthenticated])
-def follow_user(request):
-    if request.method == "POST":
-        user_to_follow_id = request.data.get("user_to_follow_id")
-
-        user_profile = request.user.profile
-
-        # Check if the user_to_follow_id is provided
-        if not user_to_follow_id:
-            return Response(
-                {"error": "Incomplete data. Please provide user_to_follow_id."},
-                status=400,
-            )
-
-        # Check if the specified user exists
-        try:
-            user_to_follow = Profile.objects.get(pk=user_to_follow_id)
-        except Profile.DoesNotExist:
-            return Response({"error": "User to follow not found."}, status=404)
-
-        # Check if the user is already following the specified user
-        if user_profile.following.filter(pk=user_to_follow_id).exists():
-            return Response(
-                {"message": "User is already following this user"}, status=200
-            )
-
-        # Add the specified user to the user's following list
-        user_profile.following.add(user_to_follow)
-        user_to_follow.followers.add(user_profile)
-        user_profile.save()
-
-        return Response(
-            {"message": "User is now following the specified user"}, status=200
-        )
-    else:
-        return Response({"error": "Invalid request method"}, status=400)
-
-
-"""
-@api_view(["POST"])
-def get_movie_details(request):
-    id = request.data.get("id")
-    if id:
-        movie = get_object_or_404(Movie, id=id)
-        serializer = MovieSerializer(movie, many=False)
-        return Response(serializer.data)
-
-"""
-
-
-def home(request):
-    movie_list = Movie.objects.order_by("-release_date")[:10]
-    return render(request, "app/home.html", {"movie_list": movie_list})
-
-
-def search(request):
-    if request.method == "GET":
-        form = SearchForm(request.GET)
-        if form.is_valid():
-            query = form.cleaned_data["query"]
-            search_type = form.cleaned_data["search_type"]
-
-            if search_type == "movie":
-                results = Movie.objects.filter(title__icontains=query)
-            elif search_type == "user":
-                results = Review.objects.filter(author__username__icontains=query)
-
-            return render(
-                request,
-                "app/home.html",
-                {"results": results, "search_type": search_type, "form": form},
-            )
-    else:
-        form = SearchForm()
-
-    return render(request, "app/home.html", {"form": form})
 
 
 def increment_years(years):
@@ -1103,7 +665,6 @@ def get_user_profile_by_id(request):
         try:
             # Fetch the user profile using the provided ID
             user_profile = Profile.objects.get(user_id=user_id)
-
             # Serialize the user profile data
             serializer = ProfileSerializer(user_profile)
 
@@ -1190,57 +751,3 @@ def user_likes_movie(request):
         }
     )
 
-
-"""
-@api_view(["POST"])
-def get_movie_details(request):
-    id = request.data.get("id")
-    if id:
-        movie = get_object_or_404(Movie, id=id)
-        serializer = MovieSerializer(movie, many=False)
-        return Response(serializer.data)
-
-"""
-
-
-def home(request):
-    movie_list = Movie.objects.order_by("-release_date")[:10]
-    return render(request, "app/home.html", {"movie_list": movie_list})
-
-
-def search(request):
-    if request.method == "GET":
-        form = SearchForm(request.GET)
-        if form.is_valid():
-            query = form.cleaned_data["query"]
-            search_type = form.cleaned_data["search_type"]
-
-            if search_type == "movie":
-                results = Movie.objects.filter(title__icontains=query)
-            elif search_type == "user":
-                results = Review.objects.filter(author__username__icontains=query)
-
-            return render(
-                request,
-                "app/home.html",
-                {"results": results, "search_type": search_type, "form": form},
-            )
-    else:
-        form = SearchForm()
-
-    return render(request, "app/home.html", {"form": form})
-
-
-
-
-def increment_years(years):
-    result = []
-    for year_range in years:
-        start_year = int(year_range)
-
-        # Generate a list of years in string form
-        year_strings = [str(year) for year in range(start_year, start_year + 10)]
-
-        # Extend the result array with the generated year strings
-        result.extend(year_strings)
-    return result

@@ -11,7 +11,6 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
 	const [newUsername, setNewUsername] = useState("");
 	const [newBio, setNewBio] = useState("");
-	const [authToken, setAuthToken] = useState("");
 
 	useEffect(() => {
 		// Fetch movie details for the favorite movie IDs
@@ -32,19 +31,8 @@ const ProfileFocus = ({ currentUserProfile ,isMyPage}) => {
 				console.error("Fetch error or invalid response:", response);
 			}
 		};
-		const fetchAuth = async () => {
-			const token = localStorage.getItem("Authorization");
-			if (token) {
-				setAuthToken(token);
-				
-			} else {
-				console.log("no auth");
-			}
-		};
-
 		
 		fetchMovies();
-		fetchAuth();
 	}, [currentUserProfile.favorites]);
 
 	const handlePrivacyChange = (event) => {

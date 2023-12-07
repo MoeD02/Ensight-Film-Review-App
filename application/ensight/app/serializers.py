@@ -62,7 +62,6 @@ class LoginSerializer(serializers.Serializer):
         write_only=True,
     )
 
-    )
 
     def validate(self, data):
         user = authenticate(**data)
@@ -70,14 +69,11 @@ class LoginSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError("Invalid Credentials")
 
-        raise serializers.ValidationError("Invalid Credentials")
 
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = "__all__"
-
         fields = "__all__"
 
     user = serializers.CharField(source="user.username")

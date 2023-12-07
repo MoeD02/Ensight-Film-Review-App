@@ -2,35 +2,41 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProfileTabs from "../components/Tabs/ProfileTabs";
 import "../assets/styles/pages/Profile.css";
-import { getCurrentUser, getUserProfileById, getUserStats } from "../APIcalls";
+import { getUserProfileById, getUserStats, getUser } from "../APIcalls";
 
 // only look at profile, watchlist, and lists
 const Profile = () => {
 	const { currentTab } = useParams();
 	const { id } = useParams();
-	const [authToken, setAuthToken] = useState("");
+    const [user, setUser] = useState(null);
 	const [currentUser, setCurrentUser] = useState("");
 	const [isMyPage, setIsMyPage] = useState(false);
 	const [currentUserProfile, setCurrentUserProfile] = useState("");
 	const [userStats, setUserStats] = useState(null);
 
+    useEffect(() => {
+        const initUser = async () => {
+            let userInfo = await getUser();
+            if (!!userInfo) {
+                setUser(userInfo);
+            }
+        };
+        initUser();
+    }, []);
+
 	useEffect(() => {
 		const fetchData = async () => {
-			const token = localStorage.getItem("Authorization");
-			if (token) {
-				setAuthToken(token);
+			if (!!user) {
 				try {
-					const userData = await getCurrentUser(token);
-					setCurrentUser(userData);
 					console.log(
 						"This is the current logged in user's id: " +
-							currentUser.id +
+							user.id +
 							" And this is the Profile we are on's id: " +
 							id
 					);
 					if (
-						typeof currentUser.id === "string" &&
-						id.trim() === currentUser.id.trim()
+						// typeof currentUser.id === "string" &&
+						id === user.id
 					) {
 						setIsMyPage(true);
 						const profileData = await getUserProfileById(id);
