@@ -35,12 +35,12 @@ const Header = () => {
         loadUser();
     }, []);
 
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    const toggleMenu = () => {
-        console.log("Menu toggled");
-        setIsMenuOpen(!isMenuOpen);
-    }
+	const toggleMenu = () => {
+		console.log("Menu toggled");
+		setIsMenuOpen(!isMenuOpen);
+	};
 
     const handleLoginClick = () => {
         // setIsLoginModalOpen(prevState => !prevState);
@@ -70,20 +70,20 @@ const Header = () => {
         }
     }
 
-    const handleLogoClick = () => {
-        window.location.href = '/';
-    };
+	const handleLogoClick = () => {
+		window.location.href = "/";
+	};
 
-    const handleSearchClick = () => {
-        const inputElement = document.querySelector(".HeaderSearchInput");
-        const searchTerm = inputElement.value.trim();
-    
-        if (searchTerm) {
-            navigate(`/Browse?searchTerm=${searchTerm}`);
-        } else {
-            console.log("Input field is empty. Please enter a search term.");
-        }
-    };
+	const handleSearchClick = () => {
+		const inputElement = document.querySelector(".HeaderSearchInput");
+		const searchTerm = inputElement.value.trim();
+
+		if (searchTerm) {
+			navigate(`/Browse?searchTerm=${searchTerm}`);
+		} else {
+			console.log("Input field is empty. Please enter a search term.");
+		}
+	};
 
     // if(authToken) {
         return (

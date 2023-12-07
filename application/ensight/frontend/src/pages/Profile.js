@@ -1,50 +1,102 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ProfileTabs from '../components/Tabs/ProfileTabs';
-import '../assets/styles/pages/Profile.css';
-import '../APIcalls'
+import ProfileTabs from "../components/Tabs/ProfileTabs";
+import "../assets/styles/pages/Profile.css";
+import { getUserProfileById, getUserStats, getUser, getUserFavorites } from "../APIcalls";
 
 // only look at profile, watchlist, and lists
-const Profile = (id) => {
+const Profile = () => {
     const { currentTab } = useParams();
-    // console.log("Profile: " + currentTab);
-    //get authtoken
-    //check if ur logged in
-    //if yes
-    //check if this page is your own
-    //display your page
-    //if no
-    //display whichever user's page ur on
+    const { id } = useParams();
+    const [user, setUser] = useState(null);
+    const [isMyPage, setIsMyPage] = useState(null);
+    const [currentUserProfile, setCurrentUserProfile] = useState(null);
+    const [userStats, setUserStats] = useState(null);
 
-    return (
-        <div>
-            <div className="UserInformation">
-                <span className="UserPic"></span>
-                <div className="UserText">
-                    <h1 className="Username">Username</h1>
-                    <h3 className="BioDesc">This is a description</h3>
+    useEffect(() => {
+        const initUser = async () => {
+            let userInfo = await getUser();
+            if (!!userInfo) {
+                setUser(userInfo);
+            }
+            setIsMyPage(userInfo.id == id)
+        };
+        initUser();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if(!!id){
+                setCurrentUserProfile(await getUserProfileById(id));
+                setUserStats(await getUserStats(id));
+            };
+        };
+        fetchData();
+    }, []); // Include id as a dependency
+
+    // if(!!currentUserProfile) {
+        return (
+            <div>
+                <div className="UserInformation">
+                    {!!currentUserProfile?.avatar
+                    ? (
+                        <img
+                            src={
+                                "http://localhost:8000" +
+                                currentUserProfile.avatar
+                            }
+                            className="UserPic"
+                        />
+                    )
+                    : (
+                        <img
+                            src={
+                                "http://localhost:8000/static/images/placeholder.png"
+                            }
+                            className="UserPic"
+                        />
+                    )}
+                    <div className="UserText">
+                        <h1 className="Username">{currentUserProfile?.user}</h1>
+                        <h3 className="BioDesc">{currentUserProfile?.bio}</h3>
+                    </div>
+                    <div className="UserExtra">
+                        <div className="UserExtraInfo">
+                            {/* Replace # by the number of lists they made */}
+                            <h1 className="UserTextInfo">
+                                {userStats ? userStats.num_movie_lists : 0}
+                            </h1>
+                            <h2 className="UserTextInfo">Lists</h2>
+                        </div>
+                        <div className="UserExtraInfo">
+                            {/* Replace # by the number of user they follow */}
+                            <h1 className="UserTextInfo">
+                                {userStats ? userStats.num_following : 0}
+                            </h1>
+                            <h2 className="UserTextInfo">Following</h2>
+                        </div>
+                        <div className="UserExtraInfo UserExtraR">
+                            {/* Replace # by the number of user follow them */}
+                            <h1 className="UserTextInfo">
+                                {userStats ? userStats.num_followers : 0}
+                            </h1>
+                            <h2 className="UserTextInfo">Followers</h2>
+                        </div>
+                    </div>
                 </div>
-                <div className="UserExtra">
-                    <div className="UserExtraInfo">
-                        {/* Replace # by the number of lists they made */}
-                        <h1 className="UserTextInfo">#</h1>
-                        <h2 className="UserTextInfo">Lists</h2>
-                    </div>
-                    <div className="UserExtraInfo">
-                        {/* Replace # by the number of user they follow */}
-                        <h1 className="UserTextInfo">#</h1>
-                        <h2 className="UserTextInfo">Following</h2>
-                    </div>
-                    <div className="UserExtraInfo UserExtraR">
-                        {/* Replace # by the number of user follow them */}
-                        <h1 className="UserTextInfo">#</h1>
-                        <h2 className="UserTextInfo">Followers</h2>
-                    </div>
-                </div>
+                <ProfileTabs
+                    userInfo={!!user}
+                    currentTab={currentTab}
+                    currentUserID={id}
+                    currentUserProfile={currentUserProfile}
+                    isMine={!!isMyPage}
+                />
             </div>
-            <ProfileTabs currentTab={currentTab}/>
-        </div>
-    );
-}
+        );
+    // }
+    // else {
+    //     return <div>Loading...</div>
+    // }
+};
 
 export default Profile;
