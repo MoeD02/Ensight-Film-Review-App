@@ -11,7 +11,6 @@ with open("./tmdb_API_key.txt", "r") as f:
 
 headers = {
     "Authorization": "Bearer " + token,
-    "Authorization": "Bearer " + token,
 }
 
 
