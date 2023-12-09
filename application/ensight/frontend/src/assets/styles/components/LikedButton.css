@@ -1,0 +1,8 @@
+.liked-heart-container {
+    width: 30px;
+    height: 30px;
+}
+
+.liked-svg-filled svg {
+    fill: #E11708; /* Set the fill property to red to make the heart red. */
+}

@@ -1,0 +1,36 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 10px 20px;
+    color: white;
+    height: 50px;
+    position: relative;
+    font-family: 'Manrope', sans-serif;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.footer a:hover {
+    border-bottom: 2px solid rgb(255, 0, 0); /* This changes the underline thickness on hover */
+}
+
+.footer a:last-child {
+    margin-right: 0;
+}
+
+.footer-brand {
+    /* If you want the brand to be grouped together */
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.footer-brand span:first-child {
+    margin-right: 20px; /* Adjust the space between the brand name and copyright notice */
+}

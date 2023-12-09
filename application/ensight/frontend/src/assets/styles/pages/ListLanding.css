@@ -1,0 +1,91 @@
+.ListLandingPage {
+    margin: 0 60px;
+    color: white;
+}
+
+.ListLandingPage h1, .ListLandingPage h3, .ListLandingPage h4 {
+    margin: 0;
+}
+
+.ListLandingPage h1 {
+    font-weight: 800;
+}
+
+.ListCreationUsername {
+    display: flex;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.ListCreationUsername h3::before {
+    content: "\00A0";
+}
+
+.ListBy {
+    font-weight: 100;
+}
+
+.ListInteraction {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.ListInformation {
+    border-top: 2px solid #E11708;
+    border-bottom: 2px solid #E11708;
+    padding: 0 10px;
+}
+
+.ListDescription {
+    font-weight: 200;
+    font-size: 19px;
+    min-height: 100px;
+}
+
+.ListLikes {
+    padding-left: 5px;
+}
+
+.ListDivider {
+    color: #E11708;
+    padding: 0 10px;
+}
+
+.ListMovieGrid {
+    margin: 30px 0;
+    padding-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    row-gap: 40px;
+    border-bottom: 2px solid #E11708;
+}
+
+.ListPoster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    color: white;
+    width: 180px;
+    height: 280px;
+    border-radius: 5px;
+}
+
+.ListComments {
+    border-left: 2px solid #E11708;
+    padding-left: 15px;
+    margin-top: 40px;
+}
+
+.CommentStyle {
+    border-left: 4px solid #E11708;
+    padding-left: 15px;
+    margin-bottom: 0;
+}
+
+.ListLandingReview {
+    margin-top: 60px;
+}

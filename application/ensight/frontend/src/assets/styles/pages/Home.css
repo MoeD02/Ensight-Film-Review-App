@@ -1,0 +1,108 @@
+/* Import react-slick styles */
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
+
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    overflow-x: hidden;
+    margin-top: -30px;
+  }
+  
+  /* .view-movies-btn, .view-feed-btn, .view-list-btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #000; 
+    color: #fff; 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+  }
+  
+  .view-movies-btn:hover, .view-feed-btn:hover, .view-list-btn:hover {
+    background-color: #000000;
+  } */
+  
+  img {
+    max-width: 100%; 
+    max-height: 100%;
+    display: block;
+  }
+  
+  .App {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .movie-showcase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFF;
+    padding-bottom: 50px;
+  }
+  
+  .header-section, .title-section, .heading-section {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 20px;
+    margin-top: -30px;
+  }
+
+  .header-section h1, .title-section h1, .heading-section h1 {
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+
+  .header-section p, .title-section p, .heading-section p {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+  }
+  
+  /* .view-movies-btn, .view-feed-btn, .view-list-btn {
+    background-color: red;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 20px;
+  } */
+
+  .feed-showcase-container, .list-showcase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFF;
+    padding-bottom: 50px;
+    padding-top: 50px;
+  }
+
+  .view-movies-btn, .view-feed-btn, .view-list-btn {
+    padding: 17px 40px;
+    border-radius: 10px;
+    border: 0;
+    background-color: rgb(255, 23, 8);
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    transition: all .3s ease;
+    box-shadow: rgb(201, 46, 70) 0px 10px 0px 0px;
+    color: hsl(0, 0%, 100%);
+  }
+  
+  .view-movies-btn:hover, .view-feed-btn:hover, .view-list-btn:hover {
+    box-shadow: rgb(201, 46, 70) 0px 7px 0px 0px;
+  }
+  
+  .view-movies-btn:active, .view-feed-btn:active, .view-list-btn:active {
+    background-color: rgb(255, 23, 8);
+    box-shadow: rgb(201, 46, 70) 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+  }
+  

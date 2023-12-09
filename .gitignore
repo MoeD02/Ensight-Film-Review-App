@@ -2,3 +2,7 @@
 __pycache__
 .vscode/
 **/migrations/**
+*.sqlite3
+node_modules/
+**/index-bundle.js
+**/test.rest
