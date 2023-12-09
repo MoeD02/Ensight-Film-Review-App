@@ -264,11 +264,12 @@ def header_search(request):
 
 @api_view(["POST"])
 def fetch_movies(request):
-    filter = request.data.get("filter")
-    genres = request.data.get("genres")
-    years = request.data.get("years")
-    years = increment_years(years)
-    index = request.data["amount"]
+    filter = request.POST.get("filter")
+    genres = request.POST.get("genres")
+    years = request.POST.get("years")
+    if years:
+        years = increment_years(years)
+    index = request.POST.get("amount")
 
     movies = Movie.objects.all()
     if genres:

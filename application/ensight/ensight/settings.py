@@ -29,6 +29,7 @@ DEBUG = False
 
 if DEBUG:
     ALLOWED_HOSTS = [
+	"ensight.space",
         "127.0.0.1",
         "localhost",
     ]
@@ -113,25 +114,25 @@ WSGI_APPLICATION = "ensight.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+#if DEBUG:
+#    DATABASES = {
+#        "default": {
+#            "ENGINE": "django.db.backends.sqlite3",
+#            "NAME": BASE_DIR / "db.sqlite3",
+#        }
+#    }
+#else:
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "app_db",
+        "USER": "django",
+        "PASSWORD": "djangopass",
+	"HOST": "localhost",
+	"PORT": "3306",
+	'OPTIONS': {'charset': 'utf8mb4'}
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": "app_db",
-            "USER": "django",
-            "PASSWORD": "!c9XpC2otq8qsqnWN_PN",
-            "HOST": "127.0.0.1",
-            "PORT": "3306",
-            'OPTIONS': {'charset': 'utf8mb4'}
-        }
-    }
+}
 
 
 # Password validation
@@ -169,14 +170,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-if DEBUG:
-    STATIC_ROOT = BASE_DIR / "static"
-else:
-    STATIC_ROOT = "/var/www/ensight"
-    STATICFILES_DIRS = [
-	BASE_DIR / "static",
-	BASE_DIR / "frontend/build/static",
-	]
+#if DEBUG:
+#    STATIC_ROOT = BASE_DIR / "static"
+#else:
+STATIC_ROOT = "/var/www/ensight"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "frontend/build/static",
+    ]
 
 MEDIA_URL = "media/"
 # change this to image root if you want to test

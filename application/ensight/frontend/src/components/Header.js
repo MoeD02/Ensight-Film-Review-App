@@ -49,7 +49,7 @@ const Header = () => {
     
     const handleLogoutClick = async (e) => {
         e.preventDefault();
-        const logoutEndpoint = 'http://127.0.0.1:8000/api/accounts/logout'
+        const logoutEndpoint = 'https://ensight.space/api/accounts/logout'
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': user.token,
