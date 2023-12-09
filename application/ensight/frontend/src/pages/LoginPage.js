@@ -18,7 +18,7 @@ const LoginPage = () => {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		const loginEndpoint = "http://127.0.0.1:8000/accounts/login";
+		const loginEndpoint = "http://127.0.0.1:8000/api/accounts/login";
 		const userData = {
 			username,
 			password,
@@ -48,7 +48,7 @@ const LoginPage = () => {
 
 	const handleRegister = async (e) => {
 		e.preventDefault();
-		const RegisterEndpoint = "http://127.0.0.1:8000/accounts/register";
+		const RegisterEndpoint = "http://127.0.0.1:8000/api/accounts/register";
 		const userData = {
 			username,
 			email,
