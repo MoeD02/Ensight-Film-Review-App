@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-h-=dxamti0_pqwk9al+f3*4f2&*(zq5924kv+*a^d5hr$@di#^"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     ALLOWED_HOSTS = [
@@ -35,14 +35,21 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = [
         ".ensight.space",
+	"127.0.0.1",
+	"localhost",
     ]
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1",
+	"https://ensight.space",
+	"http://127.0.0.1:3000",
+	"http://localhost:3000",
+	"http://ensight.space",
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    "https://ensight.space",
+    "http://ensight.space",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
@@ -86,6 +93,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             BASE_DIR / "templates",
+	    BASE_DIR / "frontend/build",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -119,7 +127,7 @@ else:
             "NAME": "app_db",
             "USER": "django",
             "PASSWORD": "!c9XpC2otq8qsqnWN_PN",
-            "HOST": "3.101.149.249",
+            "HOST": "127.0.0.1",
             "PORT": "3306",
             'OPTIONS': {'charset': 'utf8mb4'}
         }
@@ -165,7 +173,10 @@ if DEBUG:
     STATIC_ROOT = BASE_DIR / "static"
 else:
     STATIC_ROOT = "/var/www/ensight"
-    STATICFILES_DIRS = [BASE_DIR / "static"]
+    STATICFILES_DIRS = [
+	BASE_DIR / "static",
+	BASE_DIR / "frontend/build/static",
+	]
 
 MEDIA_URL = "media/"
 # change this to image root if you want to test

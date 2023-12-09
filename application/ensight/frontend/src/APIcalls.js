@@ -1,5 +1,5 @@
-const apiUrl = "http://127.0.0.1:8000";
-
+//const apiUrl = "http://localhost:8000";
+const apiUrl = "https://ensight.space/api";
 export const getUsers = async (filter, amount) => {
 	const data = {
 		filter: filter,
