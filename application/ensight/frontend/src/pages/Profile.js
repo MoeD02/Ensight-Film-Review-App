@@ -26,7 +26,7 @@ const Profile = () => {
     }, []);
 
     useEffect(() => {
-        setIsMyPage(user.id == id)
+        setIsMyPage(user?.id == id)
     }, [user])
 
     useEffect(() => {
