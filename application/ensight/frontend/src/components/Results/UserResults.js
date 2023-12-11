@@ -104,12 +104,15 @@ const UserResults = ({ searchTerm }) => {
 							<h3>{user.stats.num_followers}</h3>
 							<h3 className="ResultStatement">followers</h3>
 						</div>
-						{currentUser && (
+
+						{!!currentUser ? (
 							<FollowButton
 								userToFollowId={user.id}
 								followUser={follow_user} // Use the individual user's followed state
 								currentUser={currentUser}
 							/>
+						) : (
+							<></>
 						)}
 					</div>
 				</div>
