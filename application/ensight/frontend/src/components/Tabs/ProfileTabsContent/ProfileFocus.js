@@ -189,7 +189,7 @@ const ProfileFocus = ({ userInfo, currentUserID, currentUserProfile, isMyPage })
 							</button>
 							{/* any changes are saved */}
                             
-							<button className="Button RightB" onClick={() => handleSubmitClick({userInfo}.token)}>
+							<button className="Button RightB" onClick={() => handleSubmitClick(userInfo.token)}>
 								Save
 							</button>
 						</div>

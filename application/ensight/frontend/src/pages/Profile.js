@@ -47,7 +47,7 @@ const Profile = () => {
                     ? (
                         <img
                             src={
-                                "http://localhost:8000" +
+                                "https://ensight.space" +
                                 currentUserProfile.avatar
                             }
                             className="UserPic"
@@ -56,7 +56,7 @@ const Profile = () => {
                     : (
                         <img
                             src={
-                                "http://localhost:8000/static/images/placeholder.png"
+                                "https://ensight.space/static/images/placeholder.png"
                             }
                             className="UserPic"
                         />
