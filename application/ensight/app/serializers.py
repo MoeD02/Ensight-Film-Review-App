@@ -109,15 +109,13 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    genres = serializers.StringRelatedField(many=True)
+#    genres = serializers.StringRelatedField(many=True)
 
 
     class Meta:
         model = Movie
-        fields = "__all__"
-
-        fields = "__all__"
-
+#        fields = "__all__"
+        fields = ["title", "poster_path", "release_date", "rating_average"]
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:

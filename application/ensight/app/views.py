@@ -270,24 +270,25 @@ def fetch_movies(request):
     filter = request.POST.get("filter")
     genres = request.POST.get("genres")
     years = request.POST.get("years")
-    if years:
+    if years is not None:
         years = increment_years(years)
     index = request.POST.get("amount")
 
-    movies = Movie.objects.all()
-    if genres:
-        movies = Movie.objects.filter(genres__name__in=genres).distinct()
+    movies = Movie.objects.all().defer("description")[:index]
+    if genres is not None:
+        movies = movies.filter(genres__name__in=genres).distinct()
 
-    if years:
+    if years is not None:
         movies = movies.filter(release_date__year__in=years)
 
     if filter == "highest":
         movies = movies.order_by("-popularity")[:index]
     elif filter == "ALL":
-        movies = movies.all()
+#        movies = movies.all()
+        movies=movies[:index]
     elif filter == "lowest":
         movies = movies.order_by("popularity")[:index]
-    serializer = MovieSerializer(movies, many=True)
+    serializer = MovieSerializer(movies.order_by("-popularity")[:5], many=True)
 
     return Response(serializer.data)
 

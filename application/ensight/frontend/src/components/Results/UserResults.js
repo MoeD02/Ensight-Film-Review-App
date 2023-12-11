@@ -17,7 +17,7 @@ const UserResults = ({ searchTerm }) => {
 	const FollowUser = {
 		borderRadius: "100px",
 	};
-	useEffect(() => {
+/*	useEffect(() => {
 		const fetchData = async () => {
 			let currentUserInfo = await getUser();
 			if (!!currentUserInfo) {
@@ -57,7 +57,7 @@ const UserResults = ({ searchTerm }) => {
 		};
 
 		fetchData();
-	}, [searchTerm]);
+	}, [searchTerm]);*/
 	const follow_user = async (userToFollowId) => {
 		// You can add error handling here
 		const result = await followUser(userToFollowId, currentUser.token);
