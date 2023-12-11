@@ -30,24 +30,29 @@ const UserResults = ({ searchTerm }) => {
 			} else {
 				data = await getUsers("highest_followers", 5);
 			}
+			try{
+				if (data) {
+					const updatedData = await Promise.all(
+						data.map(async (user) => {
+							
+							const stats = await getUserStats(user.id);
+							const followInfo = await isFollowedByUser(
+								currentUserInfo.id,
+								user.id,
+								currentUserInfo.token
+							);
+							const followed = followInfo ? followInfo.data : null; // Check if followInfo is not null
 
-			if (data) {
-				const updatedData = await Promise.all(
-					data.map(async (user) => {
-						const stats = await getUserStats(user.id);
-						const followInfo = await isFollowedByUser(
-							currentUserInfo.id,
-							user.id,
-							currentUserInfo.token
-						);
-						const followed = followInfo ? followInfo.data : null; // Check if followInfo is not null
-
-						return { ...user, stats, followed };
-					})
-				);
-				setUserData(updatedData);
-			} else {
-				console.error("Failed to fetch user data");
+							return { ...user, stats, followed };
+						})
+					);
+					setUserData(updatedData);
+				} else {
+					console.error("Failed to fetch user data");
+				}
+			}
+			catch(error){
+				console.error("Error while accessing id", error);
 			}
 		};
 
