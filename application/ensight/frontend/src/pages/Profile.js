@@ -18,8 +18,9 @@ const Profile = () => {
             let userInfo = await getUser();
             if (!!userInfo) {
                 setUser(userInfo);
-            }
-            setIsMyPage(userInfo.id == id)
+            
+           	 setIsMyPage(userInfo.id == id)
+	}
         };
         initUser();
     }, []);

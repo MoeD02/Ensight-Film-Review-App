@@ -12,11 +12,11 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 
 from knox.models import AuthToken
-
+from knox.auth import TokenAuthentication
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 
@@ -100,6 +100,7 @@ def unfollow_user(request):
 
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def add_to_favorites(request):
     if request.method == "POST":
         movie_id = request.data.get("movie_id")
@@ -153,6 +154,8 @@ def remove_from_favorites(request):
 
 
 @api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def update_user_profile(request):
     user_profile = request.user.profile
 
@@ -706,15 +709,15 @@ def create_movie_list(request):
 # get's user's list(all of it). STILL NEEDS WORK because it doesn't know which user it is
 @api_view(["POST"])
 def get_user_movie_lists(request):
-    filter = request.data.get("filter")
+    filter = request.POST.get("filter")
 
     # print("THIS IS THE FILTER AND THIS IS THE ID: ", filter, author_id)
 
     if filter == "id":
-        author_id = request.data["id"]
+        author_id = request.POST.get("id")
         movie_list = MovieList.objects.filter(author__id=author_id)
     else:
-        index = request.data["amount"]
+        index = request.POST.get("amount")
         movie_list = MovieList.objects.all()[:index]
         # string = f"THIS IS TEH AUTHOR{movie_list[0].author}"
         # print(string)

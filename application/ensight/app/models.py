@@ -151,9 +151,11 @@ class CreditList(models.Model):
         Person,
         on_delete=models.CASCADE,
         related_name="credited_in",
+	default=None,
     )
     job = models.CharField(
         max_length=128,
+	null=True,
     )
     role = models.CharField(
         max_length=128,
