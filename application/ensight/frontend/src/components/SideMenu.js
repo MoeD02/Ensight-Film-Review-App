@@ -108,11 +108,11 @@ const SideMenu = ({ isOpen, onClose }) => {
 								Lists
 							</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link to="/DisplayMovie" onClick={onClose}>
 								Movies
 							</Link>
-						</li>
+						</li> */}
 						<li>
 							<Link to="/DisplayUser" onClick={onClose}>
 								Members
