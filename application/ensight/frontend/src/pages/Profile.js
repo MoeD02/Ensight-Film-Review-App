@@ -15,15 +15,21 @@ const Profile = () => {
 
     useEffect(() => {
         const initUser = async () => {
-            let userInfo = await getUser();
-            if (!!userInfo) {
-                setUser(userInfo);
-            
-           	 setIsMyPage(userInfo.id == id)
-	}
+            setUser(await getUser());
+            // let userInfo = await getUser();
+            // if (!!userInfo) {
+            //     setUser(userInfo);
+            //     setIsMyPage(userInfo.id == id)
+            // }
         };
         initUser();
     }, []);
+
+    useEffect(() => {
+        if(!!user) {
+            setIsMyPage(user.id === id)
+        };
+    }, [user])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -86,7 +92,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <ProfileTabs
-                    userInfo={!!user}
+                    userInfo={user ? user : null}
                     currentTab={currentTab}
                     currentUserID={id}
                     currentUserProfile={currentUserProfile}

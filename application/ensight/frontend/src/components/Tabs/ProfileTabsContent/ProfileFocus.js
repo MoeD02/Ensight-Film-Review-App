@@ -17,8 +17,9 @@ const ProfileFocus = ({ userInfo, currentUserID, currentUserProfile, isMyPage })
     const {id} = useParams()
 
     useEffect(() => {
-        if(!!userInfo) {
+        if(!!user) {
             setUser(userInfo);
+            console.log(userInfo)
         }
         if(!!currentUserID) {
             setPageOwner(currentUserID);
@@ -187,7 +188,8 @@ const ProfileFocus = ({ userInfo, currentUserID, currentUserProfile, isMyPage })
 								Cancel
 							</button>
 							{/* any changes are saved */}
-							<button className="Button RightB" onClick={() => handleSubmitClick(user?.auth)}>
+                            
+							<button className="Button RightB" onClick={() => handleSubmitClick({userInfo}.token)}>
 								Save
 							</button>
 						</div>
