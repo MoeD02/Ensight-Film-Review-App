@@ -79,7 +79,7 @@ def follow_user(request):
         )
         return Response({"message": "Follow success"}, status.HTTP_200_OK)
     except IntegrityError as e:
-        return Response({"error": e.message}, status.HTTP_400_BAD_REQUEST)
+        return Response({"error": e}, status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["DELETE"])
@@ -94,7 +94,7 @@ def unfollow_user(request):
         ).delete()
         return Response({"message": "success"}, status.HTTP_200_OK)
     except IntegrityError as e:
-        return Response({"error": e.message}, status.HTTP_404_NOT_FOUND)
+        return Response({"error": e}, status.HTTP_404_NOT_FOUND)
 
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
