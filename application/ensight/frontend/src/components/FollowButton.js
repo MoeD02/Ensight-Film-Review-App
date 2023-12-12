@@ -6,23 +6,27 @@ const FollowButton = ({
     style,
     userToFollowId,
     isFollowed,
-    followUser,
-    unfollowUser,
+    // followUser,
+    // unfollowUser,
     currentUser,
 }) => {
-    const [isFollowing, setIsFollowing] = useState(false);
+    const [isFollowing, setIsFollowing] = useState(null);
+    const [parentId, setParentId] = useState(null);
     const [user, setUser] = useState(null);
     useEffect(() => {
         setIsFollowing(isFollowed);
     }, [isFollowed]);
+    useEffect(() => {
+        setParentId(userToFollowId);
+    }, [userToFollowId]);
 
     const toggleFollow = async () => {
         if(isFollowing) {
-            unfollowUser(userToFollowId, currentUser.token)
+            unfollowUser(parentId, currentUser.token)
             setIsFollowing(false)
         }
         else {
-            followUser(userToFollowId, currentUset.token)
+            followUser(parentId, currentUser.token)
             setIsFollowing(true)
         }
         // try {
@@ -59,10 +63,10 @@ const FollowButton = ({
     return (
         <button
             style={style}
-            className={`button ${isFollowing ? "following" : "follow"}`}
+            className={`button ${!!isFollowing ? "following" : "follow"}`}
             onClick={toggleFollow}
         >
-            {isFollowing ? "Following" : "Follow +"}
+            {!!isFollowing ? "Following" : "Follow +"}
         </button>
     );
 };
