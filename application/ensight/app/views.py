@@ -536,7 +536,7 @@ def user_follows_user(request):
 
     # Check if the specified follower is following the specified following user
 #    is_following = follower_profile.following.filter(pk=following_id).exists()
-    is_following = User.objects.get(pk=user_id).followers.filter(pk=other_id).exists()
+    is_following = User.objects.get(pk=user_id).following.filter(following_user_id=other_id).exists()
     # Return the result as a JSON response
     return JsonResponse({"is_following": is_following})
 
