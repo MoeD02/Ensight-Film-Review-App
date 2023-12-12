@@ -518,27 +518,27 @@ def user_likes_movie(request):
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
 def user_follows_user(request):
-    follower_id = request.data.get("follower_id")
-    following_id = request.data.get("following_id")
+    user_id = request.data.get("follower_id")
+    other_id = request.data.get("following_id")
 
     # Check if the follower_id and following_id are provided
-    if not follower_id or not following_id:
+    if not user_id or not other_id:
         return JsonResponse(
             {
-                "error": "Incomplete data. Please provide both follower_id and following_id."
+                "error": "Incomplete data. Please provide both user_id and other_id."
             },
             status=400,
         )
 
     # Check if the specified follower exists
-    follower_profile = get_object_or_404(Profile, pk=follower_id)
+#    follower_profile = get_object_or_404(Profile, pk=follower_id)
 
     # Check if the specified following user exists
-    following_profile = get_object_or_404(Profile, pk=following_id)
+#    following_profile = get_object_or_404(Profile, pk=following_id)
 
     # Check if the specified follower is following the specified following user
-    is_following = follower_profile.following.filter(pk=following_id).exists()
-
+#    is_following = follower_profile.following.filter(pk=following_id).exists()
+    is_following = User.objects.get(pk=user_id).followers.filter(pk=other_id).exists()
     # Return the result as a JSON response
     return JsonResponse({"is_following": is_following})
 
