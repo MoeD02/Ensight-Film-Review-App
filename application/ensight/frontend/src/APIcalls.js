@@ -509,6 +509,28 @@ export const followUser = async (userToFollowId, authToken) => {
 	}
 };
 
+export const unfollowUser = async (otherId, authToken) => {
+	const data = {
+		other_user_id: userToFollowId,
+	};
+
+	const response = await fetch(`${apiUrl}/unfollow_user/`, {
+		method: "DELETE",
+		headers: {
+			Authorization: authToken,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (response.ok) {
+		return await response.json();
+	} else {
+		console.error("Failed to follow user");
+		return null;
+	}
+};
+
 export const getUserStats = async (user_id, authToken) => {
 	const data = {
 		user_id: user_id,
