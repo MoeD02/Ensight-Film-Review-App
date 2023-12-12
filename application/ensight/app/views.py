@@ -288,7 +288,7 @@ def fetch_movies(request):
         movies=movies[:index]
     elif filter == "lowest":
         movies = movies.order_by("popularity")[:index]
-    serializer = MovieSerializer(movies.order_by("-popularity")[:5], many=True)
+    serializer = MovieSerializer(movies.order_by("-popularity")[:10], many=True)
 
     return Response(serializer.data)
 

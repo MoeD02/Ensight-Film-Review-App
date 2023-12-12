@@ -115,7 +115,7 @@ class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
 #        fields = "__all__"
-        fields = ["title", "poster_path", "release_date", "rating_average"]
+        fields = ["id", "title", "poster_path", "release_date", "rating_average"]
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
