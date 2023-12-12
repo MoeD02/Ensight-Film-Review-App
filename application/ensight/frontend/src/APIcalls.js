@@ -489,7 +489,7 @@ export const fetchReviewsForMovie = async (movieId) => {
 };
 export const followUser = async (userToFollowId, authToken) => {
 	const data = {
-		user_to_follow_id: userToFollowId,
+		other_user_id: userToFollowId,
 	};
 
 	const response = await fetch(`${apiUrl}/follow_user/`, {
