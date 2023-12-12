@@ -71,8 +71,9 @@ class CurrentUserAPI(RetrieveAPIView):
 @permission_classes([permissions.IsAuthenticated])
 def follow_user(request):
     # TODO: Get User obj from auth info
-    user_id = request.data.get("user_id")
-    following_user_id = request.data["following_user_id"]
+    # user_id = request.data.get("user_id")
+    user_id = request.user.pk
+    following_user_id = request.data.get("following_user_id")
     try:
         UserFollowing.objects.create(
             user_id=User.objects.get(pk=user_id),
@@ -87,8 +88,9 @@ def follow_user(request):
 @permission_classes([permissions.IsAuthenticated])
 def unfollow_user(request):
     # TODO: Get User obj from auth info
-    user_id = request.data["user_id"]
-    following_user_id = request.data["following_user_id"]
+    # user_id = request.data.get("user_id")
+    user_id = request.user.pk
+    following_user_id = request.data.get("other_user_id")
     try:
         UserFollowing.objects.filter(
             user_id=User.objects.get(pk=user_id),
