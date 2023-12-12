@@ -70,35 +70,31 @@ class CurrentUserAPI(RetrieveAPIView):
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
 def follow_user(request):
-    # TODO: Get User obj from auth info
-    # user_id = request.data.get("user_id")
     user_id = request.user.pk
     following_user_id = request.data.get("other_user_id")
-    # try:
-    UserFollowing.objects.create(
-        user_id=User.objects.get(pk=user_id),
-        following_user_id=User.objects.get(pk=following_user_id),
-    )
-    return Response({"message": "Follow success"}, status.HTTP_200_OK)
-    # except IntegrityError:
-    #     return Response({"error": "error"}, status.HTTP_400_BAD_REQUEST)
+    try:
+        UserFollowing.objects.create(
+            user_id=User.objects.get(pk=user_id),
+            following_user_id=User.objects.get(pk=following_user_id),
+        )
+        return Response({"message": "Follow success"}, status.HTTP_200_OK)
+    except IntegrityError as e:
+        return Response({"error": e.message}, status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["DELETE"])
 @permission_classes([permissions.IsAuthenticated])
 def unfollow_user(request):
-    # TODO: Get User obj from auth info
-    # user_id = request.data.get("user_id")
     user_id = request.user.pk
     following_user_id = request.data.get("other_user_id")
-    # try:
-    UserFollowing.objects.filter(
-        user_id=User.objects.get(pk=user_id),
-        following_user_id=User.objects.get(pk=following_user_id),
-    ).delete()
-    return Response({"message": "success"}, status.HTTP_200_OK)
-    # except IntegrityError:
-    #     return Response({"error": "error"}, status.HTTP_404_NOT_FOUND)
+    try:
+        UserFollowing.objects.filter(
+            user_id=User.objects.get(pk=user_id),
+            following_user_id=User.objects.get(pk=following_user_id),
+        ).delete()
+        return Response({"message": "success"}, status.HTTP_200_OK)
+    except IntegrityError as e:
+        return Response({"error": e.message}, status.HTTP_404_NOT_FOUND)
 
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
