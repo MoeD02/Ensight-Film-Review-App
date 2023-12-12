@@ -267,28 +267,27 @@ def header_search(request):
 
 @api_view(["POST"])
 def fetch_movies(request):
-    filter = request.POST.get("filter")
-    genres = request.POST.get("genres")
-    years = request.POST.get("years")
-    if years is not None:
+    filter = request.data.get("filter")
+    genres = request.data.get("genres")
+    years = request.data.get("years")
+    if years:
         years = increment_years(years)
-    index = request.POST.get("amount")
+    index = request.data.get("amount")
 
-    movies = Movie.objects.all().defer("description")[:index]
-    if genres is not None:
+    movies = Movie.objects.all().defer("description")
+    if genres:
         movies = movies.filter(genres__name__in=genres).distinct()
 
-    if years is not None:
+    if years:
         movies = movies.filter(release_date__year__in=years)
 
     if filter == "highest":
         movies = movies.order_by("-popularity")[:index]
     elif filter == "ALL":
-#        movies = movies.all()
-        movies=movies[:index]
+        movies = movies[:index]
     elif filter == "lowest":
         movies = movies.order_by("popularity")[:index]
-    serializer = MovieSerializer(movies.order_by("-popularity")[:10], many=True)
+    serializer = MovieSerializer(movies, many=True)
 
     return Response(serializer.data)
 

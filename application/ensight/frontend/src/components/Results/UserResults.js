@@ -17,7 +17,7 @@ const UserResults = ({ searchTerm }) => {
 	const FollowUser = {
 		borderRadius: "100px",
 	};
-/*	useEffect(() => {
+	useEffect(() => {
 		const fetchData = async () => {
 			let currentUserInfo = await getUser();
 			if (!!currentUserInfo) {
@@ -36,11 +36,11 @@ const UserResults = ({ searchTerm }) => {
 						data.map(async (user) => {
 							
 							const stats = await getUserStats(user.id);
-							const followInfo = await isFollowedByUser(
+							const followInfo = null /* await isFollowedByUser(
 								currentUserInfo.id,
 								user.id,
 								currentUserInfo.token
-							);
+							);*/
 							const followed = followInfo ? followInfo.data : null; // Check if followInfo is not null
 
 							return { ...user, stats, followed };
@@ -57,7 +57,7 @@ const UserResults = ({ searchTerm }) => {
 		};
 
 		fetchData();
-	}, [searchTerm]);*/
+	}, [searchTerm]);
 	const follow_user = async (userToFollowId) => {
 		// You can add error handling here
 		const result = await followUser(userToFollowId, currentUser.token);
@@ -76,7 +76,7 @@ const UserResults = ({ searchTerm }) => {
 					<div className="UserResults">
 						<img
 							className="UserPicResults"
-							src={`http://localhost:8000/${user.avatar}`}
+							src={`https://ensight.space${user.avatar}`}
 							alt={`User ${user.user}'s avatar`}
 						/>
 

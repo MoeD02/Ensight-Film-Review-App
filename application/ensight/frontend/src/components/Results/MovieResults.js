@@ -13,7 +13,7 @@ const MovieResults = ({ searchTerm, filter, genres, years }) => {
 					setMovieData(data);
 				}
 			} else {
-				const data = await fetchMovies(filter, genres, years, 5);
+				const data = await fetchMovies(filter, genres, years, 10);
 				if (data) {
 					setMovieData(data);
 				}

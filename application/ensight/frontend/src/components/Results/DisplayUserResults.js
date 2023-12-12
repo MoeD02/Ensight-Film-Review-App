@@ -51,7 +51,7 @@ const UserResults = ({ Username, UserBio, avatar, userId }) => {
 		<div className="ResultContent Results DisplayResults">
 			<div className="UserResults">
 				<img
-					src={"http://localhost:8000" + avatar}
+					src={"https://ensight.space" + avatar}
 					className="UserPicResults DisplayUserPic"
 					alt={`${Username}'s Avatar`}
 				/>
