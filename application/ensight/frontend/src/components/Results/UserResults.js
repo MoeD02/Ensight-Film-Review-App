@@ -6,58 +6,81 @@ import {
     getUsers,
     getUserStats,
     getUser,
-    isFollowedByUser,
+    isFollowingArray,
+    getUserResults,
     followUser,
+    unfollowUser,
 } from "../../APIcalls.js";
 import FollowButton from "../FollowButton.js";
 
-const UserResults = ({ searchTerm }) => {
+const UserResults = ({ searchTerm, user }) => {
     const [userData, setUserData] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
+    const [selfUser, setSelfUser] = useState(null);
     const FollowUser = {
         borderRadius: "100px",
     };
     useEffect(() => {
+        setSelfUser(user);
+    }, [user]);
+    useEffect(() => {});
+    useEffect(() => {
+        let data;
         const fetchData = async () => {
-            let currentUserInfo = await getUser();
-            if (!!currentUserInfo) {
-                setCurrentUser(currentUserInfo);
-            }
-
-            let data;
             if (searchTerm != null) {
-                data = await searchUsers(searchTerm);
+                // data = await searchUsers(searchTerm);
+                // try {
+                //     if (data) {
+                //         const updatedData = await Promise.all(
+                //             data.map(async (user) => {
+                //                 const stats = await getUserStats(user.id);
+                //                 const followInfo = await isFollowingArray(
+                //                     authToken
+                //                 );
+                //                 return { ...user, stats, followed };
+                //             })
+                //         );
+                //         setUserData(updatedData);
+                //     } else {
+                //         console.error("Failed to fetch user data");
+                //     }
+                // } catch (error) {
+                //     console.error("Error while accessing id", error);
+                // }
+                setUserData(await searchUsers(selfUser.token, searchTerm))
             } else {
-                data = await getUsers("highest_followers", 5);
-            }
-            try {
-                if (data) {
-                    const updatedData = await Promise.all(
-                        data.map(async (user) => {
-                            const stats = await getUserStats(user.id);
-                            const followInfo = await isFollowedByUser(
-                                currentUserInfo.id,
-                                user.id,
-                                currentUserInfo.token
-                            );
-                            const followed = followInfo
-                                ? followInfo.data
-                                : null; // Check if followInfo is not null
-
-                            return { ...user, stats, followed };
-                        })
-                    );
-                    setUserData(updatedData);
-                } else {
-                    console.error("Failed to fetch user data");
-                }
-            } catch (error) {
-                console.error("Error while accessing id", error);
+                setUserData(await getUserResults(selfUser.token))
             }
         };
 
         fetchData();
     }, [searchTerm]);
+    // useEffect(() => {
+    //     let data;
+    //     if (searchTerm != null) {
+    //         data = await searchUsers(searchTerm);
+    //     } else {
+    //         data = await getUsers("highest_followers", 5);
+    //     }
+    //     try {
+    //         if (data) {
+    //             const updatedData = await Promise.all(
+    //                 data.map(async (user) => {
+    //                     const stats = await getUserStats(user.id);
+    //                     const followInfo = await isFollowingArray(authToken, )
+    //                     return { ...user, stats, followed };
+    //                 })
+    //             );
+    //             setUserData(updatedData);
+    //         } else {
+    //             console.error("Failed to fetch user data");
+    //         }
+    //     } catch (error) {
+    //         console.error("Error while accessing id", error);
+    //     }
+
+    //     fetchData();
+    // }, [searchTerm]);
     const follow_user = async (userToFollowId) => {
         // You can add error handling here
         const result = await followUser(userToFollowId, currentUser.token);
@@ -71,49 +94,49 @@ const UserResults = ({ searchTerm }) => {
 
     return (
         <>
-            {userData.map((user, index) => (
+            {userData.map((userInfo, index) => (
                 <div className="ResultContent Results" key={index}>
                     <div className="UserResults">
                         <img
                             className="UserPicResults"
-                            src={`https://ensight.space${user.avatar}`}
-                            alt={`User ${user.user}'s avatar`}
+                            src={`https://ensight.space${userInfo.user.avatar}`}
+                            alt={`User ${userInfo.user}'s avatar`}
                         />
 
                         <div className="MoviePosterDetails">
                             <Link
-                                to={`/Profile/${user.id}/profile`}
+                                to={`/Profile/${userInfo.user.id}/profile`}
                                 className="browse-link"
                                 key={index}
                             >
                                 <h5 className="MoviePosterTitle">
-                                    {user.user}
+                                    {userInfo.user}
                                 </h5>
                             </Link>
-                            <h6 className="MoviePosterStars">{user.bio}</h6>
+                            <h6 className="MoviePosterStars">{userInfo.user.bio}</h6>
                         </div>
                     </div>
 
                     <div className="ResultExtra">
                         <div className="ResultExtraInfo">
-                            <h3>{user.stats.num_movie_lists}</h3>
+                            <h3>{userInfo.num_lists}</h3>
                             <h3 className="ResultStatement">lists</h3>
                         </div>
                         <div className="ResultExtraInfo">
-                            <h3>{user.stats.num_following}</h3>
+                            <h3>{userInfo.num_following}</h3>
                             <h3 className="ResultStatement">following</h3>
                         </div>
                         <div className="ResultExtraInfo">
-                            <h3>{user.stats.num_followers}</h3>
+                            <h3>{userInfo.num_followers}</h3>
                             <h3 className="ResultStatement">followers</h3>
                         </div>
 
                         {!!currentUser ? (
                             <FollowButton
-                                userToFollowId={user.id}
+                                userToFollowId={userInfo.user.id}
                                 followUser={follow_user} // Use the individual user's followed state
                                 currentUser={currentUser}
-                                isFollowed={user.followed}
+                                isFollowed={userInfo.following}
                             />
                         ) : (
                             <></>

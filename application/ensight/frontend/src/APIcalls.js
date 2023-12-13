@@ -22,7 +22,7 @@ export const getUsers = async (filter, amount) => {
 	}
 };
 
-export const searchUsers = async (searchTerm) => {
+export const searchUsers = async (authToken, searchTerm) => {
 	const data = {
 		content: searchTerm,
 	};
@@ -30,6 +30,7 @@ export const searchUsers = async (searchTerm) => {
 	const response = await fetch(`${apiUrl}/search_users/`, {
 		method: "POST",
 		headers: {
+            Authorization: authToken,
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(data),
@@ -574,3 +575,39 @@ export const isFollowedByUser = async (followerId, followingId, authToken) => {
 		return null;
 	}
 };
+
+// export const isFollowingArray = async (authToken, ids) => {
+//     const data = {
+//         ids: ids,
+//     }
+//     const response = await fetch(`${apiUrl}/is_following_array`, {
+//         method: "POST",
+//         headers: {
+//             Authorization: authToken,
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(data),
+//     });
+//     if (response.ok) {
+//         return await response.json();
+//     } else {
+//         console.error("Failed isFollowingArray");
+//         return null;
+//     }
+// };
+
+export const getUserResults = async (authToken) => {
+    const response = await fetch(`${apiUrl}/get_user_results/`, {
+        method: "POST",
+        headers: {
+            Authorization: authToken,
+            "Content-Type": "application/json",
+        }
+    });
+    if(response.ok) {
+        return await response.json();
+    } else {
+        console.error("getUserResults failed")
+        return null;
+    }
+}

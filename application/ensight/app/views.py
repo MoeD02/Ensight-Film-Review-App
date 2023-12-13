@@ -366,22 +366,33 @@ def get_users(request):
 
 
 @api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
 def search_users(request):
     if request.method == "POST":
         search_query = request.data.get("content")
+        selfUserId = request.user.pk
         print(f"Search Query: {search_query}")
-        users = Profile.objects.filter(Q(user__username__icontains=search_query))
-
-        serializer = ProfileSerializer(users, many=True)
-        user_profiles = [
-            {
-                "username": user.user.username,
+        # users = Profile.objects.filter(Q(user__username__icontains=search_query))
+        users = User.objects.filer(username__icontains=search_query)
+        userInfo = []
+        for user in users:
+            info = {
+                "user": user,
+                "num_lists": user.lists.count(),
+                "num_following": user.following.count(),
+                "num_followers": user.followers.count(),
+                "following": user.followers.filter(pk=selfUserId).exists(),
             }
-            for user in users
-        ]
-        return Response(serializer.data)
-    # else:
-    #     return JsonResponse({'error': 'Invalid request method'}, status=400)
+            userInfo.append(info)
+
+        # serializer = ProfileSerializer(users, many=True)
+        # user_profiles = [
+        #     {
+        #         "username": user.user.username,
+        #     }
+        #     for user in users
+        # ]
+        return Response(json.dumps(userInfo))
 
 
 @api_view(["POST"])
@@ -527,21 +538,28 @@ def user_follows_user(request):
             },
             status=400,
         )
-
-    # Check if the specified follower exists
-#    follower_profile = get_object_or_404(Profile, pk=follower_id)
-
-    # Check if the specified following user exists
-#    following_profile = get_object_or_404(Profile, pk=following_id)
-
-    # Check if the specified follower is following the specified following user
-#    is_following = follower_profile.following.filter(pk=following_id).exists()
     is_following = User.objects.get(pk=user_id).following.filter(following_user_id=other_id).exists()
     # Return the result as a JSON response
     return JsonResponse({"is_following": is_following})
 
 
-
+@api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
+def get_user_results(request):
+    users = [x for x in User.objects.all()[:5]]
+    selfUserId = request.user.pk
+    userInfo = []
+    for user in users:
+        info = {
+            "user": user,
+            "num_lists": user.lists.count(),
+            "num_following": user.following.count(),
+            "num_followers": user.followers.count(),
+            "following": user.followers.filter(pk=selfUserId).exists(),
+        }
+        userInfo.append(info)
+    return Response(json.dumps(userInfo))
+    
 def increment_years(years):
     result = []
     for year_range in years:

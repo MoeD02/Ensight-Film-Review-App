@@ -7,6 +7,7 @@ import RatingSelection from "../components/Selections/RatingSelection.js";
 import MovieResults from "../components/Results/MovieResults.js";
 import ListResults from "../components/Results/ListResults.js";
 import UserResults from "../components/Results/UserResults.js";
+import { getUser } from "../APIcalls.js";
 import { useLocation } from "react-router-dom";
 
 const Browse = () => {
@@ -20,6 +21,11 @@ const Browse = () => {
     const [searchGenre, setSearchGenre] = useState({});
     const [selectedYear, setSelectedYear] = useState({});
     const [searchYear, setSearchYear] = useState({});
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        async () => setUser(await getUser());
+    }, []);
 
     useEffect(() => {
         console.log("Search Rating Updated:", searchRating);
@@ -140,7 +146,10 @@ const Browse = () => {
                         <h2>Users</h2>
                         <div>
                             {/* replace with 5 users */}
-                            <UserResults searchTerm={searchTerm} />
+                            <UserResults
+                                searchTerm={searchTerm}
+                                user={!!user ? user : null}
+                            />
                         </div>
                         <h3 className="SeeResults">See More Results</h3>
                     </div>
