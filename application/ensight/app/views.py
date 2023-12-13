@@ -551,7 +551,7 @@ def get_user_results(request):
     userInfo = []
     for user in users:
         info = {
-            "user": UserSerializer(user).data,
+            "user": ProfileSerializer(user.profile).data,
             "num_lists": user.lists.count(),
             "num_following": user.following.count(),
             "num_followers": user.followers.count(),
