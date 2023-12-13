@@ -29,16 +29,17 @@ const FollowButton = ({
             followUser(parentId, currentUser.token)
             setIsFollowing(true)
         }
-        // try {
-        //     // Call the followUser function passed as a prop
-        //     await followUser(userToFollowId);
+    }
+    //     try {
+    //         // Call the followUser function passed as a prop
+    //         await followUser(userToFollowId);
 
-        //     // Toggle the local state
-        //     setIsFollowing((prevIsFollowing) => !prevIsFollowing);
-        // } catch (error) {
-        //     console.error("Failed to follow the user", error);
-        // }
-    };
+    //         // Toggle the local state
+    //         setIsFollowing((prevIsFollowing) => !prevIsFollowing);
+    //     } catch (error) {
+    //         console.error("Failed to follow the user", error);
+    //     }
+    // };
     // useEffect(() => {
     //     const checkIsFollowing = async () => {
     //         try {
