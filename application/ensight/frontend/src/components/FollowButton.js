@@ -66,13 +66,26 @@ const FollowButton = ({
 
     return (
         <>
-        {isFollowed !== null && 
+        {isFollowed === false ?
             <button
             style={style}
-            className={`button ${!!isFollowed ? "following" : "follow"}`}
-            onClick={toggleFollow}
+            className={"button follow"}
+            onClick={() => {
+                followUser(userToFollowId, user.token);
+                setIsFollowing(true);
+            } }
             >
-            {!!isFollowed ? "Following" : "Follow +"}
+            Follow +
+            </button>
+            : <button
+            style={style}
+            className={"button following"}
+            onClick={() => {
+                unfollowUser(userToFollowId, user.token);
+                setIsFollowing(false);
+            }}
+            >
+            Following
             </button>
         }
         </>

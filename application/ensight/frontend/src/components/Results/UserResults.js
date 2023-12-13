@@ -47,14 +47,12 @@ const UserResults = ({ searchTerm, user }) => {
                 // } catch (error) {
                 //     console.error("Error while accessing id", error);
                 // }
-                setUserData(
-                    (await searchUsers(selfUser.token, searchTerm)).userInfo
-                );
+                setUserData((await searchUsers(selfUser.token, searchTerm)).userInfo)
             } else {
-                setUserData((await getUserResults(selfUser.token)).userInfo);
+                setUserData((await getUserResults(selfUser.token)).userInfo)
             }
         };
-        if (!!selfUser) {
+        if(!!selfUser){
             fetchData();
         }
     }, [searchTerm, selfUser]);
@@ -97,74 +95,56 @@ const UserResults = ({ searchTerm, user }) => {
 
     return (
         <>
-            {!!userData &&
-                userData.map((userInfo, index) => (
-                    <div className="ResultContent Results" key={index}>
-                        <div className="UserResults">
-                            <img
-                                className="UserPicResults"
-                                src={`https://ensight.space${userInfo.user.avatar}`}
-                                alt={`User ${userInfo.user}'s avatar`}
-                            />
+            {!!userData && userData.map((userInfo, index) => (
+                <div className="ResultContent Results" key={index}>
+                    <div className="UserResults">
+                        <img
+                            className="UserPicResults"
+                            src={`https://ensight.space${userInfo.user.avatar}`}
+                            alt={`User ${userInfo.user}'s avatar`}
+                        />
 
-                            <div className="MoviePosterDetails">
-                                <Link
-                                    to={`/Profile/${userInfo.user.id}/profile`}
-                                    className="browse-link"
-                                    key={index}
-                                >
-                                    <h5 className="MoviePosterTitle">
-                                        {userInfo.user.user}
-                                    </h5>
-                                </Link>
-                                <h6 className="MoviePosterStars">
-                                    {userInfo.user.bio}
-                                </h6>
-                            </div>
+                        <div className="MoviePosterDetails">
+                            <Link
+                                to={`/Profile/${userInfo.user.id}/profile`}
+                                className="browse-link"
+                                key={index}
+                            >
+                                <h5 className="MoviePosterTitle">
+                                    {userInfo.user.user}
+                                </h5>
+                            </Link>
+                            <h6 className="MoviePosterStars">{userInfo.user.bio}</h6>
+                        </div>
+                    </div>
+
+                    <div className="ResultExtra">
+                        <div className="ResultExtraInfo">
+                            <h3>{userInfo.num_lists}</h3>
+                            <h3 className="ResultStatement">lists</h3>
+                        </div>
+                        <div className="ResultExtraInfo">
+                            <h3>{userInfo.num_following}</h3>
+                            <h3 className="ResultStatement">following</h3>
+                        </div>
+                        <div className="ResultExtraInfo">
+                            <h3>{userInfo.num_followers}</h3>
+                            <h3 className="ResultStatement">followers</h3>
                         </div>
 
-                        <div className="ResultExtra">
-                            <div className="ResultExtraInfo">
-                                <h3>{userInfo.num_lists}</h3>
-                                <h3 className="ResultStatement">lists</h3>
-                            </div>
-                            <div className="ResultExtraInfo">
-                                <h3>{userInfo.num_following}</h3>
-                                <h3 className="ResultStatement">following</h3>
-                            </div>
-                            <div className="ResultExtraInfo">
-                                <h3>{userInfo.num_followers}</h3>
-                                <h3 className="ResultStatement">followers</h3>
-                            </div>
-
-                            {userInfo.following ? (
-                                <button
-                                    className={"button following"}
-                                    onClick={() => unfollowUser(userInfo.user.id, selfUser.token)}
-                                >
-                                    Following
-                                </button>
-                            ) : (
-                                <button
-                                    className={"button follow"}
-                                    onClick={() => followUser(userInfo.user.id, selfUser.token)}
-                                >
-                                    Follow +
-                                </button>
-                            )}
-                            {/* {!!currentUser &&
+                        {/* {!!currentUser &&  */}
                             <FollowButton
                                 userToFollowId={userInfo.user.id}
                                 followUser={follow_user} // Use the individual user's followed state
                                 currentUser={selfUser}
                                 isFollowed={userInfo.following}
                             />
-                        : (
+                        {/* : (
                             <></>
                         ) } */}
-                        </div>
                     </div>
-                ))}
+                </div>
+            ))}
         </>
     );
 };
