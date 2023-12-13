@@ -512,7 +512,7 @@ export const followUser = async (userToFollowId, authToken) => {
 
 export const unfollowUser = async (otherId, authToken) => {
 	const data = {
-		other_user_id: userToFollowId,
+		other_user_id: otherId,
 	};
 
 	const response = await fetch(`${apiUrl}/unfollow_user/`, {
