@@ -12,11 +12,11 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 
 from knox.models import AuthToken
-
+from knox.auth import TokenAuthentication
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 
@@ -70,36 +70,35 @@ class CurrentUserAPI(RetrieveAPIView):
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
 def follow_user(request):
-    # TODO: Get User obj from auth info
-    user_id = request.data.get("user_id")
-    following_user_id = request.data["following_user_id"]
+    user_id = request.user.pk
+    following_user_id = request.data.get("other_user_id")
     try:
         UserFollowing.objects.create(
             user_id=User.objects.get(pk=user_id),
             following_user_id=User.objects.get(pk=following_user_id),
         )
         return Response({"message": "Follow success"}, status.HTTP_200_OK)
-    except IntegrityError:
-        return Response({"error": "error"}, status.HTTP_400_BAD_REQUEST)
+    except IntegrityError as e:
+        return Response({"error": e}, status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["DELETE"])
 @permission_classes([permissions.IsAuthenticated])
 def unfollow_user(request):
-    # TODO: Get User obj from auth info
-    user_id = request.data["user_id"]
-    following_user_id = request.data["following_user_id"]
+    user_id = request.user.pk
+    following_user_id = request.data.get("other_user_id")
     try:
         UserFollowing.objects.filter(
             user_id=User.objects.get(pk=user_id),
             following_user_id=User.objects.get(pk=following_user_id),
         ).delete()
         return Response({"message": "success"}, status.HTTP_200_OK)
-    except IntegrityError:
-        return Response({"error": "error"}, status.HTTP_404_NOT_FOUND)
+    except IntegrityError as e:
+        return Response({"error": e}, status.HTTP_404_NOT_FOUND)
 
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def add_to_favorites(request):
     if request.method == "POST":
         movie_id = request.data.get("movie_id")
@@ -153,6 +152,8 @@ def remove_from_favorites(request):
 
 
 @api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def update_user_profile(request):
     user_profile = request.user.profile
 
@@ -264,16 +265,16 @@ def header_search(request):
 
 @api_view(["POST"])
 def fetch_movies(request):
-    filter = request.POST.get("filter")
-    genres = request.POST.get("genres")
-    years = request.POST.get("years")
+    filter = request.data.get("filter")
+    genres = request.data.get("genres")
+    years = request.data.get("years")
     if years:
         years = increment_years(years)
-    index = request.POST.get("amount")
+    index = request.data.get("amount")
 
-    movies = Movie.objects.all()
+    movies = Movie.objects.all().defer("description")
     if genres:
-        movies = Movie.objects.filter(genres__name__in=genres).distinct()
+        movies = movies.filter(genres__name__in=genres).distinct()
 
     if years:
         movies = movies.filter(release_date__year__in=years)
@@ -281,7 +282,7 @@ def fetch_movies(request):
     if filter == "highest":
         movies = movies.order_by("-popularity")[:index]
     elif filter == "ALL":
-        movies = movies.all()
+        movies = movies[:index]
     elif filter == "lowest":
         movies = movies.order_by("popularity")[:index]
     serializer = MovieSerializer(movies, many=True)
@@ -365,22 +366,33 @@ def get_users(request):
 
 
 @api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
 def search_users(request):
     if request.method == "POST":
         search_query = request.data.get("content")
+        selfUserId = request.user.pk
         print(f"Search Query: {search_query}")
-        users = Profile.objects.filter(Q(user__username__icontains=search_query))
-
-        serializer = ProfileSerializer(users, many=True)
-        user_profiles = [
-            {
-                "username": user.user.username,
+        # users = Profile.objects.filter(Q(user__username__icontains=search_query))
+        users = User.objects.filer(username__icontains=search_query)
+        userInfo = []
+        for user in users:
+            info = {
+                "user": user,
+                "num_lists": user.lists.count(),
+                "num_following": user.following.count(),
+                "num_followers": user.followers.count(),
+                "following": user.followers.filter(pk=selfUserId).exists(),
             }
-            for user in users
-        ]
-        return Response(serializer.data)
-    # else:
-    #     return JsonResponse({'error': 'Invalid request method'}, status=400)
+            userInfo.append(info)
+
+        # serializer = ProfileSerializer(users, many=True)
+        # user_profiles = [
+        #     {
+        #         "username": user.user.username,
+        #     }
+        #     for user in users
+        # ]
+        return Response(json.dumps(userInfo))
 
 
 @api_view(["POST"])
@@ -515,32 +527,39 @@ def user_likes_movie(request):
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
 def user_follows_user(request):
-    follower_id = request.data.get("follower_id")
-    following_id = request.data.get("following_id")
+    user_id = request.data.get("follower_id")
+    other_id = request.data.get("following_id")
 
     # Check if the follower_id and following_id are provided
-    if not follower_id or not following_id:
+    if not user_id or not other_id:
         return JsonResponse(
             {
-                "error": "Incomplete data. Please provide both follower_id and following_id."
+                "error": "Incomplete data. Please provide both user_id and other_id."
             },
             status=400,
         )
-
-    # Check if the specified follower exists
-    follower_profile = get_object_or_404(Profile, pk=follower_id)
-
-    # Check if the specified following user exists
-    following_profile = get_object_or_404(Profile, pk=following_id)
-
-    # Check if the specified follower is following the specified following user
-    is_following = follower_profile.following.filter(pk=following_id).exists()
-
+    is_following = User.objects.get(pk=user_id).following.filter(following_user_id=other_id).exists()
     # Return the result as a JSON response
     return JsonResponse({"is_following": is_following})
 
 
-
+@api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
+def get_user_results(request):
+    users = [x for x in User.objects.all()[:5]]
+    selfUserId = request.user.pk
+    userInfo = []
+    for user in users:
+        info = {
+            "user": ProfileSerializer(user.profile).data,
+            "num_lists": user.lists.count(),
+            "num_following": user.following.count(),
+            "num_followers": user.followers.count(),
+            "following": user.followers.filter(pk=selfUserId).exists(),
+        }
+        userInfo.append(info)
+    return Response({"userInfo": userInfo})
+    
 def increment_years(years):
     result = []
     for year_range in years:
@@ -706,15 +725,15 @@ def create_movie_list(request):
 # get's user's list(all of it). STILL NEEDS WORK because it doesn't know which user it is
 @api_view(["POST"])
 def get_user_movie_lists(request):
-    filter = request.data.get("filter")
+    filter = request.POST.get("filter")
 
     # print("THIS IS THE FILTER AND THIS IS THE ID: ", filter, author_id)
 
     if filter == "id":
-        author_id = request.data["id"]
+        author_id = request.POST.get("id")
         movie_list = MovieList.objects.filter(author__id=author_id)
     else:
-        index = request.data["amount"]
+        index = request.POST.get("amount")
         movie_list = MovieList.objects.all()[:index]
         # string = f"THIS IS TEH AUTHOR{movie_list[0].author}"
         # print(string)

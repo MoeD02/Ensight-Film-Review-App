@@ -7,147 +7,157 @@ import RatingSelection from "../components/Selections/RatingSelection.js";
 import MovieResults from "../components/Results/MovieResults.js";
 import ListResults from "../components/Results/ListResults.js";
 import UserResults from "../components/Results/UserResults.js";
+import { getUser } from "../APIcalls.js";
 import { useLocation } from "react-router-dom";
 
 const Browse = () => {
-	const location = useLocation();
-	const queryParams = new URLSearchParams(location.search);
-	const searchTerm = queryParams.get("searchTerm");
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const searchTerm = queryParams.get("searchTerm");
 
-	const [selectedRating, setSelectedRating] = useState("highest");
-	const [searchRating, setSearchRating] = useState("highest");
-	const [selectedGenre, setSelectedGenre] = useState({});
-	const [searchGenre, setSearchGenre] = useState({});
-	const [selectedYear, setSelectedYear] = useState({});
-	const [searchYear, setSearchYear] = useState({});
+    const [selectedRating, setSelectedRating] = useState("highest");
+    const [searchRating, setSearchRating] = useState("highest");
+    const [selectedGenre, setSelectedGenre] = useState({});
+    const [searchGenre, setSearchGenre] = useState({});
+    const [selectedYear, setSelectedYear] = useState({});
+    const [searchYear, setSearchYear] = useState({});
+    const [user, setUser] = useState(null);
 
-	useEffect(() => {
-		console.log("Search Rating Updated:", searchRating);
-		console.log("Search Genre Updated:", searchGenre);
-		console.log("Search Year Updated:", searchYear);
-		// You can perform any actions here that depend on the updated state
-	}, [searchRating, searchGenre, searchYear]);
+    useEffect(() => {
+        const initUser = async () => setUser(await getUser());
+        initUser();
+    }, []);
 
-	const handleRatingChange = (rating) => {
-		setSelectedRating(rating);
-	};
+    useEffect(() => {
+        console.log("Search Rating Updated:", searchRating);
+        console.log("Search Genre Updated:", searchGenre);
+        console.log("Search Year Updated:", searchYear);
+        // You can perform any actions here that depend on the updated state
+    }, [searchRating, searchGenre, searchYear]);
 
-	const handleGenreChange = (genre) => {
-		setSelectedGenre(genre);
-	};
-	const handleYearChange = (year) => {
-		setSelectedYear(year);
-	};
+    const handleRatingChange = (rating) => {
+        setSelectedRating(rating);
+    };
 
-	const checkSelections = () => {
-		setSearchRating(selectedRating);
+    const handleGenreChange = (genre) => {
+        setSelectedGenre(genre);
+    };
+    const handleYearChange = (year) => {
+        setSelectedYear(year);
+    };
 
-		const selectedGenresArray = Object.keys(selectedGenre).filter(
-			(genre) => selectedGenre[genre]
-		);
-		setSearchGenre(selectedGenresArray);
+    const checkSelections = () => {
+        setSearchRating(selectedRating);
 
-		const selectedYearArray = Object.keys(selectedYear).filter(
-			(year) => selectedYear[year]
-		);
-		setSearchYear(selectedYearArray);
-	};
+        const selectedGenresArray = Object.keys(selectedGenre).filter(
+            (genre) => selectedGenre[genre]
+        );
+        setSearchGenre(selectedGenresArray);
 
-	if (searchTerm == null) {
-		return (
-			<div className="flex-container">
-				<div className="BrowseFilter">
-					<h2 className="BrowseTitle">Browse by</h2>
-					<div className="CheckSelections">
-						<YearSelection onYearChange={handleYearChange} />
-						<GenreSelection onGenreChange={handleGenreChange} />
-						<RatingSelection onRatingChange={handleRatingChange} />
-					</div>
-					{/* once search is clicked, any of the checkboxes are applied */}
-					{/* if no checkboxes are picked for a selection, then add all */}
-					<button className="BrowseSearch" onClick={checkSelections}>
-						Search
-					</button>
-				</div>
-				<div className="BrowseResults">
-					<div>
-						<h2>Films</h2>
-						{/* replace with 4 movies */}
-						<MovieResults
-							filter={searchRating}
-							genres={searchGenre}
-							years={searchYear}
-						/>
-						<h3 className="SeeResults">See More Results</h3>
-					</div>
-					<div>
-						<h2>Lists</h2>
-						<div>
-							{/* replace with 5 lists */}
-							<ListResults />
-						</div>
-						<h3 className="SeeResults">See More Results</h3>
-					</div>
-					<div>
-						<h2>Users</h2>
-						<div>
-							{/* replace with 5 users */}
-							<UserResults />
-						</div>
-						<h3 className="SeeResults">See More Results</h3>
-					</div>
-				</div>
-			</div>
-		);
-	} else {
-		console.log("I SEARCHED!!!!");
-		return (
-			<div className="flex-container">
-				<div className="BrowseFilter">
-					<h2 className="BrowseTitle">Browse by</h2>
-					<div className="CheckSelections">
-						<YearSelection onYearChange={handleYearChange} />
-						<GenreSelection onGenreChange={handleGenreChange} />
-						<RatingSelection onRatingChange={handleRatingChange} />
-					</div>
-					{/* once search is clicked, any of the checkboxes are applied */}
-					{/* if no checkboxes are picked for a selection, then add all */}
-					<button className="BrowseSearch" onClick={checkSelections}>
-						Search
-					</button>
-				</div>
-				<div className="BrowseResults">
-					<div>
-						<h2>Films</h2>
-						{/* replace with 4 movies */}
-						<MovieResults
-							searchTerm={searchTerm}
-							filter={searchRating}
-							genres={searchGenre}
-							years={searchYear}
-						/>
-						<h3 className="SeeResults">See More Results</h3>
-					</div>
-					<div>
-						<h2>Lists</h2>
-						<div>
-							{/* replace with 5 lists */}
-							<ListResults searchTerm={searchTerm} />
-						</div>
-						<h3 className="SeeResults">See More Results</h3>
-					</div>
-					<div>
-						<h2>Users</h2>
-						<div>
-							{/* replace with 5 users */}
-							<UserResults searchTerm={searchTerm} />
-						</div>
-						<h3 className="SeeResults">See More Results</h3>
-					</div>
-				</div>
-			</div>
-		);
-	}
+        const selectedYearArray = Object.keys(selectedYear).filter(
+            (year) => selectedYear[year]
+        );
+        setSearchYear(selectedYearArray);
+    };
+
+    if (searchTerm == null) {
+        return (
+            <div className="flex-container">
+                <div className="BrowseFilter">
+                    <h2 className="BrowseTitle">Browse by</h2>
+                    <div className="CheckSelections">
+                        <YearSelection onYearChange={handleYearChange} />
+                        <GenreSelection onGenreChange={handleGenreChange} />
+                        <RatingSelection onRatingChange={handleRatingChange} />
+                    </div>
+                    {/* once search is clicked, any of the checkboxes are applied */}
+                    {/* if no checkboxes are picked for a selection, then add all */}
+                    <button className="BrowseSearch" onClick={checkSelections}>
+                        Search
+                    </button>
+                </div>
+                <div className="BrowseResults">
+                    <div>
+                        <h2>Films</h2>
+                        {/* replace with 4 movies */}
+                        <MovieResults
+                            filter={searchRating}
+                            genres={searchGenre}
+                            years={searchYear}
+                        />
+                        <h3 className="SeeResults">See More Results</h3>
+                    </div>
+                    <div>
+                        <h2>Lists</h2>
+                        <div>
+                            {/* replace with 5 lists */}
+                            <ListResults />
+                        </div>
+                        <h3 className="SeeResults">See More Results</h3>
+                    </div>
+                    <div>
+                        <h2>Users</h2>
+                        <div>
+                            {/* replace with 5 users */}
+                            {!!user && <UserResults user={user}/>}
+                        </div>
+                        <h3 className="SeeResults">See More Results</h3>
+                    </div>
+                </div>
+            </div>
+        );
+    } else {
+        console.log("I SEARCHED!!!!");
+        return (
+            <div className="flex-container">
+                <div className="BrowseFilter">
+                    <h2 className="BrowseTitle">Browse by</h2>
+                    <div className="CheckSelections">
+                        <YearSelection onYearChange={handleYearChange} />
+                        <GenreSelection onGenreChange={handleGenreChange} />
+                        <RatingSelection onRatingChange={handleRatingChange} />
+                    </div>
+                    {/* once search is clicked, any of the checkboxes are applied */}
+                    {/* if no checkboxes are picked for a selection, then add all */}
+                    <button className="BrowseSearch" onClick={checkSelections}>
+                        Search
+                    </button>
+                </div>
+                <div className="BrowseResults">
+                    <div>
+                        <h2>Films</h2>
+                        {/* replace with 4 movies */}
+                        <MovieResults
+                            searchTerm={searchTerm}
+                            filter={searchRating}
+                            genres={searchGenre}
+                            years={searchYear}
+                        />
+                        <h3 className="SeeResults">See More Results</h3>
+                    </div>
+                    <div>
+                        <h2>Lists</h2>
+                        <div>
+                            {/* replace with 5 lists */}
+                            <ListResults searchTerm={searchTerm} />
+                        </div>
+                        <h3 className="SeeResults">See More Results</h3>
+                    </div>
+                    <div>
+                        <h2>Users</h2>
+                        <div>
+                            {/* replace with 5 users */}
+                            <UserResults
+                                searchTerm={searchTerm}
+                                user={!!user ? user : null}
+                            />
+                        </div>
+                        <h3 className="SeeResults">See More Results</h3>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 };
 
 export default Browse;

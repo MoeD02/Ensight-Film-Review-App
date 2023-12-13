@@ -17,8 +17,9 @@ const ProfileFocus = ({ userInfo, currentUserID, currentUserProfile, isMyPage })
     const {id} = useParams()
 
     useEffect(() => {
-        if(!!userInfo) {
+        if(!!user) {
             setUser(userInfo);
+            console.log(userInfo)
         }
         if(!!currentUserID) {
             setPageOwner(currentUserID);
@@ -47,7 +48,7 @@ const ProfileFocus = ({ userInfo, currentUserID, currentUserProfile, isMyPage })
 		setIsEditing(true);
 	};
 
-	const handleSubmitClick = async () => {
+	const handleSubmitClick = async (auth) => {
 		
 		try {
 			const profileUpdateInfo = {
@@ -58,14 +59,14 @@ const ProfileFocus = ({ userInfo, currentUserID, currentUserProfile, isMyPage })
 			};
 
 			// Call the updateProfile function
-			await updateUserProfile(profileUpdateInfo, user.token);
+			await updateUserProfile(profileUpdateInfo, auth);
 
 			// Additional actions or UI updates can be added here if needed
 
 			setIsEditing(true); // Set back to editing mode after the update is complete
 		} catch (error) {
 			console.error("Error updating profile:", error.message);
-			// Handle error, update UI, show error messages, etc.
+			// Handle error, update UI, show error messag, etc.
 		}
 	};
 
@@ -187,7 +188,8 @@ const ProfileFocus = ({ userInfo, currentUserID, currentUserProfile, isMyPage })
 								Cancel
 							</button>
 							{/* any changes are saved */}
-							<button className="Button RightB" onClick={handleSubmitClick}>
+                            
+							<button className="Button RightB" onClick={() => handleSubmitClick(userInfo.token)}>
 								Save
 							</button>
 						</div>

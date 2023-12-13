@@ -63,16 +63,16 @@ const SideMenu = ({ isOpen, onClose }) => {
 								Members
 							</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link to="/Feed" onClick={onClose}>
 								Feed
 							</Link>
-						</li>
-						<li>
+						</li> */}
+						{/* <li>
 							<Link to="/Profile/insight" onClick={onClose}>
 								Insight
 							</Link>
-						</li>
+						</li> */}
 						<li>
 							<Link
 								to={`/Profile/${currentUser["id"]}/watchlist`}
@@ -108,11 +108,11 @@ const SideMenu = ({ isOpen, onClose }) => {
 								Lists
 							</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link to="/DisplayMovie" onClick={onClose}>
 								Movies
 							</Link>
-						</li>
+						</li> */}
 						<li>
 							<Link to="/DisplayUser" onClick={onClose}>
 								Members

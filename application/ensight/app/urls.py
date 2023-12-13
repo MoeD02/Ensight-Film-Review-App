@@ -46,10 +46,11 @@ urlpatterns = [
         name="fetch_reviews_for_movie",
     ),
     path("follow_user/", follow_user, name="follow_user"),
-    path("unfollow_user", unfollow_user, name="unfollow_user"),
+    path("unfollow_user/", unfollow_user, name="unfollow_user"),
     path("get_user_stats/", get_user_stats, name="get_user_stats"),
     path("user_follows_user/", user_follows_user, name="user_follows_user"),
     path("get_user_favorites", get_users_favorites),
+    path("get_user_results/", get_user_results),
 ] 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

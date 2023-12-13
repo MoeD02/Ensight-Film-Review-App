@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-h-=dxamti0_pqwk9al+f3*4f2&*(zq5924kv+*a^d5hr$@di#^"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG:
     ALLOWED_HOSTS = [
@@ -59,7 +59,7 @@ CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": ["knox.auth.TokenAuthentication",],
 }
 
 INSTALLED_APPS = [
@@ -181,8 +181,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "media/"
 # change this to image root if you want to test
-# MEDIA_ROOT  =   '/var/www/ensight/media'
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT  =   '/var/www/ensight/media'
+#MEDIA_ROOT = BASE_DIR / "media"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

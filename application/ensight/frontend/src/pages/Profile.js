@@ -15,14 +15,19 @@ const Profile = () => {
 
     useEffect(() => {
         const initUser = async () => {
-            let userInfo = await getUser();
-            if (!!userInfo) {
-                setUser(userInfo);
-            }
-            setIsMyPage(userInfo.id == id)
+            setUser(await getUser());
+            // let userInfo = await getUser();
+            // if (!!userInfo) {
+            //     setUser(userInfo);
+            //     setIsMyPage(userInfo.id == id)
+            // }
         };
         initUser();
     }, []);
+
+    useEffect(() => {
+        setIsMyPage(user?.id == id)
+    }, [user])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,7 +47,7 @@ const Profile = () => {
                     ? (
                         <img
                             src={
-                                "http://localhost:8000" +
+                                "https://ensight.space" +
                                 currentUserProfile.avatar
                             }
                             className="UserPic"
@@ -51,7 +56,7 @@ const Profile = () => {
                     : (
                         <img
                             src={
-                                "http://localhost:8000/static/images/placeholder.png"
+                                "https://ensight.space/static/images/placeholder.png"
                             }
                             className="UserPic"
                         />
@@ -85,7 +90,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <ProfileTabs
-                    userInfo={!!user}
+                    userInfo={user ? user : null}
                     currentTab={currentTab}
                     currentUserID={id}
                     currentUserProfile={currentUserProfile}

@@ -12,31 +12,38 @@ const ListsFocus = ({ currentUserProfile, isMyPage }) => {
 	const prevUserIdRef = useRef();
 	const [isEditing, setIsEditing] = useState(true);
 	const [addedMovies, setAddedMovies] = useState([]);
-	const [numberOfLists, setNumberOfLists] = useState(1);
+	const [numberOfLists, setNumberOfLists] = useState(0);
 	const [movieData, setMovieData] = useState([]);
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [listData, setListData] = useState([]);
+	const [listData, setListData] = useState(null);
 	console.log("IS THS MY PAGE: ", isMyPage);
 	
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const filter = "id";
-			if (prevUserIdRef.current !== currentUserProfile.id) {
-				const data = await getUserMovieLists(
-					filter,
-					null,
-					currentUserProfile.id
-				);
-				setListData(data);
-				setNumberOfLists(data.length);
-				prevUserIdRef.current = currentUserProfile.id;
-			}
+//			if (prevUserIdRef.current !== currentUserProfile.id) {
+//				const data = await getUserMovieLists(
+//					filter,
+//					null,
+//					currentUserProfile.id
+//				);
+				setListData(
+					await getUserMovieLists(
+						filter,
+						null,
+						currentUserProfile?.id
+						))
+//				setListData(data);
+//				setNumberOfLists(data.length);
+				prevUserIdRef.current = currentUserProfile?.id;
+//			}
 		};
-
-		fetchData();
-	}, [currentUserProfile.id]);
+		if(!!listData) {
+			fetchData();
+		}
+	}, [listData]);
 	const handleEditClick = () => {
 		setIsEditing(false);
 	};
@@ -84,7 +91,7 @@ const ListsFocus = ({ currentUserProfile, isMyPage }) => {
 	const renderMovieSection = (index) => {
 		if (
 			!listData ||
-			listData.length === 0 ||
+			listData?.length === 0 ||
 			!listData[index] ||
 			!listData[index].movies
 		) {
@@ -145,7 +152,7 @@ const ListsFocus = ({ currentUserProfile, isMyPage }) => {
 				{isEditing ? (
 					<>
 						<div className="GridContainer GridList">
-							{[...Array(numberOfLists).keys()].map((index) =>
+							{!!listData && [...Array(listData.length).keys()].map((index) =>
 								renderMovieSection(index)
 							)}
 							<button

@@ -21,15 +21,16 @@ const Watchlist = ({ currentUserProfile }) => {
 
 			if (currentUserProfile && currentUserProfile.watchlist) {
 				
-				response = await fetchMoviesByIds(currentUserProfile.watchlist);
+//				response = await fetchMoviesByIds(currentUserProfile.watchlist);
+				setWatchList(await fetchMoviesByIds(currentUserProfile.watchlist).movies);
 			}
 
-			if (response && Array.isArray(response.movies)) {
-				console.log("WatchList Movies Array:", response.movies); // Updated log statement
-				setWatchList(response.movies);
-			} else {
-				console.error("Fetch error or invalid response:", response);
-			}
+//			if (response && Array.isArray(response.movies)) {
+//				console.log("WatchList Movies Array:", response.movies); // Updated log statement
+//				setWatchList(response.movies);
+//			} else {
+//				console.error("Fetch error or invalid response:", response);
+//			}
 		};
 		const fetchAuth = async () => {
 			const token = localStorage.getItem("Authorization");
@@ -43,7 +44,7 @@ const Watchlist = ({ currentUserProfile }) => {
 		fetchAuth();
 		fetchMovies();
 
-	}, [currentUserProfile.watchlist]);
+	}, [currentUserProfile?.watchlist]);
 
 	const handleEditClick = () => {
 		setIsEditing(false);
@@ -87,7 +88,7 @@ const Watchlist = ({ currentUserProfile }) => {
 			<div className={isEditing ? "ListView" : "ListEdit"}>
 				{isEditing ? (
 					<div className="GridContainer GridWatchlist">
-						{watchList.map((movie,index) => (
+						{watchList?.map((movie,index) => (
 							<Link to={`/MovieLanding/${movie.id}`} key={index}>
 								<h3 key={movie.id} className="MovieWatchList">
 									<img

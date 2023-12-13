@@ -51,7 +51,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         write_only=True,
     )
 
-
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
@@ -63,7 +62,6 @@ class LoginSerializer(serializers.Serializer):
         write_only=True,
     )
 
-
     def validate(self, data):
         user = authenticate(**data)
         if user and user.is_active:
@@ -71,11 +69,11 @@ class LoginSerializer(serializers.Serializer):
         raise serializers.ValidationError("Invalid Credentials")
 
 
-
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = "__all__"
+
     favorites = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     watchlist = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     user = serializers.CharField(source="user.username")
@@ -93,6 +91,7 @@ class FollowingSerializer(serializers.ModelSerializer):
 
 class FollowersSerializer(serializers.ModelSerializer):
     class Meta:
+        model = UserFollowing
         fields = (
             "id",
             "user_id",
@@ -105,17 +104,12 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = "__all__"
 
-        fields = "__all__"
-
 
 class MovieSerializer(serializers.ModelSerializer):
     genres = serializers.StringRelatedField(many=True)
 
-
     class Meta:
         model = Movie
-        fields = "__all__"
-
         fields = "__all__"
 
 
@@ -124,14 +118,10 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = "__all__"
 
-        fields = "__all__"
-
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = "__all__"
-
         fields = "__all__"
 
 

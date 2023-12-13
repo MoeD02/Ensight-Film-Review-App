@@ -10,7 +10,7 @@ import TabContent from "./TabNav/TabContent";
 import "../../assets/styles/components/ProfileTabs.css";
 
 
-function ProfileTabs({ currentTab, currentUserProfile, id, isMine }) {
+function ProfileTabs({ currentTab, userInfo, currentUserProfile, id, isMine }) {
   const [activeTab, setActiveTab] = useState(currentTab);
   const navigate = useNavigate();
   const [isMyPage, setIsMyPage] = useState(null);
@@ -68,6 +68,7 @@ useEffect(() => {
 			<div className="outlet">
 				<TabContent id="profile" activeTab={activeTab}>
 					<ProfileFocus
+                        userInfo={userInfo}
 						currentUserProfile={currentUserProfile}
 						isMyPage={isMyPage}
 					/>
