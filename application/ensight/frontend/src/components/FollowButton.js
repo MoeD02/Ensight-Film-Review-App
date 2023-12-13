@@ -23,8 +23,8 @@ const FollowButton = ({
         setUser(currentUser);
     }, [currentUser]);
 
-    const toggleFollow = async () => {
-        if(isFollowing) {
+    const toggleFollow = async (event) => {
+        if(event.target.getAttribute("id") == "follow") {
             unfollowUser(parentId, user.token)
             setIsFollowing(false)
         }
@@ -69,21 +69,17 @@ const FollowButton = ({
         {isFollowing === false ?
             <button
             style={style}
+            id="follow"
             className={"button follow"}
-            onClick={() => {
-                followUser(userToFollowId, user.token);
-                setIsFollowing(true);
-            } }
+            onClick={(event) => {toggleFollow(event)} }
             >
             Follow +
             </button>
             : <button
             style={style}
+            id="unfollow"
             className={"button following"}
-            onClick={() => {
-                unfollowUser(userToFollowId, user.token);
-                setIsFollowing(false);
-            }}
+            onClick={(event) => {toggleFollow(event)}}
             >
             Following
             </button>
