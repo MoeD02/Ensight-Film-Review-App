@@ -139,7 +139,6 @@ const UserResults = ({ searchTerm, user }) => {
 
                             {userInfo.following ? (
                                 <button
-                                    style={style}
                                     className={"button following"}
                                     onClick={() => unfollowUser(userInfo.user.id, selfUser.token)}
                                 >
@@ -147,7 +146,6 @@ const UserResults = ({ searchTerm, user }) => {
                                 </button>
                             ) : (
                                 <button
-                                    style={style}
                                     className={"button follow"}
                                     onClick={() => followUser(userInfo.user.id, selfUser.token)}
                                 >
