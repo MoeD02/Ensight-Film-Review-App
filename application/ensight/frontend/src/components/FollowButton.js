@@ -19,14 +19,17 @@ const FollowButton = ({
     useEffect(() => {
         setParentId(userToFollowId);
     }, [userToFollowId]);
+    useEffect(() => {
+        setUser(currentUser);
+    }, [currentUser]);
 
     const toggleFollow = async () => {
         if(isFollowing) {
-            unfollowUser(parentId, currentUser.token)
+            unfollowUser(parentId, user.token)
             setIsFollowing(false)
         }
         else {
-            followUser(parentId, currentUser.token)
+            followUser(parentId, user.token)
             setIsFollowing(true)
         }
     }
