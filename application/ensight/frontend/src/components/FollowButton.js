@@ -69,10 +69,10 @@ const FollowButton = ({
         {!!user && 
             <button
             style={style}
-            className={`button ${!!isFollowing ? "following" : "follow"}`}
+            className={`button ${!!isFollowed ? "following" : "follow"}`}
             onClick={toggleFollow}
             >
-            {!!isFollowing ? "Following" : "Follow +"}
+            {!!isFollowed ? "Following" : "Follow +"}
             </button>
         }
         </>
