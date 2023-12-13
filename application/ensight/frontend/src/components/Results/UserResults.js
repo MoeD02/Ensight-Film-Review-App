@@ -52,9 +52,10 @@ const UserResults = ({ searchTerm, user }) => {
                 setUserData(await getUserResults(selfUser.token))
             }
         };
-
-        fetchData();
-    }, [searchTerm]);
+        if(!!selfUser){
+            fetchData();
+        }
+    }, [searchTerm, selfUser]);
     // useEffect(() => {
     //     let data;
     //     if (searchTerm != null) {
