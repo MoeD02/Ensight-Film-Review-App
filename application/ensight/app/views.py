@@ -558,7 +558,7 @@ def get_user_results(request):
             "following": user.followers.filter(pk=selfUserId).exists(),
         }
         userInfo.append(info)
-    return Response(json.dumps(userInfo))
+    return Response({"userInfo": userInfo})
     
 def increment_years(years):
     result = []
