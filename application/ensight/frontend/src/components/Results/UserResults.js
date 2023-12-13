@@ -17,6 +17,7 @@ const UserResults = ({ searchTerm, user }) => {
     const [userData, setUserData] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
     const [selfUser, setSelfUser] = useState(null);
+
     const FollowUser = {
         borderRadius: "100px",
     };
@@ -92,8 +93,7 @@ const UserResults = ({ searchTerm, user }) => {
                                 userToFollowId={userInfo.user.id}
                                 followUser={follow_user} // Use the individual user's followed state
                                 currentUser={selfUser}
-                                userInfo={userInfo}
-                                setUserInfo={setUserData}
+                                isFollowed={userInfo.following}
                             />
                         {/* : (
                             <></>
