@@ -103,11 +103,11 @@ const SideMenu = ({ isOpen, onClose }) => {
 								Explore
 							</Link>
 						</li>
-						<li>
-							<Link to="/DisplayList" onClick={onClose}>
+						{/* <li>
+							<Link to="/Login" onClick={onClose}>
 								Lists
 							</Link>
-						</li>
+						</li> */}
 						{/* <li>
 							<Link to="/DisplayMovie" onClick={onClose}>
 								Movies
