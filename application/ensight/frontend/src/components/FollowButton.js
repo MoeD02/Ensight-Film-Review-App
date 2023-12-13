@@ -66,7 +66,7 @@ const FollowButton = ({
 
     return (
         <>
-        {isFollowing === false ?
+        {!isFollowing ?
             <button
             style={style}
             id="follow"
