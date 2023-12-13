@@ -136,7 +136,7 @@ const UserResults = ({ searchTerm, user }) => {
                             <FollowButton
                                 userToFollowId={userInfo.user.id}
                                 followUser={follow_user} // Use the individual user's followed state
-                                currentUser={currentUser}
+                                currentUser={selfUser}
                                 isFollowed={userInfo.following}
                             />
                         {/* : (
