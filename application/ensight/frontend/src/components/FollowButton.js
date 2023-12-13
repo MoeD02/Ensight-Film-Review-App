@@ -66,7 +66,7 @@ const FollowButton = ({
 
     return (
         <>
-        {isFollowed === false ?
+        {isFollowing === false ?
             <button
             style={style}
             className={"button follow"}
