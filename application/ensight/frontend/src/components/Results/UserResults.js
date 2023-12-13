@@ -25,28 +25,8 @@ const UserResults = ({ searchTerm, user }) => {
     }, [user]);
 
     useEffect(() => {
-        let data;
         const fetchData = async () => {
             if (searchTerm != null) {
-                // data = await searchUsers(searchTerm);
-                // try {
-                //     if (data) {
-                //         const updatedData = await Promise.all(
-                //             data.map(async (user) => {
-                //                 const stats = await getUserStats(user.id);
-                //                 const followInfo = await isFollowingArray(
-                //                     authToken
-                //                 );
-                //                 return { ...user, stats, followed };
-                //             })
-                //         );
-                //         setUserData(updatedData);
-                //     } else {
-                //         console.error("Failed to fetch user data");
-                //     }
-                // } catch (error) {
-                //     console.error("Error while accessing id", error);
-                // }
                 setUserData((await searchUsers(selfUser.token, searchTerm)).userInfo)
             } else {
                 setUserData((await getUserResults(selfUser.token)).userInfo)
@@ -56,32 +36,7 @@ const UserResults = ({ searchTerm, user }) => {
             fetchData();
         }
     }, [searchTerm, selfUser]);
-    // useEffect(() => {
-    //     let data;
-    //     if (searchTerm != null) {
-    //         data = await searchUsers(searchTerm);
-    //     } else {
-    //         data = await getUsers("highest_followers", 5);
-    //     }
-    //     try {
-    //         if (data) {
-    //             const updatedData = await Promise.all(
-    //                 data.map(async (user) => {
-    //                     const stats = await getUserStats(user.id);
-    //                     const followInfo = await isFollowingArray(authToken, )
-    //                     return { ...user, stats, followed };
-    //                 })
-    //             );
-    //             setUserData(updatedData);
-    //         } else {
-    //             console.error("Failed to fetch user data");
-    //         }
-    //     } catch (error) {
-    //         console.error("Error while accessing id", error);
-    //     }
 
-    //     fetchData();
-    // }, [searchTerm]);
     const follow_user = async (userToFollowId) => {
         // You can add error handling here
         const result = await followUser(userToFollowId, currentUser.token);
@@ -137,7 +92,8 @@ const UserResults = ({ searchTerm, user }) => {
                                 userToFollowId={userInfo.user.id}
                                 followUser={follow_user} // Use the individual user's followed state
                                 currentUser={selfUser}
-                                isFollowed={userInfo.following}
+                                userInfo={userInfo}
+                                setUserInfo={setUserData}
                             />
                         {/* : (
                             <></>

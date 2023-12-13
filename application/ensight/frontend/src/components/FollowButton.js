@@ -5,7 +5,8 @@ import { getUser, isFollowedByUser, followUser, unfollowUser } from "../APIcalls
 const FollowButton = ({
     style,
     userToFollowId,
-    isFollowed,
+    userInfo,
+    setUserInfo,
     // followUser,
     // unfollowUser,
     currentUser,
@@ -13,9 +14,9 @@ const FollowButton = ({
     const [isFollowing, setIsFollowing] = useState(null);
     const [parentId, setParentId] = useState(null);
     const [user, setUser] = useState(null);
-    useEffect(() => {
-        setIsFollowing((prev)=>isFollowed);
-    }, [isFollowed]);
+    // useEffect(() => {
+    //     setIsFollowed(isFollowed);
+    // }, [isFollowed]);
     useEffect(() => {
         setParentId(userToFollowId);
     }, [userToFollowId]);
@@ -26,47 +27,23 @@ const FollowButton = ({
     const toggleFollow = async (event) => {
         if(event.target.getAttribute("id") == "unfollow") {
             unfollowUser(parentId, user.token)
-            setIsFollowing(false)
+            setUserInfo({
+                ...userInfo,
+                following: false,
+            })
         }
         else {
             followUser(parentId, user.token)
-            setIsFollowing(true)
+            setUserInfo({
+                ...userInfo,
+                following: true,
+            })
         }
     }
-    //     try {
-    //         // Call the followUser function passed as a prop
-    //         await followUser(userToFollowId);
-
-    //         // Toggle the local state
-    //         setIsFollowing((prevIsFollowing) => !prevIsFollowing);
-    //     } catch (error) {
-    //         console.error("Failed to follow the user", error);
-    //     }
-    // };
-    // useEffect(() => {
-    //     const checkIsFollowing = async () => {
-    //         try {
-    //             console.log("Checking isFollowing:", currentUser);
-    //             const followInfo = await isFollowedByUser(
-    //                 currentUser.id,
-    //                 userToFollowId,
-    //                 currentUser.token
-    //             );
-    //             console.log("FollowInfo:", followInfo);
-    //             setIsFollowing(followInfo ? followInfo.is_following : false);
-    //         } catch (error) {
-    //             console.error(
-    //                 "Failed to check if the user is following",
-    //                 error
-    //             );
-    //         }
-    //     };
-    //     checkIsFollowing();
-    // }, [currentUser.id, userToFollowId, currentUser.token]);
 
     return (
         <>
-        {!isFollowing ?
+        {!userInfo.following ?
             <button
             style={style}
             id="follow"
