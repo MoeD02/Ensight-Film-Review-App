@@ -111,7 +111,7 @@ const UserResults = ({ searchTerm, user }) => {
                                 key={index}
                             >
                                 <h5 className="MoviePosterTitle">
-                                    {userInfo.user}
+                                    {userInfo.user.user}
                                 </h5>
                             </Link>
                             <h6 className="MoviePosterStars">{userInfo.user.bio}</h6>
