@@ -66,7 +66,7 @@ const FollowButton = ({
 
     return (
         <>
-        {!!user && 
+        {isFollowed !== null && 
             <button
             style={style}
             className={`button ${!!isFollowed ? "following" : "follow"}`}
