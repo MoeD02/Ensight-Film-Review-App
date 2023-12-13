@@ -14,7 +14,7 @@ import {
 import FollowButton from "../FollowButton.js";
 
 const UserResults = ({ searchTerm, user }) => {
-    const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
     const [selfUser, setSelfUser] = useState(null);
     const FollowUser = {
@@ -95,7 +95,7 @@ const UserResults = ({ searchTerm, user }) => {
 
     return (
         <>
-            {userData.map((userInfo, index) => (
+            {!!userData && userData.map((userInfo, index) => (
                 <div className="ResultContent Results" key={index}>
                     <div className="UserResults">
                         <img
