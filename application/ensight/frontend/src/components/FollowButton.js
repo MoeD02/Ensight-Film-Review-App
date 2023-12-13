@@ -24,7 +24,7 @@ const FollowButton = ({
     }, [currentUser]);
 
     const toggleFollow = async (event) => {
-        if(event.target.getAttribute("id") == "follow") {
+        if(event.target.getAttribute("id") == "unfollow") {
             unfollowUser(parentId, user.token)
             setIsFollowing(false)
         }
