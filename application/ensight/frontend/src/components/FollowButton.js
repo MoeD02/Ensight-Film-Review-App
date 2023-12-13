@@ -14,7 +14,7 @@ const FollowButton = ({
     const [parentId, setParentId] = useState(null);
     const [user, setUser] = useState(null);
     useEffect(() => {
-        setIsFollowing(isFollowed);
+        setIsFollowing((prev)=>isFollowed);
     }, [isFollowed]);
     useEffect(() => {
         setParentId(userToFollowId);
