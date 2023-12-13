@@ -47,9 +47,9 @@ const UserResults = ({ searchTerm, user }) => {
                 // } catch (error) {
                 //     console.error("Error while accessing id", error);
                 // }
-                setUserData(await searchUsers(selfUser.token, searchTerm).userInfo)
+                setUserData((await searchUsers(selfUser.token, searchTerm)).userInfo)
             } else {
-                setUserData(await getUserResults(selfUser.token).userInfo)
+                setUserData((await getUserResults(selfUser.token)).userInfo)
             }
         };
         if(!!selfUser){
