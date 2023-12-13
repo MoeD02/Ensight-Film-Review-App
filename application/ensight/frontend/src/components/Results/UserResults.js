@@ -23,7 +23,7 @@ const UserResults = ({ searchTerm, user }) => {
     useEffect(() => {
         setSelfUser(user);
     }, [user]);
-    useEffect(() => {});
+
     useEffect(() => {
         let data;
         const fetchData = async () => {

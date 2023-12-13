@@ -98,7 +98,7 @@ const Browse = () => {
                         <h2>Users</h2>
                         <div>
                             {/* replace with 5 users */}
-                            <UserResults />
+                            {!!user && <UserResults user={user}/>}
                         </div>
                         <h3 className="SeeResults">See More Results</h3>
                     </div>
